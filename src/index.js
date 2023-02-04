@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { App } from 'components/App';
 import './index.css';
 import redux from './redux/store';
+import Theme from './theme';
 
 const { store, persistor } = redux;
 
@@ -15,7 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/petly">
-          <App />
+          <Theme>
+            <App />
+          </Theme>
         </BrowserRouter>
       </PersistGate>
     </Provider>
