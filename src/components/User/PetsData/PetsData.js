@@ -1,12 +1,14 @@
+import { PetsList } from './PetsList';
+import { ContainerWrapp, Title } from './PetsData.styled';
+
 export const PetsData = () => {
   return (
     <>
-      <div>Hello PetsData</div>
-      {/* <div>
-        <title>My pets:</title>
+      <ContainerWrapp>
+        <Title>My pets:</Title>
         <button type="button">Add pet</button>
-      </div>
-      <PetsList /> */}
+      </ContainerWrapp>
+      <PetsList />
     </>
   );
 };
