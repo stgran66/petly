@@ -1,4 +1,4 @@
-import { List, Item } from './PetsData.styled';
+import { List, Item } from './PetsList.styled';
 import { PetItem } from './PetItem';
 
 export const PetsList = () => {

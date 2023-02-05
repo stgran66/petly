@@ -4,7 +4,7 @@ import {
   PetInfoName,
   PetInfoFoto,
   PetInfoWrapp,
-} from './PetsData.styled';
+} from './PetsList.styled';
 
 export const PetItem = () => {
   return (

@@ -1,4 +1,4 @@
-import { PetsList } from './PetsList';
+import { PetsList } from '../PetsList/PetsList';
 import { ContainerWrapp, Title } from './PetsData.styled';
 
 export const PetsData = () => {
