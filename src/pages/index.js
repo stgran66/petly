@@ -1,6 +1,6 @@
-import Login from './Login';
-import Register from './Register';
+import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
 import UserPage from './UserPage';
 
-const pages = { Login, Register, UserPage };
+const pages = { LoginPage, RegisterPage, UserPage };
 export default pages;

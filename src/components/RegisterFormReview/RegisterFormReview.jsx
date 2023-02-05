@@ -1,6 +1,6 @@
 import { Typography, List, ListItem, ListItemText } from '@mui/material';
 
-const ReviewInfo = ({ formik }) => {
+const RegisterFormReview = ({ formik }) => {
   const { values } = formik;
   return (
     <>
@@ -29,4 +29,4 @@ const ReviewInfo = ({ formik }) => {
   );
 };
 
-export default ReviewInfo;
+export default RegisterFormReview;

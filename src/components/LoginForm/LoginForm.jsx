@@ -1,5 +1,4 @@
 import { useFormik } from 'formik';
-// import * as Yup from 'yup';
 import Link from '@mui/material/Link';
 import { Box, TextField, Grid, Button } from '@mui/material';
 
@@ -9,25 +8,8 @@ const LoginForm = () => {
       email: '',
       password: '',
     },
-    // validationSchema: Yup.object().shape({
-    //   email: Yup.string().required('Email is required').email('Invalid email'),
-    //   password: Yup.string().min(8),
-    //   confirmPassword: Yup.string()
-    //     .min(8)
-    //     .oneOf([Yup.ref('password')], 'Passwords do not match'),
-    //   firstName: Yup.string().required('First Name is required'),
-    //   lastName: Yup.string().required('Last Name is required'),
-    // }),
   });
   const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget.elements;
-    const formReset = e.currentTarget;
-
-    // dispatch
-    console.log(form.email.value);
-
-    // formReset.reset();
   };
 
   return (

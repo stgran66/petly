@@ -1,6 +1,6 @@
-import { TextField, Grid, FormHelperText} from '@mui/material';
+import { TextField, Grid } from '@mui/material';
 
-const PersonalInfo = props => {
+const RegisterFormInfo = props => {
   const { formik } = props;
   return (
     <Grid container spacing={2}>
@@ -50,4 +50,4 @@ const PersonalInfo = props => {
   );
 };
 
-export default PersonalInfo;
+export default RegisterFormInfo;

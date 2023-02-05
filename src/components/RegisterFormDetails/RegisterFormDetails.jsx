@@ -3,10 +3,10 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
-import {IconButton} from '@mui/material';
+import { IconButton } from '@mui/material';
 
-const AccountDetails = props => {
-  const { formik} = props;
+const RegisterFormDetails = props => {
+  const { formik } = props;
 
   return (
     <Grid container spacing={2}>
@@ -94,4 +94,4 @@ const AccountDetails = props => {
   );
 };
 
-export default AccountDetails;
+export default RegisterFormDetails;
