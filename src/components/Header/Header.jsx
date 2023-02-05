@@ -8,7 +8,6 @@ const Header = () => {
       <Logo>
         pe<span>t</span>ly
       </Logo>
-
       <Navigation />
     </HeaderEl>
   );
