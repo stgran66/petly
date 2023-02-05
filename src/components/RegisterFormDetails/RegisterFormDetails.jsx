@@ -1,7 +1,7 @@
 import { Grid, TextField, FormHelperText } from '@mui/material';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import InputAdornment from '@material-ui/core/InputAdornment';
+// import VisibilityIcon from '@mui/icons-material/Visibility';
+// import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+// import InputAdornment from '@material-ui/core/InputAdornment';
 
 import { IconButton } from '@mui/material';
 
@@ -34,23 +34,23 @@ const RegisterFormDetails = props => {
           error={Boolean(formik.touched.password && formik.errors.password)}
           onChange={formik.handleChange}
           value={formik.values.password}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  // onClick={handlePassVisibilty}
-                  aria-label="toggle password"
-                  edge="end"
-                >
-                  {formik.values.hidePassword ? (
-                    <VisibilityIcon />
-                  ) : (
-                    <VisibilityOffIcon />
-                  )}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
+          // InputProps={{
+          //   endAdornment: (
+          //     <InputAdornment position="end">
+          //       <IconButton
+          //         // onClick={handlePassVisibilty}
+          //         aria-label="toggle password"
+          //         edge="end"
+          //       >
+          //         {formik.values.hidePassword ? (
+          //           <VisibilityIcon />
+          //         ) : (
+          //           <VisibilityOffIcon />
+          //         )}
+          //       </IconButton>
+          //     </InputAdornment>
+          //   ),
+          // }}
         />
       </Grid>
       <Grid item xs={12}>
@@ -66,23 +66,23 @@ const RegisterFormDetails = props => {
           )}
           onChange={formik.handleChange}
           value={formik.values.confirmPassword}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  // onClick={handlePassVisibilty}
-                  aria-label="toggle password"
-                  edge="end"
-                >
-                  {formik.values.hidePassword ? (
-                    <VisibilityIcon />
-                  ) : (
-                    <VisibilityOffIcon />
-                  )}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
+          // InputProps={{
+          //   endAdornment: (
+          //     <InputAdornment position="end">
+          //       <IconButton
+          //         // onClick={handlePassVisibilty}
+          //         aria-label="toggle password"
+          //         edge="end"
+          //       >
+          //         {formik.values.hidePassword ? (
+          //           <VisibilityIcon />
+          //         ) : (
+          //           <VisibilityOffIcon />
+          //         )}
+          //       </IconButton>
+          //     </InputAdornment>
+          //   ),
+          // }}
         />
       </Grid>
       {formik.errors.submit && (
