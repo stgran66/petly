@@ -1,7 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
+// import { lazy } from 'react';
 
 import RestrictedRoute from './RestrictedRoute';
-import PrivateRoute from './PrivateRoute';
+// import PrivateRoute from './PrivateRoute';
+
+// const User = lazy(() => import('../pages/User/User'));
+import { User } from '../pages/User/User';
 
 export const App = () => {
   return (
@@ -27,10 +31,15 @@ export const App = () => {
         <Route path="/news" />
         <Route path="/notices" />
         <Route path="/friends" />
+        <Route path="/user" element={<User />} />
 
         <Route path="/register" element={<RestrictedRoute redirectTo="/" />} />
         <Route path="/login" element={<RestrictedRoute redirectTo="/" />} />
-        <Route path="user" element={<PrivateRoute redirectTo="/login" />} />
+
+        {/* <Route
+          path="/user"
+          element={<PrivateRoute component={User} redirectTo="/login" />}
+        /> */}
       </Route>
     </Routes>
   );

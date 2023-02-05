@@ -1,10 +1,33 @@
-export default function User() {
+import {
+  MainContainer,
+  ContainerWrapp,
+  UserContainer,
+  Title,
+} from './User.styled';
+import { UserData, Logout, PetsData } from '../../components/User';
+
+export const User = () => {
   return (
-    <>
-      <MainContainer>
-        <UserData />
+    <MainContainer>
+      <ContainerWrapp>
+        <Title>My information:</Title>
+        <UserContainer>
+          <UserData />
+          <Logout />
+        </UserContainer>
+      </ContainerWrapp>
+      <ContainerWrapp>
         <PetsData />
-      </MainContainer>
-    </>
+      </ContainerWrapp>
+    </MainContainer>
   );
-}
+
+  // return (
+  //   <>
+  //     <MainContainer>
+  //       <UserData />
+  //       <PetsData />
+  //     </MainContainer>
+  //   </>
+  // );
+};
