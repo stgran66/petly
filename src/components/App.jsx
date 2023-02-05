@@ -1,24 +1,36 @@
+import { Route, Routes } from 'react-router-dom';
 
-import LoginPage from "pages/LoginPage";
-import RegisterPage from "pages/RegisterPage";
-import { Route, Routes, NavLink} from "react-router-dom";
+import Layout from './Layout';
+import RestrictedRoute from './RestrictedRoute';
+import PrivateRoute from './PrivateRoute';
 
-
+import pages from 'pages';
+const { LoginPage, RegisterPage, UserPage } = pages;
 
 export const App = () => {
   return (
-    <div>
-      <div style={{display:"grid"}}>
-    
-        <NavLink to="/register">Register</NavLink>
-        <NavLink to="/login">Login</NavLink>
-      </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<p>Home</p>} />
+        <Route path="news" element={<p>news</p>} />
+        <Route path="notices" element={<p>notices</p>} />
+        <Route path="friends" element={<p>friends</p>} />
 
-      <Routes>
-    
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-      </Routes>
-    </div>
+        <Route
+          path="register"
+          element={<RestrictedRoute component={<RegisterPage />} redirectTo="/" />}
+        />
+        <Route
+          path="login"
+          element={<RestrictedRoute component={<LoginPage />} redirectTo="/" />}
+        />
+        <Route
+          path="user"
+          element={
+            <PrivateRoute component={<UserPage />} redirectTo="/login" />
+          }
+        />
+      </Route>
+    </Routes>
   );
 };
