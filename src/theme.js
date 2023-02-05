@@ -7,7 +7,7 @@ const theme = {
     pageBackground: '#7F7F7F',
     commonBackground: '#FDF7F2',
     cardsBackground: '#D9D9D9',
-    Text: '#111111',
+    text: '#111111',
     placeholderText: 'rgba(17, 17, 17, 0.6)',
     links: '#3091EB',
     white: '#FFFFFF',
@@ -46,6 +46,7 @@ const theme = {
   },
   fontWeights: {
     bold: 700,
+    semiBold: 600,
     medium: 500,
     normal: 400,
   },

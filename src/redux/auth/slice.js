@@ -9,7 +9,8 @@ const initialState = {
     email: null,
   },
   token: null,
-  isLoggedIn: false,
+
+  isLoggedIn: false, //Add logic for redirecting  or true
   error: null,
   isRefreshing: false,
 };
