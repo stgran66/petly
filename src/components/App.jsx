@@ -5,7 +5,7 @@ import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
 
 import pages from 'pages';
-const { Login, Register, UserPage } = pages;
+const { LoginPage, RegisterPage, UserPage } = pages;
 
 export const App = () => {
   return (
@@ -18,11 +18,11 @@ export const App = () => {
 
         <Route
           path="register"
-          element={<RestrictedRoute component={<Register />} redirectTo="/" />}
+          element={<RestrictedRoute component={<RegisterPage />} redirectTo="/" />}
         />
         <Route
           path="login"
-          element={<RestrictedRoute component={<Login />} redirectTo="/" />}
+          element={<RestrictedRoute component={<LoginPage />} redirectTo="/" />}
         />
         <Route
           path="user"
