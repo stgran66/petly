@@ -3,17 +3,17 @@ import { Route, Routes } from 'react-router-dom';
 
 import Layout from './Layout';
 import RestrictedRoute from './RestrictedRoute';
-// import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './PrivateRoute';
 
 import pages from 'pages';
-const { LoginPage, RegisterPage, UserPage } = pages;
+const { LoginPage, RegisterPage, UserPage, NewsPage } = pages;
 
 export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<p>Home</p>} />
-        <Route path="news" element={<p>news</p>} />
+        <Route path="news" element={<NewsPage />} />
         <Route path="notices" element={<p>notices</p>} />
         <Route path="friends" element={<p>friends</p>} />
 
@@ -27,13 +27,17 @@ export const App = () => {
           path="login"
           element={<RestrictedRoute component={<LoginPage />} redirectTo="/" />}
         />
-        {/* <Route
+        <Route
           path="user"
           element={
             <PrivateRoute component={<UserPage />} redirectTo="/login" />
           }
-        /> */}
-        <Route path="user" element={<UserPage />} />
+        />
+
+        <Route
+          path="news"
+          element={<PrivateRoute component={<NewsPage />} redirectTo="/news" />}
+        />
       </Route>
     </Routes>
   );
