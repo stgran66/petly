@@ -3,7 +3,7 @@ import { Grid, TextField, FormHelperText } from '@mui/material';
 // import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 // import InputAdornment from '@material-ui/core/InputAdornment';
 
-import { IconButton } from '@mui/material';
+// import { IconButton } from '@mui/material';
 
 const RegisterFormDetails = props => {
   const { formik } = props;
