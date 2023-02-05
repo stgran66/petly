@@ -1,36 +1,34 @@
 import { Route, Routes } from 'react-router-dom';
 
+import { Layout } from './Layout';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
+
+import { Login, Register, UserPage } from 'pages';
 
 export const App = () => {
   return (
     <Routes>
-      <Route path="/">
+      <Route path="/" element={<Layout />}>
+        <Route index element={<p>Home</p>} />
+        <Route path="news" element={<p>news</p>} />
+        <Route path="notices" element={<p>notices</p>} />
+        <Route path="friends" element={<p>friends</p>} />
+
         <Route
-          index
+          path="register"
+          element={<RestrictedRoute component={<Register />} redirectTo="/" />}
+        />
+        <Route
+          path="login"
+          element={<RestrictedRoute component={<Login />} redirectTo="/" />}
+        />
+        <Route
+          path="user"
           element={
-            <div
-              style={{
-                height: '100vh',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: 40,
-                color: '#010101',
-              }}
-            >
-              React homework template
-            </div>
+            <PrivateRoute component={<UserPage />} redirectTo="/login" />
           }
         />
-        <Route path="/news" />
-        <Route path="/notices" />
-        <Route path="/friends" />
-
-        <Route path="/register" element={<RestrictedRoute redirectTo="/" />} />
-        <Route path="/login" element={<RestrictedRoute redirectTo="/" />} />
-        <Route path="user" element={<PrivateRoute redirectTo="/login" />} />
       </Route>
     </Routes>
   );
