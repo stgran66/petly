@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 
 import Button from '@mui/material/Button';
 
-export const NavUser = styled('div')`
+const NavUser = styled('div')`
   margin: 0 auto;
   @media screen and (min-width: 768px) {
     display: ${({ hiddenBlock }) => (hiddenBlock ? 'none' : 'block')};
@@ -14,7 +14,7 @@ export const NavUser = styled('div')`
   }
 `;
 
-export const ButtonEl = styled(Button)`
+const ButtonEl = styled(Button)`
   padding: 8px 28px;
   /* font-family: 'Manrope'; */
   font-style: normal;
@@ -35,3 +35,5 @@ export const ButtonEl = styled(Button)`
     background-color: #f59256;
   }
 `;
+const styles = { NavUser, ButtonEl };
+export default styles;

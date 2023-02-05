@@ -1,1 +1,2 @@
-export { default } from './UserNav';
+import UserNav from './UserNav';
+export default UserNav;
