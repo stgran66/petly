@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-// import { lazy } from 'react';
 
 import Layout from './Layout';
 import RestrictedRoute from './RestrictedRoute';
@@ -33,7 +32,6 @@ export const App = () => {
             <PrivateRoute component={<UserPage />} redirectTo="/login" />
           }
         />
-
         <Route
           path="news"
           element={<PrivateRoute component={<NewsPage />} redirectTo="/news" />}
