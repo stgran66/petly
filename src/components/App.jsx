@@ -1,10 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { Layout } from './Layout';
+import Layout from './Layout';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
 
-import { Login, Register, UserPage } from 'pages';
+import pages from 'pages';
+const { Login, Register, UserPage } = pages;
 
 export const App = () => {
   return (

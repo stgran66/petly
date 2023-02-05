@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import BurgerMenu from 'components/BurgerMenu';
 
 import Header from './Header';
-export const Layout = () => {
+const Layout = () => {
   return (
     <>
       <div className="container">
@@ -18,3 +18,4 @@ export const Layout = () => {
     </>
   );
 };
+export default Layout;

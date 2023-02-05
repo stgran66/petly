@@ -4,11 +4,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
 import Navigation from 'components/Navigation';
-import { Burger, BurgerStyle } from './BurgerMenu.styled';
+import styles from './BurgerMenu.styled';
 
 const BurgerMenu = () => {
+  const { Burger, BurgerStyle } = styles;
   const [menuOpen, setMenuOpen] = useState(false);
-
   const handleStateChange = state => {
     setMenuOpen(state.isOpen);
   };

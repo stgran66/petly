@@ -2,11 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import AuthNav from 'components/AuthNav';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { NavUser, ButtonEl } from './UserNav.styled';
-import { useAuth } from 'hooks';
+import hooks from 'hooks';
 
 function UserNav({ hidden, closeBurgerMenu }) {
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = hooks.useAuth();
 
   return (
     <NavUser hiddenBlock={hidden}>

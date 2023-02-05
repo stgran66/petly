@@ -1,1 +1,2 @@
-export { default } from './AuthNav';
+import AuthNav from './AuthNav';
+export default AuthNav;

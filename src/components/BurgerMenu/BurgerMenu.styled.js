@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const Burger = styled.div`
+const Burger = styled.div`
   @media screen and (min-width: 1280px) {
     display: none;
   }
 `;
-export const BurgerStyle = {
+const BurgerStyle = {
   /* Position and sizing of burger button */
   bmBurgerButton: {
     position: 'absolute',
@@ -59,3 +59,5 @@ export const BurgerStyle = {
     bottom: 0,
   },
 };
+const styles = { Burger, BurgerStyle };
+export default styles;

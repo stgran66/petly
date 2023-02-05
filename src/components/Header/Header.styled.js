@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HeaderEl = styled.header`
+const HeaderEl = styled.header`
   width: 100%;
   display: flex;
   align-items: center;
@@ -21,7 +21,7 @@ export const HeaderEl = styled.header`
     }
   }
 `;
-export const Logo = styled.span`
+const Logo = styled.span`
   font-family: ${({ theme }) => theme.fonts[1]};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   font-size: ${({ theme }) => theme.fontSizes.logo.mobile};
@@ -36,3 +36,5 @@ export const Logo = styled.span`
     font-size: ${({ theme }) => theme.fontSizes.logo.desktop};
   }
 `;
+const styles = { HeaderEl, Logo };
+export default styles;

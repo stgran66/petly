@@ -1,1 +1,2 @@
-export { default } from './UserPage';
+import UserPage from './UserPage';
+export default UserPage;

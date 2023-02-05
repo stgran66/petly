@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const NavList = styled.ul`
+const NavList = styled.ul`
   margin: 60px 0 0 0;
   padding: 0;
   display: flex;
@@ -15,7 +15,7 @@ export const NavList = styled.ul`
   }
 `;
 
-export const Link = styled(NavLink)`
+const Link = styled(NavLink)`
   display: flex;
   align-items: center;
 
@@ -34,3 +34,5 @@ export const Link = styled(NavLink)`
     font-size: 28px;
   }
 `;
+const styles = { NavList, Link };
+export default styles;

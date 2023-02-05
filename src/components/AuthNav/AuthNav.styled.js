@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
-export const ButtonEl = styled(Button)`
+const ButtonEl = styled(Button)`
   padding: 8px 28px;
   /* font-family: 'Manrope'; */
   font-style: normal;
@@ -23,7 +23,7 @@ export const ButtonEl = styled(Button)`
   }
 `;
 
-export const AuthBtns = styled('ul')`
+const AuthBtns = styled('ul')`
   width: 100%;
   display: flex;
   align-items: center;
@@ -32,3 +32,8 @@ export const AuthBtns = styled('ul')`
   padding: 0;
   gap: 12px;
 `;
+const styles = {
+  ButtonEl,
+  AuthBtns,
+};
+export default styles;

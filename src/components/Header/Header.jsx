@@ -1,7 +1,8 @@
 import Navigation from 'components/Navigation';
-import { HeaderEl, Logo } from './Header.styled';
+import styles from './Header.styled';
 
-function Header() {
+const Header = () => {
+  const { HeaderEl, Logo } = styles;
   return (
     <HeaderEl>
       <Logo>
@@ -11,6 +12,6 @@ function Header() {
       <Navigation />
     </HeaderEl>
   );
-}
+};
 
 export default Header;

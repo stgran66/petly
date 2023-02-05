@@ -1,8 +1,9 @@
-import { AuthBtns, ButtonEl } from './AuthNav.styled';
 import { useNavigate } from 'react-router-dom';
+import styles from './AuthNav.styled';
+
 function AuthNav({ closeBurgerMenu }) {
   const navigate = useNavigate();
-
+  const { AuthBtns, ButtonEl } = styles;
   return (
     <AuthBtns>
       <li>

@@ -1,4 +1,4 @@
-import { NavList, Link } from './Nav.styled';
+import styles from './Nav.styled';
 
 const navItems = [
   { href: 'news', text: 'News' },
@@ -7,6 +7,7 @@ const navItems = [
 ];
 
 const Nav = ({ closeBurgerMenu }) => {
+  const { NavList, Link } = styles;
   return (
     <nav>
       <NavList>
