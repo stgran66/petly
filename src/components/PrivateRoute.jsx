@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
-
+import { useAuth } from 'hooks';
 const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
-  //Add logic for redirection when redux state is done
-  const shouldRedirect = true;
+  const { isLoggedIn, isRefreshing } = useAuth();
+  const shouldRedirect = !isRefreshing && !isLoggedIn;
 
   return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
 };
