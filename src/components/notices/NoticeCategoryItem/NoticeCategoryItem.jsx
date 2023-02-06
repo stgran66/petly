@@ -1,7 +1,60 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import NoticeModal from 'components/notices/NoticeCategoryItem';
+import Modal from 'components/notices/Modal';
 
-const NoticeCategoryItem = ({ title }) => {
-  return <Link to={`notices`}>{title}</Link>;
+// const NoticeCategoryItem = ({ title }) => {
+//   return <Link to={`notices`}>{title}</Link>;
+// };
+
+import {
+  NoticeItemCard,
+  Image,
+  ImgWrapper,
+  Category,
+  Button,
+  ItemTitle,
+  About,
+  AboutList,
+  Content,
+  LearnMore,
+  FavouriteIcon,
+} from './NoticeCategoryItem.styled';
+
+const NoticeCategoryItem = () => {
+  const [showModal, setShowModal] = useState(false);
+  return (
+    <NoticeItemCard>
+      <ImgWrapper>
+        <Category>sell/in good hands</Category>
+        <Image src={require('./Dog.jpeg')} alt="Dog" />
+        <Button>
+          <FavouriteIcon />
+        </Button>
+      </ImgWrapper>
+      <ItemTitle>Сute dog looking for a home</ItemTitle>
+      <About>
+        <AboutList>
+          <Content>Breed:</Content>
+          <Content>Husky</Content>
+          <Content>Place:</Content>
+          <Content>New York</Content>
+          <Content>Age:</Content>
+          <Content>one year</Content>
+        </AboutList>
+        <LearnMore type="button" onClick={() => setShowModal(true)}>
+          Learn more
+        </LearnMore>
+      </About>
+      {showModal && (
+        <Modal toggleModal={() => setShowModal(s => !s)}>
+          <NoticeModal
+          // toggleModal={() => setShowModal(s => !s)}
+          />
+        </Modal>
+      )}
+    </NoticeItemCard>
+  );
 };
 
 export default NoticeCategoryItem;
