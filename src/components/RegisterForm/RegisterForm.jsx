@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Link from '@mui/material/Link';
@@ -9,10 +9,12 @@ import RegisterFormDetails from 'components/RegisterFormDetails';
 import RegisterFormInfo from 'components/RegisterFormInfo';
 import RegisterFormReview from 'components/RegisterFormReview';
 
+
+
 const steps = [' Account Details', 'Personal Info', 'Review and Submit'];
 
 const RegisterForm = () => {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   // 
   const [activeStep, setActiveStep] = useState(0);
 
@@ -20,12 +22,15 @@ const RegisterForm = () => {
     setActiveStep(prevStep => prevStep - 1);
   };
 
- 
+ const handleSubmitForm = e => {
+   e.preventDefault();
+   console.log('email', formik.values.email);
+ };
 
 
   
-  // const numberRegex =
-  //     /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
+  const numberRegex =
+      /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
 
   const formik = useFormik({
     initialValues: {
@@ -43,15 +48,15 @@ const RegisterForm = () => {
       confirmPassword: Yup.string()
         .min(8)
         .oneOf([Yup.ref('password')], 'Passwords do not match'),
-      // name: Yup.string().required('Name is required'),
-      // city: Yup.string().required('City is required'),
-      // phone: Yup
-      //   .string()
-      //   .matches(
-      //     numberRegex,
-      //     'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
-      //   )
-      //   .required(),
+      name: Yup.string().required('Name is required'),
+      city: Yup.string().required('City is required'),
+      phone: Yup
+        .string()
+        .matches(
+          numberRegex,
+          'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
+        )
+        .required(),
     }),
     onSubmit: () => {
       if (activeStep === steps.length - 1) {
@@ -62,10 +67,7 @@ const RegisterForm = () => {
     },
   });
 
-const handleSubmitForm = e => {
-  e.preventDefault();
- console.log('email', formik.values.email)
-}
+
 
   const formContent = step => {
     switch (step) {

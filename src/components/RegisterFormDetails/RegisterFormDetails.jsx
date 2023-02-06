@@ -26,11 +26,10 @@ const RegisterFormDetails = props => {
           size="small"
           type="password"
           fullWidth
-          error={Boolean(
-            formik.touched.confirmPassword && formik.errors.confirmPassword
-          )}
+          error={Boolean(formik.touched.password && formik.errors.password)}
           onChange={formik.handleChange}
           value={formik.values.password}
+          helperText="Incorrect entry."
         />
       </Grid>
       <Grid item xs={12}>

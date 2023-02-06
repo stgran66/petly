@@ -43,7 +43,11 @@ const RegisterFormInfo = props => {
       </Grid>
       <Grid item xs={12}>
         <MuiTelInput
-          preferredCountries={['UA', 'GB']}
+          name='phone'
+          label="Phone"
+          variant='outlined'
+          fullWidth
+          preferredCountries={['UA', 'GB', 'PL']}
           excludedCountries={['RU', 'BY']}
           focusOnSelectCountry
           value={value}
