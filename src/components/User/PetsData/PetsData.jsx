@@ -1,7 +1,8 @@
-import { PetsList } from '../PetsList/PetsList';
-import { ContainerWrapp, Title } from './PetsData.styled';
+import PetsList from '../PetsList';
+import styles from './PetsData.styled';
+const { ContainerWrapp, Title } = styles;
 
-export const PetsData = () => {
+const PetsData = () => {
   return (
     <>
       <ContainerWrapp>
@@ -12,3 +13,5 @@ export const PetsData = () => {
     </>
   );
 };
+
+export default PetsData;

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const List = styled.ul`
+const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
 
-export const Item = styled.li`
+const Item = styled.li`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -17,7 +17,7 @@ export const Item = styled.li`
   box-shadow: ${props => props.theme.shadows.cardsShadowUser};
 `;
 
-export const PetInfo = styled.ul`
+const PetInfo = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -28,26 +28,26 @@ export const PetInfo = styled.ul`
   line-height: 1.36;
 `;
 
-export const PetInfoName = styled.span`
+const PetInfoName = styled.span`
   font-weight: 500;
   font-size: 14px;
   line-height: 1.36;
 `;
 
-export const PetInfoComment = styled.li`
+const PetInfoComment = styled.li`
   font-weight: 500;
   font-size: 14px;
   line-height: 1.57;
 `;
 
-export const PetInfoFoto = styled.img`
+const PetInfoFoto = styled.img`
   width: 240px;
   height: 240px;
   background-color: green;
   border-radius: 20px;
 `;
 
-export const PetInfoWrapp = styled.div`
+const PetInfoWrapp = styled.div`
   position: relative;
 
   button {
@@ -56,3 +56,15 @@ export const PetInfoWrapp = styled.div`
     right: 0;
   }
 `;
+
+const styles = {
+  List,
+  Item,
+  PetInfo,
+  PetInfoName,
+  PetInfoComment,
+  PetInfoFoto,
+  PetInfoWrapp,
+};
+
+export default styles;

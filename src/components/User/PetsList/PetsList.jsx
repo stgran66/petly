@@ -1,7 +1,9 @@
-import { List, Item } from './PetsList.styled';
-import { PetItem } from './PetItem';
+import styles from './PetsList.styled';
+import PetItem from './PetItem';
 
-export const PetsList = () => {
+const { List, Item } = styles;
+
+const PetsList = () => {
   return (
     <List>
       <Item>
@@ -25,3 +27,5 @@ export const PetsList = () => {
   //   </li>
   // ));
 };
+
+export default PetsList;

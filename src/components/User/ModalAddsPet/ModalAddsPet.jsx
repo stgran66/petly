@@ -1,7 +1,7 @@
-export const Logout = () => {
+const ModalAddsPet = () => {
   return (
     <>
-      <div>Hello Logout</div>
+      <div>Hello ModalAddsPet</div>
       {/* <div>
         <title>My pets:</title>
         <button type="button">Add pet</button>
@@ -10,3 +10,5 @@ export const Logout = () => {
     </>
   );
 };
+
+export default ModalAddsPet;

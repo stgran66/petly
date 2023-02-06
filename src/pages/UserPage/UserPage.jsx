@@ -1,10 +1,8 @@
-import {
-  MainContainer,
-  ContainerWrapp,
-  UserContainer,
-  Title,
-} from './UserPage.styled';
-import { UserData, Logout, PetsData } from '../../components/User';
+import user from '../../components/User';
+import styles from './UserPage.styled';
+
+const { UserData, Logout, PetsData } = user;
+const { MainContainer, ContainerWrapp, UserContainer, Title } = styles;
 
 const UserPage = () => {
   return (

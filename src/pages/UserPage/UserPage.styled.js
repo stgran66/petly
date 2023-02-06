@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MainContainer = styled.div`
+const MainContainer = styled.div`
   padding: 0 20px 80px 20px;
   display: flex;
   flex-direction: column;
@@ -10,11 +10,11 @@ export const MainContainer = styled.div`
   font-family: 'Manrope';
 `;
 
-export const ContainerWrapp = styled.div`
+const ContainerWrapp = styled.div`
   width: 100%;
 `;
 
-export const Title = styled.h2`
+const Title = styled.h2`
   margin-bottom: 18px;
   font-family: 'Manrope';
   font-weight: 500;
@@ -23,7 +23,7 @@ export const Title = styled.h2`
   letter-spacing: 0.04em;
 `;
 
-export const UserContainer = styled.div`
+const UserContainer = styled.div`
   padding: 20px 16px;
   display: flex;
   flex-direction: column;
@@ -31,3 +31,7 @@ export const UserContainer = styled.div`
   background-color: ${props => props.theme.colors.white};
   box-shadow: ${props => props.theme.shadows.cardsShadowUser};
 `;
+
+const styles = { MainContainer, ContainerWrapp, Title, UserContainer };
+
+export default styles;

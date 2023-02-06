@@ -1,12 +1,9 @@
-import {
-  PetInfo,
-  PetInfoComment,
-  PetInfoName,
-  PetInfoFoto,
-  PetInfoWrapp,
-} from './PetsList.styled';
+import styles from './PetsList.styled';
 
-export const PetItem = () => {
+const { PetInfo, PetInfoComment, PetInfoName, PetInfoFoto, PetInfoWrapp } =
+  styles;
+
+const PetItem = () => {
   return (
     <>
       <PetInfoFoto />
@@ -32,3 +29,5 @@ export const PetItem = () => {
     </>
   );
 };
+
+export default PetItem;

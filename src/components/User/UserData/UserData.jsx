@@ -1,4 +1,4 @@
-export const UserData = () => {
+const UserData = () => {
   return (
     <div>Hello UserData</div>
     //     <div>
@@ -22,3 +22,5 @@ export const UserData = () => {
     // </div>
   );
 };
+
+export default UserData;

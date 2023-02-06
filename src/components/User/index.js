@@ -1,5 +1,7 @@
-import { UserData } from './UserData/UserData';
-import { Logout } from './Logout/Logout';
-import { PetsData } from './PetsData/PetsData';
+import UserData from './UserData';
+import Logout from './Logout';
+import PetsData from './PetsData';
 
-export { UserData, Logout, PetsData };
+const user = { UserData, Logout, PetsData };
+
+export default user;
