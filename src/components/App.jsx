@@ -12,13 +12,15 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<p>Home</p>} />
-        <Route path="news" element={<NewsPage/>} />
+        <Route path="news" element={<NewsPage />} />
         <Route path="notices" element={<p>notices</p>} />
         <Route path="friends" element={<p>friends</p>} />
 
         <Route
           path="register"
-          element={<RestrictedRoute component={<RegisterPage />} redirectTo="/" />}
+          element={
+            <RestrictedRoute component={<RegisterPage />} redirectTo="/" />
+          }
         />
         <Route
           path="login"
@@ -30,11 +32,9 @@ export const App = () => {
             <PrivateRoute component={<UserPage />} redirectTo="/login" />
           }
         />
-         <Route
+        <Route
           path="news"
-          element={
-            <PrivateRoute component={<NewsPage />} redirectTo="/news" />
-          }
+          element={<PrivateRoute component={<NewsPage />} redirectTo="/news" />}
         />
       </Route>
     </Routes>
