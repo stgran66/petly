@@ -1,7 +1,16 @@
 import { TextField, Grid } from '@mui/material';
+import React from 'react';
+import { MuiTelInput} from 'mui-tel-input';
 
 const RegisterFormInfo = props => {
   const { formik } = props;
+     const [value, setValue] = React.useState('');
+
+     const handleChange = newValue => {
+       setValue(newValue);
+  };
+
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -33,17 +42,13 @@ const RegisterFormInfo = props => {
         />
       </Grid>
       <Grid item xs={12}>
-        <TextField
-          name="phone"
-          label="Mobile phone"
-          variant="outlined"
-          type="tel"
-          fullWidth
-          size="small"
-          value={formik.values.phone}
-          onChange={formik.handleChange}
-          error={formik.touched.phone && Boolean(formik.errors.phone)}
-          helperText={formik.touched.phone && formik.errors.phone}
+        <MuiTelInput
+          preferredCountries={['UA', 'GB']}
+          excludedCountries={['RU', 'BY']}
+          focusOnSelectCountry
+          value={value}
+      
+          onChange={handleChange}
         />
       </Grid>
     </Grid>
