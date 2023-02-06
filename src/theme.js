@@ -2,10 +2,10 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 const theme = {
-  devices: {
-    mobileS: `screen and (min-width: 320px)`,
-    tablet: `screen and (min-width: 768px)`,
-    desktop: `screen and (min-width: 1280px)`,
+  breakpoints: {
+    mobile: `320px`,
+    tablet: `768px`,
+    desktop: `1280px`,
   },
   colors: {
     accent: '#F59256',
