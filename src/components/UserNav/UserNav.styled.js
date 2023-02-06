@@ -1,6 +1,6 @@
-import { styled } from '@mui/material/styles';
-
+// import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import styled from 'styled-components';
 
 const NavUser = styled('div')`
   margin: 0 auto;
@@ -14,26 +14,25 @@ const NavUser = styled('div')`
   }
 `;
 
-const ButtonEl = styled(Button)`
-  padding: 8px 28px;
-  /* font-family: 'Manrope'; */
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
+const ButtonEl = styled(Button)(({ theme }) => ({
+  // padding: '8px 36px',
+  fontFamily: `${console.log(theme.fonts[0])}`,
+  // fontWeight: 500,
+  // fontSize: '14px',
+  // lineHeight: '19px',
+  // letterSpacing: '0.04em',
+  // textTransform: 'inherit',
 
-  letter-spacing: 0.04em;
+  // border: '2px solid #f59256',
+  // color: '#fff',
+  // backgroundColor: '#f59256',
+  // borderRadius: '40px',
+  // ':hover': {
+  //   border: '2px solid #f59256',
+  //   backgroundColor: '#f59256',
+  //   color: '#fff',
+  // },
+}));
 
-  border: 2px solid #f59256;
-  color: #fff;
-  background-color: #f59256;
-  border-radius: 40px;
-
-  :hover {
-    border: 2px solid #f59256;
-    color: #fff;
-    background-color: #f59256;
-  }
-`;
 const styles = { NavUser, ButtonEl };
 export default styles;

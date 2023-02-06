@@ -13,7 +13,23 @@ function UserNav({ hidden, closeBurgerMenu }) {
     <NavUser hiddenBlock={hidden}>
       {isLoggedIn ? (
         <ButtonEl
-          variant="outlined"
+          sx={{
+            padding: '8px 36px',
+            fontFamily: theme => console.log(theme),
+            fontSize: '14px',
+            lineHeight: '19px',
+            letterSpacing: '0.04em',
+            border: '2px solid #f59256',
+            color: '#fff',
+            backgroundColor: '#f59256',
+            borderRadius: '40px',
+            textTransform: 'inherit',
+            ':hover': {
+              border: '2px solid #f59256',
+              backgroundColor: '#f59256',
+              color: '#fff',
+            },
+          }}
           startIcon={<AccountCircleIcon />}
           onClick={() => {
             navigate('/user');
