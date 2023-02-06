@@ -25,7 +25,7 @@ const Item = styled.li`
     flex-direction: row;
     gap: 32px;
     padding: 20px;
-    border-radius: 0px;
+    border-radius: 40px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
@@ -63,22 +63,24 @@ const PetInfo = styled.ul`
   flex-direction: column;
   gap: 12px;
 
-  font-family: 'Manrope';
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: ${props => props.theme.fontWeights.normal};
+  font-size: ${props => props.theme.fontSizes.text.s};
   line-height: 1.36;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    font-size: ${props => props.theme.fontSizes.text.m};
+    line-height: ${props => props.theme.lineHeights.m};
+  }
 `;
 
 const PetInfoName = styled.span`
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.36;
-`;
+  font-weight: ${props => props.theme.fontWeights.medium};
+  font-size: ${props => props.theme.fontSizes.text.m};
 
-const PetInfoComment = styled.li`
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.57;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    font-size: ${props => props.theme.fontSizes.text.m};
+    line-height: ${props => props.theme.lineHeights.m};
+  }
 `;
 
 const styles = {
@@ -86,7 +88,7 @@ const styles = {
   Item,
   PetInfo,
   PetInfoName,
-  PetInfoComment,
+
   PetInfoFoto,
   PetInfoWrapp,
 };

@@ -1,7 +1,6 @@
 import styles from './PetsList.styled';
 
-const { PetInfo, PetInfoComment, PetInfoName, PetInfoFoto, PetInfoWrapp } =
-  styles;
+const { PetInfo, PetInfoName, PetInfoFoto, PetInfoWrapp } = styles;
 
 const PetItem = () => {
   return (
@@ -18,11 +17,11 @@ const PetItem = () => {
           <li>
             <PetInfoName>Breed:</PetInfoName> Basenji
           </li>
-          <PetInfoComment>
+          <li>
             <PetInfoName>Comments:</PetInfoName> Lorem ipsum dolor sit amet,
             consecteturLorem ipsum dolor sit amet, consectetur Lorem ipsum dolor
             sit amet, consectetur Lorem ipsum dolor sit amet, consectetur{' '}
-          </PetInfoComment>
+          </li>
         </PetInfo>
         <button type="button">Delete</button>
       </PetInfoWrapp>
