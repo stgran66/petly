@@ -2,6 +2,11 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 const theme = {
+  breakpoints: {
+    mobile: `320px`,
+    tablet: `768px`,
+    desktop: `1280px`,
+  },
   colors: {
     accent: '#F59256',
     pageBackground: '#7F7F7F',
@@ -16,8 +21,8 @@ const theme = {
     backgroundGradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
   },
   shadows: {
-    cardsShadow: '7px 4px 14px rgba(49, 21, 4, 0.07);',
-    cardsShadowUser: '7px 4px 14px rgba(0,0,0,0.11)',
+    cardsShadow: '7px 4px 14px rgba(49, 21, 4, 0.07)',
+    cardsShadowUser: '7px 4px 14px rgba(0, 0, 0, 0.11)',
   },
   fonts: ['Manrope', 'Poppins'],
   fontSizes: {
