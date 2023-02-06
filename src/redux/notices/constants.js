@@ -1,4 +1,4 @@
-export const defaultItems = [
+const defaultItems = [
   {
     id: 'id-1',
     title: 'dog',
@@ -24,3 +24,5 @@ export const defaultItems = [
     favorite: false,
   },
 ];
+
+export default defaultItems;

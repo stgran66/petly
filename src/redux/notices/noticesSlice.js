@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { defaultItems } from './constants';
+import defaultItems from './constants';
 
 const noticesInitialState = {
   items: defaultItems,
@@ -12,4 +12,6 @@ const noticesSlice = createSlice({
   initialState: noticesInitialState,
 });
 
-export const noticesReducer = noticesSlice.reducer;
+const noticesReducer = noticesSlice.reducer;
+
+export default noticesReducer;

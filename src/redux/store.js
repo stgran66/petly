@@ -12,8 +12,8 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import auth from './auth/';
-import { filterReducer } from './notices/filterSlice';
-import { noticesReducer } from './notices/noticesSlice';
+import filterReducer from './notices/filterSlice';
+import noticesReducer from './notices/noticesSlice';
 
 const { authReducer } = auth;
 

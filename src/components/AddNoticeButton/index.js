@@ -1,1 +1,2 @@
-export { default } from './AddNoticeButton';
+import AddNoticeButton from './AddNoticeButton';
+export default AddNoticeButton;

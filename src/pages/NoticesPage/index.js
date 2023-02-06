@@ -1,1 +1,2 @@
-export { default } from './NoticesPage';
+import NoticesPage from './NoticesPage';
+export default NoticesPage;

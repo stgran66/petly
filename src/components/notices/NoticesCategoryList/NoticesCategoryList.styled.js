@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
-export const List = styled.ul``;
-export const ListItem = styled.li`
+const List = styled.ul``;
+const ListItem = styled.li`
   margin-bottom: 32px;
 `;
 
-export const NotFoundMessage = styled.p`
+const NotFoundMessage = styled.p`
   color: #ef4444;
 `;
+
+const styles = { List, ListItem, NotFoundMessage };
+export default styles;

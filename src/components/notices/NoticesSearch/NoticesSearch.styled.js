@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { HiSearch } from 'react-icons/hi';
 
-export const SearchTitle = styled.h2`
+const SearchTitle = styled.h2`
   width: 100%;
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   font-family: ${({ theme }) => theme.fonts[0]};
@@ -14,7 +14,7 @@ export const SearchTitle = styled.h2`
     margin: 42px 0 28px;
   }
 `;
-export const SearchForm = styled.form`
+const SearchForm = styled.form`
   display: flex;
   align-items: center;
   width: 100%;
@@ -23,7 +23,7 @@ export const SearchForm = styled.form`
   position: relative;
 `;
 
-export const SearchInput = styled.input`
+const SearchInput = styled.input`
   width: 100%;
   padding: 8px 12px;
   background: transparent;
@@ -42,7 +42,7 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const InputIcon = styled.span`
+const InputIcon = styled.span`
   position: absolute;
   display: block;
   right: 12px;
@@ -50,7 +50,10 @@ export const InputIcon = styled.span`
   height: 15px;
 `;
 
-export const Icon = styled(HiSearch)`
+const Icon = styled(HiSearch)`
   width: 100%;
   height: auto;
 `;
+
+const styles = { SearchTitle, SearchForm, SearchInput, InputIcon, Icon };
+export default styles;

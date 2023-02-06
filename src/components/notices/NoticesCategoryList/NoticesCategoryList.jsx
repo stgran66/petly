@@ -1,9 +1,11 @@
-import { List, ListItem } from './NoticesCategoryList.styled';
+import styles from './NoticesCategoryList.styled';
 import NoticeCategoryItem from 'components/notices/NoticeCategoryItem';
 import { useSelector } from 'react-redux';
-import { selectFilteredList } from 'redux/notices/selectors';
-import { NotFoundMessage } from './NoticesCategoryList.styled';
 import { useParams } from 'react-router';
+import selectors from 'redux/notices/selectors';
+
+const { List, ListItem, NotFoundMessage } = styles;
+const { selectFilteredList } = selectors;
 
 const NoticesCategoryList = () => {
   const filteredNotices = useSelector(selectFilteredList);
@@ -15,19 +17,17 @@ const NoticesCategoryList = () => {
   const noNoticesFind = filteredByCategoryList.length === 0;
 
   return (
-    <>
-      <List>
-        {noNoticesFind ? (
-          <NotFoundMessage>We didn't find pets</NotFoundMessage>
-        ) : (
-          filteredByCategoryList.map(({ id, title }) => (
-            <ListItem key={id}>
-              <NoticeCategoryItem id={id} title={title} />
-            </ListItem>
-          ))
-        )}
-      </List>
-    </>
+    <List>
+      {noNoticesFind ? (
+        <NotFoundMessage>We didn't find pets</NotFoundMessage>
+      ) : (
+        filteredByCategoryList.map(({ id, title }) => (
+          <ListItem key={id}>
+            <NoticeCategoryItem id={id} title={title} />
+          </ListItem>
+        ))
+      )}
+    </List>
   );
 };
 

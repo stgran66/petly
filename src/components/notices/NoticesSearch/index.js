@@ -1,1 +1,2 @@
-export { default } from './NoticesSearch';
+import NoticesSearch from './NoticesSearch';
+export default NoticesSearch;

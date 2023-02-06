@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const CategoriesList = styled.ul`
+const CategoriesList = styled.ul`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -9,14 +9,14 @@ export const CategoriesList = styled.ul`
   margin-bottom: 18px;
 `;
 
-export const CategoriesItem = styled.li`
+const CategoriesItem = styled.li`
   margin-bottom: 12px;
   &:not(:last-child) {
     margin-right: 12px;
   }
 `;
 
-export const StyledLink = styled(NavLink)`
+const StyledLink = styled(NavLink)`
   display: block;
   padding: 8px 28px;
   cursor: pointer;
@@ -35,3 +35,6 @@ export const StyledLink = styled(NavLink)`
     color: ${({ theme }) => theme.colors.white};
   }
 `;
+
+const styles = { CategoriesList, CategoriesItem, StyledLink };
+export default styles;

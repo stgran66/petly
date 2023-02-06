@@ -1,8 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-export const selectNotices = state => state.notices.items;
-export const selectFilter = state => state.filter.value;
-export const selectFilteredList = createSelector(
+const selectNotices = state => state.notices.items;
+const selectFilter = state => state.filter.value;
+const selectFilteredList = createSelector(
   [selectNotices, selectFilter],
   (noticesList, filterValue) => {
     const normalizedFilter = filterValue.toLowerCase();
@@ -16,3 +16,5 @@ export const selectFilteredList = createSelector(
     return filteredNotices;
   }
 );
+const selectors = { selectNotices, selectFilter, selectFilteredList };
+export default selectors;

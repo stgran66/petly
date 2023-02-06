@@ -1,13 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/notices/filterSlice';
-import { selectFilter } from 'redux/notices/selectors';
-import {
-  Icon,
-  SearchForm,
-  SearchInput,
-  SearchTitle,
-  InputIcon,
-} from './NoticesSearch.styled';
+import selectors from 'redux/notices/selectors';
+import styles from './NoticesSearch.styled';
+const { Icon, SearchForm, SearchInput, SearchTitle, InputIcon } = styles;
+const { selectFilter } = selectors;
 
 const NoticeSearch = () => {
   const dispatch = useDispatch();

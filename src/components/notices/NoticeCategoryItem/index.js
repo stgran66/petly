@@ -1,1 +1,2 @@
-export { default } from './NoticeCategoryItem';
+import NoticeCategoryItem from './NoticeCategoryItem';
+export default NoticeCategoryItem;

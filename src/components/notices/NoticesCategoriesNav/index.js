@@ -1,1 +1,2 @@
-export { default } from './NoticesCategoriesNav';
+import NoticesCategoriesNav from './NoticesCategoriesNav';
+export default NoticesCategoriesNav;
