@@ -6,10 +6,6 @@ const HeaderEl = styled.header`
   align-items: center;
   padding-top: 16px;
 
-  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    width: 600px;
-    display: block;
-  }
   & nav {
     display: none;
     @media screen and (min-width: 1280px) {
