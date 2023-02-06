@@ -1,8 +1,22 @@
 import styles from './PetsList.styled';
+// import { useDispatch } from 'react-redux/es/exports';
+// import { deleteUserPet } from 'redux/operations';
 
-const { PetInfo, PetInfoName, PetInfoFoto, PetInfoWrapp } = styles;
+const {
+  PetInfo,
+  PetInfoName,
+  PetInfoFoto,
+  PetInfoWrapp,
+  PetDeleteButton,
+  PetDeleteIcon,
+} = styles;
 
 const PetItem = () => {
+  // const dispatch = useDispatch();
+
+  // const handleDelete = () => dispatch(deleteUserPet(pet.id));
+  // додати на кнопку onClick = { handleDelete };
+
   return (
     <>
       <PetInfoFoto />
@@ -23,7 +37,9 @@ const PetItem = () => {
             sit amet, consectetur Lorem ipsum dolor sit amet, consectetur{' '}
           </li>
         </PetInfo>
-        <button type="button">Delete</button>
+        <PetDeleteButton type="button">
+          <PetDeleteIcon />
+        </PetDeleteButton>
       </PetInfoWrapp>
     </>
   );

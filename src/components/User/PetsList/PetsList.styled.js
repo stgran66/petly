@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Delete20Filled } from '@fluentui/react-icons';
 
 const List = styled.ul`
   display: flex;
@@ -50,12 +51,34 @@ const PetInfoFoto = styled.img`
 const PetInfoWrapp = styled.div`
   flex-shrink: 2;
   position: relative;
+`;
 
-  button {
-    position: absolute;
+const PetDeleteButton = styled.button`
+  position: absolute;
+  top: -5px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: transparent;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     top: 0;
-    right: 0;
   }
+
+  &:hover {
+    background-color: ${props => props.theme.colors.commonBackground};
+  }
+`;
+
+const PetDeleteIcon = styled(Delete20Filled)`
+  width: 25px;
+  height: 25px;
+  color: ${props => props.theme.colors.placeholderText};
 `;
 
 const PetInfo = styled.ul`
@@ -91,6 +114,8 @@ const styles = {
 
   PetInfoFoto,
   PetInfoWrapp,
+  PetDeleteButton,
+  PetDeleteIcon,
 };
 
 export default styles;
