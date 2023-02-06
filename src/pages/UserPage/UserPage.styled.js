@@ -23,7 +23,7 @@ const MainContainer = styled.div`
 `;
 
 const ContainerWrapp = styled.div`
-  width: 100%;
+  /* width: 100%; */
 `;
 
 const Title = styled.h2`
@@ -64,6 +64,7 @@ const UserContainer = styled.div`
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    width: 410px;
     padding: 20px 40px 24px 32px;
     margin-left: -16px;
     gap: 24px;
