@@ -2,12 +2,17 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 const theme = {
+  devices: {
+    mobileS: `screen and (min-width: 320px)`,
+    tablet: `screen and (min-width: 768px)`,
+    desktop: `screen and (min-width: 1280px)`,
+  },
   colors: {
     accent: '#F59256',
     pageBackground: '#7F7F7F',
     commonBackground: '#FDF7F2',
     cardsBackground: '#D9D9D9',
-    Text: '#111111',
+    text: '#111111',
     placeholderText: 'rgba(17, 17, 17, 0.6)',
     links: '#3091EB',
     white: '#FFFFFF',
@@ -16,7 +21,8 @@ const theme = {
     backgroundGradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
   },
   shadows: {
-    cardsShadow: 'box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);',
+    cardsShadow: '7px 4px 14px rgba(49, 21, 4, 0.07);',
+    cardsShadowUser: '7px 4px 14px rgba(0,0,0,0.11)',
   },
   fonts: ['Manrope', 'Poppins'],
   fontSizes: {
@@ -45,6 +51,7 @@ const theme = {
   },
   fontWeights: {
     bold: 700,
+    semiBold: 600,
     medium: 500,
     normal: 400,
   },

@@ -16,16 +16,16 @@ const NoticesCategoriesNav = () => {
             lost/found
           </StyledLink>
         </CategoriesItem>
-        <li>
+        <CategoriesItem>
           <StyledLink to={'for-free'} state={{ from: location }}>
             in good hands
           </StyledLink>
-        </li>
-        <li>
+        </CategoriesItem>
+        <CategoriesItem>
           <StyledLink to={'sell'} state={{ from: location }}>
             sell
           </StyledLink>
-        </li>
+        </CategoriesItem>
       </CategoriesList>
     </>
   );

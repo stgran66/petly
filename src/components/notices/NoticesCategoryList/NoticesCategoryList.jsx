@@ -1,5 +1,5 @@
 import { List, ListItem } from './NoticesCategoryList.styled';
-import NoticeCategoryItem from 'components/NoticeCategoryItem';
+import NoticeCategoryItem from 'components/notices/NoticeCategoryItem';
 import { useSelector } from 'react-redux';
 import { selectFilteredList } from 'redux/notices/selectors';
 import { NotFoundMessage } from './NoticesCategoryList.styled';
@@ -11,7 +11,6 @@ const NoticesCategoryList = () => {
   const filterByCategory = (category, list) => {
     return list.filter(notice => notice.category.includes(category));
   };
-
   const filteredByCategoryList = filterByCategory(category, filteredNotices);
   const noNoticesFind = filteredByCategoryList.length === 0;
 

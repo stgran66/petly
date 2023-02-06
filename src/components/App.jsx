@@ -1,40 +1,44 @@
 import { Route, Routes } from 'react-router-dom';
 
+import Layout from './Layout';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
-import NoticesPage from 'pages/NoticesPage';
-import NoticesCategoryList from './NoticesCategoryList';
+import pages from 'pages';
+import NoticesCategoryList from './notices/NoticesCategoryList';
+
+const { LoginPage, RegisterPage, UserPage, NewsPage, NoticesPage } = pages;
 
 export const App = () => {
   return (
     <Routes>
-      <Route path="/">
-        <Route
-          index
-          element={
-            <div
-              style={{
-                height: '100vh',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: 40,
-                color: '#010101',
-              }}
-            >
-              React homework template
-            </div>
-          }
-        />
-        <Route path="/news" />
+      <Route path="/" element={<Layout />}>
+        <Route index element={<p>Home</p>} />
+        <Route path="news" element={<NewsPage />} />
         <Route path="/notices" element={<NoticesPage />}>
           <Route path=":category" element={<NoticesCategoryList />}></Route>
         </Route>
-        <Route path="/friends" />
+        <Route path="friends" element={<p>friends</p>} />
 
-        <Route path="/register" element={<RestrictedRoute redirectTo="/" />} />
-        <Route path="/login" element={<RestrictedRoute redirectTo="/" />} />
-        <Route path="user" element={<PrivateRoute redirectTo="/login" />} />
+        <Route
+          path="register"
+          element={
+            <RestrictedRoute component={<RegisterPage />} redirectTo="/" />
+          }
+        />
+        <Route
+          path="login"
+          element={<RestrictedRoute component={<LoginPage />} redirectTo="/" />}
+        />
+        <Route
+          path="user"
+          element={
+            <PrivateRoute component={<UserPage />} redirectTo="/login" />
+          }
+        />
+        <Route
+          path="news"
+          element={<PrivateRoute component={<NewsPage />} redirectTo="/news" />}
+        />
       </Route>
     </Routes>
   );

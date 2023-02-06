@@ -1,6 +1,6 @@
 import AddNoticeButton from 'components/AddNoticeButton';
-import NoticesCategoriesNav from 'components/NoticesCategoriesNav';
-import NoticesSearch from 'components/NoticesSearch';
+import NoticesCategoriesNav from 'components/notices/NoticesCategoriesNav';
+import NoticesSearch from 'components/notices/NoticesSearch';
 import { Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router';
 

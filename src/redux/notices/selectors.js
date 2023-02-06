@@ -2,7 +2,6 @@ import { createSelector } from '@reduxjs/toolkit';
 
 export const selectNotices = state => state.notices.items;
 export const selectFilter = state => state.filter.value;
-
 export const selectFilteredList = createSelector(
   [selectNotices, selectFilter],
   (noticesList, filterValue) => {
