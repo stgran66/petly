@@ -10,7 +10,7 @@ const SearchTitle = styled.h2`
   text-align: center;
   color: ${({ theme }) => theme.colors.text};
 
-  @media ${({ theme }) => theme.devices.mobileS} {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
     margin: 42px 0 28px;
   }
 `;
