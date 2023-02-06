@@ -2,26 +2,26 @@
 import { useState } from 'react';
 import NoticeModal from 'components/notices/NoticeCategoryItem';
 import Modal from 'components/notices/Modal';
+import styles from './NoticeCategoryItem.styled';
 
 // const NoticeCategoryItem = ({ title }) => {
 //   return <Link to={`notices`}>{title}</Link>;
 // };
 
-import {
-  NoticeItemCard,
-  Image,
-  ImgWrapper,
-  Category,
-  Button,
-  ItemTitle,
-  About,
-  AboutList,
-  Content,
-  LearnMore,
-  FavouriteIcon,
-} from './NoticeCategoryItem.styled';
-
 const NoticeCategoryItem = () => {
+  const {
+    NoticeItemCard,
+    Image,
+    ImgWrapper,
+    Category,
+    Button,
+    ItemTitle,
+    About,
+    AboutList,
+    Content,
+    LearnMore,
+    FavouriteIcon,
+  } = styles;
   const [showModal, setShowModal] = useState(false);
   return (
     <NoticeItemCard>

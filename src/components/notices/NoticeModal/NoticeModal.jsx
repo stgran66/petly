@@ -1,18 +1,18 @@
 import React from 'react';
-
-import {
-  Container,
-  Wrapper,
-  ImgWrapper,
-  Img,
-  Category,
-  Title,
-  List,
-  Item,
-  ItemInfo,
-} from './NoticeModal.styled';
+import style from './NoticeModal.styled';
 
 const NoticeModal = () => {
+  const {
+    Container,
+    Wrapper,
+    ImgWrapper,
+    Img,
+    Category,
+    Title,
+    List,
+    Item,
+    ItemInfo,
+  } = style;
   return (
     <Container>
       <Wrapper>

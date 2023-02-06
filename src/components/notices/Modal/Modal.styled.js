@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Overlay = styled.div`
+const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -13,3 +13,5 @@ export const Overlay = styled.div`
   backdrop-filter: blur(10px);
   overflow-y: scroll;
 `;
+
+export default Overlay;

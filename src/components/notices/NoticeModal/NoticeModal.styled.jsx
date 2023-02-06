@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+const Container = styled.div`
   position: relative;
   max-width: 400px;
   margin: 0px auto;
@@ -8,13 +8,13 @@ export const Container = styled.div`
   background-color: ${props => props.theme.colors.white};
   border-radius: 20px;
 `;
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   & + p {
     margin-bottom: 40px;
   }
 `;
 
-export const ImgWrapper = styled.div`
+const ImgWrapper = styled.div`
   position: relative;
   width: 240px;
   height: 240px;
@@ -22,13 +22,13 @@ export const ImgWrapper = styled.div`
   border-radius: 0px 0px 40px 40px;
   overflow: hidden;
 `;
-export const Img = styled.img`
+const Img = styled.img`
   object-fit: cover;
   width: 100%;
   height: 100%;
 `;
 
-export const Category = styled.span`
+const Category = styled.span`
   position: absolute;
   top: 20px;
   left: 0;
@@ -45,7 +45,7 @@ export const Category = styled.span`
   border-bottom-right-radius: 20px;
 `;
 
-export const Title = styled.h2`
+const Title = styled.h2`
   margin-bottom: 16px;
   font-weight: 700;
   font-size: 24px;
@@ -54,21 +54,35 @@ export const Title = styled.h2`
   word-wrap: break-word;
 `;
 
-export const List = styled.ul`
+const List = styled.ul`
   margin-bottom: 28px;
 `;
 
-export const Item = styled.li`
+const Item = styled.li`
   display: flex;
   &:not(:last-child) {
     margin-bottom: 8px;
   }
 `;
 
-export const ItemInfo = styled.p`
+const ItemInfo = styled.p`
   min-width: 118px;
   font-weight: 600;
   font-size: 14px;
   line-height: 1.35;
   color: ${props => props.theme.colors.Text};
 `;
+
+const style = {
+  Container,
+  Wrapper,
+  ImgWrapper,
+  Img,
+  Category,
+  Title,
+  List,
+  Item,
+  ItemInfo,
+};
+
+export default style;
