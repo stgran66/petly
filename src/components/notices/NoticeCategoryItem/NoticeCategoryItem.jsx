@@ -22,7 +22,7 @@ const NoticeCategoryItem = id => {
     FavouriteIcon,
   } = styles;
   const [showModal, setShowModal] = useState(false);
-  console.log(id);
+  // console.log(id);
   return (
     <NoticeItemCard>
       <ImgWrapper>
