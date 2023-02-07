@@ -9,7 +9,6 @@ const navItems = [
 const Nav = ({ closeBurgerMenu }) => {
   const { NavList, Link } = styles;
   return (
-    <nav>
       <NavList>
         {navItems.map(({ href, text, end }) => (
           <li key={href}>
@@ -19,7 +18,6 @@ const Nav = ({ closeBurgerMenu }) => {
           </li>
         ))}
       </NavList>
-    </nav>
   );
 };
 

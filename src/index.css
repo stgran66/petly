@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #fdf7f2;
 }
 
 code {
@@ -41,9 +42,4 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-}
-
-.container {
-  max-width: min(100% - 40px, 1280px);
-  margin-inline: auto;
 }
