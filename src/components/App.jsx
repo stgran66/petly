@@ -1,10 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-
+import { Navigate } from 'react-router-dom';
 import Layout from './Layout';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
 import pages from 'pages';
-import NoticesCategoryList from './notices/NoticesCategoryList';
 
 const { LoginPage, RegisterPage, UserPage, NewsPage, NoticesPage } = pages;
 
@@ -14,9 +13,8 @@ export const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<p>Home</p>} />
         <Route path="news" element={<NewsPage />} />
-        <Route path="notices" element={<NoticesPage />}>
-          <Route path=":category" element={<NoticesCategoryList />}></Route>
-        </Route>
+        <Route path="notices" element={<Navigate replace to="sell" />} />
+        <Route path="notices/:category" element={<NoticesPage />} />
         <Route path="friends" element={<p>friends</p>} />
 
         <Route
