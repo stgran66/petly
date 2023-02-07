@@ -34,9 +34,9 @@ const NoticesCategoryList = () => {
           {noNoticesFind ? (
             <NotFoundMessage>We didn't find pets</NotFoundMessage>
           ) : (
-            filteredNotices.map(({ id, title }) => (
-              <ListItem key={id}>
-                <NoticeCategoryItem id={id} title={title} />
+            filteredNotices.map(notice => (
+              <ListItem key={notice._id}>
+                <NoticeCategoryItem id={notice._id} />
               </ListItem>
             ))
           )}

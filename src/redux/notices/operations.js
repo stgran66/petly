@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// axios.defaults.baseURL = 'https://petly-backend-9tz8.onrender.com/api';
-axios.defaults.baseURL = 'http://localhost:5000/api';
+axios.defaults.baseURL = 'https://petly-backend-9tz8.onrender.com/api';
+// axios.defaults.baseURL = 'http://localhost:5000/api';
 
 const fetchNotices = createAsyncThunk(
   'notices/fetchAll',
