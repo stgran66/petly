@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import styles from './NewsPage.styled';
+const { Icon, SearchForm, SearchInput, SearchTitle, ArticleUrl, InputIcon, ArticleDate,  ArticleTitle, ArticleText } = styles;
 
 function NewsPage() {
   const [data, setData] = useState('');
@@ -8,7 +10,6 @@ function NewsPage() {
     axios
       .get('https://petly-backend-9tz8.onrender.com/api/news')
       .then(response => {
-        console.log(response.data);
         setData(response.data);
       })
       .catch(error => {
@@ -20,26 +21,29 @@ function NewsPage() {
   }, []);
   return (
     <>
-     <h1>News Page</h1>
-     <input placeholder="Search" />
+     <SearchTitle>News Page</SearchTitle>
+     <SearchForm>
+      <SearchInput placeholder="Search" />
+      <InputIcon>
+          <Icon />
+      </InputIcon>
+     </SearchForm>
+     
       {data ? (
         data.map(data => {
           return (
-            <div>
-             
-              <div className="article" key={data._id}>
-                <h2>{data.title}</h2>
-                <p>{data.description}</p>
-                <p>{data.date}</p>
-                <a
+              <div key={data._id}>
+                <ArticleTitle>{data.title}</ArticleTitle>
+                <ArticleText>{data.description}</ArticleText>
+                <ArticleDate>{data.date}</ArticleDate>
+                <ArticleUrl
                   href={data.url}
                   target="_blank"
                   rel="nofollow noopener noreferrer"
                   >
                   Read more
-                </a>
+                </ArticleUrl>
               </div>
-            </div>
           );
         })
       ) : (
