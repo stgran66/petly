@@ -19,7 +19,6 @@ const FriendsPage = () => {
     };
     getFriends();
   }, []);
-  console.log(friends);
   return (
     <FriendsContainer>
       {friends.length > 0 ? (
