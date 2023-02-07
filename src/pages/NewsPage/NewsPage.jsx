@@ -19,11 +19,24 @@ function NewsPage() {
   useEffect(() => {
     getAllData();
   }, []);
+
+
+useEffect(() => {
+  const Debounce = setTimeout(()=> {
+    const filteredNews = filterArticle(searchArticle, data)
+    setData(filteredNews)
+  }, 300)
+  return () => clearTimeout(Debounce)
+
+})
+
+  const [searchArticle, setSearchArticle] = useState('')
   return (
     <>
      <SearchTitle>News Page</SearchTitle>
      <SearchForm>
-      <SearchInput placeholder="Search" />
+      <SearchInput placeholder="Search" 
+      onChange={(e) => setSearchArticle(e.target.value)}/>
       <InputIcon>
           <Icon />
       </InputIcon>
@@ -53,4 +66,14 @@ function NewsPage() {
   );
 }
 
+
+const filterArticle = (query, data) => {
+  if(!query){
+    return data
+  }
+  return data.filter(({title}) => 
+  title.toLowerCase().includes(query.toLowerCase()))
+}
+
 export default NewsPage;
+
