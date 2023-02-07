@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import friendsComponents from 'components/Friends';
 
-const { Friend, FriendsList } = friendsComponents;
+const { Friend, FriendsList, FriendsContainer } = friendsComponents;
 
 const FriendsPage = () => {
   const [friends, setFriends] = useState([]);
@@ -19,23 +19,21 @@ const FriendsPage = () => {
     };
     getFriends();
   }, []);
-
   console.log(friends);
   return (
-    <>
-      <h2>Our Friends</h2>
+    <FriendsContainer>
       {friends.length > 0 ? (
         <FriendsList>
           {friends.map(friend => (
             <li key={friend._id}>
-              <Friend />
+              <Friend friend={friend} />
             </li>
           ))}
         </FriendsList>
       ) : (
         <></>
       )}
-    </>
+    </FriendsContainer>
   );
 };
 
