@@ -8,17 +8,17 @@ const NoticesCategoriesNav = () => {
   return (
     <CategoriesList>
       <CategoriesItem>
-        <StyledLink to={'lost-found'} state={{ from: location }}>
+        <StyledLink to={'/notices/lost-found'} state={{ from: location }}>
           lost/found
         </StyledLink>
       </CategoriesItem>
       <CategoriesItem>
-        <StyledLink to={'for-free'} state={{ from: location }}>
+        <StyledLink to={'/notices/for-free'} state={{ from: location }}>
           in good hands
         </StyledLink>
       </CategoriesItem>
       <CategoriesItem>
-        <StyledLink to={'sell'} state={{ from: location }}>
+        <StyledLink to={'/notices/sell'} state={{ from: location }}>
           sell
         </StyledLink>
       </CategoriesItem>
