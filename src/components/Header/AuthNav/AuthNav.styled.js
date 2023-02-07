@@ -1,9 +1,10 @@
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+// import styled from 'styled-components';
 
 const ButtonEl = styled(Button)`
   padding: 8px 28px;
-  /* font-family: 'Manrope'; */
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -11,6 +12,7 @@ const ButtonEl = styled(Button)`
   display: flex;
   align-items: center;
   letter-spacing: 0.04em;
+  text-transform: inherit;
 
   color: #111111;
   border-radius: 40px;

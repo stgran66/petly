@@ -1,4 +1,5 @@
-import Navigation from 'components/Navigation';
+import BurgerMenu from './BurgerMenu'
+import Navigation from './Navigation';
 import styles from './Header.styled';
 
 const Header = () => {
@@ -8,7 +9,10 @@ const Header = () => {
       <Logo>
         pe<span>t</span>ly
       </Logo>
-      <Navigation />
+      <nav>
+        <Navigation />
+      </nav>
+      <BurgerMenu />
     </HeaderEl>
   );
 };
