@@ -19,15 +19,6 @@ const UserPage = () => {
       </ContainerWrapp>
     </MainContainer>
   );
-
-  // return (
-  //   <>
-  //     <MainContainer>
-  //       <UserData />
-  //       <PetsData />
-  //     </MainContainer>
-  //   </>
-  // );
 };
 
 export default UserPage;

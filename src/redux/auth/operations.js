@@ -1,10 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:5000/api';
+axios.defaults.baseURL = 'https://petly-backend-9tz8.onrender.com/api';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+// Utility to remove JWT
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = '';
 };
 
 const register = createAsyncThunk(
@@ -21,6 +26,16 @@ const register = createAsyncThunk(
   }
 );
 
-const operations = { register };
+const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    await axios.post('/users/logout');
+    // After a successful logout, remove the token from the HTTP header
+    clearAuthHeader();
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+const operations = { register, logOut };
 
 export default operations;
