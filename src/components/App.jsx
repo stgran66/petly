@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
-
+import { Navigate } from 'react-router-dom';
 import Layout from './Layout';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
-
 import pages from 'pages';
-const { LoginPage, RegisterPage, UserPage, NewsPage } = pages;
+
+const { LoginPage, RegisterPage, UserPage, NewsPage, NoticesPage } = pages;
 
 export const App = () => {
   return (
@@ -13,7 +13,8 @@ export const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<p>Home</p>} />
         <Route path="news" element={<NewsPage />} />
-        <Route path="notices" element={<p>notices</p>} />
+        <Route path="notices" element={<Navigate replace to="sell" />} />
+        <Route path="notices/:category" element={<NoticesPage />} />
         <Route path="friends" element={<p>friends</p>} />
 
         <Route

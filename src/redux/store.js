@@ -12,6 +12,8 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import auth from './auth/';
+import filterReducer from './notices/filterSlice';
+import noticesReducer from './notices/noticesSlice';
 
 const { authReducer } = auth;
 
@@ -32,6 +34,8 @@ const authPersistConfig = {
 const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    notices: noticesReducer,
+    filter: filterReducer,
   },
   middleware,
 });

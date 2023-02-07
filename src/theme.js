@@ -13,6 +13,7 @@ const theme = {
     commonBackground: '#FDF7F2',
     cardsBackground: '#D9D9D9',
     text: '#111111',
+    newsText: '#111321',
     placeholderText: 'rgba(17, 17, 17, 0.6)',
     links: '#3091EB',
     white: '#FFFFFF',
@@ -54,6 +55,11 @@ const theme = {
     semiBold: 600,
     medium: 500,
     normal: 400,
+  },
+  tranistions: {
+    long: 'all 500ms linear',
+    normal: 'all 250ms linear',
+    short: 'all 100ms linear',
   },
 };
 
