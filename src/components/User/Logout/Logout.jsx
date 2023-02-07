@@ -1,12 +1,20 @@
+import { useDispatch } from 'react-redux';
+import operations from 'redux/auth/operations';
+import styles from './Logout.styled';
+const { LogoutButton, LogoutIcon } = styles;
+
+const { logOut } = operations;
+
 const Logout = () => {
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => dispatch(logOut());
   return (
     <>
-      <div>Hello Logout</div>
-      {/* <div>
-        <title>My pets:</title>
-        <button type="button">Add pet</button>
-      </div>
-      <PetsList /> */}
+      <LogoutButton type="button" onClick={handleLogOut}>
+        <LogoutIcon />
+        Log Out
+      </LogoutButton>
     </>
   );
 };
