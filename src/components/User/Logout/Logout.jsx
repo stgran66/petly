@@ -1,12 +1,23 @@
+// import { useDispatch } from 'react-redux';
+// import { logOut } from 'redux/auth/operations';
+// import { useAuth } from 'hooks';
+import styles from './Logout.styled';
+const { LogoutButton, LogoutIcon } = styles;
+
 const Logout = () => {
   return (
+    // const dispatch = useDispatch();
+    //   const { user } = useAuth();
+
+    //   const handleLogOut = () => dispatch(logOut());
+
+    //  додати на кнопку: onClick={handleLogOut}
+
     <>
-      <div>Hello Logout</div>
-      {/* <div>
-        <title>My pets:</title>
-        <button type="button">Add pet</button>
-      </div>
-      <PetsList /> */}
+      <LogoutButton type="button">
+        <LogoutIcon />
+        Log Out
+      </LogoutButton>
     </>
   );
 };

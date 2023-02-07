@@ -46,6 +46,7 @@ const Title = styled.h2`
 `;
 
 const UserContainer = styled.div`
+  position: relative;
   outline: 1px solid green;
 
   padding: 20px 12px 20px 16px;
@@ -57,7 +58,7 @@ const UserContainer = styled.div`
   box-shadow: ${props => props.theme.shadows.cardsShadowUser};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    padding: 20px 16px 18px 16px;
+    padding: 20px 40px 24px 32px;
     margin-left: -32px;
     gap: 0;
     border-radius: 0px 40px 40px 0px;
@@ -65,7 +66,8 @@ const UserContainer = styled.div`
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     width: 410px;
-    padding: 20px 40px 24px 32px;
+    padding: 20px 16px 18px 16px;
+
     margin-left: -16px;
     gap: 24px;
   }
