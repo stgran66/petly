@@ -1,41 +1,72 @@
 import styles from './UserData.styled';
 
-const { ContainerWrappInfo, ContainerWrappFoto } = styles;
+// import { IconButton, PhotoCamera } from '@mui/icons-material';
+
+const { ContainerWrappInfo, ContainerWrappFoto, FotoIcon } = styles;
 
 const UserData = () => {
   return (
     <>
-      <form>
+      <form ectype="multipart/form-data">
         <ContainerWrappFoto>
-          <label for="user_foto">
-            <img src="" alt="" />
+          <img src="" alt="" />
+
+          <label>
+            <FotoIcon /> Edit photo
+            <input type="file" accept="image/*" name="file" hidden />
           </label>
-          <input type="file" name="file" id="user_foto" />
         </ContainerWrappFoto>
         <ContainerWrappInfo>
           <div>
             <label for="user_name">Name:</label>
-            <input type="text" name="text" id="user_name" />
+            <input
+              type="text"
+              name="text"
+              id="user_name"
+              disabled="true"
+              value="Anna"
+            />
+            <button type="submit">Remove</button>
           </div>
 
           <div>
             <label for="user_email">Email:</label>
-            <input type="email" name="email" id="user_email" />
+            <input
+              type="email"
+              name="email"
+              id="user_email"
+              value="anna00@gmail.com"
+              autofocus="false"
+            />
+            <button type="submit">Remove</button>
           </div>
 
           <div>
             <label for="user_birthday">Birthday:</label>
-            <input type="date" name="date" id="user_birthday" />
+            <input
+              type="date"
+              name="date"
+              id="user_birthday"
+              value="00.00.0000"
+            />
+            <button type="submit">Remove</button>
           </div>
 
           <div>
             <label for="user_phone">Phone:</label>
-            <input type="tel" name="number" id="user_phone" />
+            <input
+              type="tel"
+              name="number"
+              id="user_phone"
+              value="+38000000000"
+            />
+            <button type="submit">Remove</button>
           </div>
 
           <div>
             <label for="user_city">City:</label>
-            <input type="text" name="number" id="user_city" />
+            <input type="text" name="number" id="user_city" value="Kiev" />
+            <button type="submit">Remove</button>
           </div>
         </ContainerWrappInfo>
       </form>
