@@ -12,7 +12,7 @@ const LogoutButton = styled.button`
   background-color: transparent;
   color: ${props => props.theme.colors.placeholderText};
 
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: ${props => props.theme.tranistions.normal};
 
   &:hover,
   &:focus {
@@ -43,14 +43,6 @@ const LogoutIcon = styled(IoExitOutline)`
   width: 20px;
   height: 20px;
   color: ${props => props.theme.colors.accent};
-  scale: 1;
-
-  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  &:focus {
-    scale: 1.3;
-  }
 `;
 
 const styles = { LogoutButton, LogoutIcon };

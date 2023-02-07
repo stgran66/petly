@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 const MainContainer = styled.div`
-  outline: 1px solid green;
-
   padding: 60px 0 80px 0px;
   display: flex;
   flex-direction: column;
@@ -47,7 +45,6 @@ const Title = styled.h2`
 
 const UserContainer = styled.div`
   position: relative;
-  outline: 1px solid green;
 
   padding: 20px 12px 20px 16px;
   display: flex;

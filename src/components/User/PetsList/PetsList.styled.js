@@ -12,8 +12,6 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
-  outline: 1px solid red;
-
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -64,7 +62,7 @@ const PetDeleteButton = styled.button`
   cursor: pointer;
   background-color: transparent;
 
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: ${props => props.theme.tranistions.normal};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     top: 0;
