@@ -5,7 +5,14 @@ import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
 import pages from 'pages';
 
-const { LoginPage, RegisterPage, UserPage, NewsPage, NoticesPage } = pages;
+const {
+  LoginPage,
+  RegisterPage,
+  UserPage,
+  NewsPage,
+  NoticesPage,
+  FriendsPage,
+} = pages;
 
 export const App = () => {
   return (
@@ -15,7 +22,7 @@ export const App = () => {
         <Route path="news" element={<NewsPage />} />
         <Route path="notices" element={<Navigate replace to="sell" />} />
         <Route path="notices/:category" element={<NoticesPage />} />
-        <Route path="friends" element={<p>friends</p>} />
+        <Route path="friends" element={<FriendsPage />} />
 
         <Route
           path="register"
