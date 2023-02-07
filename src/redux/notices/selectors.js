@@ -2,6 +2,9 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const selectNotices = state => state.notices.items;
 const selectFilter = state => state.filter.value;
+const selectLoadingStatus = state => state.notices.isLoading;
+const selectErrorMessage = state => state.notices.error;
+
 const selectFilteredList = createSelector(
   [selectNotices, selectFilter],
   (noticesList, filterValue) => {
@@ -16,5 +19,11 @@ const selectFilteredList = createSelector(
     return filteredNotices;
   }
 );
-const selectors = { selectNotices, selectFilter, selectFilteredList };
+const selectors = {
+  selectNotices,
+  selectFilter,
+  selectFilteredList,
+  selectLoadingStatus,
+  selectErrorMessage,
+};
 export default selectors;

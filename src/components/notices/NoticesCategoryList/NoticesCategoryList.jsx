@@ -1,33 +1,48 @@
 import styles from './NoticesCategoryList.styled';
 import NoticeCategoryItem from 'components/notices/NoticeCategoryItem';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import selectors from 'redux/notices/selectors';
+import fetchNotices from 'redux/notices/operations';
+import { useEffect } from 'react';
+import Loader from 'components/Loader';
+import NotFound from '../NotFound';
 
-const { List, ListItem, NotFoundMessage } = styles;
-const { selectFilteredList } = selectors;
+const { List, ListItem, NotFoundMessage, NoticesContainer } = styles;
+const { selectFilteredList, selectLoadingStatus, selectErrorMessage } =
+  selectors;
 
 const NoticesCategoryList = () => {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoadingStatus);
+  const error = useSelector(selectErrorMessage);
   const filteredNotices = useSelector(selectFilteredList);
   const { category } = useParams();
-  const filterByCategory = (category, list) => {
-    return list.filter(notice => notice.category.includes(category));
-  };
-  const filteredByCategoryList = filterByCategory(category, filteredNotices);
-  const noNoticesFind = filteredByCategoryList.length === 0;
+
+  const noNoticesFind = filteredNotices.length === 0;
+
+  useEffect(() => {
+    dispatch(fetchNotices(category));
+  }, [dispatch, category]);
 
   return (
-    <List>
-      {noNoticesFind ? (
-        <NotFoundMessage>We didn't find pets</NotFoundMessage>
-      ) : (
-        filteredByCategoryList.map(({ id, title }) => (
-          <ListItem key={id}>
-            <NoticeCategoryItem id={id} title={title} />
-          </ListItem>
-        ))
+    <NoticesContainer>
+      {error && <NotFound />}
+      {isLoading && <Loader />}
+      {!isLoading && !error && (
+        <List>
+          {noNoticesFind ? (
+            <NotFoundMessage>We didn't find pets</NotFoundMessage>
+          ) : (
+            filteredNotices.map(({ id, title }) => (
+              <ListItem key={id}>
+                <NoticeCategoryItem id={id} title={title} />
+              </ListItem>
+            ))
+          )}
+        </List>
       )}
-    </List>
+    </NoticesContainer>
   );
 };
 

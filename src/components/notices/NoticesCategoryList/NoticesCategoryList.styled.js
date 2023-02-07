@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+const NoticesContainer = styled.div`
+  display: flex;
+  flex-wrap: no-wrap;
+  justify-content: center;
+`;
+
 const List = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
@@ -19,5 +25,5 @@ const NotFoundMessage = styled.p`
   color: #ef4444;
 `;
 
-const styles = { List, ListItem, NotFoundMessage };
+const styles = { List, ListItem, NotFoundMessage, NoticesContainer };
 export default styles;
