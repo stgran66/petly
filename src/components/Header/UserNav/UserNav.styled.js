@@ -1,5 +1,4 @@
 import { styled } from '@mui/material/styles';
-// import styled from 'styled-components';
 import Button from '@mui/material/Button';
 
 const NavUser = styled('div')`
@@ -14,58 +13,43 @@ const NavUser = styled('div')`
   }
 `;
 
-const ButtonEl = styled(Button)`
-  padding: 8px 36px;
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
-  text-transform: inherit;
-  letter-spacing: 0.04em;
+const ButtonEl = styled(Button)(({ theme }) => ({
+  padding: '8px 36px',
+  fontFamily: theme.fonts[0],
+  fontWeight: theme.fontWeights.medium,
+  fontSize: theme.fontSizes.text.s,
+  lineHeight: theme.lineHeights.m,
+  textTransform: 'inherit',
+  letterSpacing: '0.04em',
+  color: theme.colors.white,
+  border: 'none',
+  borderRadius: '40px',
+  backgroundColor: theme.colors.accent,
 
-  border: none;
-  color: #fff;
-  background-color: #f59256;
-  border-radius: 40px;
-
-  :hover {
-    border: none;
-    color: #fff;
-    background-color: #f59256;
-  }
-  & span {
-    margin-right: 12px;
-    margin-left: 0;
-    & svg {
-      @media (min-width: 768px) {
-        width: 23px;
-        height: 23px;
-      }
-      @media (min-width: 1280px) {
-        width: 28px;
-        height: 28px;
-      }
-    }
-  }
-  @media (min-width: 1280px) {
-    font-size: 16px;
-  }
-`;
-
-// const ButtonEl = styled('button')(({ theme }) => ({
-//   padding: '8px 28px',
-//   fontFamily: theme.fonts[0],
-//   fontWeight: theme.fontWeights.medium,
-//   fontSize: theme.fontSizes.text.s,
-//   lineHeight: theme.lineHeights.m,
-//   textTransform: 'inherit',
-//   letterSpacing: '0.04em',
-//   color: theme.colors.white,
-//   border: 'none',
-//   borderRadius: '40px',
-//   backgroundColor: theme.colors.accent,
-// }));
+  ':hover': {
+    backgroundColor: theme.colors.accent,
+  },
+  '& span': {
+    marginRight: '12px',
+    marginLeft: '0',
+    '& svg': {
+      ' @media only screen and (min-width: 768px) ': {
+        width: '23px',
+        height: '23px',
+      },
+      ' @media only screen and (min-width: 1280px)': {
+        width: '28px',
+        height: '28px',
+      },
+    },
+  },
+  '@media only screen and (min-width: 1280px)': {
+    fontSize: '16px',
+  },
+  '@media only screen and (min-width: 768px)': {
+    fontSize: theme.fontSizes.text.m,
+  },
+}));
 
 const styles = { NavUser, ButtonEl };
 export default styles;

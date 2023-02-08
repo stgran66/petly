@@ -17,30 +17,31 @@ const {
 
 function NewsPage() {
   const [data, setData] = useState();
-
-  const getAllData = () => {
-    axios
-      .get('https://petly-backend-9tz8.onrender.com/api/news')
-      .then(response => {
-        const filterArticle = query => {
-          if (!query) {
-            return response.data;
-          }
-          return response.data.filter(({ title }) =>
-            title.toLowerCase().includes(query.toLowerCase())
-          );
-        };
-        const filteredNews = filterArticle(searchArticle, data);
-        setData(filteredNews);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
   const [searchArticle, setSearchArticle] = useState('');
+
   useEffect(() => {
+    const getAllData = () => {
+      axios
+        .get('https://petly-backend-9tz8.onrender.com/api/news')
+        .then(response => {
+          const filterArticle = query => {
+            if (!query) {
+              return response.data;
+            }
+            return response.data.filter(({ title }) =>
+              title.toLowerCase().includes(query.toLowerCase())
+            );
+          };
+          const filteredNews = filterArticle(searchArticle, data);
+          setData(filteredNews);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    };
     getAllData();
-  }, [searchArticle, data, getAllData]);
+  }, [data, searchArticle]);
+
   return (
     <>
       <SearchTitle>News Page</SearchTitle>

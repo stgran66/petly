@@ -1,4 +1,4 @@
-import BurgerMenu from './BurgerMenu'
+import BurgerMenu from './BurgerMenu';
 import Navigation from './Navigation';
 import styles from './Header.styled';
 
@@ -6,7 +6,7 @@ const Header = () => {
   const { HeaderEl, Logo } = styles;
   return (
     <HeaderEl>
-      <Logo>
+      <Logo to="/notices">
         pe<span>t</span>ly
       </Logo>
       <nav>

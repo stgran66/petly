@@ -1,4 +1,5 @@
 import { styled } from '@mui/system';
+import { NavLink } from 'react-router-dom';
 
 const HeaderEl = styled('header')`
   position: relative;
@@ -29,13 +30,13 @@ const HeaderEl = styled('header')`
   }
 `;
 
-const Logo = styled('span')`
+const Logo = styled(NavLink)`
   position: relative;
   font-family: ${({ theme }) => theme.fonts[1]};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   font-size: ${({ theme }) => theme.fontSizes.logo.mobile};
   letter-spacing: 0.07em;
-  color: ${({ theme }) => theme.colors.Text};
+  color: ${({ theme }) => theme.colors.text};
 
   z-index: 1110;
   & span {
