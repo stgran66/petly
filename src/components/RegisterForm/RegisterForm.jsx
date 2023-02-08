@@ -9,9 +9,10 @@ import ReviewOrder from './Forms/ReviewOrder';
 import validationSchema from './FormModel/validationSchema';
 import checkoutFormModel from './FormModel/checkoutFormModel';
 import formInitialValues from './FormModel/formInitialValues';
-//
+
 import { useDispatch } from 'react-redux';
-import register from '../../redux/auth/operations';
+import operations from '../../redux/auth/operations';
+const { register } = operations
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 const { formId, formField } = checkoutFormModel;
@@ -35,11 +36,8 @@ const RegisterForm = () => {
   const isLastStep = activeStep === steps.length - 1;
   const dispatch = useDispatch();
 
-  // Start our problem
+ 
   const _submitForm = (values, actions) => {
-    // alert show our props
-    // alert(JSON.stringify(values, null, 2));
-
     const { email, password, name, city, phone } = values;
 
     dispatch(
@@ -64,9 +62,8 @@ const RegisterForm = () => {
       actions.setSubmitting(false);
     }
   };
-  // -------------END
 
-  function _handleBack() {
+  const _handleBack = () => {
     setActiveStep(activeStep - 1);
   }
 
