@@ -15,6 +15,7 @@ const onFetchSuccessReducer = (state, action) => {
 const onPendingReducer = state => {
   state.isLoading = true;
   state.error = null;
+  state.items = [];
 };
 const onRejectedReducer = (state, action) => {
   state.isLoading = false;

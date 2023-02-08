@@ -63,15 +63,13 @@ const theme = createTheme({
     medium: 500,
     normal: 400,
   },
-  tranistions: {
+  transitions: {
     long: 'all 500ms linear',
     normal: 'all 250ms linear',
     short: 'all 100ms linear',
   },
 });
 
-const Theme = ({ children }) => (
-  <ThemeProvider theme={theme}>{children}</ThemeProvider>
-);
+const Theme = ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 
 export default Theme;
