@@ -1,33 +1,46 @@
 import styles from './UserData.styled';
+import ButtonChange from './ButtonChange';
+import ButtonSubmit from './ButtonSubmit';
 
 // import { IconButton, PhotoCamera } from '@mui/icons-material';
 
-const { ContainerWrappInfo, ContainerWrappFoto, FotoIcon } = styles;
+const {
+  UserForm,
+  ContainerWrappInfo,
+  ContainerWrappFoto,
+  FotoIcon,
+  InputWrapp,
+  InfoInputThumb,
+} = styles;
 
 const UserData = () => {
   return (
     <>
-      <form ectype="multipart/form-data">
+      <UserForm ectype="multipart/form-data">
         <ContainerWrappFoto>
-          <img src="" alt="" />
+          <div>
+            <img src="" alt="" />
 
-          <label>
-            <FotoIcon /> Edit photo
-            <input type="file" accept="image/*" name="file" hidden />
-          </label>
+            <label>
+              <FotoIcon /> Edit photo
+              <input type="file" accept="image/*" name="file" hidden />
+            </label>
+          </div>
         </ContainerWrappFoto>
         <ContainerWrappInfo>
-          <div>
+          <InfoInputThumb>
             <label for="user_name">Name:</label>
-            <input
-              type="text"
-              name="text"
-              id="user_name"
-              disabled="true"
-              value="Anna"
-            />
-            <button type="submit">Remove</button>
-          </div>
+            <InputWrapp>
+              <input
+                type="text"
+                name="text"
+                id="user_name"
+                // disabled="true"
+                value="Anna"
+              />
+              <ButtonChange />
+            </InputWrapp>
+          </InfoInputThumb>
 
           <div>
             <label for="user_email">Email:</label>
@@ -38,7 +51,7 @@ const UserData = () => {
               value="anna00@gmail.com"
               autofocus="false"
             />
-            <button type="submit">Remove</button>
+            <ButtonSubmit />
           </div>
 
           <div>
@@ -69,7 +82,7 @@ const UserData = () => {
             <button type="submit">Remove</button>
           </div>
         </ContainerWrappInfo>
-      </form>
+      </UserForm>
     </>
 
     //     <div>

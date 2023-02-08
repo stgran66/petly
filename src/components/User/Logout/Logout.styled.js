@@ -27,7 +27,7 @@ const LogoutButton = styled('button')`
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     position: absolute;
-    bottom: 0;
+    bottom: 24px;
     left: 32px;
   }
 
