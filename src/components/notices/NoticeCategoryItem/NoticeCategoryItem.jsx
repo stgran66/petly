@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import NoticeModal from 'components/notices/NoticeCategoryItem';
 import Modal from 'components/notices/Modal';
+
 import styles from './NoticeCategoryItem.styled';
 // const NoticeCategoryItem = ({ title }) => {
 //   return <Link to={`notices`}>{title}</Link>;
@@ -48,9 +49,8 @@ const NoticeCategoryItem = ({ notice }) => {
       </About>
       {showModal && (
         <Modal toggleModal={() => setShowModal(s => !s)}>
-          <NoticeModal
-          // toggleModal={() => setShowModal(s => !s)}
-          />
+          <NoticeModal toggleModal={() => setShowModal(s => !s)} />
+          {/* <ModalBtnClose /> */}
         </Modal>
       )}
     </NoticeItemCard>

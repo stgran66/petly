@@ -1,13 +1,17 @@
 import { styled } from '@mui/system';
-import { ReactComponent as FavIcon } from '../NoticeCategoryItem/fav-icon.svg';
+import { ReactComponent as FavIcon } from 'images/fav-icon.svg';
 
 const NoticeItemCard = styled('div')`
-  border: 1px solid black;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
+  display: flex;
+  flex-direction: column;
   width: 280px;
+  padding-bottom: 32px;
+  border-radius: 0px 0px 20px 20px;
+  background: ${props => props.theme.colors.white};
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     width: 336px;
+    border-radius: 0px 0px 40px 40px;
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     width: 288px;
@@ -23,6 +27,7 @@ const Image = styled('img')`
   display: block;
   width: 280px;
   height: 288px;
+  object-fit: cover;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     width: 336px;
   }
@@ -82,11 +87,6 @@ const ItemTitle = styled('h2')`
   flex-grow: 1;
 `;
 
-const About = styled('div')`
-  display: flex;
-  flex-direction: column;
-`;
-
 const AboutList = styled('div')`
   padding: 0 20px;
   display: grid;
@@ -98,6 +98,11 @@ const AboutList = styled('div')`
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     grid-template-columns: 79px 161px;
   }
+`;
+
+const About = styled('div')`
+  display: flex;
+  flex-direction: column;
 `;
 
 const Content = styled('span')`
