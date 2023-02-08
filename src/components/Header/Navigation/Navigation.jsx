@@ -1,5 +1,5 @@
-import Nav from 'components/Nav';
-import UserNav from 'components/UserNav';
+import Nav from '../Nav'
+import UserNav from '../UserNav';
 
 const Navigation = ({ hidden, closeBurgerMenu }) => {
   return (

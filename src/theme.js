@@ -1,7 +1,8 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { createTheme } from '@mui/material';
+import { ThemeProvider } from '@mui/system';
 
-const theme = {
+const theme = createTheme({
   breakpoints: {
     mobile: `320px`,
     tablet: `768px`,
@@ -17,6 +18,7 @@ const theme = {
     placeholderText: 'rgba(17, 17, 17, 0.6)',
     links: '#3091EB',
     white: '#FFFFFF',
+    navLinks: '#181C27',
   },
   gradients: {
     backgroundGradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
@@ -33,6 +35,11 @@ const theme = {
       m: '36px',
       s: '28px',
       xs: '24px',
+    },
+    navLinks: {
+      desktop: '20px',
+      tablet: '48px',
+      mobile: '32px',
     },
     logo: { desktop: '32px', mobile: '28px' },
     text: {
@@ -61,7 +68,7 @@ const theme = {
     normal: 'all 250ms linear',
     short: 'all 100ms linear',
   },
-};
+});
 
 const Theme = ({ children }) => (
   <ThemeProvider theme={theme}>{children}</ThemeProvider>

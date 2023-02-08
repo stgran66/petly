@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 
-const MainContainer = styled.div`
+const MainContainer = styled('div')`
   padding: 60px 0 80px 0px;
   display: flex;
   flex-direction: column;
@@ -20,11 +20,11 @@ const MainContainer = styled.div`
   }
 `;
 
-const ContainerWrapp = styled.div`
+const ContainerWrapp = styled('div')`
   /* width: 100%; */
 `;
 
-const Title = styled.h2`
+const Title = styled('h2')`
   margin-bottom: 18px;
 
   font-weight: ${props => props.theme.fontWeights.medium};
@@ -43,7 +43,7 @@ const Title = styled.h2`
   }
 `;
 
-const UserContainer = styled.div`
+const UserContainer = styled('div')`
   position: relative;
 
   padding: 20px 12px 20px 16px;

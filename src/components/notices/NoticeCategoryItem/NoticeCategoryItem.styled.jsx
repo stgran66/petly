@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 import { ReactComponent as FavIcon } from '../NoticeCategoryItem/fav-icon.svg';
 
-const NoticeItemCard = styled.div`
+const NoticeItemCard = styled('div')`
   border: 1px solid black;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
@@ -14,12 +14,12 @@ const NoticeItemCard = styled.div`
   }
 `;
 
-const ImgWrapper = styled.div`
+const ImgWrapper = styled('div')`
   position: relative;
   margin-bottom: 20px;
 `;
 
-const Image = styled.img`
+const Image = styled('img')`
   display: block;
   width: 280px;
   height: 288px;
@@ -42,7 +42,7 @@ const FavouriteIcon = styled(FavIcon)`
   }
 `;
 
-const Category = styled.span`
+const Category = styled('span')`
   position: absolute;
   top: 20px;
   padding: 6px 0 6px 20px;
@@ -55,7 +55,7 @@ const Category = styled.span`
   letter-spacing: 0.04em;
   background-color: #ffffff60;
 `;
-const Button = styled.button`
+const Button = styled('button')`
   content: '';
   position: absolute;
   top: 12px;
@@ -71,7 +71,7 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const ItemTitle = styled.h2`
+const ItemTitle = styled('h2')`
   margin-bottom: 20px;
   padding: 0 20px;
   word-break: break-word;
@@ -82,12 +82,12 @@ const ItemTitle = styled.h2`
   flex-grow: 1;
 `;
 
-const About = styled.div`
+const About = styled('div')`
   display: flex;
   flex-direction: column;
 `;
 
-const AboutList = styled.div`
+const AboutList = styled('div')`
   padding: 0 20px;
   display: grid;
   grid-template-columns: 82px 150px;
@@ -100,14 +100,14 @@ const AboutList = styled.div`
   }
 `;
 
-const Content = styled.span`
+const Content = styled('span')`
   font-weight: ${props => props.theme.fontWeights.medium};
   font-size: ${props => props.theme.fontSizes.text.m};
   line-height: ${props => props.theme.lineHeights.m};
   word-break: break-word;
 `;
 
-const LearnMore = styled.button`
+const LearnMore = styled('button')`
   display: block;
   width: 248px;
   padding-top: 8px;

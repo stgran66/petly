@@ -3,12 +3,11 @@ import { useState } from 'react';
 import NoticeModal from 'components/notices/NoticeCategoryItem';
 import Modal from 'components/notices/Modal';
 import styles from './NoticeCategoryItem.styled';
-
 // const NoticeCategoryItem = ({ title }) => {
 //   return <Link to={`notices`}>{title}</Link>;
 // };
 
-const NoticeCategoryItem = () => {
+const NoticeCategoryItem = ({ notice }) => {
   const {
     NoticeItemCard,
     Image,
@@ -23,6 +22,7 @@ const NoticeCategoryItem = () => {
     FavouriteIcon,
   } = styles;
   const [showModal, setShowModal] = useState(false);
+  // console.log(id);
   return (
     <NoticeItemCard>
       <ImgWrapper>
