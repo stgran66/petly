@@ -5,7 +5,7 @@ axios.defaults.baseURL = 'https://petly-backend-9tz8.onrender.com';
 // axios.defaults.baseURL = 'http://localhost:5000/api';
 
 const fetchNotices = createAsyncThunk(
-  'notices/fetchAll',
+  'notices/fetchByCategory',
   async (category, thunkAPI) => {
     try {
       const response = await axios.get(`/api/notices/${category}`);

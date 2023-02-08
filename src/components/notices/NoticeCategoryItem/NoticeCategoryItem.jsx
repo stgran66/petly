@@ -7,7 +7,7 @@ import styles from './NoticeCategoryItem.styled';
 //   return <Link to={`notices`}>{title}</Link>;
 // };
 
-const NoticeCategoryItem = id => {
+const NoticeCategoryItem = ({ notice }) => {
   const {
     NoticeItemCard,
     Image,
