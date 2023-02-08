@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 import { Delete20Filled } from '@fluentui/react-icons';
 
-const List = styled.ul`
+const List = styled('ul')`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -11,7 +11,7 @@ const List = styled.ul`
   }
 `;
 
-const Item = styled.li`
+const Item = styled('li')`
   outline: 1px solid red;
 
   display: flex;
@@ -34,7 +34,7 @@ const Item = styled.li`
   }
 `;
 
-const PetInfoFoto = styled.img`
+const PetInfoFoto = styled('img')`
   display: block;
   width: 240px;
   height: 240px;
@@ -48,12 +48,12 @@ const PetInfoFoto = styled.img`
   }
 `;
 
-const PetInfoWrapp = styled.div`
+const PetInfoWrapp = styled('div')`
   flex-shrink: 2;
   position: relative;
 `;
 
-const PetDeleteButton = styled.button`
+const PetDeleteButton = styled('button')`
   position: absolute;
   top: -5px;
   right: 0;
@@ -81,7 +81,7 @@ const PetDeleteIcon = styled(Delete20Filled)`
   color: ${props => props.theme.colors.placeholderText};
 `;
 
-const PetInfo = styled.ul`
+const PetInfo = styled('ul')`
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -96,7 +96,7 @@ const PetInfo = styled.ul`
   }
 `;
 
-const PetInfoName = styled.span`
+const PetInfoName = styled('span')`
   font-weight: ${props => props.theme.fontWeights.medium};
   font-size: ${props => props.theme.fontSizes.text.m};
 
