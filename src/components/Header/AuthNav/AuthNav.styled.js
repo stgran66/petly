@@ -1,29 +1,29 @@
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-// import styled from 'styled-components';
 
-const ButtonEl = styled(Button)`
-  padding: 8px 28px;
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.04em;
-  text-transform: inherit;
+const ButtonEl = styled(Button)(({ theme }) => ({
+  padding: '8px 28px',
+  fontFamily: theme.fonts[0],
+  fontWeight: theme.fontWeights.medium,
+  fontSize: theme.fontSizes.text.s,
+  lineHeight: theme.lineHeights.m,
+  textTransform: 'inherit',
+  letterSpacing: '0.04em',
+  color: theme.colors.text,
+  borderRadius: '40px',
+  border: `2px solid ${theme.colors.accent}`,
+  backgroundColor: 'transparent',
 
-  color: #111111;
-  border-radius: 40px;
-  border: 2px solid #f59256;
+  ':hover': {
+    border: `2px solid ${theme.colors.accent}`,
+    color: theme.colors.white,
+    backgroundColor: theme.colors.accent,
+  },
 
-  :hover {
-    border: 2px solid #f59256;
-    color: #fff;
-    background-color: #f59256;
-  }
-`;
+  '@media only screen and (min-width: 768px)': {
+    fontSize: theme.fontSizes.text.m,
+  },
+}));
 
 const AuthBtns = styled('ul')`
   width: 100%;
