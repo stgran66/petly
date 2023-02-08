@@ -2,7 +2,7 @@ import styles from './Nav.styled';
 
 const navItems = [
   { href: 'news', text: 'News' },
-  { href: 'notices', text: 'Find pet' },
+  { href: 'notices/sell', text: 'Find pet' },
   { href: 'friends', text: 'Our friends' },
 ];
 

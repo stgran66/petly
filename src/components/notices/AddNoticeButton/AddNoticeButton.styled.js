@@ -1,12 +1,18 @@
-import { AiOutlinePlus } from 'react-icons/ai';
+import { RxPlus } from 'react-icons/rx';
 import styled from 'styled-components';
 
-const AddIcon = styled(AiOutlinePlus)`
-  width: 22px;
-  height: 22px;
+const AddIcon = styled(RxPlus)`
+  width: 26px;
+  height: auto;
   fill: white;
   height: auto;
   margin-bottom: 4px;
+  display: block;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin-bottom: 0;
+    width: 24px;
+  }
 `;
 
 const AddButton = styled.button`
@@ -27,14 +33,29 @@ const AddButton = styled.button`
   color: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadows.cardsShadow};
   background-color: ${({ theme }) => theme.colors.accent};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    position: relative;
+    transform: translateY(0);
+    width: 44px;
+    height: 44px;
+    margin-left: auto;
+  }
 `;
 
 const BtnInfo = styled.span`
   font-family: ${({ theme }) => theme.fonts[0]};
   font-style: normal;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  font-size:  theme.fontSizes.text.xs};
+  font-size: ${({ theme }) => theme.fontSizes.text.xs};
   line-height: ${({ theme }) => theme.lineHeights.xs};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    position: absolute;
+    left: -86px;
+    font-size: ${({ theme }) => theme.fontSizes.text.xl};
+    color: ${({ theme }) => theme.colors.text};
+  }
 `;
 const styles = { AddIcon, AddButton, BtnInfo };
 export default styles;
