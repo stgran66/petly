@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 
-const HeaderEl = styled.header`
+const HeaderEl = styled('header')`
   position: relative;
   padding-top: 16px;
 
@@ -14,8 +14,7 @@ const HeaderEl = styled.header`
     width: 100%;
     > * {
       display: none;
-      @media screen and (min-width: ${({ theme }) =>
-          theme.breakpoints.tablet}) {
+      @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
         &:last-child {
           display: block;
         }
@@ -30,7 +29,7 @@ const HeaderEl = styled.header`
   }
 `;
 
-const Logo = styled.span`
+const Logo = styled('span')`
   position: relative;
   font-family: ${({ theme }) => theme.fonts[1]};
   font-weight: ${({ theme }) => theme.fontWeights.bold};

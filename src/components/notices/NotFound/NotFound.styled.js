@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 
-const ErrorImg = styled.img`
+const ErrorImg = styled('img')`
   width: 100%;
   height: auto;
   dislay: block;

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 
-const Container = styled.div`
+const Container = styled('div')`
   position: relative;
   max-width: 400px;
   margin: 0px auto;
@@ -12,7 +12,7 @@ const Container = styled.div`
     padding: 32px 20px;
   }
 `;
-const Wrapper = styled.div`
+const Wrapper = styled('div')`
   & + p {
     margin-bottom: 40px;
   }
@@ -28,7 +28,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const ImgWrapper = styled.div`
+const ImgWrapper = styled('div')`
   position: relative;
   width: 240px;
   height: 240px;
@@ -43,13 +43,13 @@ const ImgWrapper = styled.div`
     height: 328px;
   }
 `;
-const Img = styled.img`
+const Img = styled('img')`
   object-fit: cover;
   width: 100%;
   height: 100%;
 `;
 
-const Category = styled.span`
+const Category = styled('span')`
   position: absolute;
   top: 20px;
   left: 0;
@@ -66,11 +66,11 @@ const Category = styled.span`
   border-bottom-right-radius: 20px;
 `;
 
-export const ListWrapper = styled.div`
+export const ListWrapper = styled('div')`
   width: 100%;
 `;
 
-const Title = styled.h2`
+const Title = styled('h2')`
   margin-bottom: 16px;
   font-weight: 700;
   font-size: 24px;
@@ -86,21 +86,21 @@ const Title = styled.h2`
   }
 `;
 
-const List = styled.ul`
+const List = styled('ul')`
   margin-bottom: 28px;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     margin-bottom: 0;
   }
 `;
 
-const Item = styled.li`
+const Item = styled('li')`
   display: flex;
   &:not(:last-child) {
     margin-bottom: 8px;
   }
 `;
 
-const ItemInfo = styled.p`
+const ItemInfo = styled('p')`
   min-width: 118px;
   font-weight: 600;
   font-size: 14px;
@@ -114,7 +114,7 @@ const ItemInfo = styled.p`
   }
 `;
 
-const BtnWrapper = styled.div`
+const BtnWrapper = styled('div')`
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: flex;
     flex-direction: row-reverse;
@@ -122,7 +122,7 @@ const BtnWrapper = styled.div`
   }
 `;
 
-const ContactButton = styled.a`
+const ContactButton = styled('a')`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,7 +151,7 @@ const ContactButton = styled.a`
   }
 `;
 
-const ChangeFavoriteStatusBtn = styled.button`
+const ChangeFavoriteStatusBtn = styled('button')`
   display: flex;
   justify-content: center;
   align-items: center;

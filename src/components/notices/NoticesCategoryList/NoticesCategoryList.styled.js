@@ -1,12 +1,12 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 
-const NoticesContainer = styled.div`
+const NoticesContainer = styled('div')`
   display: flex;
   flex-wrap: no-wrap;
   justify-content: center;
 `;
 
-const List = styled.ul`
+const List = styled('ul')`
   display: grid;
   grid-template-columns: 1fr;
   gap: 32px;
@@ -17,11 +17,11 @@ const List = styled.ul`
     grid-template-columns: repeat(4, 1fr);
   }
 `;
-const ListItem = styled.li`
+const ListItem = styled('li')`
   margin-bottom: 32px;
 `;
 
-const NotFoundMessage = styled.p`
+const NotFoundMessage = styled('p')`
   color: #ef4444;
 `;
 

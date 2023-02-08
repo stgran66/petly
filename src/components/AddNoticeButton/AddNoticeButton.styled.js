@@ -1,5 +1,5 @@
 import { AiOutlinePlus } from 'react-icons/ai';
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 
 const AddIcon = styled(AiOutlinePlus)`
   width: 22px;
@@ -9,7 +9,7 @@ const AddIcon = styled(AiOutlinePlus)`
   margin-bottom: 4px;
 `;
 
-const AddButton = styled.button`
+const AddButton = styled('button')`
   position: fixed;
   top: 50%;
   right: 20px;
@@ -29,7 +29,7 @@ const AddButton = styled.button`
   background-color: ${({ theme }) => theme.colors.accent};
 `;
 
-const BtnInfo = styled.span`
+const BtnInfo = styled('span')`
   font-family: ${({ theme }) => theme.fonts[0]};
   font-style: normal;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
