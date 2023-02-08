@@ -59,7 +59,7 @@ const ContainerWrappFoto = styled('div')`
     font-size: 12px;
     line-height: 22px;
 
-    transition: ${props => props.theme.tranistions.normal};
+    transition: ${props => props.theme.transitions.normal};
 
     &:hover,
     &:focus {
@@ -187,7 +187,7 @@ const InfoChangeIcon = styled(RiPencilFill)`
   /* color: ${props => props.theme.colors.placeholderText}; */
   scale: 1;
 
-  transition: ${props => props.theme.tranistions.normal};
+  transition: ${props => props.theme.transitions.normal};
 
   &:hover,
   &:focus {
@@ -207,7 +207,7 @@ const InfoSubmitIcon = styled(BsCheckLg)`
   color: ${props => props.theme.colors.accent};
   scale: 1;
 
-  transition: ${props => props.theme.tranistions.normal};
+  transition: ${props => props.theme.transitions.normal};
   &:hover,
   &:focus {
     scale: 1.2;

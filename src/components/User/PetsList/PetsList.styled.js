@@ -72,7 +72,7 @@ const PetDeleteIcon = styled(Delete20Filled)`
   height: 25px;
   color: ${props => props.theme.colors.placeholderText};
 
-  transition: ${props => props.theme.tranistions.normal};
+  transition: ${props => props.theme.transitions.normal};
 
   &:hover,
   &:focus {

@@ -1,3 +1,6 @@
+// import { useState } from 'react';
+import { useRef } from 'react';
+
 import styles from './UserData.styled';
 import ButtonChange from './ButtonChange';
 import ButtonSubmit from './ButtonSubmit';
@@ -14,8 +17,23 @@ const {
 } = styles;
 
 const UserData = () => {
-  // const [activeBtn, setActiveBtn] = useState(false);
+  const ref = useRef(null);
+  // const [activeBtn, setActiveBtn] = useState(true);
+  // const [isDisabled, setIsDisabled] = useState(true);
+
+  // const changeButton = () => {
+  //   setActiveBtn(false);
+  // };
+  const handleClick = () => {
+    ref.current.focus();
+    // setIsDisabled(!isDisabled);
+    // const ggg = ref.current.disabled;
+
+    // console.log(ggg);
+  };
+
   // activeState ? btn1 : btn2;
+
   return (
     <UserForm ectype="multipart/form-data">
       <ContainerWrappFoto>
@@ -33,15 +51,19 @@ const UserData = () => {
           <label for="user_name">Name:</label>
           <InputWrapp>
             <input
+              ref={ref}
               type="text"
               name="text"
               id="user_name"
-              disabled="true"
+              // disabled={isDisabled}
               value="Anna"
             />
-
-            <ButtonChange />
-            <ButtonSubmit />
+            <ButtonChange onClick={handleClick} />
+            {/* {activeBtn ? (
+              <ButtonChange onClick={(handleClick, changeButton)} />
+            ) : (
+              <ButtonSubmit />
+            )} */}
           </InputWrapp>
         </InfoInputThumb>
 
@@ -49,13 +71,14 @@ const UserData = () => {
           <label for="user_email">Email:</label>
           <InputWrapp>
             <input
+              ref={ref}
               type="email"
               name="email"
               id="user_email"
               value="anna00@gmail.com"
               autofocus="false"
             />
-            <ButtonSubmit />
+            <ButtonChange onClick={handleClick} />
           </InputWrapp>
         </InfoInputThumb>
 
@@ -81,7 +104,7 @@ const UserData = () => {
               id="user_phone"
               value="+38000000000"
             />
-            <ButtonChange />
+            <ButtonSubmit />
           </InputWrapp>
         </InfoInputThumb>
 

@@ -1,9 +1,9 @@
 import styles from './UserData.styled';
 const { ButtonWrapp, InfoChangeIcon } = styles;
 
-const ButtonChange = () => {
+const ButtonChange = ({ onClick }) => {
   return (
-    <ButtonWrapp type="button">
+    <ButtonWrapp type="button" onClick={onClick}>
       <InfoChangeIcon />
     </ButtonWrapp>
   );

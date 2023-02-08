@@ -12,7 +12,7 @@ const LogoutButton = styled('button')`
   background-color: transparent;
   color: ${props => props.theme.colors.placeholderText};
 
-  transition: ${props => props.theme.tranistions.normal};
+  transition: ${props => props.theme.transitions.normal};
 
   &:hover,
   &:focus {

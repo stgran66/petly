@@ -60,7 +60,7 @@ const PetAddIcon = styled(AddCircle20Filled)`
   color: ${props => props.theme.colors.accent};
   scale: 1;
 
-  transition: ${props => props.theme.tranistions.normal};
+  transition: ${props => props.theme.transitions.normal};
 
   &:hover,
   &:focus {
