@@ -1,12 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
-
 import Layout from './Layout';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
 import pages from 'pages';
-import NoticesCategoryList from './notices/NoticesCategoryList';
 
-const { LoginPage, RegisterPage, UserPage, NewsPage, NoticesPage } = pages;
+const {
+  LoginPage,
+  RegisterPage,
+  UserPage,
+  NewsPage,
+  NoticesPage,
+  FriendsPage,
+} = pages;
 
 export const App = () => {
   return (
@@ -14,11 +19,22 @@ export const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<p>Home</p>} />
         <Route path="news" element={<NewsPage />} />
-        <Route path="notices" element={<NoticesPage />}>
-          <Route path=":category" element={<NoticesCategoryList />}></Route>
+        <Route path="notices">
+          <Route
+            path="favorite"
+            element={
+              <PrivateRoute component={<NoticesPage />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="own"
+            element={
+              <PrivateRoute component={<NoticesPage />} redirectTo="/login" />
+            }
+          />
         </Route>
-        <Route path="friends" element={<p>friends</p>} />
-
+        <Route path="notices/:category" element={<NoticesPage />} />
+        <Route path="friends" element={<FriendsPage />} />
         <Route
           path="register"
           element={

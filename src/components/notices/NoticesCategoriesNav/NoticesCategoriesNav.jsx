@@ -1,27 +1,44 @@
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import select from 'redux/auth/selectors';
 import styles from './NoticesCategoriesNav.styled';
-const { CategoriesItem, CategoriesList, StyledLink } = styles;
+import options from './options';
+const {
+  CategoriesItem,
+  CategoriesList,
+  StyledLink,
+  LogInNoticesNav,
+  NoticesNav,
+} = styles;
+const { selectIsLoggedIn } = select;
 
 const NoticesCategoriesNav = () => {
   const location = useLocation();
+  const { isLoggedIn } = useSelector(selectIsLoggedIn);
+  const { navOptions, privateNavOptions } = options;
 
   return (
     <CategoriesList>
-      <CategoriesItem>
-        <StyledLink to={'lost-found'} state={{ from: location }}>
-          lost/found
-        </StyledLink>
-      </CategoriesItem>
-      <CategoriesItem>
-        <StyledLink to={'for-free'} state={{ from: location }}>
-          in good hands
-        </StyledLink>
-      </CategoriesItem>
-      <CategoriesItem>
-        <StyledLink to={'sell'} state={{ from: location }}>
-          sell
-        </StyledLink>
-      </CategoriesItem>
+      <NoticesNav>
+        {navOptions.map(({ option, path }) => (
+          <CategoriesItem key={path}>
+            <StyledLink to={`/notices/${path}`} state={{ from: location }}>
+              {option}
+            </StyledLink>
+          </CategoriesItem>
+        ))}
+      </NoticesNav>
+      {!isLoggedIn && (
+        <LogInNoticesNav>
+          {privateNavOptions.map(({ option, path }) => (
+            <CategoriesItem key={path}>
+              <StyledLink to={`/notices/${path}`} state={{ from: location }}>
+                {option}
+              </StyledLink>
+            </CategoriesItem>
+          ))}
+        </LogInNoticesNav>
+      )}
     </CategoriesList>
   );
 };

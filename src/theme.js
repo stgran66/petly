@@ -1,7 +1,8 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { createTheme } from '@mui/material';
+import { ThemeProvider } from '@mui/system';
 
-const theme = {
+const theme = createTheme({
   breakpoints: {
     mobile: `320px`,
     tablet: `768px`,
@@ -13,9 +14,11 @@ const theme = {
     commonBackground: '#FDF7F2',
     cardsBackground: '#D9D9D9',
     text: '#111111',
+    newsText: '#111321',
     placeholderText: 'rgba(17, 17, 17, 0.6)',
     links: '#3091EB',
     white: '#FFFFFF',
+    navLinks: '#181C27',
   },
   gradients: {
     backgroundGradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
@@ -23,6 +26,7 @@ const theme = {
   shadows: {
     cardsShadow: '7px 4px 14px rgba(49, 21, 4, 0.07)',
     cardsShadowUser: '7px 4px 14px rgba(0, 0, 0, 0.11)',
+    timeModalShadow: '4px 4px 8px rgba(0, 0, 0, 0.25)',
   },
   fonts: ['Manrope', 'Poppins'],
   fontSizes: {
@@ -32,6 +36,11 @@ const theme = {
       m: '36px',
       s: '28px',
       xs: '24px',
+    },
+    navLinks: {
+      desktop: '20px',
+      tablet: '48px',
+      mobile: '32px',
     },
     logo: { desktop: '32px', mobile: '28px' },
     text: {
@@ -55,10 +64,13 @@ const theme = {
     medium: 500,
     normal: 400,
   },
-};
+  transitions: {
+    long: 'all 500ms linear',
+    normal: 'all 250ms linear',
+    short: 'all 100ms linear',
+  },
+});
 
-const Theme = ({ children }) => (
-  <ThemeProvider theme={theme}>{children}</ThemeProvider>
-);
+const Theme = ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 
 export default Theme;

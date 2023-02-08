@@ -1,4 +1,6 @@
-@import-normalize; /* bring in normalize.css styles */
+/* bring in normalize.css styles */
+@import '../node_modules/modern-normalize/modern-normalize.css';
+
 /* Fonts import */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Poppins:wght@700&display=swap');
 
@@ -9,6 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #fdf7f2;
 }
 
 code {
@@ -41,9 +44,4 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-}
-
-.container {
-  max-width: min(100% - 40px, 1280px);
-  margin-inline: auto;
 }
