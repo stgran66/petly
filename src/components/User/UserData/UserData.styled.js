@@ -13,7 +13,7 @@ const UserForm = styled('form')`
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     flex-direction: row-reverse;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     gap: 52px;
   }
 
@@ -83,35 +83,66 @@ const FotoIcon = styled(Camera20Filled)`
 
 const ContainerWrappInfo = styled('div')`
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
+
   gap: 12px;
 
-  /* @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    margin-bottom: 22px;
+  @media screen and (max-width: ${props => props.theme.breakpoints.tablet}) {
+    margin-left: auto;
+    margin-right: auto;
+    gap: 15px;
   }
 
-  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    margin-bottom: 25px;
-  } */
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    flex-grow: 1;
+  }
 `;
 const InfoInputThumb = styled('div')`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  gap: 8px;
-  /* justify-content: space-between; */
+  label {
+    font-family: ${props => props.theme.fonts[0]};
+    font-weight: ${props => props.theme.fontWeights.normal};
+    font-size: ${props => props.theme.fontSizes.text.s};
+    line-height: ${props => props.theme.lineHeights.xs};
+    letter-spacing: 0.04em;
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      font-weight: ${props => props.theme.fontWeights.medium};
+      font-size: ${props => props.theme.fontSizes.text.l};
+      line-height: 1.39;
+    }
+  }
 `;
 
 const InputWrapp = styled('div')`
+  margin-left: auto;
   display: flex;
+  align-items: center;
+
   input {
-    width: 80px;
+    width: 159px;
     margin-right: 9px;
     padding: 4px 18px;
     border-radius: 40px;
+    border: 1px solid rgba(245, 146, 86, 0.5);
+    background-color: ${props => props.theme.colors.commonBackground};
+
+    font-family: ${props => props.theme.fonts[0]};
+    font-weight: ${props => props.theme.fontWeights.normal};
+    font-size: ${props => props.theme.fontSizes.text.s};
+    line-height: ${props => props.theme.lineHeights.xs};
+    letter-spacing: 0.04em;
+
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-      min-width: 216px;
+      width: 216px;
       margin-right: 24px;
+      padding: 4px 12px;
+
+      font-size: ${props => props.theme.fontSizes.text.l};
+      line-height: 1.39;
     }
 
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
@@ -120,6 +151,8 @@ const InputWrapp = styled('div')`
 `;
 
 const ButtonWrapp = styled('button')`
+  outline: 1px solid red;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,27 +163,49 @@ const ButtonWrapp = styled('button')`
   border-radius: 50%;
   cursor: pointer;
   background-color: ${props => props.theme.colors.commonBackground};
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 const InfoChangeIcon = styled(RiPencilFill)`
   width: 12px;
   height: 12px;
-  color: ${props => props.theme.colors.placeholderText};
+  color: ${props => props.theme.colors.accent};
+  /* color: ${props => props.theme.colors.placeholderText}; */
+  scale: 1;
+
   transition: ${props => props.theme.tranistions.normal};
+
   &:hover,
   &:focus {
-    color: ${props => props.theme.colors.accent};
+    scale: 1.2;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    width: 20px;
+    height: 20px;
   }
 `;
 
 const InfoSubmitIcon = styled(BsCheckLg)`
   width: 12px;
   height: 12px;
-  color: ${props => props.theme.colors.placeholderText};
+  /* color: ${props => props.theme.colors.placeholderText}; */
+  color: ${props => props.theme.colors.accent};
+  scale: 1;
+
   transition: ${props => props.theme.tranistions.normal};
   &:hover,
   &:focus {
-    color: ${props => props.theme.colors.accent};
+    scale: 1.2;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    width: 20px;
+    height: 20px;
   }
 `;
 

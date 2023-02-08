@@ -35,6 +35,7 @@ const LogoutButton = styled('button')`
     position: relative;
     margin-left: 0;
     left: 0;
+    bottom: 0;
   }
 `;
 
