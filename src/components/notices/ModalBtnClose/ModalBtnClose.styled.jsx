@@ -18,7 +18,7 @@ const BtnClose = styled('button')`
   border: none;
   cursor: pointer;
 
-  transition: background-color ${props => props.theme.tranistions.long};
+  transition: background-color ${props => props.theme.transitions.long};
 
   :hover,
   :focus {
