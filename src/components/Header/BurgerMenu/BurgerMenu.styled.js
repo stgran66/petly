@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 const Burger = styled.div`
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     display: none;
   }
 `;
+
 const BurgerStyle = {
   /* Position and sizing of burger button */
   bmBurgerButton: {
@@ -12,14 +13,14 @@ const BurgerStyle = {
     width: '40px',
     height: '40px',
     top: '16px',
-    right: '20px',
+    right: '0',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
   bmIcon: {
-    width: '35px',
-    height: '35px',
+    width: '30px',
+    height: '30px',
   },
 
   /* Color/shape of close button cross */
@@ -42,6 +43,9 @@ const BurgerStyle = {
     width: '100%',
     background: '#fdf7f2',
     padding: '104px 0 35px',
+
+    display: 'flex',
+    flexDirection: 'column',
   },
 
   bmItemList: {
@@ -49,6 +53,7 @@ const BurgerStyle = {
     flexDirection: 'column-reverse',
     height: ' auto !important',
   },
+
   bmMenuWrap: {
     position: 'fixed',
     right: 0,

@@ -3,7 +3,7 @@ import { slide as Menu } from 'react-burger-menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
-import Navigation from 'components/Navigation';
+import Navigation from '../Navigation';
 import styles from './BurgerMenu.styled';
 
 const BurgerMenu = () => {
