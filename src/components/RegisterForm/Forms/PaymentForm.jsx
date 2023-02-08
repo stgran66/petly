@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import InputField from 'components/RegisterForm/FormFields';
+import InputField from 'components/FormFields';
 
 const PaymentForm = props => {
   const {
@@ -11,13 +11,23 @@ const PaymentForm = props => {
     <React.Fragment>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <InputField name={name.name} label={name.label} fullWidth />
+          <InputField
+            name={name.name}
+            label={name.label}
+            type="text"
+            fullWidth
+          />
         </Grid>
         <Grid item xs={12} md={6}>
-          <InputField name={city.name} label={city.label} fullWidth />
+          <InputField
+            name={city.name}
+            label={city.label}
+            type="text"
+            fullWidth
+          />
         </Grid>
         <Grid item xs={12} md={6}>
-          <InputField name={phone.name} label={phone.label} fullWidth />
+          <InputField name={phone.name} label={phone.label} type="tel" fullWidth />
         </Grid>
       </Grid>
     </React.Fragment>

@@ -12,6 +12,7 @@ import formInitialValues from './FormModel/formInitialValues';
 
 import { useDispatch } from 'react-redux';
 import operations from '../../redux/auth/operations';
+import { Link } from 'react-router-dom';
 const { register } = operations
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
@@ -26,7 +27,7 @@ function _renderStepContent(step) {
     case 2:
       return <ReviewOrder formField={formField} />;
     default:
-      return <div>Not Found</div>;
+      return 
   }
 }
 
@@ -95,6 +96,9 @@ const RegisterForm = () => {
                   >
                     {isLastStep ? 'Place order' : 'Next'}
                   </Button>
+                  <p>
+                    Already have an account?<Link to="/login">Login</Link>
+                  </p>
                 </div>
               </div>
             </Form>

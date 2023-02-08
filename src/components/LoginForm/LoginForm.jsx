@@ -1,63 +1,76 @@
-import { useFormik } from 'formik';
-import Link from '@mui/material/Link';
-import { Box, TextField, Grid, Button } from '@mui/material';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button, Typography, Grid } from '@mui/material';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+
+import InputField from 'components/FormFields';
+
+import { useDispatch } from 'react-redux';
+import operations from '../../redux/auth/operations';
+
+const { login } = operations;
+
+const formInitialValues = {
+  email: '',
+  password: '',
+};
+
+const currentValidationSchema = Yup.object().shape({
+  email: Yup.string().required(),
+  password: Yup.string().min(7).max(32).required(),
+});
 
 const LoginForm = () => {
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-  });
-  const handleSubmit = e => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, { resetForm }) => {
+    const { email, password } = values;
+
+    dispatch(
+      login({
+        email: email,
+        password: password,
+      })
+    );
+    resetForm();
   };
 
   return (
-    <Box
-      sx={{
-        maxWidth: '600px',
-        padding: 2,
-      }}
-    >
-      <Grid container>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField
-              name="email"
-              label="Email"
-              variant="outlined"
-              type="email"
-              fullWidth
-              size="small"
-              error={Boolean(formik.touched.email && formik.errors.email)}
-              onChange={formik.handleChange}
-              value={formik.values.email}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              name="password"
-              label="Password"
-              variant="outlined"
-              type="password"
-              fullWidth
-              size="small"
-              error={Boolean(formik.touched.password && formik.errors.password)}
-              onChange={formik.handleChange}
-              value={formik.values.password}
-            />
-          </Grid>
-
-          <Button type="submit" onClick={handleSubmit}>Login</Button>
-
-          <Grid item>
-            <Link href="#" variant="body2">
-              {'Don`t have an account? Register'}
-            </Link>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Box>
+    <React.Fragment>
+      <Typography component="h2" variant="h4" align="center">
+        Login
+      </Typography>
+      <React.Fragment>
+        <Formik
+          initialValues={formInitialValues}
+          validationSchema={currentValidationSchema}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <InputField type="email" name="email" label="Email" fullWidth />
+              </Grid>
+              <Grid item xs={12}>
+                <InputField
+                  type="password"
+                  name="password"
+                  label="Password"
+                  fullWidth
+                />
+              </Grid>
+            </Grid>
+            <Button type="submit" variant="contained" color="primary">
+              Login
+            </Button>
+            <p>
+              Don`t have an account?<Link to="/register">Register</Link>
+            </p>
+          </Form>
+        </Formik>
+      </React.Fragment>
+    </React.Fragment>
   );
 };
 

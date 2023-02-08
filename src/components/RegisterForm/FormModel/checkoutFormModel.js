@@ -23,7 +23,7 @@ const checkoutFormModel = {
     city: {
       name: 'city',
       label: 'City',
-      requiredErrorMsg: 'State/Province/Region',
+      requiredErrorMsg: 'State/Region',
     },
     phone: {
       name: 'phone',
