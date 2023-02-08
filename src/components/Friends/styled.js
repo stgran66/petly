@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 
-const StyledList = styled.ul`
+const StyledList = styled('ul')`
   display: flex;
   gap: 12px;
   flex-direction: row;
@@ -33,7 +33,7 @@ const StyledList = styled.ul`
   }
 `;
 
-const StyledContainer = styled.div`
+const StyledContainer = styled('div')`
   text-align: center;
 
   h2 {
@@ -57,7 +57,7 @@ const StyledContainer = styled.div`
   }
 `;
 
-const StyledFriend = styled.div`
+const StyledFriend = styled('div')`
   font-family: ${props => props.theme.fonts[0]};
   font-size: ${props => props.theme.fontSizes.text.xs};
   line-height: ${props => props.theme.lineHeights.xs};

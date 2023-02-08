@@ -1,7 +1,8 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { createTheme } from '@mui/material';
+import { ThemeProvider } from '@mui/system';
 
-const theme = {
+const theme = createTheme({
   breakpoints: {
     mobile: `320px`,
     tablet: `768px`,
@@ -67,7 +68,7 @@ const theme = {
     normal: 'all 250ms linear',
     short: 'all 100ms linear',
   },
-};
+});
 
 const Theme = ({ children }) => (
   <ThemeProvider theme={theme}>{children}</ThemeProvider>
