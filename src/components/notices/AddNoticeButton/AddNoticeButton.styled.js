@@ -1,5 +1,5 @@
 import { RxPlus } from 'react-icons/rx';
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 
 const AddIcon = styled(RxPlus)`
   width: 26px;
@@ -15,7 +15,7 @@ const AddIcon = styled(RxPlus)`
   }
 `;
 
-const AddButton = styled.button`
+const AddButton = styled('button')`
   position: fixed;
   top: 50%;
   right: 20px;
@@ -43,7 +43,7 @@ const AddButton = styled.button`
   }
 `;
 
-const BtnInfo = styled.span`
+const BtnInfo = styled('span')`
   font-family: ${({ theme }) => theme.fonts[0]};
   font-style: normal;
   font-weight: ${({ theme }) => theme.fontWeights.medium};

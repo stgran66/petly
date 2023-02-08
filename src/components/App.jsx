@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
@@ -19,23 +19,21 @@ export const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<p>Home</p>} />
         <Route path="news" element={<NewsPage />} />
-        <Route path="notices">
-          <Route
-            path="favorite"
-            element={
-              <PrivateRoute component={<NoticesPage />} redirectTo="/login" />
-            }
-          />
-          <Route
-            path="own"
-            element={
-              <PrivateRoute component={<NoticesPage />} redirectTo="/login" />
-            }
-          />
-        </Route>
+        <Route path="notices" element={<Navigate to="sell" />} />
+        <Route
+          path="notices/favorite"
+          element={
+            <PrivateRoute component={<NoticesPage />} redirectTo="/login" />
+          }
+        />
+        <Route
+          path="notices/own"
+          element={
+            <PrivateRoute component={<NoticesPage />} redirectTo="/login" />
+          }
+        />
         <Route path="notices/:category" element={<NoticesPage />} />
         <Route path="friends" element={<FriendsPage />} />
-
         <Route
           path="register"
           element={

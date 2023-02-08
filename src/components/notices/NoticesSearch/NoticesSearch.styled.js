@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 import { HiSearch } from 'react-icons/hi';
 
-const SearchTitle = styled.h2`
+const SearchTitle = styled('h2')`
   width: 100%;
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   font-family: ${({ theme }) => theme.fonts[0]};
@@ -22,7 +22,7 @@ const SearchTitle = styled.h2`
     font-size: ${({ theme }) => theme.fontSizes.headers.l};
   }
 `;
-const SearchForm = styled.form`
+const SearchForm = styled('form')`
   display: flex;
   align-items: center;
   width: 100%;
@@ -35,7 +35,7 @@ const SearchForm = styled.form`
   }
 `;
 
-const SearchInput = styled.input`
+const SearchInput = styled('input')`
   width: 100%;
   height: 40px;
   font-size: 16px;
@@ -66,7 +66,7 @@ const SearchInput = styled.input`
 }
 `;
 
-const InputIcon = styled.span`
+const InputIcon = styled('span')`
   position: absolute;
   display: block;
   right: 12px;

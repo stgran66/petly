@@ -1,7 +1,7 @@
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { styled } from '@mui/system';
 
-const CategoriesList = styled.div`
+const CategoriesList = styled('div')`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -13,7 +13,7 @@ const CategoriesList = styled.div`
   }
 `;
 
-const CategoriesItem = styled.li`
+const CategoriesItem = styled('li')`
   margin-bottom: 12px;
   &:not(:last-child) {
     margin-right: 12px;
@@ -48,12 +48,12 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-const LogInNoticesNav = styled.ul`
+const LogInNoticesNav = styled('ul')`
   display: flex;
   margin-right: auto;
 `;
 
-const NoticesNav = styled.ul`
+const NoticesNav = styled('ul')`
   display: flex;
   flex-wrap: wrap;
 `;

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 
-const NoticesNavContainer = styled.div`
+const NoticesNavContainer = styled('div')`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     display: flex;
   }
