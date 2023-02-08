@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './styled';
 import errorImg from '../../images/ErrorPage.jpg';
+import TimeModal from './TimeModal';
 
 const { StyledFriend } = styles;
 
 const Friend = ({ friend }) => {
+  const [showModal, setShowModal] = useState(false);
   const { address, addressUrl, email, phone, title, url, workDays, imageUrl } = friend;
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   return (
     <StyledFriend>
@@ -17,30 +23,43 @@ const Friend = ({ friend }) => {
       <div>
         <img src={imageUrl ? imageUrl : errorImg} alt="company logo" />
         <dl>
-          <dt>Time:</dt>
-          <dd>
-            {!workDays || workDays.length === 0
-              ? '--------------------'
-              : `${workDays.find(day => day.isOpen === true).from} - ${
-                  workDays.find(day => day.isOpen === true).to
-                }`}
-          </dd>
-          <dt>Adress:</dt>
-          <dd>
-            {!addressUrl ? (
-              !address ? (
+          <div>
+            <dt>Time:</dt>
+            <dd>
+              {!workDays || workDays.length === 0 ? (
                 '--------------------'
               ) : (
-                `${address}`
-              )
-            ) : (
-              <a href={addressUrl}>{address}</a>
-            )}
-          </dd>
-          <dt>Email:</dt>
-          <dd>{!email ? '--------------------' : <a href={`mailto:${email}`}>{email}</a>}</dd>
-          <dt>Phone:</dt>
-          <dd>{!phone ? '--------------------' : <a href={`tel:${phone}`}>{phone}0</a>}</dd>
+                <button type="button" onClick={toggleModal}>
+                  {workDays.find(day => day.isOpen === true).from} -
+                  {workDays.find(day => day.isOpen === true).to}
+                </button>
+              )}
+              {showModal && <TimeModal timeTable={workDays} />}
+            </dd>
+          </div>
+          <div>
+            {' '}
+            <dt>Adress:</dt>
+            <dd>
+              {!addressUrl ? (
+                !address ? (
+                  '--------------------'
+                ) : (
+                  `${address}`
+                )
+              ) : (
+                <a href={addressUrl}>{address}</a>
+              )}
+            </dd>
+          </div>
+          <div>
+            <dt>Email:</dt>
+            <dd>{!email ? '--------------------' : <a href={`mailto:${email}`}>{email}</a>}</dd>
+          </div>
+          <div>
+            <dt>Phone:</dt>
+            <dd>{!phone ? '--------------------' : <a href={`tel:${phone}`}>{phone}0</a>}</dd>
+          </div>
         </dl>
       </div>
     </StyledFriend>
