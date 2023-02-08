@@ -127,14 +127,19 @@ const InputWrapp = styled('div')`
     margin-right: 9px;
     padding: 4px 18px;
     border-radius: 40px;
-    border: 1px solid rgba(245, 146, 86, 0.5);
-    background-color: ${props => props.theme.colors.commonBackground};
+    border: 0;
+    background-color: transparent;
 
     font-family: ${props => props.theme.fonts[0]};
     font-weight: ${props => props.theme.fontWeights.normal};
     font-size: ${props => props.theme.fontSizes.text.s};
     line-height: ${props => props.theme.lineHeights.xs};
     letter-spacing: 0.04em;
+
+    &:focus {
+      outline: 1px solid rgba(245, 146, 86, 0.5);
+      background-color: ${props => props.theme.colors.commonBackground};
+    }
 
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
       width: 216px;
@@ -148,6 +153,11 @@ const InputWrapp = styled('div')`
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     }
   }
+
+  /* input[disable='true'] {
+    border: 0;
+    background-color: transparent;
+  } */
 `;
 
 const ButtonWrapp = styled('button')`

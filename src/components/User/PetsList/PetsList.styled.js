@@ -60,17 +60,10 @@ const PetDeleteButton = styled('button')`
   border: 0;
   border-radius: 50%;
   cursor: pointer;
-  background-color: transparent;
-
-  transition: ${props => props.theme.tranistions.normal};
+  background-color: ${props => props.theme.colors.commonBackground};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     top: 0;
-  }
-
-  &:hover,
-  &:focus {
-    background-color: ${props => props.theme.colors.commonBackground};
   }
 `;
 
@@ -78,6 +71,13 @@ const PetDeleteIcon = styled(Delete20Filled)`
   width: 25px;
   height: 25px;
   color: ${props => props.theme.colors.placeholderText};
+
+  transition: ${props => props.theme.tranistions.normal};
+
+  &:hover,
+  &:focus {
+    color: ${props => props.theme.colors.accent};
+  }
 `;
 
 const PetInfo = styled('ul')`

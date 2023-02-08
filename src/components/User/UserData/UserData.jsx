@@ -14,6 +14,8 @@ const {
 } = styles;
 
 const UserData = () => {
+  // const [activeBtn, setActiveBtn] = useState(false);
+  // activeState ? btn1 : btn2;
   return (
     <UserForm ectype="multipart/form-data">
       <ContainerWrappFoto>
@@ -34,53 +36,62 @@ const UserData = () => {
               type="text"
               name="text"
               id="user_name"
-              // disabled="true"
+              disabled="true"
               value="Anna"
             />
 
             <ButtonChange />
+            <ButtonSubmit />
           </InputWrapp>
         </InfoInputThumb>
 
-        <div>
+        <InfoInputThumb>
           <label for="user_email">Email:</label>
-          <input
-            type="email"
-            name="email"
-            id="user_email"
-            value="anna00@gmail.com"
-            autofocus="false"
-          />
-          <ButtonSubmit />
-        </div>
+          <InputWrapp>
+            <input
+              type="email"
+              name="email"
+              id="user_email"
+              value="anna00@gmail.com"
+              autofocus="false"
+            />
+            <ButtonSubmit />
+          </InputWrapp>
+        </InfoInputThumb>
 
-        <div>
+        <InfoInputThumb>
           <label for="user_birthday">Birthday:</label>
-          <input
-            type="date"
-            name="date"
-            id="user_birthday"
-            value="00.00.0000"
-          />
-          <button type="submit">Remove</button>
-        </div>
+          <InputWrapp>
+            <input
+              type="date"
+              name="date"
+              id="user_birthday"
+              value="00.00.0000"
+            />
+            <ButtonChange />
+          </InputWrapp>
+        </InfoInputThumb>
 
-        <div>
+        <InfoInputThumb>
           <label for="user_phone">Phone:</label>
-          <input
-            type="tel"
-            name="number"
-            id="user_phone"
-            value="+38000000000"
-          />
-          <button type="submit">Remove</button>
-        </div>
+          <InputWrapp>
+            <input
+              type="tel"
+              name="number"
+              id="user_phone"
+              value="+38000000000"
+            />
+            <ButtonChange />
+          </InputWrapp>
+        </InfoInputThumb>
 
-        <div>
+        <InfoInputThumb>
           <label for="user_city">City:</label>
-          <input type="text" name="number" id="user_city" value="Kiev" />
-          <button type="submit">Remove</button>
-        </div>
+          <InputWrapp>
+            <input type="text" name="number" id="user_city" value="Kiev" />
+            <ButtonChange />
+          </InputWrapp>
+        </InfoInputThumb>
       </ContainerWrappInfo>
     </UserForm>
 
