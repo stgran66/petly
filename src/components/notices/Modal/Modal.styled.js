@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 
-const Overlay = styled.div`
+const Overlay = styled('div')`
   position: fixed;
   top: 0;
   left: 0;

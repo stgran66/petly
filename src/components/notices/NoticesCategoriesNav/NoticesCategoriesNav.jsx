@@ -21,7 +21,7 @@ const NoticesCategoriesNav = () => {
     <CategoriesList>
       <NoticesNav>
         {navOptions.map(({ option, path }) => (
-          <CategoriesItem>
+          <CategoriesItem key={path}>
             <StyledLink to={`/notices/${path}`} state={{ from: location }}>
               {option}
             </StyledLink>
@@ -31,7 +31,7 @@ const NoticesCategoriesNav = () => {
       {!isLoggedIn && (
         <LogInNoticesNav>
           {privateNavOptions.map(({ option, path }) => (
-            <CategoriesItem>
+            <CategoriesItem key={path}>
               <StyledLink to={`/notices/${path}`} state={{ from: location }}>
                 {option}
               </StyledLink>

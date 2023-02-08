@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 import { NavLink } from 'react-router-dom';
 
-const NavList = styled.ul`
+const NavList = styled('ul')`
   margin: 60px 0 0 0;
   padding: 0;
   display: flex;

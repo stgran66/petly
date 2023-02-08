@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 
-const BtnClose = styled.button`
+const BtnClose = styled('button')`
   position: absolute;
   top: 20px;
   right: 20px;

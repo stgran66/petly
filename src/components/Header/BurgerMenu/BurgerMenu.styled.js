@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 
-const Burger = styled.div`
+const Burger = styled('div')`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     display: none;
   }

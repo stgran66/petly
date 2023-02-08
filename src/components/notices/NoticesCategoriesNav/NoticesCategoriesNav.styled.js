@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
 import { styled } from '@mui/system';
+import { NavLink } from 'react-router-dom';
 
 const CategoriesList = styled('div')`
   display: flex;

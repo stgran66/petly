@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 
-const Container = styled.div`
+const Container = styled('div')`
   max-width: min(100% - 40px);
   margin-inline: auto;
 
