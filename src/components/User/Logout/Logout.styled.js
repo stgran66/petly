@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 import { IoExitOutline } from 'react-icons/io5';
 
-const LogoutButton = styled.button`
+const LogoutButton = styled('button')`
   margin-left: auto;
   display: flex;
 

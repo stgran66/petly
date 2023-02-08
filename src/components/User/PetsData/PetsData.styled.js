@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import { styled } from '@mui/system';
 import { AddCircle20Filled } from '@fluentui/react-icons';
 
-const ContainerWrapp = styled.div`
+const ContainerWrapp = styled('div')`
   display: flex;
   justify-content: space-between;
   /* margin-bottom: 25px; */
@@ -16,7 +16,7 @@ const ContainerWrapp = styled.div`
   } */
 `;
 
-const Title = styled.h2`
+const Title = styled('h2')`
   margin-bottom: 25px;
   font-family: ${props => props.theme.fonts[0]};
   font-weight: ${props => props.theme.fontWeights.medium};
@@ -34,7 +34,7 @@ const Title = styled.h2`
   }
 `;
 
-const UserPetAddButton = styled.button`
+const UserPetAddButton = styled('button')`
   display: flex;
   align-items: center;
   padding: 0;
