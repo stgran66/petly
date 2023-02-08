@@ -193,6 +193,31 @@ const StyledFriend = styled('div')`
   }
 `;
 
-const styles = { StyledList, StyledContainer, StyledFriend };
+const StyledModal = styled('div')`
+  border: 1px solid ${props => props.theme.colors.accent};
+  border-radius: 8px;
+  box-shadow: ${props => props.theme.shadows.timeModalShadow};
+  padding: 12px;
+  position: absolute;
+  background-color: ${props => props.theme.colors.white};
+  min-width: 96px;
+
+  font-family: ${props => props.theme.fonts[0]};
+  font-weight: ${props => props.theme.fontWeights.medium};
+  font-size: ${props => props.theme.fontSizes.text.xs};
+  line-height: ${props => props.theme.lineHeights.xs};
+  color: ${props => props.theme.colors.text};
+
+  li {
+    display: flex;
+    justify-content: space-between;
+
+    :not(:last-child) {
+      margin-bottom: 4px;
+    }
+  }
+`;
+
+const styles = { StyledList, StyledContainer, StyledFriend, StyledModal };
 
 export default styles;

@@ -26,6 +26,7 @@ const theme = createTheme({
   shadows: {
     cardsShadow: '7px 4px 14px rgba(49, 21, 4, 0.07)',
     cardsShadowUser: '7px 4px 14px rgba(0, 0, 0, 0.11)',
+    timeModalShadow: '4px 4px 8px rgba(0, 0, 0, 0.25)',
   },
   fonts: ['Manrope', 'Poppins'],
   fontSizes: {

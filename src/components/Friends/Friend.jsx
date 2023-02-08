@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './styled';
 import errorImg from '../../images/ErrorPage.jpg';
+import TimeModal from './TimeModal';
 
 const { StyledFriend } = styles;
 
 const Friend = ({ friend }) => {
+  const [showModal, setShowModal] = useState(false);
   const { address, addressUrl, email, phone, title, url, workDays, imageUrl } = friend;
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   return (
     <StyledFriend>
@@ -23,11 +29,12 @@ const Friend = ({ friend }) => {
               {!workDays || workDays.length === 0 ? (
                 '--------------------'
               ) : (
-                <button>
+                <button type="button" onClick={toggleModal}>
                   {workDays.find(day => day.isOpen === true).from} -
                   {workDays.find(day => day.isOpen === true).to}
                 </button>
               )}
+              {showModal && <TimeModal timeTable={workDays} />}
             </dd>
           </div>
           <div>
