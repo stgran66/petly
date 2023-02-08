@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/petly/static/css/main.5b4bff24.css",
-    "main.js": "/petly/static/js/main.01fd7d12.js",
+    "main.js": "/petly/static/js/main.c8b727d7.js",
     "static/media/Dog.jpeg": "/petly/static/media/Dog.9e7d7e43600e88e7eb22.jpeg",
     "static/media/ErrorPage.jpg": "/petly/static/media/ErrorPage.0a97c5eb3c8c38d8e599.jpg",
     "static/media/DogModal.jpeg": "/petly/static/media/DogModal.71b3f2243ca4892ea45d.jpeg",
@@ -9,10 +9,10 @@
     "static/media/close-icon.svg": "/petly/static/media/close-icon.5834ead530089c4d60da8e792cb8930b.svg",
     "index.html": "/petly/index.html",
     "main.5b4bff24.css.map": "/petly/static/css/main.5b4bff24.css.map",
-    "main.01fd7d12.js.map": "/petly/static/js/main.01fd7d12.js.map"
+    "main.c8b727d7.js.map": "/petly/static/js/main.c8b727d7.js.map"
   },
   "entrypoints": [
     "static/css/main.5b4bff24.css",
-    "static/js/main.01fd7d12.js"
+    "static/js/main.c8b727d7.js"
   ]
 }
