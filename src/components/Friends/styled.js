@@ -66,6 +66,7 @@ const StyledFriend = styled('div')`
   background-color: ${props => props.theme.colors.white};
   border-radius: 20px;
   padding: 14px 4px 12px 4px;
+  overflow: hidden;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: ${props => props.theme.fontSizes.text.s};

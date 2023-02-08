@@ -1,27 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 
 import friendsComponents from 'components/Friends';
+import { useDispatch, useSelector } from 'react-redux';
+import friendsSelectors from 'redux/friends/selectors';
+import fetchFriends from 'redux/friends/operations';
+import NotFound from 'components/notices/NotFound';
+import Loader from 'components/Loader';
 
 const { Friend, FriendsList, FriendsContainer } = friendsComponents;
+const { selectFriends, selectError, selectLoadingStatus } = friendsSelectors;
 
 const FriendsPage = () => {
-  const [friends, setFriends] = useState([]);
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoadingStatus);
+  const friends = useSelector(selectFriends);
+  const error = useSelector(selectError);
+
+  // console.log('error', error);
+  // console.log('loading', isLoading);
+  // console.log('friends', friends);
 
   useEffect(() => {
-    const getFriends = async () => {
-      try {
-        const { data } = await axios.get('/api/services');
-        setFriends(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getFriends();
-  }, []);
+    dispatch(fetchFriends());
+  }, [dispatch]);
+
   return (
     <FriendsContainer>
-      {friends.length > 0 ? (
+      {error && <NotFound />}
+      {isLoading && <Loader />}
+      {friends.length > 0 && (
         <FriendsList>
           {friends.map(friend => (
             <li key={friend._id}>
@@ -29,8 +36,6 @@ const FriendsPage = () => {
             </li>
           ))}
         </FriendsList>
-      ) : (
-        <></>
       )}
     </FriendsContainer>
   );
