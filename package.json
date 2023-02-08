@@ -21,6 +21,7 @@
     "emotion": "^11.0.0",
     "formik": "^2.2.9",
     "mui-tel-input": "^3.0.2",
+    "notiflix": "^3.2.6",
     "react": "^18.1.0",
     "react-burger-menu": "^3.0.9",
     "react-dom": "^18.1.0",
