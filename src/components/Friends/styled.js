@@ -5,7 +5,7 @@ const StyledList = styled('ul')`
   gap: 12px;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     gap: 32px;
@@ -19,16 +19,14 @@ const StyledList = styled('ul')`
     display: flex;
     @media screen and (max-width: 767px) {
       width: 100%;
-      max-width: 280px;
     }
 
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
       flex-basis: calc((100%) / 2 - 16px);
-      max-width: 336px;
     }
 
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-      flex-basis: calc((100%) / 2 - 16px);
+      flex-basis: calc((100% - 64px) / 3);
     }
   }
 `;
@@ -58,6 +56,7 @@ const StyledContainer = styled('div')`
 `;
 
 const StyledFriend = styled('div')`
+  width: 100%;
   font-family: ${props => props.theme.fonts[0]};
   font-size: ${props => props.theme.fontSizes.text.xs};
   line-height: ${props => props.theme.lineHeights.xs};
