@@ -5,7 +5,7 @@ const StyledList = styled('ul')`
   gap: 12px;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     gap: 32px;
@@ -19,16 +19,14 @@ const StyledList = styled('ul')`
     display: flex;
     @media screen and (max-width: 767px) {
       width: 100%;
-      max-width: 280px;
     }
 
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
       flex-basis: calc((100%) / 2 - 16px);
-      max-width: 336px;
     }
 
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-      flex-basis: calc((100%) / 2 - 16px);
+      flex-basis: calc((100% - 64px) / 3);
     }
   }
 `;
@@ -58,6 +56,7 @@ const StyledContainer = styled('div')`
 `;
 
 const StyledFriend = styled('div')`
+  width: 100%;
   font-family: ${props => props.theme.fonts[0]};
   font-size: ${props => props.theme.fontSizes.text.xs};
   line-height: ${props => props.theme.lineHeights.xs};
@@ -66,6 +65,7 @@ const StyledFriend = styled('div')`
   background-color: ${props => props.theme.colors.white};
   border-radius: 20px;
   padding: 14px 4px 12px 4px;
+  overflow: hidden;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: ${props => props.theme.fontSizes.text.s};
@@ -79,6 +79,18 @@ const StyledFriend = styled('div')`
     line-height: ${props => props.theme.lineHeights.s};
     border-radius: 40px;
     padding: 16px 4px;
+  }
+
+  h3 {
+    min-height: 38px;
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      min-height: 46px;
+    }
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+      min-height: 56px;
+    }
   }
 
   h3 > a {
@@ -103,16 +115,9 @@ const StyledFriend = styled('div')`
   dl {
     text-align: left;
 
-    a {
-      text-decoration-line: underline;
-      color: ${props => props.theme.colors.text};
-    }
-  }
-
-  dd {
-    margin: 0;
-    :not(:last-child) {
+    > div {
       margin-bottom: 4px;
+      transition: ${props => props.theme.transitions.short};
 
       @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
         margin-bottom: 8px;
@@ -121,7 +126,54 @@ const StyledFriend = styled('div')`
       @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
         margin-bottom: 12px;
       }
+
+      &:has(button:hover) {
+        color: ${props => props.theme.colors.accent};
+      }
+
+      &:has(a:hover) {
+        color: ${props => props.theme.colors.accent};
+      }
+
+      button {
+        border: none;
+        background-color: transparent;
+        font-family: ${props => props.theme.fonts[0]};
+        font-size: ${props => props.theme.fontSizes.text.xs};
+        line-height: ${props => props.theme.lineHeights.xs};
+        font-weight: ${props => props.theme.fontWeights.medium};
+        cursor: pointer;
+        transition: ${props => props.theme.transitions.short};
+
+        &:hover {
+          color: ${props => props.theme.colors.accent};
+        }
+
+        @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+          font-size: ${props => props.theme.fontSizes.text.s};
+          line-height: ${props => props.theme.lineHeights.s};
+        }
+
+        @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+          font-size: ${props => props.theme.fontSizes.text.m};
+          line-height: ${props => props.theme.lineHeights.s};
+        }
+      }
     }
+
+    a {
+      text-decoration-line: underline;
+      color: ${props => props.theme.colors.text};
+      transition: ${props => props.theme.transitions.short};
+
+      &:hover {
+        color: ${props => props.theme.colors.accent};
+      }
+    }
+  }
+
+  dd {
+    margin: 0;
   }
 
   img {
@@ -140,6 +192,31 @@ const StyledFriend = styled('div')`
   }
 `;
 
-const styles = { StyledList, StyledContainer, StyledFriend };
+const StyledModal = styled('div')`
+  border: 1px solid ${props => props.theme.colors.accent};
+  border-radius: 8px;
+  box-shadow: ${props => props.theme.shadows.timeModalShadow};
+  padding: 12px;
+  position: absolute;
+  background-color: ${props => props.theme.colors.white};
+  min-width: 96px;
+
+  font-family: ${props => props.theme.fonts[0]};
+  font-weight: ${props => props.theme.fontWeights.medium};
+  font-size: ${props => props.theme.fontSizes.text.xs};
+  line-height: ${props => props.theme.lineHeights.xs};
+  color: ${props => props.theme.colors.text};
+
+  li {
+    display: flex;
+    justify-content: space-between;
+
+    :not(:last-child) {
+      margin-bottom: 4px;
+    }
+  }
+`;
+
+const styles = { StyledList, StyledContainer, StyledFriend, StyledModal };
 
 export default styles;

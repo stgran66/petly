@@ -20,6 +20,7 @@
     "body-scroll-lock": "^4.0.0-beta.0",
     "emotion": "^11.0.0",
     "formik": "^2.2.9",
+    "modern-normalize": "^1.1.0",
     "mui-tel-input": "^3.0.2",
     "notiflix": "^3.2.6",
     "react": "^18.1.0",

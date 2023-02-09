@@ -138,7 +138,7 @@ const ContactButton = styled('a')`
 
   background-color: ${props => props.theme.colors.accent};
   border-radius: 40px;
-  transition: background-color ${props => props.theme.tranistions.normal};
+  transition: background-color ${props => props.theme.transitions.normal};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     width: 160px;
@@ -166,7 +166,7 @@ const ChangeFavoriteStatusBtn = styled('button')`
   border: 2px solid ${props => props.theme.colors.accent};
   border-radius: 40px;
   cursor: pointer;
-  transition: border-color ${props => props.theme.tranistions.long};
+  transition: border-color ${props => props.theme.transitions.long};
 
   & > svg {
     width: 16px;
@@ -174,7 +174,7 @@ const ChangeFavoriteStatusBtn = styled('button')`
     margin-left: 8px;
 
     fill: ${props => props.theme.colors.accent};
-    transition: fill ${props => props.theme.tranistions.long};
+    transition: fill ${props => props.theme.transitions.long};
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {

@@ -26,6 +26,7 @@ const theme = createTheme({
   shadows: {
     cardsShadow: '7px 4px 14px rgba(49, 21, 4, 0.07)',
     cardsShadowUser: '7px 4px 14px rgba(0, 0, 0, 0.11)',
+    timeModalShadow: '4px 4px 8px rgba(0, 0, 0, 0.25)',
   },
   fonts: ['Manrope', 'Poppins'],
   fontSizes: {
@@ -63,15 +64,13 @@ const theme = createTheme({
     medium: 500,
     normal: 400,
   },
-  tranistions: {
+  transitions: {
     long: 'all 500ms linear',
     normal: 'all 250ms linear',
     short: 'all 100ms linear',
   },
 });
 
-const Theme = ({ children }) => (
-  <ThemeProvider theme={theme}>{children}</ThemeProvider>
-);
+const Theme = ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 
 export default Theme;
