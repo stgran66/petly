@@ -1,31 +1,6 @@
-import styles from './AddNoticeModal.styled';
-
-const {
-  ModalBackdrop,
-  Modal,
-  ModalTitle,
-  ModalInfo,
-  ModalForm,
-  InputLabel,
-  Input,
-  ModalBtn,
-} = styles;
+// import styles from './AddNoticeModal.styled';
 
 const AddNoticeModal = () => {
-  return (
-    <ModalBackdrop>
-      <Modal>
-        <ModalTitle>Add pet</ModalTitle>
-        <ModalInfo>Add pet</ModalInfo>
-        <ModalForm>
-          <InputLabel>
-            <Input></Input>
-          </InputLabel>
-          <ModalBtn></ModalBtn>
-          <ModalBtn></ModalBtn>
-        </ModalForm>
-      </Modal>
-    </ModalBackdrop>
-  );
+  return <p>Here will be add pet modal window</p>;
 };
 export default AddNoticeModal;
