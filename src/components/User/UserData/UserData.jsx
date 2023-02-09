@@ -4,8 +4,6 @@ import styles from './UserData.styled';
 import ButtonChange from './ButtonChange';
 import ButtonSubmit from './ButtonSubmit';
 
-// import { IconButton, PhotoCamera } from '@mui/icons-material';
-
 const {
   UserForm,
   ContainerWrappInfo,
@@ -52,11 +50,6 @@ const UserData = () => {
               value="Anna"
             />
             <ButtonChange onClick={handleClick} />
-            {/* {activeBtn ? (
-              <ButtonChange onClick={(handleClick, changeButton)} />
-            ) : (
-              <ButtonSubmit />
-            )} */}
           </InputWrapp>
         </InfoInputThumb>
 
