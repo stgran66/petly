@@ -2,7 +2,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/notices/filterSlice';
 import selectors from 'redux/notices/selectors';
 import styles from './NoticesSearch.styled';
-const { Icon, SearchForm, SearchInput, SearchTitle, InputIcon } = styles;
+const {
+  IconClose,
+  IconSearch,
+  SearchForm,
+  SearchInput,
+  SearchTitle,
+  InputButton,
+  InputSearchIcon,
+} = styles;
 const { selectFilter } = selectors;
 
 const NoticeSearch = () => {
@@ -13,20 +21,38 @@ const NoticeSearch = () => {
     const { value } = e.currentTarget;
     dispatch(setFilter(value));
   };
+
+  const reset = () => {
+    dispatch(setFilter(''));
+  };
+
+  const emptyInput = filterValue === '';
   return (
     <>
       <SearchTitle>Find your favorite pet</SearchTitle>
       <SearchForm>
         <SearchInput
+          placeholder="Search"
           onChange={onInputChange}
           value={filterValue}
           type="text"
           autocomplete="off"
-          placeholder="Search"
-        ></SearchInput>
-        <InputIcon>
-          <Icon />
-        </InputIcon>
+          inputProps={{ 'aria-label': 'search' }}
+        />
+        {emptyInput ? (
+          <InputSearchIcon>
+            <IconSearch />
+          </InputSearchIcon>
+        ) : (
+          <InputButton
+            type="button"
+            onClick={reset}
+            onClearSearchInput
+            aria-label="search"
+          >
+            <IconClose />
+          </InputButton>
+        )}
       </SearchForm>
     </>
   );

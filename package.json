@@ -24,6 +24,7 @@
     "moment": "^2.29.4",
     "modern-normalize": "^1.1.0",
     "mui-tel-input": "^3.0.2",
+    "notiflix": "^3.2.6",
     "react": "^18.1.0",
     "react-burger-menu": "^3.0.9",
     "react-dom": "^18.1.0",
