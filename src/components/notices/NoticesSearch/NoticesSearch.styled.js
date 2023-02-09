@@ -1,5 +1,7 @@
 import { styled } from '@mui/system';
-import { HiSearch } from 'react-icons/hi';
+import { IconButton, InputBase, Paper } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 const SearchTitle = styled('h2')`
   width: 100%;
@@ -22,30 +24,29 @@ const SearchTitle = styled('h2')`
     font-size: ${({ theme }) => theme.fontSizes.headers.l};
   }
 `;
-const SearchForm = styled('form')`
-  display: flex;
-  align-items: center;
+const SearchForm = styled(Paper)`
   width: 100%;
   max-width: 608px;
-  margin: 0 auto 28px;
-  position: relative;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  background-color: ${({ theme }) => theme.colors.white};
+  border: none;
+  margin: 0 auto;
+  margin-bottom: 28px;
+  box-shadow: ${({ theme }) => theme.shadows.cardsShadow};
+  border-radius: 20px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-bottom: 40px;
   }
 `;
 
-const SearchInput = styled('input')`
+const SearchInput = styled(InputBase)`
   width: 100%;
-  height: 40px;
   font-size: 16px;
-  padding-left: 12px;
-  background: transparent;
-  border: none;
-  margin: 0;
-  box-shadow: ${({ theme }) => theme.shadows.cardsShadow};
-  border-radius: 20px;
-  cursor: pointer;
+  padding-left: 14px;
+   cursor: pointer;
 
   &::placeholder {
     padding: 8px 0;
@@ -67,24 +68,42 @@ const SearchInput = styled('input')`
 }
 `;
 
-const InputIcon = styled('span')`
-  position: absolute;
-  display: block;
-  right: 12px;
-  width: 16px;
-  height: 16px;
+const InputSearchIcon = styled('span')`
+  margin-right: 12px;
+`;
 
+const InputButton = styled(IconButton)`
+  width: 35px;
+  height: 35px;
+  margin-right: 4px;
+  padding: 12px;
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.text};
+  transition: ${({ theme }) => theme.transitions.normal};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.white};
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    width: 20px;
-    height: 20px;
-    right: 14px;
+    padding: 14px;
   }
 `;
 
-const Icon = styled(HiSearch)`
-  width: 100%;
-  height: auto;
+const IconSearch = styled(SearchIcon)`
+  fill: ${({ theme }) => theme.colors.text};
+`;
+const IconClose = styled(HighlightOffIcon)`
+  fill: currentColor;
 `;
 
-const styles = { SearchTitle, SearchForm, SearchInput, InputIcon, Icon };
+const styles = {
+  SearchTitle,
+  SearchForm,
+  SearchInput,
+  InputButton,
+  IconSearch,
+  IconClose,
+  InputSearchIcon,
+};
 export default styles;
