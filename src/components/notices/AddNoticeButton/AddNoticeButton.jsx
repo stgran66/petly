@@ -17,7 +17,7 @@ const AddNoticeButton = () => {
       distance: '8px',
     });
 
-    isLoggedIn
+    !isLoggedIn
       ? Notify.info('Please authorize to access your account and add notice')
       : setIsModalOpen(true);
   };
