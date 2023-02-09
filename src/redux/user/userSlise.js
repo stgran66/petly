@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import operations from './operations';
+import userOperations from './operations';
 
-const { fetchUserData, userLogOut } = operations;
+const { fetchUserData } = userOperations;
 
 const userInitialState = {
   profile: {
@@ -17,7 +17,6 @@ const userInitialState = {
     // favorite: [],
     isLoading: false,
     error: null,
-    token: null,
   },
 };
 
@@ -31,7 +30,6 @@ const userSlice = createSlice({
     },
     [fetchUserData.fulfilled](state, { payload }) {
       state.user = payload.user;
-      state.token = payload.token;
       state.isLoading = false;
       state.error = null;
       // state.userPets = [...payload.userPets];
@@ -39,11 +37,6 @@ const userSlice = createSlice({
     [fetchUserData.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
-    },
-    [userLogOut.fulfilled](store) {
-      store.body = { name: null, email: null, password: null };
-      store.token = null;
-      store.isLoggedIn = false;
     },
   },
 });

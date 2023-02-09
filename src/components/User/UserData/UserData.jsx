@@ -1,8 +1,16 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import userOperations from 'redux/user/operations';
 
 import styles from './UserData.styled';
+import userSelectors from 'redux/user/selectors';
+
 import ButtonChange from './ButtonChange';
 import ButtonSubmit from './ButtonSubmit';
+
+const { selectUserInfo } = userSelectors;
+const { fetchUserData } = userOperations;
 
 const {
   UserForm,
@@ -14,12 +22,20 @@ const {
 } = styles;
 
 const UserData = () => {
-  // const [activeBtn, setActiveBtn] = useState(true);
+  const user = useSelector(selectUserInfo);
+
+  console.log(user);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUserData());
+  }, [dispatch]);
+
+  console.log(user);
+
   const [isDisabled, setIsDisabled] = useState(true);
 
-  // const changeButton = () => {
-  //   setActiveBtn(false);
-  // };
   const handleClick = () => {
     setIsDisabled(!isDisabled);
   };

@@ -9,6 +9,7 @@ const Logout = () => {
   const dispatch = useDispatch();
 
   const handleLogOut = () => dispatch(logOut());
+
   return (
     <>
       <LogoutButton type="button" onClick={handleLogOut}>
