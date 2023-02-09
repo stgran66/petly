@@ -28,7 +28,7 @@ const NoticesCategoriesNav = () => {
           </CategoriesItem>
         ))}
       </NoticesNav>
-      {!isLoggedIn && (
+      {isLoggedIn && (
         <LogInNoticesNav>
           {privateNavOptions.map(({ option, path }) => (
             <CategoriesItem key={path}>

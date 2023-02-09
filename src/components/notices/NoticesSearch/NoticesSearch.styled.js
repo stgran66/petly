@@ -45,6 +45,7 @@ const SearchInput = styled('input')`
   margin: 0;
   box-shadow: ${({ theme }) => theme.shadows.cardsShadow};
   border-radius: 20px;
+  cursor: pointer;
 
   &::placeholder {
     padding: 8px 0;
