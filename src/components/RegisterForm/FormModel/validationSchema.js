@@ -27,7 +27,7 @@ const validationSchema = [
     [phone.name]: Yup.string()
       .min(13)
       .max(13)
-      .matches(/^\+380\d{3}\d{2}\d{2}\d{2}$/)
+      .matches('\\+?(?:\\s*\\d){12}\\s*')
       .required(`${phone.requiredErrorMsg}`),
   }),
 ];
