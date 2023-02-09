@@ -1,5 +1,4 @@
-// import { useState } from 'react';
-import { useRef } from 'react';
+import { useState } from 'react';
 
 import styles from './UserData.styled';
 import ButtonChange from './ButtonChange';
@@ -17,19 +16,14 @@ const {
 } = styles;
 
 const UserData = () => {
-  const ref = useRef(null);
   // const [activeBtn, setActiveBtn] = useState(true);
-  // const [isDisabled, setIsDisabled] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   // const changeButton = () => {
   //   setActiveBtn(false);
   // };
   const handleClick = () => {
-    ref.current.focus();
-    // setIsDisabled(!isDisabled);
-    // const ggg = ref.current.disabled;
-
-    // console.log(ggg);
+    setIsDisabled(!isDisabled);
   };
 
   // activeState ? btn1 : btn2;
@@ -51,11 +45,10 @@ const UserData = () => {
           <label for="user_name">Name:</label>
           <InputWrapp>
             <input
-              ref={ref}
               type="text"
-              name="text"
+              name="name"
               id="user_name"
-              // disabled={isDisabled}
+              disabled={isDisabled}
               value="Anna"
             />
             <ButtonChange onClick={handleClick} />
@@ -71,13 +64,12 @@ const UserData = () => {
           <label for="user_email">Email:</label>
           <InputWrapp>
             <input
-              ref={ref}
               type="email"
               name="email"
               id="user_email"
               value="anna00@gmail.com"
-              autofocus="false"
             />
+
             <ButtonChange onClick={handleClick} />
           </InputWrapp>
         </InfoInputThumb>
@@ -86,7 +78,7 @@ const UserData = () => {
           <label for="user_birthday">Birthday:</label>
           <InputWrapp>
             <input
-              type="date"
+              type="text"
               name="date"
               id="user_birthday"
               value="00.00.0000"
@@ -117,26 +109,6 @@ const UserData = () => {
         </InfoInputThumb>
       </ContainerWrappInfo>
     </UserForm>
-
-    //     <div>
-    //         <title>My information:</title>
-    //       <InfoFoto>
-    //           <img src="" alt="" />
-    //           <form>
-    //               <label>
-    //                   <input type="file" id="" name="" accept=".jpg, .jpeg, .png" />
-    //               </label>
-    //           </form>
-    //           <InfoFoto />
-    //         <InfoList>
-    //     {data.map(item => (
-    //       <li key={item.id}>
-    //         <DataItem item={item} />
-    //       </li>
-    //     ))}
-    //   </InfoList>
-    //   <Logout />
-    // </div>
   );
 };
 
