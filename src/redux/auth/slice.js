@@ -24,10 +24,17 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [login.rejected](state, action) {
+    [login.pending](state) {
+      state.isLoggedIn = false;
+    },
+    [login.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+    },
+    [login.rejected](state, action) {
+      state.isLoggedIn = false;
+      state.error = action.payload
     },
     [logOut.fulfilled](state) {
       state.user = { name: null, email: null };
