@@ -70,8 +70,8 @@ const UserDataItem = ({
         <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
         <InputWrapp>
           <UserDataItemInput
-            onChangeCapture={() => handleChange()}
-            value={inputValue}
+            onChangeCapture={handleChange}
+            defaultValue={inputValue}
             active={active === name}
             disabled={active !== name}
             type={type}
