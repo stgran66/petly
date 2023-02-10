@@ -10,7 +10,7 @@ import ButtonChange from './ButtonChange';
 import ButtonSubmit from './ButtonSubmit';
 
 const { selectUserInfo } = userSelectors;
-const { fetchUserData } = userOperations;
+const { updateUserData } = userOperations;
 
 const {
   UserForm,
@@ -22,14 +22,17 @@ const {
 } = styles;
 
 const UserData = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUserInfo);
+  console.log(user);
+  const [active, setActive] = useState('');
+
+  // const changeFoto = e => {
+  //   const result = new FormData();
+  //   result.append('avatar', e.target.files[0]);
+  //   dispatch(updateUserData(result));
+  // };
   //  const dispatch = useDispatch(); const dispatch = useDispatch();
-  const [isDisabled, setIsDisabled] = useState(false);
-
-  const handleClick = () => {
-    setIsDisabled(!isDisabled);
-  };
-
-  // activeState ? btn1 : btn2;
 
   return (
     <UserForm ectype="multipart/form-data">
@@ -51,10 +54,10 @@ const UserData = () => {
               type="text"
               name="name"
               id="user_name"
-              disabled={isDisabled}
-              defaultValue="Anna"
+              disabled
+              defaultValue={user.name}
             />
-            <ButtonChange onClick={handleClick} />
+            <ButtonChange />
           </InputWrapp>
         </InfoInputThumb>
 
@@ -65,10 +68,10 @@ const UserData = () => {
               type="email"
               name="email"
               id="user_email"
-              defaultValue="anna00@gmail.com"
+              defaultValue={user.email}
             />
 
-            <ButtonChange onClick={handleClick} />
+            <ButtonChange />
           </InputWrapp>
         </InfoInputThumb>
 

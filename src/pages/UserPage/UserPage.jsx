@@ -12,8 +12,6 @@ const { fetchUserData } = userOperations;
 
 const UserPage = () => {
   const dispatch = useDispatch();
-  const user = useSelector(selectUserInfo);
-  console.log(user);
 
   useEffect(() => {
     dispatch(fetchUserData());

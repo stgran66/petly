@@ -29,7 +29,7 @@ const userSlice = createSlice({
       state.error = null;
     },
     [fetchUserData.fulfilled](state, { payload }) {
-      state.userInfo = payload;
+      state.userInfo = payload.user;
       state.isLoading = false;
       state.error = null;
       // state.userPets = [...payload.userPets];
