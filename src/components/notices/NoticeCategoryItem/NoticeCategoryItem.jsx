@@ -1,14 +1,17 @@
-// import { Link } from 'react-router-dom';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useState } from 'react';
 import NoticeModal from 'components/notices/NoticeCategoryItem';
 import Modal from 'components/notices/Modal';
-
+import hooks from 'hooks';
 import styles from './NoticeCategoryItem.styled';
-// const NoticeCategoryItem = ({ title }) => {
-//   return <Link to={`notices`}>{title}</Link>;
-// };
+// import { useDispatch, useSelector } from 'react-redux';
 
+// const { selectFilteredList, selectLoadingStatus, selectErrorMessage } =
+//   selectors;
 const NoticeCategoryItem = ({ notice }) => {
+  const { isLoggedIn } = hooks.useAuth();
+  const [addedToFav, setAddedToFav] = useState(false);
+  const { title, breed, place, age } = notice;
   const {
     NoticeItemCard,
     Image,
@@ -21,35 +24,45 @@ const NoticeCategoryItem = ({ notice }) => {
     Content,
     LearnMore,
     FavouriteIcon,
+    AddedToFav,
   } = styles;
   const [showModal, setShowModal] = useState(false);
-  // console.log(id);
+  const handleSubmit = e => {
+    Notify.init({
+      position: 'right-top',
+      distance: '8px',
+    });
+
+    !isLoggedIn
+      ? Notify.info('Please authorize to access your account and add notice')
+      : setAddedToFav(true);
+  };
   return (
     <NoticeItemCard>
       <ImgWrapper>
         <Category>sell/in good hands</Category>
         <Image src={require('./Dog.jpeg')} alt="Dog" />
-        <Button>
-          <FavouriteIcon />
+        <Button type="button" onClick={handleSubmit}>
+          {addedToFav ? <AddedToFav /> : <FavouriteIcon />}
         </Button>
       </ImgWrapper>
-      <ItemTitle>Сute dog looking for a home</ItemTitle>
+      <ItemTitle>{title}</ItemTitle>
       <About>
         <AboutList>
           <Content>Breed:</Content>
-          <Content>Husky</Content>
+          <Content>{breed}</Content>
           <Content>Place:</Content>
-          <Content>New York</Content>
+          <Content>{place}</Content>
           <Content>Age:</Content>
-          <Content>one year</Content>
+          <Content>{age}</Content>
         </AboutList>
         <LearnMore type="button" onClick={() => setShowModal(true)}>
           Learn more
         </LearnMore>
       </About>
       {showModal && (
-        <Modal toggleModal={() => setShowModal(s => !s)}>
-          <NoticeModal toggleModal={() => setShowModal(s => !s)} />
+        <Modal toggleModal={() => setShowModal(s => !s)} notice={notice}>
+          <NoticeModal />
           {/* <ModalBtnClose /> */}
         </Modal>
       )}

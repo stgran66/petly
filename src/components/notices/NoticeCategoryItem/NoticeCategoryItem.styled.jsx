@@ -1,5 +1,6 @@
 import { styled } from '@mui/system';
 import { ReactComponent as FavIcon } from 'images/fav-icon.svg';
+import { ReactComponent as AddedToFavouriteIcon } from 'images/add-fav-icon.svg';
 
 const NoticeItemCard = styled('div')`
   display: flex;
@@ -43,7 +44,17 @@ const FavouriteIcon = styled(FavIcon)`
   :hover,
   :focus {
     stroke: #ff6101;
+    transition: ${props => props.theme.transitions.normal};
     /* fill: #ff6101; */
+  }
+`;
+const AddedToFav = styled(AddedToFavouriteIcon)`
+  fill: ${props => props.theme.colors.accent};
+  transition: ${props => props.theme.transitions.normal};
+  :hover,
+  :focus {
+    fill: #ff6101;
+    transition: ${props => props.theme.transitions.normal};
   }
 `;
 
@@ -148,5 +159,6 @@ const styles = {
   Content,
   LearnMore,
   FavouriteIcon,
+  AddedToFav,
 };
 export default styles;
