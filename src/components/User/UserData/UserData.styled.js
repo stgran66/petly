@@ -5,7 +5,7 @@ import { Camera20Filled } from '@fluentui/react-icons';
 import { RiPencilFill } from 'react-icons/ri';
 import { BsCheckLg } from 'react-icons/bs';
 
-const UserForm = styled('form')`
+const UserContainer = styled('div')`
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -28,49 +28,54 @@ const ContainerWrappFoto = styled('div')`
   position: relative;
   display: flex;
   justify-content: center;
+`;
 
-  div {
-    display: flex;
-    flex-direction: column;
+const WrappFoto = styled('div')`
+  display: flex;
+  flex-direction: column;
+`;
+
+const UserFoto = styled('img')`
+  width: 233px;
+  height: 233px;
+  margin-bottom: 13px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: ${props => props.theme.colors.commonBackground};
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    margin-bottom: 8px;
   }
 
-  img {
-    width: 233px;
-    height: 233px;
-    margin-bottom: 13px;
-    border-radius: 50%;
-    background-color: grey;
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    margin-bottom: 0;
+  }
+`;
 
-    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-      margin-bottom: 8px;
-    }
+const FotoForm = styled('form')`
+  display: flex;
+`;
 
-    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-      margin-bottom: 0;
-    }
+const FotoLabel = styled('label')`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+
+  transition: ${props => props.theme.transitions.normal};
+
+  &:hover,
+  &:focus {
+    color: ${props => props.theme.colors.accent};
   }
 
-  label {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    cursor: pointer;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 22px;
-
-    transition: ${props => props.theme.transitions.normal};
-
-    &:hover,
-    &:focus {
-      color: ${props => props.theme.colors.accent};
-    }
-
-    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-    }
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 `;
 
@@ -81,7 +86,7 @@ const FotoIcon = styled(Camera20Filled)`
   color: ${props => props.theme.colors.accent};
 `;
 
-const ContainerWrappInfo = styled('div')`
+const ContainerWrappInfo = styled('ul')`
   display: flex;
   flex-direction: column;
 
@@ -97,23 +102,23 @@ const ContainerWrappInfo = styled('div')`
     flex-grow: 1;
   }
 `;
-const InfoInputThumb = styled('div')`
+const UserDataItemWrapp = styled('li')`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
 
-  label {
-    font-family: ${props => props.theme.fonts[0]};
-    font-weight: ${props => props.theme.fontWeights.normal};
-    font-size: ${props => props.theme.fontSizes.text.s};
-    line-height: ${props => props.theme.lineHeights.xs};
-    letter-spacing: 0.04em;
+const UserDataItemLabel = styled('label')`
+  font-family: ${props => props.theme.fonts[0]};
+  font-weight: ${props => props.theme.fontWeights.normal};
+  font-size: ${props => props.theme.fontSizes.text.s};
+  line-height: ${props => props.theme.lineHeights.xs};
+  letter-spacing: 0.04em;
 
-    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-      font-weight: ${props => props.theme.fontWeights.medium};
-      font-size: ${props => props.theme.fontSizes.text.l};
-      line-height: 1.39;
-    }
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    font-weight: ${props => props.theme.fontWeights.medium};
+    font-size: ${props => props.theme.fontSizes.text.l};
+    line-height: 1.39;
   }
 `;
 
@@ -121,43 +126,43 @@ const InputWrapp = styled('div')`
   margin-left: auto;
   display: flex;
   align-items: center;
+`;
 
-  input {
-    width: 159px;
-    margin-right: 9px;
-    padding: 4px 18px;
-    border-radius: 40px;
-    border: 0;
-    background-color: transparent;
+const UserDataItemInput = styled('input')`
+  width: 159px;
+  margin-right: 9px;
+  padding: 4px 18px;
+  border-radius: 40px;
+  border: 0;
+  background-color: transparent;
 
-    font-family: ${props => props.theme.fonts[0]};
-    font-weight: ${props => props.theme.fontWeights.normal};
-    font-size: ${props => props.theme.fontSizes.text.s};
-    line-height: ${props => props.theme.lineHeights.xs};
-    letter-spacing: 0.04em;
+  font-family: ${props => props.theme.fonts[0]};
+  font-weight: ${props => props.theme.fontWeights.normal};
+  font-size: ${props => props.theme.fontSizes.text.s};
+  line-height: ${props => props.theme.lineHeights.xs};
+  letter-spacing: 0.04em;
 
-    &:focus {
-      outline: 1px solid rgba(245, 146, 86, 0.5);
-      background-color: ${props => props.theme.colors.commonBackground};
-    }
-
-    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-      width: 216px;
-      margin-right: 24px;
-      padding: 4px 12px;
-
-      font-size: ${props => props.theme.fontSizes.text.l};
-      line-height: 1.39;
-    }
-
-    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    }
+  &:focus {
+    outline: 1px solid rgba(245, 146, 86, 0.5);
+    background-color: ${props => props.theme.colors.commonBackground};
   }
 
-  /* input[disable='true'] {
-    border: 0;
-    background-color: transparent;
+  /* &[type='disabled'],
+  &[type='disabled'] {
+    color: ${props => props.theme.colors.commonBackground};
   } */
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    width: 216px;
+    margin-right: 24px;
+    padding: 4px 12px;
+
+    font-size: ${props => props.theme.fontSizes.text.l};
+    line-height: 1.39;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+  }
 `;
 
 const ButtonWrapp = styled('button')`
@@ -220,14 +225,20 @@ const InfoSubmitIcon = styled(BsCheckLg)`
 `;
 
 const styles = {
-  UserForm,
+  UserContainer,
   ContainerWrappInfo,
   ContainerWrappFoto,
+  WrappFoto,
+  UserFoto,
+  FotoForm,
+  FotoLabel,
   FotoIcon,
   InputWrapp,
-  InfoInputThumb,
+  UserDataItemWrapp,
   ButtonWrapp,
   InfoChangeIcon,
   InfoSubmitIcon,
+  UserDataItemLabel,
+  UserDataItemInput,
 };
 export default styles;

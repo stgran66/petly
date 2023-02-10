@@ -1,13 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import user from '../../components/User';
 import styles from './UserPage.styled';
-import userSelectors from 'redux/user/selectors';
 import userOperations from 'redux/user/operations';
 
 const { UserData, Logout, PetsData } = user;
 const { MainContainer, ContainerWrapp, UserContainer, Title } = styles;
-const { selectUserInfo } = userSelectors;
 const { fetchUserData } = userOperations;
 
 const UserPage = () => {

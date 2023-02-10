@@ -1,30 +1,29 @@
 import { useState } from 'react';
-// import { useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import userOperations from 'redux/user/operations';
+import userSelectors from 'redux/user/selectors';
+import UserDataItem from './UserDataItem';
 
 import styles from './UserData.styled';
-import userSelectors from 'redux/user/selectors';
-
-import ButtonChange from './ButtonChange';
-import ButtonSubmit from './ButtonSubmit';
 
 const { selectUserInfo } = userSelectors;
-const { updateUserData } = userOperations;
+// const { updateUserData } = userOperations;
 
 const {
-  UserForm,
+  UserContainer,
   ContainerWrappInfo,
   ContainerWrappFoto,
+  WrappFoto,
+  UserFoto,
+  FotoForm,
+  FotoLabel,
   FotoIcon,
-  InputWrapp,
-  InfoInputThumb,
 } = styles;
 
 const UserData = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const user = useSelector(selectUserInfo);
-  console.log(user);
   const [active, setActive] = useState('');
 
   // const changeFoto = e => {
@@ -32,89 +31,91 @@ const UserData = () => {
   //   result.append('avatar', e.target.files[0]);
   //   dispatch(updateUserData(result));
   // };
-  //  const dispatch = useDispatch(); const dispatch = useDispatch();
+
+  const patternEmail = /^(?!-)[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$/;
+  // const patternDate=/\d{4}-\d{2}-\d{2}/
+  const patternPhone = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
+  const patternCity = /^\s*([A-ZА-Я][a-zа-я]+,\s?)?[A-ZА-Я][a-zа-я]+\s*$/;
 
   return (
-    <UserForm ectype="multipart/form-data">
+    <UserContainer>
       <ContainerWrappFoto>
-        <div>
-          <img src="" alt="" />
+        <WrappFoto>
+          <UserFoto src={user.avatarURL} alt="user foto" />
 
-          <label>
-            <FotoIcon /> Edit photo
-            <input type="file" accept="image/*" name="file" hidden />
-          </label>
-        </div>
+          <FotoForm enctype="multipart/form-data">
+            <FotoLabel>
+              <FotoIcon /> Edit photo
+              <input
+                type="file"
+                accept="image/*"
+                name="avatar"
+                // onChange={changeFoto}
+                hidden
+              />
+            </FotoLabel>
+          </FotoForm>
+        </WrappFoto>
       </ContainerWrappFoto>
       <ContainerWrappInfo>
-        <InfoInputThumb>
-          <label for="user_name">Name:</label>
-          <InputWrapp>
-            <input
-              type="text"
-              name="name"
-              id="user_name"
-              disabled
-              defaultValue={user.name}
-            />
-            <ButtonChange />
-          </InputWrapp>
-        </InfoInputThumb>
+        <UserDataItem
+          label={'Name:'}
+          defaultValue={user.name}
+          type="text"
+          name="name"
+          setActive={setActive}
+          active={active}
+          id="name"
+        />
 
-        <InfoInputThumb>
-          <label for="user_email">Email:</label>
-          <InputWrapp>
-            <input
-              type="email"
-              name="email"
-              id="user_email"
-              defaultValue={user.email}
-            />
+        <UserDataItem
+          label={'Email:'}
+          defaultValue={user.email}
+          type="email"
+          name="email"
+          setActive={setActive}
+          active={active}
+          pattern={patternEmail}
+          title="Email no valid"
+          id="email"
+        />
 
-            <ButtonChange />
-          </InputWrapp>
-        </InfoInputThumb>
+        <UserDataItem
+          label={'Birthday:'}
+          defaultValue={user.birthday}
+          type="text"
+          name="birthday"
+          setActive={setActive}
+          active={active}
+          // title="Date may contain only format 00.00.0000"
+          id="birthday"
+        />
 
-        <InfoInputThumb>
-          <label for="user_birthday">Birthday:</label>
-          <InputWrapp>
-            <input
-              type="text"
-              name="date"
-              id="user_birthday"
-              defaultValue="00.00.0000"
-            />
-            <ButtonChange />
-          </InputWrapp>
-        </InfoInputThumb>
+        <UserDataItem
+          label={'Phone:'}
+          defaultValue={user.phone}
+          type="tel"
+          name="phone"
+          setActive={setActive}
+          active={active}
+          pattern={patternPhone}
+          title="Phone may be formated +3800000000"
+          id="phone"
+        />
 
-        <InfoInputThumb>
-          <label for="user_phone">Phone:</label>
-          <InputWrapp>
-            <input
-              type="tel"
-              name="number"
-              id="user_phone"
-              defaultValue="+38000000000"
-            />
-            <ButtonSubmit />
-          </InputWrapp>
-        </InfoInputThumb>
-
-        <InfoInputThumb>
-          <label for="user_city">City:</label>
-          <InputWrapp>
-            <input
-              type="text"
-              name="number"
-              id="user_city"
-              defaultValue="Kiev"
-            />
-            <ButtonChange />
-          </InputWrapp>
-        </InfoInputThumb>
+        <UserDataItem
+          label={'City:'}
+          defaultValue={user.city}
+          type="text"
+          name="city"
+          setActive={setActive}
+          active={active}
+          pattern={patternCity}
+          title="City"
+          id="city"
+        />
       </ContainerWrappInfo>
-    </UserForm>
+    </UserContainer>
   );
 };
 
