@@ -1,4 +1,4 @@
-const selectUserInfo = state => state.user.profile;
+const selectUserInfo = state => state.user.userInfo;
 const selectLoadingUser = state => state.user.isLoading;
 const selectErrorUser = state => state.user.error;
 // const selectUserPets = state => state.user.profile.userPets;

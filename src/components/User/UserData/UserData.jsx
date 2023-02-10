@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import userOperations from 'redux/user/operations';
 
@@ -22,19 +22,8 @@ const {
 } = styles;
 
 const UserData = () => {
-  const user = useSelector(selectUserInfo);
-
-  console.log(user);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchUserData());
-  }, [dispatch]);
-
-  console.log(user);
-
-  const [isDisabled, setIsDisabled] = useState(true);
+  //  const dispatch = useDispatch(); const dispatch = useDispatch();
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const handleClick = () => {
     setIsDisabled(!isDisabled);
@@ -63,7 +52,7 @@ const UserData = () => {
               name="name"
               id="user_name"
               disabled={isDisabled}
-              value="Anna"
+              defaultValue="Anna"
             />
             <ButtonChange onClick={handleClick} />
           </InputWrapp>
@@ -76,7 +65,7 @@ const UserData = () => {
               type="email"
               name="email"
               id="user_email"
-              value="anna00@gmail.com"
+              defaultValue="anna00@gmail.com"
             />
 
             <ButtonChange onClick={handleClick} />
@@ -90,7 +79,7 @@ const UserData = () => {
               type="text"
               name="date"
               id="user_birthday"
-              value="00.00.0000"
+              defaultValue="00.00.0000"
             />
             <ButtonChange />
           </InputWrapp>
@@ -103,7 +92,7 @@ const UserData = () => {
               type="tel"
               name="number"
               id="user_phone"
-              value="+38000000000"
+              defaultValue="+38000000000"
             />
             <ButtonSubmit />
           </InputWrapp>
@@ -112,7 +101,12 @@ const UserData = () => {
         <InfoInputThumb>
           <label for="user_city">City:</label>
           <InputWrapp>
-            <input type="text" name="number" id="user_city" value="Kiev" />
+            <input
+              type="text"
+              name="number"
+              id="user_city"
+              defaultValue="Kiev"
+            />
             <ButtonChange />
           </InputWrapp>
         </InfoInputThumb>

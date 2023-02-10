@@ -4,20 +4,20 @@ import userOperations from './operations';
 const { fetchUserData } = userOperations;
 
 const userInitialState = {
-  profile: {
-    user: {
-      email: null,
-      name: null,
-      city: null,
-      phone: null,
-      birthday: null,
-      avatarURL: null,
-    },
-    // userPets: [],
-    // favorite: [],
-    isLoading: false,
-    error: null,
+  userInfo: {
+    _id: null,
+    email: null,
+    name: null,
+    city: null,
+    phone: null,
+    birthday: null,
+    avatarURL: null,
+    favorite: [],
   },
+  // userPets: [],
+  // favorite: [],
+  isLoading: false,
+  error: null,
 };
 
 const userSlice = createSlice({
@@ -29,7 +29,7 @@ const userSlice = createSlice({
       state.error = null;
     },
     [fetchUserData.fulfilled](state, { payload }) {
-      state.user = payload.user;
+      state.userInfo = payload;
       state.isLoading = false;
       state.error = null;
       // state.userPets = [...payload.userPets];
