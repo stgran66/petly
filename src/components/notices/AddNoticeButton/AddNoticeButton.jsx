@@ -1,14 +1,12 @@
-import { useSelector } from 'react-redux';
 import styles from './AddNoticeButton.styled';
-import select from 'redux/auth/selectors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import AddNoticeModal from '../AddNoticeModal';
 import { useState } from 'react';
-const { selectIsLoggedIn } = select;
+import hooks from 'hooks';
 const { AddIcon, BtnInfo, AddButton } = styles;
 
 const AddNoticeButton = () => {
-  const { isLoggedIn } = useSelector(selectIsLoggedIn);
+  const { isLoggedIn } = hooks.useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = e => {
@@ -23,7 +21,9 @@ const AddNoticeButton = () => {
   };
 
   return isModalOpen ? (
-    <AddNoticeModal />
+    <>
+      <AddNoticeModal />
+    </>
   ) : (
     <AddButton type="button" onClick={handleSubmit}>
       <AddIcon />

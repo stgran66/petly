@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 const LoaderContainer = styled.div`
-  display: inline-block;
-  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 export default LoaderContainer;
