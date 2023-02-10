@@ -3,11 +3,12 @@ import NoticesCategoriesNav from 'components/notices/NoticesCategoriesNav';
 import NoticesSearch from 'components/notices/NoticesSearch';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router';
-import NoticesNavContainer from './NoticesPage.styled';
+import styles from './NoticesPage.styled';
 
+const { NoticesSection, NoticesNavContainer } = styles;
 const NoticesPage = () => {
   return (
-    <>
+    <NoticesSection>
       <NoticesSearch />
       <NoticesNavContainer>
         <NoticesCategoriesNav />
@@ -16,7 +17,7 @@ const NoticesPage = () => {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-    </>
+    </NoticesSection>
   );
 };
 

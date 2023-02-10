@@ -1,8 +1,7 @@
-import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import select from 'redux/auth/selectors';
 import styles from './NoticesCategoriesNav.styled';
 import options from './options';
+import hooks from 'hooks';
 const {
   CategoriesItem,
   CategoriesList,
@@ -10,11 +9,10 @@ const {
   LogInNoticesNav,
   NoticesNav,
 } = styles;
-const { selectIsLoggedIn } = select;
 
 const NoticesCategoriesNav = () => {
   const location = useLocation();
-  const { isLoggedIn } = useSelector(selectIsLoggedIn);
+  const { isLoggedIn } = hooks.useAuth();
   const { navOptions, privateNavOptions } = options;
 
   return (

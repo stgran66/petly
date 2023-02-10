@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import { IconButton, InputBase, Paper } from '@mui/material';
+import { IconButton, InputBase, FormControl } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
@@ -21,15 +21,14 @@ const SearchTitle = styled('h2')`
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     margin: 60px 0 40px;
-    font-size: ${({ theme }) => theme.fontSizes.headers.l};
   }
 `;
-const SearchForm = styled(Paper)`
+const SearchForm = styled(FormControl)`
   width: 100%;
+  box-sizing: border-box;
   max-width: 608px;
   display: flex;
   align-items: center;
-  height: 40px;
   background-color: ${({ theme }) => theme.colors.white};
   border: none;
   margin: 0 auto;
@@ -44,39 +43,43 @@ const SearchForm = styled(Paper)`
 
 const SearchInput = styled(InputBase)`
   width: 100%;
+  height: 40px;
   font-size: 16px;
   padding-left: 14px;
-   cursor: pointer;
+  cursor: pointer;
+  font-family: ${({ theme }) => theme.fonts[0]};
 
   &::placeholder {
     padding: 8px 0;
     font-weight: ${({ theme }) => theme.fontWeights.medium};
     color: #535353;
     font-size: inherit;
-    font-family: ${({ theme }) => theme.fonts[0]}
+    font-family: ${({ theme }) => theme.fonts[0]};
     line-height: ${({ theme }) => theme.lineHeights.m};
     letter-spacing: 0.04em;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-     font-size: ${({ theme }) => theme.fontSizes.text.xl};
+    font-size: ${({ theme }) => theme.fontSizes.text.xl};
     padding-left: 20px;
-     height: 44px;
-     border-radius: 40px;
-     &::placeholder {
+    height: 44px;
+    border-radius: 40px;
+    &::placeholder {
       font-size: ${({ theme }) => theme.fontSizes.text.xl};
-  };
-}
+    }
+  }
 `;
 
 const InputSearchIcon = styled('span')`
   margin-right: 12px;
+  display: flex;
+  align-items: center;
 `;
 
 const InputButton = styled(IconButton)`
   width: 35px;
   height: 35px;
   margin-right: 4px;
-  padding: 12px;
+  padding: 8px;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.text};
   transition: ${({ theme }) => theme.transitions.normal};

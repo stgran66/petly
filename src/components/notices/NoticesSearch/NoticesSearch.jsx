@@ -36,23 +36,19 @@ const NoticeSearch = () => {
           onChange={onInputChange}
           value={filterValue}
           type="text"
-          autocomplete="off"
           inputProps={{ 'aria-label': 'search' }}
+          endAdornment={
+            emptyInput ? (
+              <InputSearchIcon>
+                <IconSearch />
+              </InputSearchIcon>
+            ) : (
+              <InputButton type="button" onClick={reset} aria-label="search">
+                <IconClose />
+              </InputButton>
+            )
+          }
         />
-        {emptyInput ? (
-          <InputSearchIcon>
-            <IconSearch />
-          </InputSearchIcon>
-        ) : (
-          <InputButton
-            type="button"
-            onClick={reset}
-            onClearSearchInput
-            aria-label="search"
-          >
-            <IconClose />
-          </InputButton>
-        )}
       </SearchForm>
     </>
   );
