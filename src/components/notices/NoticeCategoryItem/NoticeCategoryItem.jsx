@@ -28,6 +28,7 @@ const NoticeCategoryItem = ({ notice, category }) => {
     LearnMore,
     FavouriteIcon,
     AddedToFav,
+    BtnDelete,
   } = styles;
   const [showModal, setShowModal] = useState(false);
   const handleSubmit = e => {
@@ -62,6 +63,13 @@ const NoticeCategoryItem = ({ notice, category }) => {
         <LearnMore type="button" onClick={() => setShowModal(true)}>
           Learn more
         </LearnMore>
+        {addedToFav ? (
+          <BtnDelete type="button" onClick={() => setAddedToFav(false)}>
+            Delete
+          </BtnDelete>
+        ) : (
+          ''
+        )}
       </About>
       {showModal && (
         <Modal toggleModal={() => setShowModal(s => !s)} notice={notice}>
