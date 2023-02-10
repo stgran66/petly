@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-// import styled from 'styled-components';
+
 import { Camera20Filled } from '@fluentui/react-icons';
 
 import { RiPencilFill } from 'react-icons/ri';
@@ -102,7 +102,9 @@ const ContainerWrappInfo = styled('ul')`
     flex-grow: 1;
   }
 `;
-const UserDataItemWrapp = styled('li')`
+const UserDataItemWrapp = styled('li')``;
+
+const UserDataItemForm = styled('form')`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -147,6 +149,10 @@ const UserDataItemInput = styled('input')`
     background-color: ${props => props.theme.colors.commonBackground};
   }
 
+  &:disabled {
+    color: black;
+  }
+
   /* &[type='disabled'],
   &[type='disabled'] {
     color: ${props => props.theme.colors.commonBackground};
@@ -166,8 +172,6 @@ const UserDataItemInput = styled('input')`
 `;
 
 const ButtonWrapp = styled('button')`
-  outline: 1px solid red;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -240,5 +244,6 @@ const styles = {
   InfoSubmitIcon,
   UserDataItemLabel,
   UserDataItemInput,
+  UserDataItemForm,
 };
 export default styles;
