@@ -49,10 +49,10 @@ const UserDataItem = ({
     setActive(name);
   };
 
-  //   const handleSubmit = name => {
-  //     setActive('');
-  //     dispatch(updateUserData({ [name]: inputValue }));
-  //   };
+  const handleSubmit = name => {
+    setActive('');
+    //   dispatch(updateUserData({ [name]: inputValue }));
+  };
 
   return (
     <UserDataItemWrapp>
@@ -69,14 +69,11 @@ const UserDataItem = ({
         />
 
         {active === name ? (
-          <ButtonWrapp type="button">
+          <ButtonWrapp type="button" onClick={() => handleSubmit(name)}>
             <InfoSubmitIcon />
           </ButtonWrapp>
         ) : (
-          //           <ButtonWrapp type="button" onClick={handleSubmit(name)}>
-          //     <InfoSubmitIcon />
-          //   </ButtonWrapp>
-          <ButtonWrapp type="button" onClick={activeHandleClick(name)}>
+          <ButtonWrapp type="button" onClick={() => activeHandleClick(name)}>
             <InfoChangeIcon />
           </ButtonWrapp>
         )}

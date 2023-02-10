@@ -26,11 +26,11 @@ const UserData = () => {
   const user = useSelector(selectUserInfo);
   const [active, setActive] = useState('');
 
-  // const changeFoto = e => {
-  //   const result = new FormData();
-  //   result.append('avatar', e.target.files[0]);
-  //   dispatch(updateUserData(result));
-  // };
+  const changeFoto = e => {
+    const result = new FormData();
+    result.append('avatar', e.target.files[0]);
+    // dispatch(updateUserData(result));
+  };
 
   const patternEmail = /^(?!-)[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$/;
   // const patternDate=/\d{4}-\d{2}-\d{2}/
@@ -50,7 +50,7 @@ const UserData = () => {
                 type="file"
                 accept="image/*"
                 name="avatar"
-                // onChange={changeFoto}
+                onChange={changeFoto}
                 hidden
               />
             </FotoLabel>

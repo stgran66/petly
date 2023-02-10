@@ -5,13 +5,13 @@ const { fetchUserData } = userOperations;
 
 const userInitialState = {
   userInfo: {
-    _id: null,
-    email: null,
-    name: null,
-    city: null,
-    phone: null,
-    birthday: null,
-    avatarURL: null,
+    _id: '',
+    email: '',
+    name: '',
+    city: '',
+    phone: '',
+    birthday: '',
+    avatarURL: '',
     favorite: [],
   },
   // userPets: [],
