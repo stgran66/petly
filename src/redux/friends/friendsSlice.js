@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import fetchFriends from './operations';
 
-const noticesInitialState = {
+const friendsInitialState = {
   items: [],
   isLoading: false,
   error: null,
@@ -23,8 +23,8 @@ const onRejectedReducer = (state, action) => {
 };
 
 const friendsSlice = createSlice({
-  name: 'notices',
-  initialState: noticesInitialState,
+  name: 'friends',
+  initialState: friendsInitialState,
   extraReducers: builder =>
     builder
       .addCase(fetchFriends.fulfilled, onFetchSuccessReducer)
