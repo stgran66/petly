@@ -63,6 +63,7 @@ const Category = styled('span')`
   top: 20px;
   padding: 6px 0 6px 20px;
   width: 158px;
+  text-align: center;
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
   font-weight: ${props => props.theme.fontWeights.medium};

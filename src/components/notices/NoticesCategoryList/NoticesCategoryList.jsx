@@ -39,7 +39,7 @@ const NoticesCategoryList = () => {
                 <NoticeCategoryItem
                   id={notice._id}
                   notice={notice}
-                  isLoading={isLoading}
+                  category={category}
                 />
               </ListItem>
             ))
