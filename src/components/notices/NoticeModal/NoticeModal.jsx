@@ -3,7 +3,7 @@ import style from './NoticeModal.styled';
 import { ReactComponent as HeartIcon } from 'images/fav-icon.svg';
 import ModalBtnClose from '../ModalBtnClose';
 
-const NoticeModal = toggleModal => {
+const NoticeModal = ({ notice }) => {
   const {
     Container,
     Wrapper,
@@ -19,6 +19,9 @@ const NoticeModal = toggleModal => {
     ContactButton,
     ChangeFavoriteStatusBtn,
   } = style;
+  const { title, name, birthday, breed, place, sex, email, phone, price } =
+    notice;
+
   return (
     <Container>
       <Wrapper>
@@ -27,39 +30,39 @@ const NoticeModal = toggleModal => {
           <Category>sell/in good hands</Category>
         </ImgWrapper>
         <ListWrapper>
-          <Title>Сute dog looking for a home</Title>
+          <Title>{title}</Title>
           <List>
             <Item>
               <ItemInfo>Name:</ItemInfo>
-              <ItemInfo>Rich</ItemInfo>
+              <ItemInfo>{name}</ItemInfo>
             </Item>
             <Item>
               <ItemInfo>Birthtay:</ItemInfo>
-              <ItemInfo>23.08.2021</ItemInfo>
+              <ItemInfo>{birthday}</ItemInfo>
             </Item>
             <Item>
               <ItemInfo>Breed:</ItemInfo>
-              <ItemInfo>ItemInfoomeranian</ItemInfo>
+              <ItemInfo>{breed}</ItemInfo>
             </Item>
             <Item>
               <ItemInfo>Location:</ItemInfo>
-              <ItemInfo>Lviv</ItemInfo>
+              <ItemInfo>{place}</ItemInfo>
             </Item>
             <Item>
               <ItemInfo>The sex:</ItemInfo>
-              <ItemInfo>male</ItemInfo>
+              <ItemInfo>{sex}</ItemInfo>
             </Item>
             <Item>
               <ItemInfo>Email:</ItemInfo>
-              <ItemInfo>user@gmail.com</ItemInfo>
+              <ItemInfo>{email}</ItemInfo>
             </Item>
             <Item>
               <ItemInfo>Pohone:</ItemInfo>
-              <ItemInfo>+380993292345</ItemInfo>
+              <ItemInfo>{phone}</ItemInfo>
             </Item>
             <Item>
               <ItemInfo>Sell:</ItemInfo>
-              <ItemInfo>100$</ItemInfo>
+              <ItemInfo>{price}$</ItemInfo>
             </Item>
           </List>
         </ListWrapper>
@@ -73,7 +76,7 @@ const NoticeModal = toggleModal => {
           <HeartIcon />
         </ChangeFavoriteStatusBtn>
       </BtnWrapper>
-      <ModalBtnClose toggleModal={toggleModal} />
+      <ModalBtnClose />
     </Container>
   );
 };
