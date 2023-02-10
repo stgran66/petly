@@ -37,7 +37,6 @@ const NoticeCategoryItem = ({ notice }) => {
       ? Notify.info('Please authorize to access your account and add notice')
       : setAddedToFav(true);
   };
-  console.log(addedToFav);
   return (
     <NoticeItemCard>
       <ImgWrapper>
