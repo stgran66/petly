@@ -18,6 +18,7 @@ const theme = createTheme({
     placeholderText: 'rgba(17, 17, 17, 0.6)',
     links: '#3091EB',
     white: '#FFFFFF',
+    black: '#000000',
     navLinks: '#181C27',
   },
   gradients: {
@@ -71,6 +72,8 @@ const theme = createTheme({
   },
 });
 
-const Theme = ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+const Theme = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
 
 export default Theme;
