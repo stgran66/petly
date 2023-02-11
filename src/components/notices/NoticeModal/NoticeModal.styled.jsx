@@ -55,6 +55,7 @@ const Category = styled('span')`
   left: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   min-height: 28px;
   min-width: 158px;
   padding-left: 20px;
@@ -109,6 +110,25 @@ const ItemInfo = styled('p')`
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     min-width: 120px;
 
+    font-size: 16px;
+    line-height: 1.5;
+  }
+`;
+const ContLink = styled('a')`
+  font-size: 14px;
+  line-height: 1.35;
+  color: ${props => props.theme.colors.text};
+  overflow: hidden;
+  word-wrap: break-word;
+
+  transition: color ${props => props.theme.transitions.normal};
+
+  &:hover,
+  &:focus {
+    color: ${props => props.theme.colors.accent};
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: 16px;
     line-height: 1.5;
   }
@@ -206,6 +226,7 @@ const style = {
   BtnWrapper,
   ContactButton,
   ChangeFavoriteStatusBtn,
+  ContLink,
 };
 
 export default style;

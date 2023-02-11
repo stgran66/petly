@@ -14,7 +14,7 @@ const NoticeCategoryItem = ({ notice, category }) => {
   const [addedToFav, setAddedToFav] = useState(false);
   const [categoryName, setCategoryName] = useState('sell');
   useCategories(category, setCategoryName);
-  const { title, breed, place, age } = notice;
+  const { title, breed, place, age, price } = notice;
   const {
     NoticeItemCard,
     Image,
@@ -30,6 +30,7 @@ const NoticeCategoryItem = ({ notice, category }) => {
     AddedToFav,
     BtnDelete,
   } = styles;
+  // console.log(category === 'sell');
   const [showModal, setShowModal] = useState(false);
   const handleSubmit = e => {
     Notify.init({
@@ -59,6 +60,14 @@ const NoticeCategoryItem = ({ notice, category }) => {
           <Content>{place}</Content>
           <Content>Age:</Content>
           <Content>{age}</Content>
+          {category === 'sell' ? (
+            <>
+              <Content Content> Price:</Content>
+              <Content>{price}</Content>
+            </>
+          ) : (
+            ''
+          )}
         </AboutList>
         <LearnMore type="button" onClick={() => setShowModal(true)}>
           Learn more
@@ -72,7 +81,11 @@ const NoticeCategoryItem = ({ notice, category }) => {
         )}
       </About>
       {showModal && (
-        <Modal toggleModal={() => setShowModal(s => !s)} notice={notice}>
+        <Modal
+          toggleModal={() => setShowModal(s => !s)}
+          notice={notice}
+          category={category}
+        >
           <NoticeModal />
           {/* <ModalBtnClose /> */}
         </Modal>
