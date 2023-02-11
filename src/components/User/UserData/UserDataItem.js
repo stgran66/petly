@@ -1,9 +1,11 @@
 import { useState } from 'react';
 // import { useRef } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import userOperations from 'redux/user/operations';
+import userSelectors from 'redux/user/selectors';
 import styles from './UserData.styled';
+import Loader from 'components/Loader';
 // import ButtonChange from './ButtonChange';
 // import ButtonSubmit from './ButtonSubmit';
 const {
@@ -18,6 +20,7 @@ const {
 } = styles;
 
 const { updateUserData } = userOperations;
+const { selectLoadingUser, selectErrorUser } = userSelectors;
 
 const UserDataItem = ({
   name,
@@ -28,6 +31,8 @@ const UserDataItem = ({
   setActive,
 }) => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoadingUser);
+  const error = useSelector(selectErrorUser);
   const [inputValue, setInputValue] = useState(defaultValue);
   //   const inputRef = useRef(null);
 
@@ -66,30 +71,37 @@ const UserDataItem = ({
 
   return (
     <UserDataItemWrapp>
-      <UserDataItemForm>
-        <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
-        <InputWrapp>
-          <UserDataItemInput
-            onChangeCapture={handleChange}
-            defaultValue={inputValue}
-            active={active === name}
-            disabled={active !== name}
-            type={type}
-            name={name}
-            id={name}
-            //   ref={inputRef}
-          />
-          {active === name ? (
-            <ButtonWrapp type="button" onClick={() => handleSubmit(name)}>
-              <InfoSubmitIcon />
-            </ButtonWrapp>
-          ) : (
-            <ButtonWrapp type="button" onClick={() => activeHandleClick(name)}>
-              <InfoChangeIcon />
-            </ButtonWrapp>
-          )}
-        </InputWrapp>
-      </UserDataItemForm>
+      {isLoading && !error ? (
+        <Loader />
+      ) : (
+        <UserDataItemForm>
+          <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
+          <InputWrapp>
+            <UserDataItemInput
+              onChangeCapture={handleChange}
+              defaultValue={inputValue}
+              active={active === name}
+              disabled={active !== name}
+              type={type}
+              name={name}
+              id={name}
+              //   ref={inputRef}
+            />
+            {active === name ? (
+              <ButtonWrapp type="button" onClick={() => handleSubmit(name)}>
+                <InfoSubmitIcon />
+              </ButtonWrapp>
+            ) : (
+              <ButtonWrapp
+                type="button"
+                onClick={() => activeHandleClick(name)}
+              >
+                <InfoChangeIcon />
+              </ButtonWrapp>
+            )}
+          </InputWrapp>
+        </UserDataItemForm>
+      )}
     </UserDataItemWrapp>
   );
 };
