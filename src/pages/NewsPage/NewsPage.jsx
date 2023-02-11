@@ -47,7 +47,7 @@ function NewsPage() {
         });
     };
     getAllData();
-  }, [searchArticle]);
+  }, [searchArticle, data]);
   // }, [data, searchArticle]);
 
   function handleSubmit(e) {
