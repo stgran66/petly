@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import userOperations from './operations';
 
-const { fetchUserData, updateUserData } = userOperations;
+const { fetchUserData, updateUserData, updateUserFoto } = userOperations;
 
 const userInitialState = {
   userInfo: {
@@ -54,6 +54,20 @@ const userSlice = createSlice({
     [updateUserData.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
+    },
+
+    [updateUserFoto.pending](state) {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [updateUserFoto.fulfilled](state, { payload }) {
+      state.userInfo.avatarURL = payload.avatarURL;
+      state.isLoading = false;
+      state.error = null;
+    },
+    [updateUserFoto.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.error;
     },
   },
 });

@@ -8,7 +8,7 @@ import UserDataItem from './UserDataItem';
 import styles from './UserData.styled';
 
 const { selectUserInfo } = userSelectors;
-// const { updateUserData } = userOperations;
+const { updateUserFoto } = userOperations;
 
 const {
   UserContainer,
@@ -22,14 +22,16 @@ const {
 } = styles;
 
 const UserData = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const user = useSelector(selectUserInfo);
   const [active, setActive] = useState('');
 
   const changeFoto = e => {
     const result = new FormData();
-    result.append('avatar', e.target.files[0]);
-    // dispatch(updateUserData(result));
+    console.log(result);
+    console.log(e.target.files[0]);
+    result.append('avatars', e.target.files[0]);
+    dispatch(updateUserFoto(result));
   };
 
   const patternEmail = /^(?!-)[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$/;
