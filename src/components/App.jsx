@@ -6,6 +6,7 @@ import pages from 'pages';
 import NoticesCategoryList from './notices/NoticesCategoryList';
 
 const {
+  HomePage,
   LoginPage,
   RegisterPage,
   UserPage,
@@ -18,7 +19,7 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<p>Home</p>} />
+        <Route index element={<HomePage />} />
         <Route path="news" element={<NewsPage />} />
         <Route path="notices" element={<NoticesPage />}>
           <Route index element={<Navigate to="sell" />} />
