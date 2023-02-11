@@ -10,7 +10,7 @@ const validationSchema = [
     [email.name]: Yup.string()
       .min(10)
       .max(63)
-      .matches(/^(?!-)[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$/)
+      .matches(/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/)
       .required(`${email.requiredErrorMsg}`),
     [password.name]: Yup.string()
       .min(7)

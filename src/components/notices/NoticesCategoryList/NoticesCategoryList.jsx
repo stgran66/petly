@@ -36,7 +36,11 @@ const NoticesCategoryList = () => {
           ) : (
             filteredNotices.map(notice => (
               <ListItem key={notice._id}>
-                <NoticeCategoryItem id={notice._id} />
+                <NoticeCategoryItem
+                  id={notice._id}
+                  notice={notice}
+                  category={category}
+                />
               </ListItem>
             ))
           )}

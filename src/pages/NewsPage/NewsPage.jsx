@@ -4,15 +4,17 @@ import { useState, useEffect } from 'react';
 import styles from './NewsPage.styled';
 import Loader from 'components/Loader';
 const {
-  Icon,
+  IconSearch,
   SearchForm,
   SearchInput,
   SearchTitle,
   ArticleUrl,
-  InputIcon,
+  InputSearchIcon,
   ArticleDate,
   ArticleTitle,
   ArticleText,
+  IconClose,
+  InputButton,
 } = styles;
 
 function NewsPage() {
@@ -24,37 +26,71 @@ function NewsPage() {
       axios
         .get('https://petly-backend-9tz8.onrender.com/api/news')
         .then(response => {
-          const filterArticle = query => {
-            if (!query) {
-              return response.data;
-            }
-            return response.data.filter(({ title }) =>
-              title.toLowerCase().includes(query.toLowerCase())
-            );
-          };
-          const filteredNews = filterArticle(searchArticle, data);
-          setData(filteredNews);
+          let news = response.data;
+          // for (let article of news) {
+          //   article.date = new Date(article.date).valueOf();
+          // }
+          // news.sort((a, b) => b.date - a.date);
+          // const filterArticle = query => {
+          //   if (!query) {
+          //     return news;
+          //   }
+          //   return news.filter(({ title }) =>
+          //     title.toLowerCase().includes(query.toLowerCase())
+          //   );
+          // };
+          // const filteredNews = filterArticle(searchArticle, data);
+          // setData(filteredNews);
+          setData(news);
         })
         .catch(error => {
           console.log(error);
         });
     };
     getAllData();
-  }, [data, searchArticle]);
+  }, [searchArticle]);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+  const reset = () => {
+    setSearchArticle('');
+  };
+  const getFormattedData = date => {
+    let formattedDay = new Date(date).getDate();
+    let formattedMonth = new Date(date).getMonth();
+    let formattedYear = new Date(date).getFullYear();
+    if (formattedDay < 10) {
+      formattedDay = `0${formattedDay}`;
+    }
+    if (formattedMonth < 10) {
+      formattedMonth = `0${formattedMonth}`;
+    }
+    return `${formattedDay}/${formattedMonth}/${formattedYear}`;
+  };
+
+  const emptyInput = searchArticle === '';
   return (
     <>
       <SearchTitle>News Page</SearchTitle>
-      <SearchForm>
+      <SearchForm onSubmit={handleSubmit}>
         <SearchInput
           placeholder="Search"
           value={searchArticle}
           onChange={e => setSearchArticle(e.target.value)}
           onSubmit={e => setSearchArticle(e.target.value)}
+          endAdornment={
+            emptyInput ? (
+              <InputSearchIcon>
+                <IconSearch />
+              </InputSearchIcon>
+            ) : (
+              <InputButton type="button" onClick={reset} aria-label="search">
+                <IconClose />
+              </InputButton>
+            )
+          }
         />
-        <InputIcon>
-          <Icon />
-        </InputIcon>
       </SearchForm>
 
       {data ? (
@@ -63,7 +99,7 @@ function NewsPage() {
             <div key={data._id}>
               <ArticleTitle>{data.title}</ArticleTitle>
               <ArticleText>{data.description}</ArticleText>
-              <ArticleDate>{data.date}</ArticleDate>
+              <ArticleDate>{getFormattedData(data.date)}</ArticleDate>
               <ArticleUrl
                 href={data.url}
                 target="_blank"
