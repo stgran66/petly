@@ -1,21 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 import userOperations from './operations';
 
-const { fetchUserData } = userOperations;
+const { fetchUserData, updateUserData, updateUserFoto } = userOperations;
 
 const userInitialState = {
   userInfo: {
-    _id: null,
-    email: null,
-    name: null,
-    city: null,
-    phone: null,
-    birthday: null,
-    avatarURL: null,
+    _id: '',
+    email: '',
+    name: '',
+    city: '',
+    phone: '',
+    birthday: '',
+    avatarURL: '',
     favorite: [],
+    userPets: [],
   },
-  // userPets: [],
-  // favorite: [],
   isLoading: false,
   error: null,
 };
@@ -37,6 +36,41 @@ const userSlice = createSlice({
     [fetchUserData.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
+    },
+
+    [updateUserData.pending](state) {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [updateUserData.fulfilled](state, { payload }) {
+      state.userInfo = payload.user;
+      state.isLoading = false;
+      state.error = null;
+    },
+
+    // [updateUserData.fulfilled](state, { payload }) {
+    //   state.userInfo[Object.keys(payload.user)[0]] = Object.values(payload.user)[0];
+    //   state.isLoading = false;
+    //   state.error = null;
+    // },
+    [updateUserData.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+
+    [updateUserFoto.pending](state) {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [updateUserFoto.fulfilled](state, { payload }) {
+      state.userInfo.avatarURL = payload.avatarURL;
+      // state.userInfo = { ...payload.user, avatarURL: payload.avatarURL };
+      state.isLoading = false;
+      state.error = null;
+    },
+    [updateUserFoto.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.error;
     },
   },
 });

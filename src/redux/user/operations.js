@@ -6,6 +6,7 @@ const fetchUserData = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/api/user');
+      console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -15,16 +16,30 @@ const fetchUserData = createAsyncThunk(
 
 const updateUserData = createAsyncThunk(
   'user/updateData',
-  async (_, thunkAPI) => {
+  async (updateData, thunkAPI) => {
     try {
-      // const response = await axios.get('/api/user');
-      // return response.data;
-    } catch (e) {
-      // return thunkAPI.rejectWithValue(e.message);
+      const response = await axios.put('/api/auth/update', updateData);
+      console.log(response.data);
+      return response.data;
+    } catch ({ response }) {
+      return thunkAPI.rejectWithValue(response.data.message);
     }
   }
 );
 
-const userOperations = { fetchUserData, updateUserData };
+const updateUserFoto = createAsyncThunk(
+  'user/updateUserFoto',
+  async (newData, thunkAPI) => {
+    try {
+      const response = await axios.patch('/api/auth/avatars', newData);
+      console.log(response.data);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+const userOperations = { fetchUserData, updateUserData, updateUserFoto };
 
 export default userOperations;
