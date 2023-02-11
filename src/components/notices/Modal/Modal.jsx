@@ -22,7 +22,11 @@ const Modal = ({ toggleModal, notice, category }) => {
 
   return (
     <Overlay onClick={onBackdropClick}>
-      <NoticeModal notice={notice} category={category} />
+      <NoticeModal
+        notice={notice}
+        category={category}
+        toggleModal={toggleModal}
+      />
     </Overlay>
   );
 };

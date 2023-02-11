@@ -5,7 +5,7 @@ import useCategories from 'hooks/useCategories';
 import { ReactComponent as HeartIcon } from 'images/fav-icon.svg';
 import ModalBtnClose from '../ModalBtnClose';
 
-const NoticeModal = ({ notice, category }) => {
+const NoticeModal = ({ notice, category, toggleModal }) => {
   const [categoryName, setCategoryName] = useState('sell');
   useCategories(category, setCategoryName);
   const {
@@ -59,16 +59,20 @@ const NoticeModal = ({ notice, category }) => {
             </Item>
             <Item>
               <ItemInfo>Email:</ItemInfo>
-              <ContLink href="mailto">{email ? email : '-------'}</ContLink>
+              <ContLink href={`mailto: ${email}`}>
+                {email ? email : '-------'}
+              </ContLink>
             </Item>
             <Item>
-              <ItemInfo>Pohone:</ItemInfo>
-              <ContLink href="tel">{phone ? phone : '-------'}</ContLink>
+              <ItemInfo>Phone:</ItemInfo>
+              <ContLink href={`tel: ${phone}`}>
+                {phone ? phone : '-------'}
+              </ContLink>
             </Item>
             {category === 'sell' ? (
               <Item>
                 <ItemInfo>Sell:</ItemInfo>
-                <ItemInfo>{price}$</ItemInfo>
+                <ItemInfo>{price}</ItemInfo>
               </Item>
             ) : (
               ''
@@ -83,14 +87,14 @@ const NoticeModal = ({ notice, category }) => {
         quos, recusandae natus!
       </ItemInfo>
       <BtnWrapper>
-        <ContactButton href={phone}>Contact</ContactButton>
+        <ContactButton href={`tel: ${phone}`}>Contact</ContactButton>
         <ChangeFavoriteStatusBtn type="button" onClick="#">
           {/* {!favorite ? 'Add to' : 'Remove from'} */}
           Add to
           <HeartIcon />
         </ChangeFavoriteStatusBtn>
       </BtnWrapper>
-      <ModalBtnClose />
+      <ModalBtnClose toggleModal={toggleModal} />
     </Container>
   );
 };
