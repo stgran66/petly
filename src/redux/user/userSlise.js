@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import userOperations from './operations';
 
-const { fetchUserData, updateUserData, updateUserFoto } = userOperations;
+const { fetchUserData, updateUserData, updateUserFoto, deleteUserPet } =
+  userOperations;
 
 const userInitialState = {
   userInfo: {
@@ -65,6 +66,15 @@ const userSlice = createSlice({
     [updateUserFoto.rejected](state, action) {
       state.isLoading = false;
       state.error = action.error;
+    },
+
+    [deleteUserPet.fulfilled](state, { payload }) {
+      state.isLoading = false;
+      state.error = null;
+      const index = state.userInfo.pets.findIndex(
+        pet => pet._id === payload._id
+      );
+      state.userInfo.pets.splice(index, 1);
     },
   },
 });
