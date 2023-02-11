@@ -43,7 +43,7 @@ const userSlice = createSlice({
       state.error = null;
     },
     [updateUserData.fulfilled](state, { payload }) {
-      state.userInfo = payload.user;
+      state.userInfo = payload;
       state.isLoading = false;
       state.error = null;
     },

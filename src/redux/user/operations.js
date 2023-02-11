@@ -6,7 +6,7 @@ const fetchUserData = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/api/user');
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -19,7 +19,7 @@ const updateUserData = createAsyncThunk(
   async (updateData, thunkAPI) => {
     try {
       const response = await axios.put('/api/auth/update', updateData);
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch ({ response }) {
       return thunkAPI.rejectWithValue(response.data.message);

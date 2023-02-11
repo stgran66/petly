@@ -48,9 +48,8 @@ const UserData = () => {
 
   return (
     <UserContainer>
-      {isLoading && !error ? (
-        <Loader />
-      ) : (
+      {isLoading && !error && <Loader />}
+      {user && !isLoading && (
         <>
           <ContainerWrappFoto>
             <WrappFoto>
