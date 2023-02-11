@@ -1,16 +1,17 @@
-import { styled } from '@mui/system';
-import { Form } from 'formik';
-import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
+import { styled } from '@mui/system';
+import { Link } from 'react-router-dom';
+import { Form } from 'formik';
 
-const LoginForm = styled(Form)`
+const RegisterForm = styled(Form)`
   display: grid;
   margin-top: 42px;
   width: 100%;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    display: grid;
     margin: auto;
-    margin-top: 276px;
+    margin-top: 173px;
     width: 608px;
     padding: 60px 80px 40px 80px;
     background: #ffffff;
@@ -20,13 +21,13 @@ const LoginForm = styled(Form)`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     width: 618px;
-    margin-top: 91px;
-    padding: 60px 80px 60px 80px;
+    padding: 60px 80px;
     background: #ffffff;
     box-shadow: ${({ theme }) => theme.shadows.cardsShadowUser};
     border-radius: 40px;
   }
 `;
+
 const Title = styled('h1')`
   color: ${prop => prop.theme.colors.text};
 
@@ -44,7 +45,6 @@ const Title = styled('h1')`
     fon-size: ${prop => prop.theme.fontSizes.headers.m};
     line-height: ${prop => prop.theme.lineHeights.s};
   }
-
 `;
 
 const Buttons = styled(Button)(({ theme }) => ({
@@ -69,34 +69,28 @@ const Buttons = styled(Button)(({ theme }) => ({
 }));
 
 const AccountRedirect = styled('p')`
-color: ${prop => prop.theme.colors.placeholderText};
+  color: ${prop => prop.theme.colors.placeholderText};
 
+  text-align: center;
+  margin-top: 40px;
 
-text-align: center;
-margin-top: 40px;
-
-font-family: ${prop => prop.theme.fonts[0]};
-font-weight: ${prop => prop.theme.fontWeights.normal};
-fon-size: ${prop => prop.theme.fontSizes.text.xs};
-line-height: ${prop => prop.theme.lineHeights.xs};
+  font-family: ${prop => prop.theme.fonts[0]};
+  font-weight: ${prop => prop.theme.fontWeights.normal};
+  fon-size: ${prop => prop.theme.fontSizes.text.xs};
+  line-height: ${prop => prop.theme.lineHeights.xs};
 `;
 
-const LinkRegisterRoute = styled(Link)`
+const LinkLoginRoute = styled(Link)`
   text-decoration: underline;
   color: ${prop => prop.theme.colors.links};
-`;
-
-const Container = styled('div')`
-  margin: 40px 0;
 `;
 
 const styles = {
   Title,
   Buttons,
   AccountRedirect,
-  LinkRegisterRoute,
-  LoginForm, 
-  Container
+  LinkLoginRoute,
+  RegisterForm,
 };
 
-export default styles
+export default styles;

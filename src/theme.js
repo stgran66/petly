@@ -19,6 +19,9 @@ const theme = createTheme({
     links: '#3091EB',
     white: '#FFFFFF',
     navLinks: '#181C27',
+    black: '#000000',
+    focusTextFields: '#FF6101',
+    
   },
   gradients: {
     backgroundGradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
