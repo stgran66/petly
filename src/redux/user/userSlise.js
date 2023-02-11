@@ -13,7 +13,7 @@ const userInitialState = {
     birthday: '',
     avatarURL: '',
     favorite: [],
-    userPets: [],
+    pets: [],
   },
   isLoading: false,
   error: null,
@@ -36,7 +36,7 @@ const userSlice = createSlice({
       state.userInfo = payload.user;
       state.isLoading = false;
       state.error = null;
-      // state.userPets = [...payload.userPets];
+      state.pets = [...payload.pets];
     },
     [fetchUserData.rejected](state, action) {
       state.isLoading = false;

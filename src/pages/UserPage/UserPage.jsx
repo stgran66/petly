@@ -10,11 +10,10 @@ const { UserData, Logout, PetsData } = user;
 const { MainContainer, ContainerWrapp, UserContainer, Title } = styles;
 const { fetchUserData } = userOperations;
 
-const { selectUserInfo, selectLoadingUser, selectErrorUser } = userSelectors;
+const { selectLoadingUser, selectErrorUser } = userSelectors;
 
 const UserPage = () => {
   const dispatch = useDispatch();
-  const user = useSelector(selectUserInfo);
   const isLoading = useSelector(selectLoadingUser);
   const error = useSelector(selectErrorUser);
   // console.log(isLoading);
