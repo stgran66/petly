@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Typography } from '@mui/material';
-import { Formik, Form } from 'formik';
+import { Formik} from 'formik';
 
-import AddressForm from './Forms/AddressForm';
-import PaymentForm from './Forms/PaymentForm';
-import ReviewOrder from './Forms/ReviewOrder';
+import FirstStepInfo from './Forms/FirstStepInfo';
+import SecondStepInfo from './Forms/SecondStepInfo';
+import VerificationForm from './Forms/VerificationForm';
 
 import validationSchema from './FormModel/validationSchema';
 import checkoutFormModel from './FormModel/checkoutFormModel';
@@ -12,8 +11,8 @@ import formInitialValues from './FormModel/formInitialValues';
 
 import { useDispatch } from 'react-redux';
 import operations from '../../redux/auth/operations';
-import { Link } from 'react-router-dom';
 import Loader from 'components/Loader';
+import styles from './RegisterForm.styled';
 const { register } = operations;
 
 
@@ -23,11 +22,11 @@ const { formId, formField } = checkoutFormModel;
 function _renderStepContent(step) {
   switch (step) {
     case 0:
-      return <AddressForm formField={formField} />;
+      return <FirstStepInfo formField={formField} />;
     case 1:
-      return <PaymentForm formField={formField} />;
+      return <SecondStepInfo formField={formField} />;
     case 2:
-      return <ReviewOrder formField={formField} />;
+      return <VerificationForm formField={formField} />;
     default:
       return;
   }
@@ -40,7 +39,10 @@ const RegisterForm = () => {
   const isLastStep = activeStep === steps.length - 1;
   const dispatch = useDispatch();
 
-  const _submitForm = (values, actions) => {
+  const {Title,LinkLoginRoute, Buttons,RegisterForm, AccountRedirect} = styles
+
+
+  const _submitForm = (values) => {
     const { email, password, name, city, phone } = values;
 
     dispatch(
@@ -53,8 +55,6 @@ const RegisterForm = () => {
       })
     );
     setActiveLoader(true);
-    // actions.setSubmitting(false);
-    // setActiveStep(activeStep + 1);
   };
 
   const _handleSubmit = (values, actions) => {
@@ -72,46 +72,36 @@ const RegisterForm = () => {
   };
 
   return (
-    <React.Fragment>
-      <Typography component="h2" variant="h4" align="center">
-        Registration
-      </Typography>
-      <React.Fragment>
-        <Formik
-          initialValues={formInitialValues}
-          validationSchema={currentValidationSchema}
-          onSubmit={_handleSubmit}
-        >
-          {({ isSubmitting }) => (
-            <Form id={formId}>
-              {_renderStepContent(activeStep)}
-              {activeLoader ? (
-                <Loader></Loader>
-              ) : (
-                <div>
-                  {activeStep !== 0 && (
-                    <Button onClick={_handleBack}>Back</Button>
-                  )}
-                  <div>
-                    <Button
-                      disabled={isSubmitting}
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                    >
-                      {isLastStep ? 'Place order' : 'Next'}
-                    </Button>
-                    <p>
-                      Already have an account?<Link to="/login">Login</Link>
-                    </p>
-                  </div>
-                </div>
-              )}
-            </Form>
+    <Formik
+      initialValues={formInitialValues}
+      validationSchema={currentValidationSchema}
+      onSubmit={_handleSubmit}
+    >
+      {({ isSubmitting }) => (
+        <RegisterForm id={formId}>
+          <Title>Registration</Title>
+          {_renderStepContent(activeStep)}
+          {activeLoader ? (
+            <Loader></Loader>
+          ) : (
+            <div>
+              <div>
+                <Buttons disabled={isSubmitting} type="submit">
+                  {isLastStep ? 'Register' : 'Next'}
+                </Buttons>
+                {activeStep !== 0 && (
+                  <Buttons onClick={_handleBack} style={{marginTop: 16}}>Back</Buttons>
+                )}
+                <AccountRedirect>
+                  Already have an account?
+                  <LinkLoginRoute to="/login"> Login</LinkLoginRoute>
+                </AccountRedirect>
+              </div>
+            </div>
           )}
-        </Formik>
-      </React.Fragment>
-    </React.Fragment>
+        </RegisterForm>
+      )}
+    </Formik>
   );
 };
 

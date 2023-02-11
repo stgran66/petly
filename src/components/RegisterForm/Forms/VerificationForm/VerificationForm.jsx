@@ -3,7 +3,7 @@ import { useFormikContext } from 'formik';
 import { Typography, Grid } from '@mui/material';
 
 
-const ReviewOrder = props => {
+const VerificationForm = props => {
   const { values: formValues } = useFormikContext();
   const { email, name, city, phone } = formValues;
   return (
@@ -41,4 +41,4 @@ const ReviewOrder = props => {
   );
 };
 
-export default ReviewOrder;
+export default VerificationForm;
