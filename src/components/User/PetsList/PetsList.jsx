@@ -12,8 +12,6 @@ const { selectUserInfo, selectErrorUser, selectLoadingUser } = userSelectors;
 
 const PetsList = () => {
   const { pets } = useSelector(selectUserInfo);
-  console.log(pets);
-  console.log(pets.length);
 
   const isLoading = useSelector(selectLoadingUser);
   const error = useSelector(selectErrorUser);
