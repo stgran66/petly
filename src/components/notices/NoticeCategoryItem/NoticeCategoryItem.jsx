@@ -4,13 +4,16 @@ import NoticeModal from 'components/notices/NoticeCategoryItem';
 import Modal from 'components/notices/Modal';
 import hooks from 'hooks';
 import styles from './NoticeCategoryItem.styled';
+import useCategories from 'hooks/useCategories';
 // import { useDispatch, useSelector } from 'react-redux';
 
 // const { selectFilteredList, selectLoadingStatus, selectErrorMessage } =
 //   selectors;
-const NoticeCategoryItem = ({ notice }) => {
+const NoticeCategoryItem = ({ notice, category }) => {
   const { isLoggedIn } = hooks.useAuth();
   const [addedToFav, setAddedToFav] = useState(false);
+  const [categoryName, setCategoryName] = useState('sell');
+  useCategories(category, setCategoryName);
   const { title, breed, place, age } = notice;
   const {
     NoticeItemCard,
@@ -25,6 +28,7 @@ const NoticeCategoryItem = ({ notice }) => {
     LearnMore,
     FavouriteIcon,
     AddedToFav,
+    BtnDelete,
   } = styles;
   const [showModal, setShowModal] = useState(false);
   const handleSubmit = e => {
@@ -40,7 +44,7 @@ const NoticeCategoryItem = ({ notice }) => {
   return (
     <NoticeItemCard>
       <ImgWrapper>
-        <Category>sell/in good hands</Category>
+        <Category>{categoryName}</Category>
         <Image src={require('./Dog.jpeg')} alt="Dog" />
         <Button type="button" onClick={handleSubmit}>
           {addedToFav ? <AddedToFav /> : <FavouriteIcon />}
@@ -59,6 +63,13 @@ const NoticeCategoryItem = ({ notice }) => {
         <LearnMore type="button" onClick={() => setShowModal(true)}>
           Learn more
         </LearnMore>
+        {addedToFav ? (
+          <BtnDelete type="button" onClick={() => setAddedToFav(false)}>
+            Delete
+          </BtnDelete>
+        ) : (
+          ''
+        )}
       </About>
       {showModal && (
         <Modal toggleModal={() => setShowModal(s => !s)} notice={notice}>
