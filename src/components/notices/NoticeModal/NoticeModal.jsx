@@ -1,13 +1,24 @@
 import React from 'react';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import style from './NoticeModal.styled';
 import { useState } from 'react';
+import hooks from 'hooks';
 import useCategories from 'hooks/useCategories';
 import { ReactComponent as HeartIcon } from 'images/fav-icon.svg';
 import ModalBtnClose from '../ModalBtnClose';
 
-const NoticeModal = ({ notice, category, toggleModal }) => {
+const NoticeModal = ({ notice, category, toggleModal, favorite }) => {
   const [categoryName, setCategoryName] = useState('sell');
   useCategories(category, setCategoryName);
+  const { isLoggedIn } = hooks.useAuth();
+
+  const handleSubmit = e => {
+    Notify.init({
+      position: 'right-top',
+      distance: '8px',
+    });
+    Notify.info('Please authorize to access your account and add notice');
+  };
   const {
     Container,
     Wrapper,
@@ -88,11 +99,17 @@ const NoticeModal = ({ notice, category, toggleModal }) => {
       </ItemInfo>
       <BtnWrapper>
         <ContactButton href={`tel: ${phone}`}>Contact</ContactButton>
-        <ChangeFavoriteStatusBtn type="button" onClick="#">
-          {/* {!favorite ? 'Add to' : 'Remove from'} */}
-          Add to
-          <HeartIcon />
-        </ChangeFavoriteStatusBtn>
+        {!isLoggedIn ? (
+          <ChangeFavoriteStatusBtn type="button" onClick={handleSubmit}>
+            Add to
+            <HeartIcon />
+          </ChangeFavoriteStatusBtn>
+        ) : (
+          <ChangeFavoriteStatusBtn type="button">
+            {!favorite ? 'Add to' : 'Remove from'}
+            <HeartIcon />
+          </ChangeFavoriteStatusBtn>
+        )}
       </BtnWrapper>
       <ModalBtnClose toggleModal={toggleModal} />
     </Container>

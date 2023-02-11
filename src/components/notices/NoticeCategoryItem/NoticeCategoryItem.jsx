@@ -81,6 +81,7 @@ const NoticeCategoryItem = ({ notice, category }) => {
           toggleModal={() => setShowModal(s => !s)}
           notice={notice}
           category={category}
+          favorite={addedToFav}
         ></Modal>
       )}
     </NoticeItemCard>
