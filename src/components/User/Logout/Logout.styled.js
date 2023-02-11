@@ -12,7 +12,7 @@ const LogoutButton = styled('button')`
   background-color: transparent;
   color: ${props => props.theme.colors.placeholderText};
 
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: ${props => props.theme.transitions.normal};
 
   &:hover,
   &:focus {
@@ -27,7 +27,7 @@ const LogoutButton = styled('button')`
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     position: absolute;
-    bottom: 0;
+    bottom: 24px;
     left: 32px;
   }
 
@@ -35,6 +35,7 @@ const LogoutButton = styled('button')`
     position: relative;
     margin-left: 0;
     left: 0;
+    bottom: 0;
   }
 `;
 
@@ -43,14 +44,6 @@ const LogoutIcon = styled(IoExitOutline)`
   width: 20px;
   height: 20px;
   color: ${props => props.theme.colors.accent};
-  scale: 1;
-
-  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  &:focus {
-    scale: 1.3;
-  }
 `;
 
 const styles = { LogoutButton, LogoutIcon };
