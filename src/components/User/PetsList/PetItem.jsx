@@ -11,7 +11,8 @@ const {
   PetDeleteIcon,
 } = styles;
 
-const PetItem = () => {
+const PetItem = ({ pet }) => {
+  const { name, birthday, breed, photo, comments } = pet;
   // const dispatch = useDispatch();
 
   // const handleDelete = () => dispatch(deleteUserPet(pet.id));
@@ -19,22 +20,20 @@ const PetItem = () => {
 
   return (
     <>
-      <PetInfoFoto />
+      <PetInfoFoto src={photo} alt="pet foto" />
       <PetInfoWrapp>
         <PetInfo>
           <li>
-            <PetInfoName>Name:</PetInfoName> Jack
+            <PetInfoName>Name: </PetInfoName> {name}
           </li>
           <li>
-            <PetInfoName>Date of birth:</PetInfoName> 22.04.2018
+            <PetInfoName>Date of birth: </PetInfoName> {birthday}
           </li>
           <li>
-            <PetInfoName>Breed:</PetInfoName> Basenji
+            <PetInfoName>Breed: </PetInfoName> {breed}
           </li>
           <li>
-            <PetInfoName>Comments:</PetInfoName> Lorem ipsum dolor sit amet,
-            consecteturLorem ipsum dolor sit amet, consectetur Lorem ipsum dolor
-            sit amet, consectetur Lorem ipsum dolor sit amet, consectetur{' '}
+            <PetInfoName>Comments:</PetInfoName> {comments}
           </li>
         </PetInfo>
         <PetDeleteButton type="button">

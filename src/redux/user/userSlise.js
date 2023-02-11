@@ -22,11 +22,6 @@ const userInitialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState: userInitialState,
-  // redusers: {
-  //   removeState(state) {
-  //     state = userInitialState;
-  //   },
-  // },
   extraReducers: {
     [fetchUserData.pending](state) {
       state.isLoading = true;
@@ -73,8 +68,6 @@ const userSlice = createSlice({
     },
   },
 });
-
-export const { removeState } = userSlice.actions;
 
 const userReducer = userSlice.reducer;
 

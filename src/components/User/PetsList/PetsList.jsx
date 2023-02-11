@@ -16,31 +16,18 @@ const PetsList = () => {
 
   return (
     <>
-      {error && <h2>You don't have any pets yet </h2>}
-      {isLoading && <Loader />}
       <List>
-        <Item>
-          <PetItem />
-        </Item>
-        <Item>
-          <PetItem />
-        </Item>
-        <Item>
-          <PetItem />
-        </Item>
-        <Item>
-          <PetItem />
-        </Item>
+        {error && <h2>You don't have any pets yet </h2>}
+        {isLoading && <Loader />}
+        {pets.lenght > 0 &&
+          pets.map(pet => (
+            <Item key={pet._id}>
+              <PetItem pet={pet} />
+            </Item>
+          ))}
       </List>
     </>
   );
-
-  // return pets.map(pet => (
-  //   <li key={pet.id}>
-  //     <PetsItem item={pet} />
-  //     <button type="button">Delete</button>
-  //   </li>
-  // ));
 };
 
 export default PetsList;
