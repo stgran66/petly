@@ -19,7 +19,6 @@ const updateUserData = createAsyncThunk(
   async (updateData, thunkAPI) => {
     try {
       const response = await axios.put('/api/auth/update', updateData);
-      // console.log(response.data);
       return response.data;
     } catch ({ response }) {
       return thunkAPI.rejectWithValue(response.data.message);
