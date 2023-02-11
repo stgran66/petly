@@ -1,5 +1,6 @@
 import { styled } from '@mui/system';
 import { ReactComponent as FavIcon } from 'images/fav-icon.svg';
+import { ReactComponent as AddedToFavouriteIcon } from 'images/add-fav-icon.svg';
 
 const NoticeItemCard = styled('div')`
   display: flex;
@@ -43,7 +44,17 @@ const FavouriteIcon = styled(FavIcon)`
   :hover,
   :focus {
     stroke: #ff6101;
+    transition: ${props => props.theme.transitions.normal};
     /* fill: #ff6101; */
+  }
+`;
+const AddedToFav = styled(AddedToFavouriteIcon)`
+  fill: ${props => props.theme.colors.accent};
+  transition: ${props => props.theme.transitions.normal};
+  :hover,
+  :focus {
+    fill: #ff6101;
+    transition: ${props => props.theme.transitions.normal};
   }
 `;
 
@@ -52,6 +63,7 @@ const Category = styled('span')`
   top: 20px;
   padding: 6px 0 6px 20px;
   width: 158px;
+  text-align: center;
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
   font-weight: ${props => props.theme.fontWeights.medium};
@@ -136,6 +148,30 @@ const LearnMore = styled('button')`
   }
 `;
 
+const BtnDelete = styled('button')`
+  display: block;
+  width: 248px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+  border: 2px solid ${props => props.theme.colors.accent};
+  border-radius: 40px;
+  font-weight: ${props => props.theme.fontWeights.medium};
+  font-size: ${props => props.theme.fontSizes.text.m};
+  line-height: ${props => props.theme.lineHeights.xs};
+  letter-spacing: 0.04em;
+  color: ${props => props.theme.colors.accent};
+  cursor: pointer;
+  :hover,
+  :focus {
+    border-color: #ff6101;
+    color: #ff6101;
+  }
+`;
+
 const styles = {
   NoticeItemCard,
   Image,
@@ -148,5 +184,7 @@ const styles = {
   Content,
   LearnMore,
   FavouriteIcon,
+  AddedToFav,
+  BtnDelete,
 };
 export default styles;

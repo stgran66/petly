@@ -5,10 +5,10 @@ const Container = styled('div')`
   margin-inline: auto;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    max-width: min(100% - 40px, 768px);
+    max-width: min(100% - 64px, 768px);
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    max-width: min(100% - 40px, 1280px);
+    max-width: min(100% - 32px, 1280px);
   }
 `;
 const styles = { Container };
