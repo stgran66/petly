@@ -1,9 +1,13 @@
 import React from 'react';
 import style from './NoticeModal.styled';
+import { useState } from 'react';
+import useCategories from 'hooks/useCategories';
 import { ReactComponent as HeartIcon } from 'images/fav-icon.svg';
 import ModalBtnClose from '../ModalBtnClose';
 
-const NoticeModal = ({ notice }) => {
+const NoticeModal = ({ notice, category }) => {
+  const [categoryName, setCategoryName] = useState('sell');
+  useCategories(category, setCategoryName);
   const {
     Container,
     Wrapper,
@@ -18,6 +22,7 @@ const NoticeModal = ({ notice }) => {
     BtnWrapper,
     ContactButton,
     ChangeFavoriteStatusBtn,
+    ContLink,
   } = style;
   const { title, name, birthday, breed, place, sex, email, phone, price } =
     notice;
@@ -27,7 +32,7 @@ const NoticeModal = ({ notice }) => {
       <Wrapper>
         <ImgWrapper>
           <Img src={require('./DogModal.jpeg')} alt="dog" />
-          <Category>sell/in good hands</Category>
+          <Category>{categoryName}</Category>
         </ImgWrapper>
         <ListWrapper>
           <Title>{title}</Title>
@@ -54,22 +59,31 @@ const NoticeModal = ({ notice }) => {
             </Item>
             <Item>
               <ItemInfo>Email:</ItemInfo>
-              <ItemInfo>{email}</ItemInfo>
+              <ContLink href="mailto">{email ? email : '-------'}</ContLink>
             </Item>
             <Item>
               <ItemInfo>Pohone:</ItemInfo>
-              <ItemInfo>{phone}</ItemInfo>
+              <ContLink href="tel">{phone ? phone : '-------'}</ContLink>
             </Item>
-            <Item>
-              <ItemInfo>Sell:</ItemInfo>
-              <ItemInfo>{price}$</ItemInfo>
-            </Item>
+            {category === 'sell' ? (
+              <Item>
+                <ItemInfo>Sell:</ItemInfo>
+                <ItemInfo>{price}$</ItemInfo>
+              </Item>
+            ) : (
+              ''
+            )}
           </List>
         </ListWrapper>
       </Wrapper>
-      <ItemInfo>Comments</ItemInfo>
+      <ItemInfo>
+        <b>Comments:</b> Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Quidem, rem vero delectus quibusdam tempora sapiente! Praesentium
+        eaque consequuntur quas repellendus fuga sint officiis ea sed velit a
+        quos, recusandae natus!
+      </ItemInfo>
       <BtnWrapper>
-        <ContactButton href="tel">Contact</ContactButton>
+        <ContactButton href={phone}>Contact</ContactButton>
         <ChangeFavoriteStatusBtn type="button" onClick="#">
           {/* {!favorite ? 'Add to' : 'Remove from'} */}
           Add to
