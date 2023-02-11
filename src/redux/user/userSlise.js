@@ -36,7 +36,6 @@ const userSlice = createSlice({
       state.userInfo = payload.user;
       state.isLoading = false;
       state.error = null;
-      state.userInfo.pets = [...payload.user.pets];
     },
     [fetchUserData.rejected](state, action) {
       state.isLoading = false;

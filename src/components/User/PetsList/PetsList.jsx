@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import userSelectors from 'redux/user/selectors';
 
 import styles from './PetsList.styled';
 import PetItem from './PetItem';
 
 const { List, Item } = styles;
-const { selectUserInfo, selectLoadingUser, selectErrorUser } = userSelectors;
+const { selectUserInfo, selectErrorUser } = userSelectors;
 
 const PetsList = () => {
   const { pets } = useSelector(selectUserInfo);
   console.log(pets);
-  const isLoading = useSelector(selectLoadingUser);
+  // const isLoading = useSelector(selectLoadingUser);
   const error = useSelector(selectErrorUser);
   return (
     <>
