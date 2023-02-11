@@ -1,21 +1,23 @@
-// import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import userSelectors from 'redux/user/selectors';
+import Loader from 'components/Loader';
 
 import styles from './PetsList.styled';
 import PetItem from './PetItem';
 
 const { List, Item } = styles;
-const { selectUserInfo, selectErrorUser } = userSelectors;
+const { selectUserInfo, selectErrorUser, selectLoadingUser } = userSelectors;
 
 const PetsList = () => {
   const { pets } = useSelector(selectUserInfo);
   console.log(pets);
-  // const isLoading = useSelector(selectLoadingUser);
+  const isLoading = useSelector(selectLoadingUser);
   const error = useSelector(selectErrorUser);
+
   return (
     <>
       {error && <h2>You don't have any pets yet </h2>}
+      {isLoading && <Loader />}
       <List>
         <Item>
           <PetItem />
