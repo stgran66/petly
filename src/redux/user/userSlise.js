@@ -61,7 +61,8 @@ const userSlice = createSlice({
       state.error = null;
     },
     [updateUserFoto.fulfilled](state, { payload }) {
-      state.userInfo.avatarURL = payload.avatarURL;
+      state.userInfoюavatarURL = payload.avatarURL;
+      // state.userInfo = { ...payload.user, avatarURL: payload.avatarURL };
       state.isLoading = false;
       state.error = null;
     },

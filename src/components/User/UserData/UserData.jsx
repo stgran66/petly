@@ -34,6 +34,10 @@ const UserData = () => {
     dispatch(updateUserFoto(result));
   };
 
+  // const changeFoto = e => {
+  //   console.log(e.target.value);
+  // };
+
   const patternEmail = /^(?!-)[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$/;
   // const patternDate=/\d{4}-\d{2}-\d{2}/
   const patternPhone = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
