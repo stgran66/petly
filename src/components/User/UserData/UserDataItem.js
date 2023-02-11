@@ -27,7 +27,7 @@ const UserDataItem = ({
   active,
   setActive,
 }) => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState(defaultValue);
   //   const inputRef = useRef(null);
 
@@ -61,7 +61,7 @@ const UserDataItem = ({
     setActive('');
     // handleFocus();
 
-    //   dispatch(updateUserData({ [name]: inputValue }));
+    dispatch(updateUserData({ [name]: inputValue }));
   };
 
   return (

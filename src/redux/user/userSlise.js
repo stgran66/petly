@@ -13,9 +13,8 @@ const userInitialState = {
     birthday: '',
     avatarURL: '',
     favorite: [],
+    userPets: [],
   },
-  // userPets: [],
-  // favorite: [],
   isLoading: false,
   error: null,
 };
