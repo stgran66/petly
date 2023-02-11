@@ -7,7 +7,7 @@ import NoPetList from 'components/User/noPetList';
 import styles from './PetsList.styled';
 import PetItem from './PetItem';
 
-const { List, Item } = styles;
+const { PetsListWpapp, PetItemWrapp } = styles;
 const { selectUserInfo, selectErrorUser, selectLoadingUser } = userSelectors;
 
 const PetsList = () => {
@@ -23,14 +23,14 @@ const PetsList = () => {
       {pets.length === 0 && <NoPetList />}
       {error && <NotFound />}
       {isLoading && <Loader />}
-      <List>
+      <PetsListWpapp>
         {pets.length > 0 &&
           pets.map(pet => (
-            <Item key={pet._id}>
+            <PetItemWrapp key={pet._id}>
               <PetItem pet={pet} />
-            </Item>
+            </PetItemWrapp>
           ))}
-      </List>
+      </PetsListWpapp>
     </>
   );
 };
