@@ -41,17 +41,17 @@ const RegisterForm = () => {
 
   const {Title,LinkLoginRoute, Buttons,RegisterForm, AccountRedirect} = styles
 
-
   const _submitForm = (values) => {
     const { email, password, name, city, phone } = values;
+    
 
     dispatch(
       register({
-        email: email,
-        password: password,
-        name: name,
-        city: city,
-        phone: phone.trim(),
+        email: email.toLowerCase().trim(),
+        password: password.toLowerCase().trim(),
+        name: name.toLowerCase().trim(),
+        city: city.toLowerCase().trim(),
+        phone: phone.toLowerCase().trim(),
       })
     );
     setActiveLoader(true);
