@@ -12,7 +12,7 @@ const Nav = ({ closeBurgerMenu }) => {
     <NavList>
       {navItems.map(({ href, text, end }) => (
         <li key={href}>
-          <Link to={href} end={end} onClick={closeBurgerMenu}>
+          <Link to={href} title={text} end={end} onClick={closeBurgerMenu}>
             {text}
           </Link>
         </li>
