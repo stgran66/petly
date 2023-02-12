@@ -40,6 +40,7 @@ const SearchInput = styled(InputBase)`
   height: 40px;
   font-size: 16px;
   padding-left: 14px;
+
   cursor: pointer;
   font-family: ${({ theme }) => theme.fonts[0]};
 
@@ -52,6 +53,7 @@ const SearchInput = styled(InputBase)`
     line-height: ${({ theme }) => theme.lineHeights.m};
     letter-spacing: 0.04em;
   }
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: ${({ theme }) => theme.fontSizes.text.xl};
     padding-left: 20px;
@@ -76,20 +78,116 @@ const Icon = styled(HiSearch)`
   height: auto;
 `;
 
+const DateAndLink = styled('div')`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.mobile}) {
+    margin-top: 20px;
+  }
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    margin-top: 40px;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    margin-top: 40px;
+  }
+`;
+
+const Article = styled('li')`
+  display: flex;
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    margin-bottom: 40px;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    flex-basis: calc((100%) / 2 - 16px);
+    margin-bottom: 60px;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    flex-basis: calc((100% - 64px) / 3);
+    margin-bottom: 60px;
+  }
+  position: relative;
+`;
+
+const NewsList = styled('ul')`
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: -40px;
+  &::after {
+    content: '';
+    flex: auto;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    margin-bottom: -60px;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    margin-bottom: -60px;
+  }
+`;
+
 const ArticleTitle = styled('h3')`
   width: 100%;
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   font-family: ${({ theme }) => theme.fonts[0]};
   font-size: ${({ theme }) => theme.fontSizes.headers.xs};
   line-height: ${({ theme }) => theme.lineHeights.m};
+
   text-align: left;
   color: ${({ theme }) => theme.colors.text};
 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    margin: 42px 0 28px;
+    margin: 0 0 16px;
   }
 `;
 
+const TopBorder = styled('p')`
+  margin-bottom: 4px;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    margin-bottom: 8px;
+  }
+
+  &:before {
+    content: '';
+
+    position: absolute;
+    width: 200px;
+    height: 4px;
+
+    border-radius: 2px;
+    background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      height: 8px;
+      width: 280px;
+    }
+    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+      width: 340px;
+    }
+  }
+`;
 const ArticleText = styled('p')`
   width: 100%;
   font-weight: ${({ theme }) => theme.fontWeights.normal};
@@ -100,36 +198,54 @@ const ArticleText = styled('p')`
   color: ${({ theme }) => theme.colors.newsText};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    margin: 42px 0 28px;
+    margin: 0 0 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    -webkit-line-clamp: 7;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin: 0 0 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    -webkit-line-clamp: 6;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin: 0 0 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    -webkit-line-clamp: 5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
   }
 `;
 
 const ArticleDate = styled('p')`
-  width: 100%;
   font-weight: ${({ theme }) => theme.fontWeights.normal};
   font-family: ${({ theme }) => theme.fonts[0]};
   font-size: ${({ theme }) => theme.fontSizes.text.m};
   line-height: ${({ theme }) => theme.lineHeights.m};
   text-align: left;
   color: ${({ theme }) => theme.colors.placeholderText};
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    margin: 42px 0 28px;
-  }
+  margin: 0;
+  padding: 0;
 `;
 
 const ArticleUrl = styled('a')`
-  width: 100%;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-family: ${({ theme }) => theme.fonts[0]};
   font-size: ${({ theme }) => theme.fontSizes.text.m};
   line-height: ${({ theme }) => theme.lineHeights.m};
   text-align: left;
   color: ${({ theme }) => theme.colors.accent};
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    margin: 42px 0 28px;
-  }
+  margin: 0;
+  padding: 0;
 `;
 const InputSearchIcon = styled('span')`
   margin-right: 12px;
@@ -174,6 +290,9 @@ const styles = {
   IconSearch,
   IconClose,
   InputButton,
-
+  DateAndLink,
+  Article,
+  NewsList,
+  TopBorder,
 };
 export default styles;
