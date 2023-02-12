@@ -1,33 +1,29 @@
-import { useNavigate } from 'react-router-dom';
 import styles from './AuthNav.styled';
 
+const authNav = [
+  { href: 'login', text: 'Login' },
+  { href: 'register', text: 'Registration' },
+];
+
 function AuthNav({ closeBurgerMenu }) {
-  const navigate = useNavigate();
-  const { AuthBtns, ButtonEl } = styles;
+  const { AuthBtns, ButtonEl, Link } = styles;
+
   return (
     <AuthBtns>
-      <li>
-        <ButtonEl
-          variant="outlined"
-          onClick={() => {
-            navigate('/login');
-            closeBurgerMenu && closeBurgerMenu();
-          }}
-        >
-          Login
-        </ButtonEl>
-      </li>
-      <li>
-        <ButtonEl
-          variant="outlined"
-          onClick={() => {
-            navigate('/register');
-            closeBurgerMenu && closeBurgerMenu();
-          }}
-        >
-          Registration
-        </ButtonEl>
-      </li>
+      {authNav.map(({ href, text }) => (
+        <li key={href}>
+          <Link to={href} onClick={closeBurgerMenu}>
+            <ButtonEl
+              variant="outlined"
+              onClick={() => {
+                closeBurgerMenu && closeBurgerMenu();
+              }}
+            >
+              {text}
+            </ButtonEl>
+          </Link>
+        </li>
+      ))}
     </AuthBtns>
   );
 }
