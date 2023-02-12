@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import fetchNotices from './operations';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import operations from './operations';
 
 const noticesInitialState = {
   items: [],
@@ -7,8 +7,16 @@ const noticesInitialState = {
   error: null,
 };
 
+const { fetchNotices, addNotice } = operations;
+const extraActions = [fetchNotices, addNotice];
+const getActionsByType = type => extraActions.map(action => action[type]);
 const onFetchSuccessReducer = (state, action) => {
   state.items = action.payload;
+  state.isLoading = false;
+  state.error = null;
+};
+const onAddSuccessReducer = (state, action) => {
+  state.items = [action.payload, ...state.items];
   state.isLoading = false;
   state.error = null;
 };
@@ -27,8 +35,9 @@ const noticesSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(fetchNotices.fulfilled, onFetchSuccessReducer)
-      .addCase(fetchNotices.pending, onPendingReducer)
-      .addCase(fetchNotices.rejected, onRejectedReducer),
+      .addCase(addNotice.fulfilled, onAddSuccessReducer)
+      .addMatcher(isAnyOf(...getActionsByType('pending')), onPendingReducer)
+      .addMatcher(isAnyOf(...getActionsByType('rejected')), onRejectedReducer),
 });
 
 const noticesReducer = noticesSlice.reducer;

@@ -22,7 +22,10 @@ const AddNoticeButton = () => {
 
   return isModalOpen ? (
     <>
-      <AddNoticeModal />
+      <AddNoticeModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+      />
     </>
   ) : (
     <AddButton type="button" onClick={handleSubmit}>

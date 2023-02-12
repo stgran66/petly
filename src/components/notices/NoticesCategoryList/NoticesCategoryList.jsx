@@ -3,11 +3,12 @@ import NoticeCategoryItem from 'components/notices/NoticeCategoryItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import selectors from 'redux/notices/selectors';
-import fetchNotices from 'redux/notices/operations';
+import operations from 'redux/notices/operations';
 import { useEffect } from 'react';
 import Loader from 'components/Loader';
 import NotFound from '../NotFound';
 
+const { fetchNotices } = operations;
 const { List, ListItem, NotFoundMessage, NoticesContainer } = styles;
 const { selectFilteredList, selectLoadingStatus, selectErrorMessage } =
   selectors;
