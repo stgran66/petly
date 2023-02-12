@@ -52,6 +52,7 @@ const NoticesCategoryList = () => {
                   id={notice._id}
                   notice={notice}
                   category={category}
+                  favorite={favorite}
                 />
               </ListItem>
             ))

@@ -6,13 +6,14 @@ import styles from './NoticeCategoryItem.styled';
 import useCategories from 'hooks/useCategories';
 // import operations from 'redux/notices/operations';
 
-const NoticeCategoryItem = ({ notice, category }) => {
+// const { addFavNotice, removeFavNotice, getFavorite } = operations;
+
+const NoticeCategoryItem = ({ notice, category, favorite }) => {
   const { isLoggedIn } = hooks.useAuth();
   const [addedToFav, setAddedToFav] = useState(false);
   const [categoryName, setCategoryName] = useState('sell');
   useCategories(category, setCategoryName);
-  const { title, breed, place, age, price, _id } = notice;
-  console.log(_id);
+  const { title, breed, place, age, price } = notice;
   const {
     NoticeItemCard,
     Image,
@@ -28,6 +29,8 @@ const NoticeCategoryItem = ({ notice, category }) => {
     AddedToFav,
     BtnDelete,
   } = styles;
+  // const [AddNoticeToFavourite] = addFavNotice();
+  // const [removeNoticeFromFavourite] = removeFavNotice();
 
   const [showModal, setShowModal] = useState(false);
   const handleSubmit = e => {
@@ -38,7 +41,23 @@ const NoticeCategoryItem = ({ notice, category }) => {
     !isLoggedIn
       ? Notify.info('Please authorize to access your account and add notice')
       : setAddedToFav(true);
+    // AddNoticeToFavourite(_id);
   };
+
+  // const [isFavourite, setIsFavourite] = useState(favorite);
+  // const handleSubmit = e => {
+  // console.log(getFavorite);
+  // if (!isLoggedIn) {
+  //   Notify.info('Please authorize to access your account and add notice');
+  //   return;
+  // }
+  // // setIsFavourite(!isFavourite);
+  // if (!favorite) {
+  //   //   removeFavNotice(_id);
+  //   // } else {
+  // addFavNotice(_id);
+  // }
+  // };
 
   return (
     <NoticeItemCard>

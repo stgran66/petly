@@ -53,7 +53,7 @@ export const addFavNotice = createAsyncThunk(
   '/notices/addFavNotice',
   async (noticeId, thunkAPI) => {
     try {
-      const response = await axios.post(`/${noticeId}/favorite`);
+      const response = await axios.post(`api/notice/${noticeId}/favorite`);
       console.log(response);
       return response.data;
     } catch (e) {
@@ -66,7 +66,9 @@ export const removeFavNotice = createAsyncThunk(
   '/notices/removeFavNotice',
   async (noticeId, thunkAPI) => {
     try {
-      const response = await axios.post(`/${noticeId}/remove-favorite`);
+      const response = await axios.post(
+        `api/notices/${noticeId}/remove-favorite`
+      );
       console.log(response);
       return response.data;
     } catch (e) {
