@@ -8,7 +8,8 @@ const { StyledFriend } = styles;
 
 const Friend = ({ friend }) => {
   const [showModal, setShowModal] = useState(false);
-  const { address, addressUrl, email, phone, title, url, workDays, imageUrl } = friend;
+  const { address, addressUrl, email, phone, title, url, workDays, imageUrl } =
+    friend;
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -54,11 +55,23 @@ const Friend = ({ friend }) => {
           </div>
           <div>
             <dt>Email:</dt>
-            <dd>{!email ? '--------------------' : <a href={`mailto:${email}`}>{email}</a>}</dd>
+            <dd>
+              {!email ? (
+                '--------------------'
+              ) : (
+                <a href={`mailto:${email}`}>{email}</a>
+              )}
+            </dd>
           </div>
           <div>
             <dt>Phone:</dt>
-            <dd>{!phone ? '--------------------' : <a href={`tel:${phone}`}>{phone}0</a>}</dd>
+            <dd>
+              {!phone ? (
+                '--------------------'
+              ) : (
+                <a href={`tel:${phone}`}>{phone}</a>
+              )}
+            </dd>
           </div>
         </dl>
       </div>
