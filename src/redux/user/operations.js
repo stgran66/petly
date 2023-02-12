@@ -48,12 +48,24 @@ const deleteUserPet = createAsyncThunk(
     }
   }
 );
+const addUserPet = createAsyncThunk(
+  'user/addUserPet',
+  async (newData, thunkAPI) => {
+    try {
+      const response = await axios.post(`/api/user/pet`, newData);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
 
 const userOperations = {
   fetchUserData,
   updateUserData,
   updateUserFoto,
   deleteUserPet,
+  addUserPet,
 };
 
 export default userOperations;
