@@ -1,0 +1,29 @@
+import { TextField } from '@mui/material';
+import { styled } from '@mui/system';
+
+const Input = styled(TextField)(({ theme }) => ({
+  '& label.Mui-focused': {
+    color: '#5e5b5d',
+    border: `1px solid ${theme.colors.white}`,
+  },
+
+  '& fieldset': {
+    fontFamily: theme.fonts[0],
+    fontWeight: theme.fontWeights.normal,
+    fontSize: theme.fontSizes.text.s,
+    lineHeight: theme.lineHeights.xs,
+    border: `1px solid ${theme.colors.accent}`,
+    borderRadius: '40px',
+  },
+  '&:hover fieldset': {
+    border: `1px solid ${theme.colors.white}`,
+  },
+  '&.Mui-focused fieldset': {
+    borderWidth: '2px',
+    backgroundColor: 'white',
+  },
+}));
+
+const styles = { Input };
+
+export default styles;

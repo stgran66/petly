@@ -19,15 +19,16 @@ const checkoutFormModel = {
     name: {
       name: 'name',
       label: 'Name',
+      requiredErrorMsg: 'Name is required',
     },
     city: {
       name: 'city',
       label: 'City',
-      requiredErrorMsg: 'State/Region',
     },
     phone: {
       name: 'phone',
       label: 'Mobile phone',
+      requiredErrorMsg: 'Phone is required',
     },
   },
 };

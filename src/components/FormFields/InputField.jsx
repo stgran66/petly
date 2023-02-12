@@ -1,9 +1,10 @@
 import React from 'react';
 import { at } from 'lodash';
 import { useField } from 'formik';
-import { TextField } from '@mui/material';
+import styles from './InputFiels.styled';
 
 const InputField = props => {
+  const { Input} = styles;
   const { errorText, ...rest } = props;
   const [field, meta] = useField(props);
 
@@ -15,12 +16,14 @@ const InputField = props => {
   }
 
   return (
-    <TextField
-      error={meta.touched && meta.error && true}
-      helperText={_renderHelperText()}
-      {...field}
-      {...rest}
-    />
+   
+      <Input
+        error={meta.touched && meta.error && true}
+        helperText={_renderHelperText()}
+        {...field}
+        {...rest}
+      />
+  
   );
 };
 

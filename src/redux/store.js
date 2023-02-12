@@ -15,6 +15,7 @@ import auth from './auth/';
 import filterReducer from './notices/filterSlice';
 import noticesReducer from './notices/noticesSlice';
 import friendsReducer from './friends/friendsSlice';
+import userReducer from './user/userSlise';
 
 const { authReducer } = auth;
 
@@ -29,7 +30,6 @@ const middleware = [
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
 };
 
 const store = configureStore({
@@ -38,6 +38,7 @@ const store = configureStore({
     notices: noticesReducer,
     filter: filterReducer,
     friends: friendsReducer,
+    user: userReducer,
   },
   middleware,
 });

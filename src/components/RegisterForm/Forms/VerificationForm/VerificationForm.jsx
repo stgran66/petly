@@ -3,7 +3,7 @@ import { useFormikContext } from 'formik';
 import { Typography, Grid } from '@mui/material';
 
 
-const ReviewOrder = props => {
+const VerificationForm = props => {
   const { values: formValues } = useFormikContext();
   const { email, name, city, phone } = formValues;
   return (
@@ -19,7 +19,9 @@ const ReviewOrder = props => {
                 <Typography gutterBottom>Email:{` ${email}`}</Typography>
               </Grid>
               <Grid item xs={12}>
-                <Typography gutterBottom>Name: {` ${name}`}</Typography>
+                <Typography gutterBottom>
+                  Name: {` ${name} `} 
+                </Typography>
               </Grid>
             </React.Fragment>
             <React.Fragment>
@@ -41,4 +43,4 @@ const ReviewOrder = props => {
   );
 };
 
-export default ReviewOrder;
+export default VerificationForm;
