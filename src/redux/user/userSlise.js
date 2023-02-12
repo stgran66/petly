@@ -74,8 +74,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { removeState } = userSlice.actions;
-
 const userReducer = userSlice.reducer;
 
 export default userReducer;
