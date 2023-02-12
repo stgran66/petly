@@ -185,6 +185,10 @@ const StyledFriend = styled('div')`
 
   dd {
     margin: 0;
+
+    button {
+      padding: 0;
+    }
   }
 
   img {
@@ -221,10 +225,10 @@ const StyledModal = styled('div')`
   border: 1px solid ${props => props.theme.colors.accent};
   border-radius: 8px;
   box-shadow: ${props => props.theme.shadows.timeModalShadow};
-  padding: 12px;
+  padding: 12px 10px;
   position: absolute;
   background-color: ${props => props.theme.colors.white};
-  min-width: 96px;
+  width: 120px;
 
   font-family: ${props => props.theme.fonts[0]};
   font-weight: ${props => props.theme.fontWeights.medium};

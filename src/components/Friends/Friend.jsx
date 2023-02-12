@@ -30,8 +30,8 @@ const Friend = ({ friend }) => {
               {!workDays || workDays.length === 0 ? (
                 '--------------------'
               ) : (
-                <button type="button" onClick={toggleModal}>
-                  {workDays.find(day => day.isOpen === true).from} -
+                <button type="button" onMouseEnter={toggleModal} onMouseLeave={toggleModal}>
+                  {workDays.find(day => day.isOpen === true).from} -{' '}
                   {workDays.find(day => day.isOpen === true).to}
                 </button>
               )}
