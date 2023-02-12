@@ -106,6 +106,7 @@ const StyledFriend = styled('div')`
   h3 > a {
     color: ${props => props.theme.colors.accent};
     text-decoration-line: underline;
+
     font-weight: ${props => props.theme.fontWeights.bold};
 
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {

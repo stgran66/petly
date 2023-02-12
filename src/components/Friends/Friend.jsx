@@ -16,7 +16,9 @@ const Friend = ({ friend }) => {
   return (
     <StyledFriend>
       <h3>
-        <a href={url}>{title}</a>{' '}
+        <a href={url} target="_blank" rel="noreferrer">
+          {title}
+        </a>{' '}
       </h3>
 
       <div>
