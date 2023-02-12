@@ -6,6 +6,7 @@ const StyledList = styled('ul')`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     gap: 32px;
@@ -17,6 +18,8 @@ const StyledList = styled('ul')`
 
   li {
     display: flex;
+    justify-content: center;
+    align-self: stretch;
     @media screen and (max-width: 767px) {
       width: 100%;
     }
@@ -57,6 +60,7 @@ const StyledContainer = styled('div')`
 
 const StyledFriend = styled('div')`
   width: 100%;
+  max-width: 280px;
   font-family: ${props => props.theme.fonts[0]};
   font-size: ${props => props.theme.fontSizes.text.xs};
   line-height: ${props => props.theme.lineHeights.xs};
@@ -68,6 +72,8 @@ const StyledFriend = styled('div')`
   overflow: hidden;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    max-width: 336px;
+
     font-size: ${props => props.theme.fontSizes.text.s};
     line-height: ${props => props.theme.lineHeights.s};
     border-radius: 40px;
@@ -75,6 +81,8 @@ const StyledFriend = styled('div')`
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    max-width: 395px;
+
     font-size: ${props => props.theme.fontSizes.text.m};
     line-height: ${props => props.theme.lineHeights.s};
     border-radius: 40px;
