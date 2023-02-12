@@ -8,7 +8,7 @@ import useCategories from 'hooks/useCategories';
 
 // const { addFavNotice, removeFavNotice, getFavorite } = operations;
 
-const NoticeCategoryItem = ({ notice, category, favorite }) => {
+const NoticeCategoryItem = ({ notice, category }) => {
   const { isLoggedIn } = hooks.useAuth();
   const [addedToFav, setAddedToFav] = useState(false);
   const [categoryName, setCategoryName] = useState('sell');
@@ -29,8 +29,6 @@ const NoticeCategoryItem = ({ notice, category, favorite }) => {
     AddedToFav,
     BtnDelete,
   } = styles;
-  // const [AddNoticeToFavourite] = addFavNotice();
-  // const [removeNoticeFromFavourite] = removeFavNotice();
 
   const [showModal, setShowModal] = useState(false);
   const handleSubmit = e => {
@@ -41,7 +39,6 @@ const NoticeCategoryItem = ({ notice, category, favorite }) => {
     !isLoggedIn
       ? Notify.info('Please authorize to access your account and add notice')
       : setAddedToFav(true);
-    // AddNoticeToFavourite(_id);
   };
 
   // const [isFavourite, setIsFavourite] = useState(favorite);

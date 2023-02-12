@@ -54,7 +54,6 @@ export const addFavNotice = createAsyncThunk(
   async (noticeId, thunkAPI) => {
     try {
       const response = await axios.post(`api/notice/${noticeId}/favorite`);
-      console.log(response);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -69,7 +68,6 @@ export const removeFavNotice = createAsyncThunk(
       const response = await axios.post(
         `api/notices/${noticeId}/remove-favorite`
       );
-      console.log(response);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
