@@ -28,11 +28,10 @@ const UserData = () => {
   const isLoading = useSelector(selectLoadingUser);
   const error = useSelector(selectErrorUser);
   const [active, setActive] = useState('');
-  console.log(user);
 
   const changeFoto = e => {
     const result = new FormData();
-    console.log(result);
+
     console.log(e.target.files[0]);
     result.append('avatars', e.target.files[0]);
     dispatch(updateUserFoto(result));
