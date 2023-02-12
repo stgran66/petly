@@ -1,7 +1,7 @@
 import { styled } from '@mui/system';
 import { Delete20Filled } from '@fluentui/react-icons';
 
-const List = styled('ul')`
+const PetsListWpapp = styled('ul')`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -11,7 +11,7 @@ const List = styled('ul')`
   }
 `;
 
-const Item = styled('li')`
+const PetItemWrapp = styled('li')`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -106,8 +106,8 @@ const PetInfoName = styled('span')`
 `;
 
 const styles = {
-  List,
-  Item,
+  PetsListWpapp,
+  PetItemWrapp,
   PetInfo,
   PetInfoName,
 

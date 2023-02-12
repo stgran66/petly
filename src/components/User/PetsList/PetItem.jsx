@@ -1,6 +1,8 @@
 import styles from './PetsList.styled';
-// import { useDispatch } from 'react-redux/es/exports';
-// import { deleteUserPet } from 'redux/operations';
+import { useDispatch } from 'react-redux/es/exports';
+import userOperations from 'redux/user/operations';
+
+const { deleteUserPet } = userOperations;
 
 const {
   PetInfo,
@@ -11,33 +13,31 @@ const {
   PetDeleteIcon,
 } = styles;
 
-const PetItem = () => {
-  // const dispatch = useDispatch();
+const PetItem = ({ pet }) => {
+  const { _id, name, birthday, breed, photo, comments } = pet;
+  const dispatch = useDispatch();
 
-  // const handleDelete = () => dispatch(deleteUserPet(pet.id));
-  // додати на кнопку onClick = { handleDelete };
+  const handleDelete = () => dispatch(deleteUserPet(_id));
 
   return (
     <>
-      <PetInfoFoto />
+      <PetInfoFoto src={photo} alt="pet foto" />
       <PetInfoWrapp>
         <PetInfo>
           <li>
-            <PetInfoName>Name:</PetInfoName> Jack
+            <PetInfoName>Name: </PetInfoName> {name}
           </li>
           <li>
-            <PetInfoName>Date of birth:</PetInfoName> 22.04.2018
+            <PetInfoName>Date of birth: </PetInfoName> {birthday}
           </li>
           <li>
-            <PetInfoName>Breed:</PetInfoName> Basenji
+            <PetInfoName>Breed: </PetInfoName> {breed}
           </li>
           <li>
-            <PetInfoName>Comments:</PetInfoName> Lorem ipsum dolor sit amet,
-            consecteturLorem ipsum dolor sit amet, consectetur Lorem ipsum dolor
-            sit amet, consectetur Lorem ipsum dolor sit amet, consectetur{' '}
+            <PetInfoName>Comments:</PetInfoName> {comments}
           </li>
         </PetInfo>
-        <PetDeleteButton type="button">
+        <PetDeleteButton type="button" onClick={handleDelete}>
           <PetDeleteIcon />
         </PetDeleteButton>
       </PetInfoWrapp>
