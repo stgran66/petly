@@ -7,6 +7,7 @@ const StyledList = styled('ul')`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 100px;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     gap: 32px;
@@ -70,6 +71,7 @@ const StyledFriend = styled('div')`
   border-radius: 20px;
   padding: 14px 4px 12px 4px;
   overflow: hidden;
+  box-shadow: ${props => props.theme.shadows.cardsShadow};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     max-width: 336px;
