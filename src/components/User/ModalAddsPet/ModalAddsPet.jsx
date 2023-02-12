@@ -24,7 +24,7 @@ const ModalAddsPet = ({ setShowModal }) => {
 
   const steps = [
     <ModelPetStepOne
-      // onClose={onClose}
+      onClose={onClose}
       // next={handleNextStep}
       data={formData}
       // setFormData={setFormData}
