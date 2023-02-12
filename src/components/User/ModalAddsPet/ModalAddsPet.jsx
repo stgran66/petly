@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import modelStepsPet from './ModelUserPetSteps';
+import userOperations from 'redux/user/operations';
 
 import styles from './ModalAddsPet.styled';
+
+const { addUserPet } = userOperations;
 const { ModalAddPetWrapp, ModalTitle, ModalCloseButton, ModalCloseIcon } =
   styles;
 
@@ -30,7 +33,7 @@ const ModalAddsPet = ({ setShowModal }) => {
       ...form,
       birthday: parseDateToISO(form.birthday),
     };
-    // dispatch(addPet({ dataForm, token }));
+    dispatch(addUserPet(dataForm));
   };
 
   function parseDateToISO(str) {

@@ -53,6 +53,7 @@ const addUserPet = createAsyncThunk(
   async (newData, thunkAPI) => {
     try {
       const response = await axios.post(`/api/user/pet`, newData);
+      console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
