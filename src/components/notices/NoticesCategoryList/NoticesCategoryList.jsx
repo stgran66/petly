@@ -1,14 +1,14 @@
 import styles from './NoticesCategoryList.styled';
 import NoticeCategoryItem from 'components/notices/NoticeCategoryItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import selectors from 'redux/notices/selectors';
 import operations from 'redux/notices/operations';
 import { useEffect } from 'react';
 import Loader from 'components/Loader';
 import NotFound from '../NotFound';
 
-const { fetchNotices, getFavorite } = operations;
+const { fetchNotices, getFavorite, getMyNotices } = operations;
 const { List, ListItem, NotFoundMessage, NoticesContainer } = styles;
 const { selectFilteredList, selectLoadingStatus, selectErrorMessage } =
   selectors;
@@ -19,15 +19,23 @@ const NoticesCategoryList = () => {
   const error = useSelector(selectErrorMessage);
   const filteredNotices = useSelector(selectFilteredList);
   const { category } = useParams();
+  const urlPath = useLocation();
+  const favorite = urlPath.pathname.includes('favorite');
+  const myNotices = urlPath.pathname.includes('own');
 
   const noNoticesFind = filteredNotices.length === 0;
 
   useEffect(() => {
-    if (category === 'favorite') {
+    if (favorite) {
       dispatch(getFavorite());
+      return;
+    }
+    if (myNotices) {
+      dispatch(getMyNotices());
+      return;
     }
     dispatch(fetchNotices(category));
-  }, [dispatch, category]);
+  }, [dispatch, category, favorite, myNotices]);
 
   return (
     <NoticesContainer>

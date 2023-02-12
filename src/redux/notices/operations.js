@@ -27,9 +27,9 @@ export const addNotice = createAsyncThunk(
 
 export const getFavorite = createAsyncThunk(
   'notices/favoriteNotices',
-  async (_, thunkAPI) => {
+  async (category, thunkAPI) => {
     try {
-      const response = await axios.get('/api/favorite');
+      const response = await axios.get(`/api/notices/favorite`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -41,7 +41,7 @@ export const getMyNotices = createAsyncThunk(
   'notices/myNotices',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/api/my-notices');
+      const response = await axios.get('/api/notices/own');
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

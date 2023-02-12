@@ -21,11 +21,17 @@ const onAddSuccessReducer = (state, action) => {
   state.error = null;
 };
 const onFetchFavoriteSuccessReducer = (state, action) => {
-  // state.items = action.payload;
-  // state.isLoading = false;
-  // state.error = null;
-  console.log(action.payload);
+  state.items = action.payload.favorite;
+  state.isLoading = false;
+  state.error = null;
 };
+
+const onFetchMyNoticesSuccessReducer = (state, action) => {
+  state.items = action.payload;
+  state.isLoading = false;
+  state.error = null;
+};
+
 const onPendingReducer = state => {
   state.isLoading = true;
   state.error = null;
@@ -43,7 +49,7 @@ const noticesSlice = createSlice({
       .addCase(fetchNotices.fulfilled, onFetchSuccessReducer)
       .addCase(addNotice.fulfilled, onAddSuccessReducer)
       .addCase(getFavorite.fulfilled, onFetchFavoriteSuccessReducer)
-      .addCase(getMyNotices.fulfilled, onFetchSuccessReducer)
+      .addCase(getMyNotices.fulfilled, onFetchMyNoticesSuccessReducer)
       .addMatcher(isAnyOf(...getActionsByType('pending')), onPendingReducer)
       .addMatcher(isAnyOf(...getActionsByType('rejected')), onRejectedReducer),
 });
