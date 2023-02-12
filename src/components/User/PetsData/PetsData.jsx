@@ -22,7 +22,7 @@ const PetsData = () => {
       </ContainerWrapp>
       {showModal && (
         <ModalUser setShowModal={setShowModal}>
-          <ModalAddsPet />
+          <ModalAddsPet setShowModal={setShowModal} />
         </ModalUser>
       )}
       <PetsList />
