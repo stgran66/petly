@@ -1,13 +1,24 @@
 import React from 'react';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import style from './NoticeModal.styled';
 import { useState } from 'react';
+import hooks from 'hooks';
 import useCategories from 'hooks/useCategories';
 import { ReactComponent as HeartIcon } from 'images/fav-icon.svg';
 import ModalBtnClose from '../ModalBtnClose';
 
-const NoticeModal = ({ notice, category }) => {
+const NoticeModal = ({ notice, category, toggleModal, favorite }) => {
   const [categoryName, setCategoryName] = useState('sell');
   useCategories(category, setCategoryName);
+  const { isLoggedIn } = hooks.useAuth();
+
+  const handleSubmit = e => {
+    Notify.init({
+      position: 'right-top',
+      distance: '8px',
+    });
+    Notify.info('Please authorize to access your account and add notice');
+  };
   const {
     Container,
     Wrapper,
@@ -59,16 +70,20 @@ const NoticeModal = ({ notice, category }) => {
             </Item>
             <Item>
               <ItemInfo>Email:</ItemInfo>
-              <ContLink href="mailto">{email ? email : '-------'}</ContLink>
+              <ContLink href={`mailto: ${email}`}>
+                {email ? email : '-------'}
+              </ContLink>
             </Item>
             <Item>
-              <ItemInfo>Pohone:</ItemInfo>
-              <ContLink href="tel">{phone ? phone : '-------'}</ContLink>
+              <ItemInfo>Phone:</ItemInfo>
+              <ContLink href={`tel: ${phone}`}>
+                {phone ? phone : '-------'}
+              </ContLink>
             </Item>
             {category === 'sell' ? (
               <Item>
                 <ItemInfo>Sell:</ItemInfo>
-                <ItemInfo>{price}$</ItemInfo>
+                <ItemInfo>{price}</ItemInfo>
               </Item>
             ) : (
               ''
@@ -83,14 +98,20 @@ const NoticeModal = ({ notice, category }) => {
         quos, recusandae natus!
       </ItemInfo>
       <BtnWrapper>
-        <ContactButton href={phone}>Contact</ContactButton>
-        <ChangeFavoriteStatusBtn type="button" onClick="#">
-          {/* {!favorite ? 'Add to' : 'Remove from'} */}
-          Add to
-          <HeartIcon />
-        </ChangeFavoriteStatusBtn>
+        <ContactButton href={`tel: ${phone}`}>Contact</ContactButton>
+        {!isLoggedIn ? (
+          <ChangeFavoriteStatusBtn type="button" onClick={handleSubmit}>
+            Add to
+            <HeartIcon />
+          </ChangeFavoriteStatusBtn>
+        ) : (
+          <ChangeFavoriteStatusBtn type="button">
+            {!favorite ? 'Add to' : 'Remove from'}
+            <HeartIcon />
+          </ChangeFavoriteStatusBtn>
+        )}
       </BtnWrapper>
-      <ModalBtnClose />
+      <ModalBtnClose toggleModal={toggleModal} />
     </Container>
   );
 };

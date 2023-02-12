@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Overlay from './Modal.styled';
 import NoticeModal from 'components/notices/NoticeModal';
 
-const Modal = ({ toggleModal, notice, category }) => {
+const Modal = ({ toggleModal, notice, category, favorite }) => {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -22,7 +22,12 @@ const Modal = ({ toggleModal, notice, category }) => {
 
   return (
     <Overlay onClick={onBackdropClick}>
-      <NoticeModal notice={notice} category={category} />
+      <NoticeModal
+        notice={notice}
+        category={category}
+        toggleModal={toggleModal}
+        favorite={favorite}
+      />
     </Overlay>
   );
 };

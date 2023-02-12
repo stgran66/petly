@@ -27,21 +27,21 @@ function NewsPage() {
         .get('https://petly-backend-9tz8.onrender.com/api/news')
         .then(response => {
           let news = response.data;
-          // for (let article of news) {
-          //   article.date = new Date(article.date).valueOf();
-          // }
-          // news.sort((a, b) => b.date - a.date);
-          // const filterArticle = query => {
-          //   if (!query) {
-          //     return news;
-          //   }
-          //   return news.filter(({ title }) =>
-          //     title.toLowerCase().includes(query.toLowerCase())
-          //   );
-          // };
-          // const filteredNews = filterArticle(searchArticle, data);
-          // setData(filteredNews);
-          setData(news);
+          for (let article of news) {
+            article.date = new Date(article.date).valueOf();
+          }
+          news.sort((a, b) => b.date - a.date);
+          const filterArticle = query => {
+            if (!query) {
+              return news;
+            }
+            return news.filter(({ title }) =>
+              title.toLowerCase().includes(query.toLowerCase())
+            );
+          };
+          const filteredNews = filterArticle(searchArticle);
+          console.log(filteredNews);
+          setData(filteredNews);
         })
         .catch(error => {
           console.log(error);

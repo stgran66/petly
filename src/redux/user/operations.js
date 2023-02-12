@@ -39,6 +39,24 @@ const updateUserFoto = createAsyncThunk(
   }
 );
 
-const userOperations = { fetchUserData, updateUserData, updateUserFoto };
+const deleteUserPet = createAsyncThunk(
+  'user/deleteUserPet',
+  async (petId, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/api/user/pet/${petId}`);
+      console.log(response.data);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+const userOperations = {
+  fetchUserData,
+  updateUserData,
+  updateUserFoto,
+  deleteUserPet,
+};
 
 export default userOperations;
