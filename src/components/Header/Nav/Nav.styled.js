@@ -29,6 +29,7 @@ const Link = styled(NavLink)`
 
   &:hover,
   &.active {
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
     color: ${({ theme }) => theme.colors.accent};
     text-decoration: revert;
   }
