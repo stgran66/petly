@@ -6,7 +6,6 @@ import userOperations from 'redux/user/operations';
 import userSelectors from 'redux/user/selectors';
 import styles from './UserData.styled';
 import Loader from 'components/Loader';
-import theme from 'theme';
 
 // import ButtonChange from './ButtonChange';
 // import ButtonSubmit from './ButtonSubmit';
