@@ -7,8 +7,8 @@ const noticesInitialState = {
   error: null,
 };
 
-const { fetchNotices, addNotice } = operations;
-const extraActions = [fetchNotices, addNotice];
+const { fetchNotices, addNotice, getFavorite, getMyNotices } = operations;
+const extraActions = [fetchNotices, addNotice, getFavorite, getMyNotices];
 const getActionsByType = type => extraActions.map(action => action[type]);
 const onFetchSuccessReducer = (state, action) => {
   state.items = action.payload;
@@ -20,6 +20,18 @@ const onAddSuccessReducer = (state, action) => {
   state.isLoading = false;
   state.error = null;
 };
+const onFetchFavoriteSuccessReducer = (state, action) => {
+  state.items = action.payload.favorite;
+  state.isLoading = false;
+  state.error = null;
+};
+
+const onFetchMyNoticesSuccessReducer = (state, action) => {
+  state.items = action.payload;
+  state.isLoading = false;
+  state.error = null;
+};
+
 const onPendingReducer = state => {
   state.isLoading = true;
   state.error = null;
@@ -36,6 +48,8 @@ const noticesSlice = createSlice({
     builder
       .addCase(fetchNotices.fulfilled, onFetchSuccessReducer)
       .addCase(addNotice.fulfilled, onAddSuccessReducer)
+      .addCase(getFavorite.fulfilled, onFetchFavoriteSuccessReducer)
+      .addCase(getMyNotices.fulfilled, onFetchMyNoticesSuccessReducer)
       .addMatcher(isAnyOf(...getActionsByType('pending')), onPendingReducer)
       .addMatcher(isAnyOf(...getActionsByType('rejected')), onRejectedReducer),
 });
