@@ -198,6 +198,20 @@ const StyledFriend = styled('div')`
       height: 112px;
     }
   }
+
+  div.empty-image {
+    background-color: transparent;
+    position: relative;
+    padding: 39px 55px;
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      padding: 42.5px 60px;
+    }
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+      padding: 56px 79px;
+    }
+  }
 `;
 
 const StyledModal = styled('div')`

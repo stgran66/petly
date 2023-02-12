@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 
 import styles from './styled';
-import errorImg from '../../images/ErrorPage.jpg';
 import TimeModal from './TimeModal';
 
 const { StyledFriend } = styles;
 
 const Friend = ({ friend }) => {
   const [showModal, setShowModal] = useState(false);
-  const { address, addressUrl, email, phone, title, url, workDays, imageUrl } =
-    friend;
+  const { address, addressUrl, email, phone, title, url, workDays, imageUrl } = friend;
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -22,7 +20,7 @@ const Friend = ({ friend }) => {
       </h3>
 
       <div>
-        <img src={imageUrl ? imageUrl : errorImg} alt="company logo" />
+        {imageUrl ? <img src={imageUrl} alt="company logo" /> : <div className="empty-image" />}
         <dl>
           <div>
             <dt>Time:</dt>
@@ -55,23 +53,11 @@ const Friend = ({ friend }) => {
           </div>
           <div>
             <dt>Email:</dt>
-            <dd>
-              {!email ? (
-                '--------------------'
-              ) : (
-                <a href={`mailto:${email}`}>{email}</a>
-              )}
-            </dd>
+            <dd>{!email ? '--------------------' : <a href={`mailto:${email}`}>{email}</a>}</dd>
           </div>
           <div>
             <dt>Phone:</dt>
-            <dd>
-              {!phone ? (
-                '--------------------'
-              ) : (
-                <a href={`tel:${phone}`}>{phone}</a>
-              )}
-            </dd>
+            <dd>{!phone ? '--------------------' : <a href={`tel:${phone}`}>{phone}</a>}</dd>
           </div>
         </dl>
       </div>
