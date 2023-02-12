@@ -19,7 +19,9 @@ const VerificationForm = props => {
                 <Typography gutterBottom>Email:{` ${email}`}</Typography>
               </Grid>
               <Grid item xs={12}>
-                <Typography gutterBottom>Name: {` ${name}`}</Typography>
+                <Typography gutterBottom>
+                  Name: {` ${name} `} 
+                </Typography>
               </Grid>
             </React.Fragment>
             <React.Fragment>

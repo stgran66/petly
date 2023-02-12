@@ -8,7 +8,7 @@ const SecondStepInfo = props => {
     formField: { name, city, phone },
   } = props;
   const { Container } = styles
-  
+
   return (
     <React.Fragment>
       <Container>
@@ -31,6 +31,8 @@ const SecondStepInfo = props => {
           </Grid>
           <Grid item xs={12} md={6}>
             <InputField
+              id="tel"
+              placeholder="+380"
               name={phone.name}
               label={phone.label}
               type="tel"

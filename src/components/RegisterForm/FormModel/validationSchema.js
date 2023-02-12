@@ -10,7 +10,10 @@ const validationSchema = [
     [email.name]: Yup.string()
       .min(10)
       .max(63)
-      .matches(/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/)
+      .matches(
+        /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/,
+        'Incorrect email address'
+      )
       .required(`${email.requiredErrorMsg}`),
     [password.name]: Yup.string()
       .min(7)
@@ -19,15 +22,16 @@ const validationSchema = [
     [confirmPassword.name]: Yup.string()
       .min(7)
       .max(32)
-      .required(`${confirmPassword.requiredErrorMsg}`),
+      .required(`${confirmPassword.requiredErrorMsg}`)
+      .oneOf([Yup.ref('password')], 'Passwords does not match'),
   }),
   Yup.object().shape({
     [name.name]: Yup.string().required(`${name.requiredErrorMsg}`),
-    [city.name]: Yup.string(),
+    [city.name]: Yup.string().min(3).max(32),
     [phone.name]: Yup.string()
       .min(13)
       .max(13)
-      .matches('\\+?(?:\\s*\\d){12}\\s*')
+      .matches('\\+?(?:\\s*\\d){12}\\s*', 'just numbers +380123456789')
       .required(`${phone.requiredErrorMsg}`),
   }),
 ];

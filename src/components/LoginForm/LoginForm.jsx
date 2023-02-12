@@ -68,7 +68,7 @@ const LoginForm = () => {
           </Grid>
         </Container>
 
-        <Buttons type="submit" sx={{padding:0}}>Login</Buttons>
+        <Buttons type="submit">Login</Buttons>
         <AccountRedirect>
           Don`t have an account?
           <LinkRegisterRoute to="/register"> Register</LinkRegisterRoute>
