@@ -1,14 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+// import { useEffect } from 'react';
+// import { createPortal } from 'react-dom';
+import styles from './ModalAddsPet.styled';
+const { ModalAddPetWrapp } = styles;
+
+// const modalRoot = document.getElementById('modal-root');
+
 const ModalAddsPet = () => {
-  return (
-    <>
-      <div>Hello ModalAddsPet</div>
-      {/* <div>
-        <title>My pets:</title>
-        <button type="button">Add pet</button>
-      </div>
-      <PetsList /> */}
-    </>
-  );
+  return <ModalAddPetWrapp>Hello ModalAddsPet</ModalAddPetWrapp>;
+
+  // return createPortal(
+  //   <OverlayModalUser onClick={handleBackdropClose}>
+  //     <div>Hello ModalAddsPet</div>
+  //   </OverlayModalUser>,
+  //   modalRoot
+  // );
 };
 
 export default ModalAddsPet;

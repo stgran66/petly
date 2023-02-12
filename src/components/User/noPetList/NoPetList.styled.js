@@ -7,9 +7,6 @@ const NoListWrapp = styled('div')`
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     padding-top: 25px;
   }
-  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    padding-top: 0;
-  }
 
   h3 {
     margin-bottom: 25px;

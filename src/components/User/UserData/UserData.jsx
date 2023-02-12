@@ -28,6 +28,7 @@ const UserData = () => {
   const isLoading = useSelector(selectLoadingUser);
   const error = useSelector(selectErrorUser);
   const [active, setActive] = useState('');
+  console.log(user);
 
   const changeFoto = e => {
     const result = new FormData();
