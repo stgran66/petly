@@ -24,5 +24,29 @@ export const addNotice = createAsyncThunk(
     }
   }
 );
-const operations = { fetchNotices, addNotice };
+
+export const getFavorite = createAsyncThunk(
+  'notices/favoriteNotices',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/api/favorite');
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const getMyNotices = createAsyncThunk(
+  'notices/myNotices',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/api/my-notices');
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+const operations = { fetchNotices, addNotice, getMyNotices, getFavorite };
 export default operations;

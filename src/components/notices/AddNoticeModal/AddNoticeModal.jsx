@@ -54,7 +54,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
     };
     dispatch(addNotice(notice));
     setIsModalOpen(false);
-    actions.setSubmitting(false);
+    // actions.setSubmitting(false);
   };
 
   return (

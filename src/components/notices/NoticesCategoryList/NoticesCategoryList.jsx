@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import Loader from 'components/Loader';
 import NotFound from '../NotFound';
 
-const { fetchNotices } = operations;
+const { fetchNotices, getFavorite } = operations;
 const { List, ListItem, NotFoundMessage, NoticesContainer } = styles;
 const { selectFilteredList, selectLoadingStatus, selectErrorMessage } =
   selectors;
@@ -23,6 +23,9 @@ const NoticesCategoryList = () => {
   const noNoticesFind = filteredNotices.length === 0;
 
   useEffect(() => {
+    if (category === 'favorite') {
+      dispatch(getFavorite());
+    }
     dispatch(fetchNotices(category));
   }, [dispatch, category]);
 
