@@ -6,7 +6,8 @@ import userOperations from 'redux/user/operations';
 import userSelectors from 'redux/user/selectors';
 import styles from './UserData.styled';
 import Loader from 'components/Loader';
-import theme from 'theme';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 
 // import ButtonChange from './ButtonChange';
 // import ButtonSubmit from './ButtonSubmit';
@@ -22,7 +23,15 @@ const {
 } = styles;
 
 const { updateUserData } = userOperations;
-const { selectLoadingUser, selectErrorUser } = userSelectors;
+const { selectLoadingUser, selectErrorUser, selectUserInfo} = userSelectors;
+
+
+
+
+
+ 
+
+
 
 const UserDataItem = ({
   name,
@@ -36,7 +45,36 @@ const UserDataItem = ({
   const isLoading = useSelector(selectLoadingUser);
   const error = useSelector(selectErrorUser);
   const [inputValue, setInputValue] = useState(defaultValue);
+   const user = useSelector(selectUserInfo);
   //   const inputRef = useRef(null);
+  // const { name, email, birthday, phone, city } = inputValue;
+  
+  const userIntialValues = {email: user.email};
+const userValidationSchema = Yup.object().shape({
+  email: Yup.string()
+    .min(10)
+    .max(63)
+    .matches(
+      /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/,
+      'Incorrect email address'
+    )
+    .required(),
+  password: Yup.string().min(7).max(32).required(),
+  name: Yup.string().required(),
+  city: Yup.string().min(3).max(32),
+  phone: Yup.string()
+    .min(13)
+    .max(13)
+    .matches('\\+?(?:\\s*\\d){12}\\s*', 'just numbers +380123456789')
+    .required(),
+});
+
+console.log('22',user.name)
+
+
+
+
+
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -61,6 +99,7 @@ const UserDataItem = ({
 
   const activeHandleClick = name => {
     setActive(name);
+    console.log('1')
     // handleFocus();
   };
 
@@ -71,41 +110,51 @@ const UserDataItem = ({
     dispatch(updateUserData({ [name]: inputValue }));
   };
 
+
+ 
+
+
+
   return (
     <UserDataItemWrapp>
       {isLoading && !error ? (
         <Loader />
       ) : (
-        <UserDataItemForm>
-          <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
-          <InputWrapp>
-            <UserDataItemInput
-              onChangeCapture={handleChange}
-              defaultValue={inputValue}
-              active={active === name}
-              disabled={active !== name}
-              type={type}
-              name={name}
-              id={name}
-              //   ref={inputRef}
-            />
-            {active === name ? (
-              <ButtonWrapp type="button" onClick={() => handleSubmit(name)}>
-                <InfoSubmitIcon />
-              </ButtonWrapp>
-            ) : (
-              <ButtonWrapp
-                disabled={active ? name : !name}
-                type="button"
-                onClick={() => activeHandleClick(name)}
-              >
-                <InfoChangeIcon
-                  style={active ? { color: 'black' } : { color: '#F59256' }}
-                />
-              </ButtonWrapp>
-            )}
-          </InputWrapp>
-        </UserDataItemForm>
+        <Formik
+          initialValues={userIntialValues}
+          validationSchema={userValidationSchema}
+        >
+          <UserDataItemForm>
+            <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
+            <InputWrapp>
+                <UserDataItemInput
+                onChangeCapture={handleChange}
+                defaultValue={inputValue}
+                active={active === name}
+                disabled={active !== name}
+                type={type}
+                name={name}
+                id={name}
+                //   ref={inputRef}
+              />
+              {active === name ? (
+                <ButtonWrapp type="button" onClick={() => handleSubmit(name)}>
+                  <InfoSubmitIcon />
+                </ButtonWrapp>
+              ) : (
+                <ButtonWrapp
+                  disabled={active ? name : !name}
+                  type="button"
+                  onClick={() => activeHandleClick(name)}
+                >
+                  <InfoChangeIcon
+                    style={active ? { color: 'black' } : { color: '#F59256' }}
+                  />
+                </ButtonWrapp>
+              )}
+            </InputWrapp>
+          </UserDataItemForm>
+        </Formik>
       )}
     </UserDataItemWrapp>
   );

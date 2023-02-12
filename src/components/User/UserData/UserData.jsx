@@ -7,7 +7,6 @@ import UserDataItem from './UserDataItem';
 import Loader from 'components/Loader';
 
 import styles from './UserData.styled';
-
 const { selectUserInfo, selectLoadingUser, selectErrorUser } = userSelectors;
 const { updateUserFoto } = userOperations;
 
@@ -29,6 +28,7 @@ const UserData = () => {
   const error = useSelector(selectErrorUser);
   const [active, setActive] = useState('');
 
+
   const changeFoto = e => {
     const result = new FormData();
     console.log(result);
@@ -40,6 +40,7 @@ const UserData = () => {
   // const changeFoto = e => {
   //   console.log(e.target.value);
   // };
+
 
   const patternEmail = /^(?!-)[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$/;
   // const patternDate=/\d{4}-\d{2}-\d{2}/
@@ -87,7 +88,6 @@ const UserData = () => {
               name="email"
               setActive={setActive}
               active={active}
-              pattern={patternEmail}
               title="Email no valid"
               id="email"
             />
