@@ -4,13 +4,15 @@ import Modal from 'components/notices/Modal';
 import hooks from 'hooks';
 import styles from './NoticeCategoryItem.styled';
 import useCategories from 'hooks/useCategories';
+// import operations from 'redux/notices/operations';
 
 const NoticeCategoryItem = ({ notice, category }) => {
   const { isLoggedIn } = hooks.useAuth();
   const [addedToFav, setAddedToFav] = useState(false);
   const [categoryName, setCategoryName] = useState('sell');
   useCategories(category, setCategoryName);
-  const { title, breed, place, age, price } = notice;
+  const { title, breed, place, age, price, _id } = notice;
+  console.log(_id);
   const {
     NoticeItemCard,
     Image,
