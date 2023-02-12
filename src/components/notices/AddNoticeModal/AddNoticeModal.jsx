@@ -7,7 +7,7 @@ import styles from './AddNoticeModal.styled';
 // import MaleIcon from '../../../images/male-icon.svg';
 const {
   ModalBackdrop,
-  Modal,
+  ModalBox,
   ModalTitle,
   ModalInfo,
   ModalCategoryGroup,
@@ -25,7 +25,7 @@ const {
 } = styles;
 const { addNotice } = operations;
 const initialValues = {
-  category: '',
+  category: 'sell',
   title: '',
   name: '',
   birthday: '',
@@ -36,21 +36,14 @@ const initialValues = {
   sex: '',
 };
 
-const AddNoticeModal = ({ setIsModalOpen }) => {
-  const [categoryValue, setCategoryValue] = useState('sell');
-  const [sexValue, setSexValue] = useState('sell');
+const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
+  // const [value, setValue] = useState('');
   const [firstPage, setFirstPage] = useState(true);
   const dispatch = useDispatch();
-
-  const handleChangeRadio = event => {
-    const { value } = event.target;
-    if (value === 'male' || value === 'female') {
-      setSexValue(value);
-      return;
-    }
-    return setCategoryValue(value);
-  };
-
+  // const handleChangeRadio = event => {
+  //   const { value } = event.target;
+  //   setValue(value);
+  // };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -58,21 +51,23 @@ const AddNoticeModal = ({ setIsModalOpen }) => {
   const onHandleSubmit = async (values, actions) => {
     const notice = await {
       ...values,
-      category: categoryValue,
-      sex: sexValue,
     };
-    console.log(notice);
-    actions.setSubmitting(false);
+    dispatch(addNotice(notice));
     setIsModalOpen(false);
-    // dispatch(addNotice(notice));
+    actions.setSubmitting(false);
   };
 
   return (
-    <ModalBackdrop>
-      <Modal>
-        <ModalTitle>Add pet</ModalTitle>
+    <ModalBackdrop
+      open={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <ModalBox>
+        <ModalTitle id="modal-modal-title">Add pet</ModalTitle>
         {firstPage && (
-          <ModalInfo>
+          <ModalInfo id="modal-modal-description">
             Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
             consectetur
           </ModalInfo>
@@ -81,60 +76,64 @@ const AddNoticeModal = ({ setIsModalOpen }) => {
           <IconClose />
         </InputButton>
         <Formik initialValues={initialValues} onSubmit={onHandleSubmit}>
-          {props => (
-            <Form>
+          {({ handleSubmit, handleChange }) => (
+            <Form onSubmit={handleSubmit}>
               {firstPage ? (
                 <>
-                  <ModalCategoryGroup
-                    onChange={handleChangeRadio}
-                    name="category"
-                  >
+                  <ModalCategoryGroup onChange={handleChange} name="category">
                     <ModalCategoryLabel
                       value="lost/found"
                       control={<ModalCategoryField />}
                       label="lost/found"
-                      checked={categoryValue === 'lost/found' && true}
                     />
                     <ModalCategoryLabel
                       value="in good hands"
                       control={<ModalCategoryField />}
                       label="in good hands"
-                      checked={categoryValue === 'in good hands' && true}
+                      // checked={value === 'in good hands' && true}
                     />
                     <ModalCategoryLabel
                       value="sell"
-                      checked={categoryValue === 'sell' && true}
+                      // checked={value === 'sell' && true}
                       control={<ModalCategoryField />}
                       label="sell"
                     />
                   </ModalCategoryGroup>
                   <ModalFieldLabel>
                     Title of ad
-                    <ModalField name="title" placeholder="Type pet info" />
+                    <ModalField
+                      type="text"
+                      onChange={handleChange}
+                      name="title"
+                      placeholder="Type pet info"
+                    />
                   </ModalFieldLabel>
 
-                  <ModalFieldLabel htmlFor="name">
+                  <ModalFieldLabel>
                     Name pet
                     <ModalField
-                      id="name"
+                      type="text"
+                      onChange={handleChange}
                       name="name"
                       placeholder="Type name pet"
                     />
                   </ModalFieldLabel>
 
-                  <ModalFieldLabel htmlFor="birthday">
+                  <ModalFieldLabel>
                     Date of birth
                     <ModalField
-                      id="birthday"
+                      type="text"
+                      onChange={handleChange}
                       name="birthday"
                       placeholder="Type date of birth"
                     />
                   </ModalFieldLabel>
 
-                  <ModalFieldLabel htmlFor="breed">
+                  <ModalFieldLabel>
                     Type breed
                     <ModalField
-                      id="breed"
+                      type="text"
+                      onChange={handleChange}
                       name="breed"
                       placeholder="Type breed"
                     />
@@ -154,49 +153,51 @@ const AddNoticeModal = ({ setIsModalOpen }) => {
                 </>
               ) : (
                 <>
-                  <ModalRadioGroup
-                    value="{sexValue}"
-                    onChange={handleChangeRadio}
-                    name="sex"
-                  >
+                  <ModalRadioGroup onChange={handleChange} name="sex">
                     <ModalLabel
                       value="male"
                       control={<ModalSexField />}
                       label="male"
-                      checked={sexValue === 'male' && true}
+                      // checked={value === 'male' && true}
                     />
-
                     <ModalLabel
                       value="female"
                       control={<ModalSexField />}
                       label="female"
-                      checked={sexValue === 'female' && true}
+                      // checked={value === 'female' && true}
                     />
                   </ModalRadioGroup>
-                  <ModalFieldLabel htmlFor="place">
+                  <ModalFieldLabel>
                     Location
                     <ModalField
-                      id="place"
+                      type="text"
+                      onChange={handleChange}
                       name="place"
                       placeholder="Type pet location"
                     />
                   </ModalFieldLabel>
-                  <ModalFieldLabel htmlFor="price">
+                  <ModalFieldLabel>
                     Price
                     <ModalField
-                      id="price"
+                      type="text"
+                      onChange={handleChange}
                       name="price"
                       placeholder="Type pet price"
                     />
                   </ModalFieldLabel>
-                  <ModalFieldLabel htmlFor="imageUrl">
+                  <ModalFieldLabel>
                     Load the pet's image
-                    <ModalField id="imageUrl" name="imageUrl" type="file" />
+                    <ModalField
+                      // onChange={handleChange}
+                      name="imageUrl"
+                      type="file"
+                    />
                   </ModalFieldLabel>
-                  <ModalFieldLabel htmlFor="comments">
+                  <ModalFieldLabel>
                     Comments
                     <ModalField
-                      id="comments"
+                      type="text"
+                      onChange={handleChange}
                       name="comments"
                       placeholder="Type your comments"
                     />
@@ -214,7 +215,7 @@ const AddNoticeModal = ({ setIsModalOpen }) => {
             </Form>
           )}
         </Formik>
-      </Modal>
+      </ModalBox>
     </ModalBackdrop>
   );
 };

@@ -1,31 +1,36 @@
-import { FormControlLabel, IconButton, Radio, RadioGroup } from '@mui/material';
-import { styled } from '@mui/system';
+import {
+  FormControlLabel,
+  IconButton,
+  Modal,
+  Radio,
+  RadioGroup,
+} from '@mui/material';
+import { Box, styled } from '@mui/system';
 import CloseIcon from '@mui/icons-material/Close';
 import { Field } from 'formik';
 
-const ModalBackdrop = styled('div')`
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding-top: 100px;
-  padding-left: 20px;
-  padding-right: 20px;
+const ModalBackdrop = styled(Modal)`
+  padding: 158px 20px 0;
   display: flex;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
   background-color: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
   overflow-y: scroll;
   z-index: 20000;
+  '& .css-i9fmh8-muibackdrop-root-muimodal-backdrop': {
+    opacity: 0;
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
   }
 `;
-const Modal = styled('div')`
+const ModalBox = styled(Box)`
   padding: 40px 20px;
-  position: relative;
-  min-height: 820px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  min-width: 280px;
+  margin-bottom: 60px;
 
   background: ${({ theme }) => theme.colors.white};
 
@@ -34,6 +39,7 @@ const Modal = styled('div')`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding-left: 80px;
     padding-right: 80px;
+    min-width: 608px;
   }
 `;
 const InputButton = styled(IconButton)`
@@ -130,6 +136,8 @@ const ModalCategoryLabel = styled(FormControlLabel)`
 
 const ModalCategoryField = styled(Radio)`
   display: none;
+  width: 100%;
+  height: 100%;
 `;
 
 const ModalFieldLabel = styled('label')`
@@ -172,6 +180,7 @@ const ModalField = styled(Field)`
 const ModalBtnWrap = styled('div')`
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
 `;
 const ModalBtn = styled('button')`
   style-decoration: none;
@@ -220,8 +229,7 @@ const ModalSexField = styled(Radio)`
   display: none;
 `;
 const styles = {
-  ModalBackdrop,
-  Modal,
+  ModalBox,
   ModalTitle,
   ModalInfo,
   ModalBtnWrap,
@@ -236,5 +244,6 @@ const styles = {
   ModalRadioGroup,
   ModalSexField,
   ModalLabel,
+  ModalBackdrop,
 };
 export default styles;
