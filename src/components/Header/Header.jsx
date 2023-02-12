@@ -6,7 +6,7 @@ const Header = () => {
   const { HeaderEl, Logo } = styles;
   return (
     <HeaderEl>
-      <Logo to="/notices">
+      <Logo to="/">
         pe<span>t</span>ly
       </Logo>
       <nav>

@@ -3,7 +3,6 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://petly-backend-backup.onrender.com';
 
-
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
@@ -26,7 +25,6 @@ const register = createAsyncThunk(
   }
 );
 
-
 const login = createAsyncThunk(
   'auth/login',
   async (creds, { rejectWithValue }) => {
@@ -40,8 +38,6 @@ const login = createAsyncThunk(
   }
 );
 
-
-
 const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     clearAuthHeader();
@@ -50,7 +46,23 @@ const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
-const operations = { register, logOut, login };
+const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const persistedToken = state.auth.token;
 
+  if (!persistedToken) {
+    return thunkAPI.rejectWithValue('Unable to fetch user');
+  }
+
+  try {
+    setAuthHeader(persistedToken);
+    const response = await axios.get('/api/auth/current');
+    return response.data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
+});
+
+const operations = { register, logOut, login, refreshUser };
 
 export default operations;

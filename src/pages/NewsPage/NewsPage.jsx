@@ -15,6 +15,10 @@ const {
   ArticleText,
   IconClose,
   InputButton,
+  DateAndLink,
+  Article,
+  NewsList,
+  TopBorder,
 } = styles;
 
 function NewsPage() {
@@ -40,7 +44,6 @@ function NewsPage() {
             );
           };
           const filteredNews = filterArticle(searchArticle);
-          console.log(filteredNews);
           setData(filteredNews);
         })
         .catch(error => {
@@ -65,6 +68,9 @@ function NewsPage() {
     }
     if (formattedMonth < 10) {
       formattedMonth = `0${formattedMonth}`;
+    }
+    if (formattedYear < 2018 || formattedMonth === 0 || formattedDay === 0) {
+      return `--/--/----`;
     }
     return `${formattedDay}/${formattedMonth}/${formattedYear}`;
   };
@@ -94,22 +100,27 @@ function NewsPage() {
       </SearchForm>
 
       {data ? (
-        data.map(data => {
-          return (
-            <div key={data._id}>
-              <ArticleTitle>{data.title}</ArticleTitle>
-              <ArticleText>{data.description}</ArticleText>
-              <ArticleDate>{getFormattedData(data.date)}</ArticleDate>
-              <ArticleUrl
-                href={data.url}
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-              >
-                Read more
-              </ArticleUrl>
-            </div>
-          );
-        })
+        <NewsList>
+          {data.map(data => (
+            <Article key={data._id}>
+              <div>
+                <TopBorder />
+                <ArticleTitle>{data.title}</ArticleTitle>
+                <ArticleText>{data.description}</ArticleText>
+                <DateAndLink>
+                  <ArticleDate>{getFormattedData(data.date)}</ArticleDate>
+                  <ArticleUrl
+                    href={data.url}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                  >
+                    Read more
+                  </ArticleUrl>
+                </DateAndLink>
+              </div>
+            </Article>
+          ))}
+        </NewsList>
       ) : (
         <Loader />
       )}
