@@ -44,14 +44,18 @@ let schema = yup.object().shape({
     .required(),
 });
 
-const ModelPetStepOne = ({ data, onClose }) => {
-  const handleFormSubmit = (values, { resetForm }) => {
-    //   const { name, number } = values;
-    //   if (contacts.some(contact => contact.name === name)) {
-    //     return alert(`${name} is already in contacts.`);
-    //   }
-    //   dispatch(addContact({ name, number }));
-    //   resetForm();
+const ModelPetStepOne = ({ data, next, onClose }) => {
+  // const handleFormSubmit = (values, { resetForm }) => {
+  //     const { name, number } = values;
+  //     if (contacts.some(contact => contact.name === name)) {
+  //       return alert(`${name} is already in contacts.`);
+  //     }
+  //     dispatch(addContact({ name, number }));
+  //     resetForm();
+  // };
+
+  const handleFormSubmit = values => {
+    next({ ...values }, false);
   };
 
   return (
@@ -60,7 +64,7 @@ const ModelPetStepOne = ({ data, onClose }) => {
       validationSchema={schema}
       onSubmit={handleFormSubmit}
     >
-      <Form>
+      <Form autoComplete="on">
         <div>
           <label htmlFor="name">Name pet</label>
           <Field
