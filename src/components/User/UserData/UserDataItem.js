@@ -6,8 +6,7 @@ import userOperations from 'redux/user/operations';
 import userSelectors from 'redux/user/selectors';
 import styles from './UserData.styled';
 import Loader from 'components/Loader';
-import { Formik } from 'formik';
-import * as Yup from 'yup';
+// import { useForm } from 'react-hook-form';
 
 // import ButtonChange from './ButtonChange';
 // import ButtonSubmit from './ButtonSubmit';
@@ -23,7 +22,8 @@ const {
 } = styles;
 
 const { updateUserData } = userOperations;
-const { selectLoadingUser, selectErrorUser, selectUserInfo } = userSelectors;
+const { selectLoadingUser, selectErrorUser } = userSelectors;
+
 
 const UserDataItem = ({
   name,
@@ -37,31 +37,23 @@ const UserDataItem = ({
   const isLoading = useSelector(selectLoadingUser);
   const error = useSelector(selectErrorUser);
   const [inputValue, setInputValue] = useState(defaultValue);
-  const user = useSelector(selectUserInfo);
   //   const inputRef = useRef(null);
-  // const { name, email, birthday, phone, city } = inputValue;
 
-  const userIntialValues = { email: user.email };
-  const userValidationSchema = Yup.object().shape({
-    email: Yup.string()
-      .min(10)
-      .max(63)
-      .matches(
-        /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/,
-        'Incorrect email address'
-      )
-      .required(),
-    password: Yup.string().min(7).max(32).required(),
-    name: Yup.string().required(),
-    city: Yup.string().min(3).max(32),
-    phone: Yup.string()
-      .min(13)
-      .max(13)
-      .matches('\\+?(?:\\s*\\d){12}\\s*', 'just numbers +380123456789')
-      .required(),
-  });
 
-  console.log('22', user.name);
+
+  // const {
+  //   register,
+  //   formState: { errors },
+  //   handleSubmit,
+  // } = useForm({
+  //   defaultValues: {
+  //     name: '',
+  //     email: '',
+  //     birthday: '',
+  //     phone: '',
+  //     city:''
+  //   }
+  // });
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -86,14 +78,15 @@ const UserDataItem = ({
 
   const activeHandleClick = name => {
     setActive(name);
-    console.log('1');
+    
+  
     // handleFocus();
   };
 
-  const handleSubmit = name => {
+  const handleSubmit1 = name => {
     setActive('');
     // handleFocus();
-
+console.log('value', name)
     dispatch(updateUserData({ [name]: inputValue }));
   };
 
@@ -102,11 +95,8 @@ const UserDataItem = ({
       {isLoading && !error ? (
         <Loader />
       ) : (
-        <Formik
-          initialValues={userIntialValues}
-          validationSchema={userValidationSchema}
-        >
-          <UserDataItemForm>
+  
+          <UserDataItemForm onSubmit={handleSubmit1}>
             <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
             <InputWrapp>
               <UserDataItemInput
@@ -117,10 +107,14 @@ const UserDataItem = ({
                 type={type}
                 name={name}
                 id={name}
+                // {...register(name, { required: true })}
+            
                 //   ref={inputRef}
               />
+              {/* {errors.name && 'is required'} */}
+
               {active === name ? (
-                <ButtonWrapp type="button" onClick={() => handleSubmit(name)}>
+                <ButtonWrapp type="submit">
                   <InfoSubmitIcon />
                 </ButtonWrapp>
               ) : (
@@ -136,7 +130,7 @@ const UserDataItem = ({
               )}
             </InputWrapp>
           </UserDataItemForm>
-        </Formik>
+    
       )}
     </UserDataItemWrapp>
   );

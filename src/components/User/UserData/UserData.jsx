@@ -28,7 +28,6 @@ const UserData = () => {
   const error = useSelector(selectErrorUser);
   const [active, setActive] = useState('');
 
-
   const changeFoto = e => {
     const result = new FormData();
     console.log(result);
@@ -41,8 +40,7 @@ const UserData = () => {
   //   console.log(e.target.value);
   // };
 
-
-  const patternEmail = /^(?!-)[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$/;
+  // const patternEmail = /^(?!-)[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$/;
   // const patternDate=/\d{4}-\d{2}-\d{2}/
   const patternPhone = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
   const patternCity = /^\s*([A-ZА-Я][a-zа-я]+,\s?)?[A-ZА-Я][a-zа-я]+\s*$/;
@@ -79,6 +77,7 @@ const UserData = () => {
               setActive={setActive}
               active={active}
               id="name"
+            
             />
 
             <UserDataItem
@@ -90,6 +89,9 @@ const UserData = () => {
               active={active}
               title="Email no valid"
               id="email"
+              required
+              aria-required="true"
+              // pattern="/^(([a-zA-Z0-9]{1}[a-zA-Z0-9_\-\.]{1,})@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}))$/"
             />
 
             <UserDataItem
@@ -110,7 +112,7 @@ const UserData = () => {
               name="phone"
               setActive={setActive}
               active={active}
-              pattern={patternPhone}
+              // pattern="/^\+380\d{3}\d{2}\d{2}\d{2}$/"
               title="Phone may be formated +3800000000"
               id="phone"
             />
