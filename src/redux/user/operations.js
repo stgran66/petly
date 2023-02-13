@@ -30,6 +30,13 @@ const updateUserFoto = createAsyncThunk(
   async (newData, thunkAPI) => {
     try {
       const response = await axios.patch('/api/auth/avatars', newData);
+
+      // hack to await when image is really achievable on sent url from cloudinary
+      const timeout = () => {
+        return new Promise(resolve => setTimeout(resolve, 500));
+      };
+      await timeout();
+
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -41,8 +48,7 @@ const deleteUserPet = createAsyncThunk(
   'user/deleteUserPet',
   async (petId, thunkAPI) => {
     try {
-      const response = await axios.patch(`/api/user/pet/${petId}`);
-      console.log(response.data);
+      const response = await axios.delete(`/api/user/pet/${petId}`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -53,10 +59,11 @@ const addUserPet = createAsyncThunk(
   'user/addUserPet',
   async (newData, thunkAPI) => {
     try {
+      console.log(newData);
       const response = await axios.post(`/api/user/pet`, newData);
-      console.log(response.data);
       return response.data;
     } catch (e) {
+      console.log(e.message);
       return thunkAPI.rejectWithValue(e.message);
     }
   }
