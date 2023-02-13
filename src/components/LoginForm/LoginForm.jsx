@@ -1,8 +1,13 @@
 import React from 'react';
+import { useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import InputField from 'components/FormFields';
-import { Grid } from '@mui/material';
+import { Grid, InputAdornment } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+
 import styles from './LoginForm.styled';
 
 import { useDispatch } from 'react-redux';
@@ -16,11 +21,23 @@ const formInitialValues = {
 };
 
 const currentValidationSchema = Yup.object().shape({
-  email: Yup.string().required(),
+  email: Yup.string()
+    .min(10)
+    .max(63)
+    .matches(
+      /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/,
+      'Incorrect email address'
+    ),
   password: Yup.string().min(7).max(32).required(),
 });
 
 const LoginForm = () => {
+  const [hidePassword, setHidePassword] = useState(true);
+
+  const showPassword = () => {
+    setHidePassword(prevState => !prevState);
+  };
+
   const dispatch = useDispatch();
   const {
     Title,
@@ -59,10 +76,26 @@ const LoginForm = () => {
             </Grid>
             <Grid item xs={12}>
               <InputField
-                type="password"
+                type={hidePassword ? 'password' : 'input'}
                 name="password"
                 label="Password"
                 fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={showPassword}
+                      >
+                        {hidePassword ? (
+                          <VisibilityOffIcon />
+                        ) : (
+                          <VisibilityIcon />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Grid>
           </Grid>

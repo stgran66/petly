@@ -6,6 +6,7 @@ import userOperations from 'redux/user/operations';
 import userSelectors from 'redux/user/selectors';
 import styles from './UserData.styled';
 import Loader from 'components/Loader';
+// import { useForm } from 'react-hook-form';
 
 // import ButtonChange from './ButtonChange';
 // import ButtonSubmit from './ButtonSubmit';
@@ -23,6 +24,7 @@ const {
 const { updateUserData } = userOperations;
 const { selectLoadingUser, selectErrorUser } = userSelectors;
 
+
 const UserDataItem = ({
   name,
   label,
@@ -36,6 +38,22 @@ const UserDataItem = ({
   const error = useSelector(selectErrorUser);
   const [inputValue, setInputValue] = useState(defaultValue);
   //   const inputRef = useRef(null);
+
+
+
+  // const {
+  //   register,
+  //   formState: { errors },
+  //   handleSubmit,
+  // } = useForm({
+  //   defaultValues: {
+  //     name: '',
+  //     email: '',
+  //     birthday: '',
+  //     phone: '',
+  //     city:''
+  //   }
+  // });
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -60,13 +78,15 @@ const UserDataItem = ({
 
   const activeHandleClick = name => {
     setActive(name);
+    
+  
     // handleFocus();
   };
 
-  const handleSubmit = name => {
+  const handleSubmit1 = name => {
     setActive('');
     // handleFocus();
-
+console.log('value', name)
     dispatch(updateUserData({ [name]: inputValue }));
   };
 
@@ -75,36 +95,42 @@ const UserDataItem = ({
       {isLoading && !error ? (
         <Loader />
       ) : (
-        <UserDataItemForm>
-          <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
-          <InputWrapp>
-            <UserDataItemInput
-              onChangeCapture={handleChange}
-              defaultValue={inputValue}
-              active={active === name}
-              disabled={active !== name}
-              type={type}
-              name={name}
-              id={name}
-              //   ref={inputRef}
-            />
-            {active === name ? (
-              <ButtonWrapp type="button" onClick={() => handleSubmit(name)}>
-                <InfoSubmitIcon />
-              </ButtonWrapp>
-            ) : (
-              <ButtonWrapp
-                disabled={active ? name : !name}
-                type="button"
-                onClick={() => activeHandleClick(name)}
-              >
-                <InfoChangeIcon
-                  style={active ? { color: 'black' } : { color: '#F59256' }}
-                />
-              </ButtonWrapp>
-            )}
-          </InputWrapp>
-        </UserDataItemForm>
+  
+          <UserDataItemForm onSubmit={handleSubmit1}>
+            <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
+            <InputWrapp>
+              <UserDataItemInput
+                onChangeCapture={handleChange}
+                defaultValue={inputValue}
+                active={active === name}
+                disabled={active !== name}
+                type={type}
+                name={name}
+                id={name}
+                // {...register(name, { required: true })}
+            
+                //   ref={inputRef}
+              />
+              {/* {errors.name && 'is required'} */}
+
+              {active === name ? (
+                <ButtonWrapp type="submit">
+                  <InfoSubmitIcon />
+                </ButtonWrapp>
+              ) : (
+                <ButtonWrapp
+                  disabled={active ? name : !name}
+                  type="button"
+                  onClick={() => activeHandleClick(name)}
+                >
+                  <InfoChangeIcon
+                    style={active ? { color: 'black' } : { color: '#F59256' }}
+                  />
+                </ButtonWrapp>
+              )}
+            </InputWrapp>
+          </UserDataItemForm>
+    
       )}
     </UserDataItemWrapp>
   );
