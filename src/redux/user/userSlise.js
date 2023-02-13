@@ -28,6 +28,23 @@ const userInitialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState: userInitialState,
+  reducers: {
+    clearState(state, action) {
+      state.userInfo = {
+        _id: '',
+        email: '',
+        name: '',
+        city: '',
+        phone: '',
+        birthday: '',
+        avatarURL: '',
+        favorite: [],
+        pets: [],
+      };
+      state.isLoading = false;
+      state.error = null;
+    },
+  },
   extraReducers: {
     [fetchUserData.pending](state) {
       state.isLoading = true;
@@ -97,6 +114,8 @@ const userSlice = createSlice({
     },
   },
 });
+
+export const { clearState } = userSlice.actions;
 
 const userReducer = userSlice.reducer;
 
