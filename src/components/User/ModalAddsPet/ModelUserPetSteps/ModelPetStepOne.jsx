@@ -1,6 +1,12 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+
+import styles from './Model.Steps.styled';
+
 // import { parse, isDate } from 'date-fns';
+
+const { FormWrapp, FormInputWrapp, ButtonsGroup, ButtonAccent, ButtonWhite } =
+  styles;
 
 // const today = new Date();
 
@@ -54,38 +60,49 @@ const ModelPetStepOne = ({ data, next, onClose }) => {
       validationSchema={schema}
       onSubmit={handleFormSubmit}
     >
-      <Form autoComplete="on">
-        <div>
-          <label htmlFor="name">Name pet</label>
-          <Field
-            type="text"
-            name="name"
-            required
-            placeholder="Type name pet"
-            id="name"
-          />
-          <ErrorMessage component="span" name="name" />
+      <FormWrapp autoComplete="on">
+        <FormInputWrapp>
+          <label htmlFor="name">
+            Name pet
+            <Field
+              type="text"
+              name="name"
+              required
+              placeholder="Type name pet"
+              id="name"
+            />
+            <ErrorMessage component="span" name="name" />
+          </label>
 
-          <label htmlFor="birthday">Date of birth</label>
-          <Field
-            name="birthday"
-            required
-            placeholder="Type date of birth"
-            id="birthday"
-          />
-          <ErrorMessage component="span" name="birthday" />
+          <label htmlFor="birthday">
+            Date of birth
+            <Field
+              name="birthday"
+              required
+              placeholder="Type date of birth"
+              id="birthday"
+            />
+            <ErrorMessage component="span" name="birthday" />
+          </label>
 
-          <label htmlFor="breed">Breed</label>
-          <Field type="text" name="breed" placeholder="Type breed" id="breed" />
-          <ErrorMessage component="span" name="breed" />
-        </div>
-        <div>
-          <button type="submit">Next</button>
-          <button type="button" onClick={() => onClose()}>
+          <label htmlFor="breed">
+            Breed
+            <Field
+              type="text"
+              name="breed"
+              placeholder="Type breed"
+              id="breed"
+            />
+            <ErrorMessage component="span" name="breed" />
+          </label>
+        </FormInputWrapp>
+        <ButtonsGroup>
+          <ButtonAccent type="submit">Next</ButtonAccent>
+          <ButtonWhite type="button" onClick={() => onClose()}>
             Cancel
-          </button>
-        </div>
-      </Form>
+          </ButtonWhite>
+        </ButtonsGroup>
+      </FormWrapp>
     </Formik>
   );
 };

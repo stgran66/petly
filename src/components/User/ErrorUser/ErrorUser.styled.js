@@ -2,10 +2,12 @@ import { styled } from '@mui/system';
 
 const ErrorWrapp = styled('div')`
   padding-top: 15px;
+  padding-bottom: 15px;
   text-align: center;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     padding-top: 25px;
+    padding-bottom: 25px;
   }
 
   h3 {

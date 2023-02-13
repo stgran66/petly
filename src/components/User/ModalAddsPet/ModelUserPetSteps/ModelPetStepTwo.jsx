@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import styles from './Model.Steps.styled';
+const { FormWrapp, FormInputWrapp, ButtonsGroup, ButtonWhite, ButtonAccent } =
+  styles;
 
 // const IMAGE_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
 
@@ -49,9 +52,9 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
       onSubmit={handleFormSubmit}
     >
       {({ setFieldValue }) => (
-        <Form autoComplete="on" encType="multipart/form-data">
-          <p>Add photo and some comments</p>
-          <div>
+        <FormWrapp autoComplete="on" encType="multipart/form-data">
+          <FormInputWrapp>
+            <p>Add photo and some comments</p>
             <div>
               {fileInput ? (
                 <img
@@ -85,14 +88,14 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
                 onChange={e => handleInputChange(e, setFieldValue)}
               />
             </div>
-          </div>
-          <div>
-            <button type="submit">Done</button>
-            <button type="button" onClick={() => prev(setFieldValue)}>
+          </FormInputWrapp>
+          <ButtonsGroup>
+            <ButtonAccent type="submit">Done</ButtonAccent>
+            <ButtonWhite type="button" onClick={() => prev(setFieldValue)}>
               Back
-            </button>
-          </div>
-        </Form>
+            </ButtonWhite>
+          </ButtonsGroup>
+        </FormWrapp>
       )}
     </Formik>
   );
