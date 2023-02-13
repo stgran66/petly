@@ -18,9 +18,10 @@ const register = createAsyncThunk(
   async (creds) => {
     try {
       const response = await axios.post('/api/auth/signup', creds);
-      await setAuthHeader(response.data.token);
+       setAuthHeader(response.data.token);
       console.log(axios.defaults);
       return response.data;
+      
     } catch (e) {
         return Notiflix.Notify.info(e.message);
     }
@@ -53,7 +54,7 @@ const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   const persistedToken = state.auth.token;
 
   if (!persistedToken) {
-    return Notiflix.Notify.info('Unable to fetch user');
+    return thunkAPI.rejectWithValue('Unable to fetch user');
   
   }
 
@@ -62,7 +63,7 @@ const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     const response = await axios.get('/api/auth/current');
     return response.data;
   } catch (e) {
-    return Notiflix.Notify.info(e.message);;
+    return Notiflix.Notify.info(e.message);
   }
 });
 
