@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
+import Notiflix from 'notiflix'
+ 
 axios.defaults.baseURL = 'https://petly-backend-backup.onrender.com';
 
 const setAuthHeader = token => {
@@ -14,26 +15,26 @@ const clearAuthHeader = () => {
 
 const register = createAsyncThunk(
   'auth/register',
-  async (creds, { rejectWithValue }) => {
+  async (creds) => {
     try {
       const response = await axios.post('/api/auth/signup', creds);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (e) {
-      return rejectWithValue(e.message);
+        return Notiflix.Notify.info(e.message);
     }
   }
 );
 
 const login = createAsyncThunk(
   'auth/login',
-  async (creds, { rejectWithValue }) => {
+  async (creds) => {
     try {
       const response = await axios.post('/api/auth/login', creds);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (e) {
-      return rejectWithValue(e.message);
+       return Notiflix.Notify.info(e.message);
     }
   }
 );
@@ -41,8 +42,8 @@ const login = createAsyncThunk(
 const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     clearAuthHeader();
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+  } catch (e) {
+    return Notiflix.Notify.info(e.message);
   }
 });
 
@@ -51,7 +52,8 @@ const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   const persistedToken = state.auth.token;
 
   if (!persistedToken) {
-    return thunkAPI.rejectWithValue('Unable to fetch user');
+    return Notiflix.Notify.info('Unable to fetch user');
+  
   }
 
   try {
@@ -59,7 +61,7 @@ const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     const response = await axios.get('/api/auth/current');
     return response.data;
   } catch (e) {
-    return thunkAPI.rejectWithValue(e.message);
+    return Notiflix.Notify.info(e.message);;
   }
 });
 

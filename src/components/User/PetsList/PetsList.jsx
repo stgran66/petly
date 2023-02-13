@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import userSelectors from 'redux/user/selectors';
 import Loader from 'components/Loader';
 import ErrorUser from 'components/User/ErrorUser';
-import NoPetList from 'components/User/NoPetList';
+import NoPetList from 'components/User/noPetList';
 
 import styles from './PetsList.styled';
 import PetItem from './PetItem';

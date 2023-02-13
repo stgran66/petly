@@ -10,7 +10,7 @@ const LoginForm = styled(Form)`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin: auto;
-    margin-top: 276px;
+    margin-top: 204px;
     width: 608px;
     padding: 60px 80px 40px 80px;
     background: #ffffff;

@@ -16,7 +16,13 @@ const formInitialValues = {
 };
 
 const currentValidationSchema = Yup.object().shape({
-  email: Yup.string().required(),
+  email: Yup.string()
+    .min(10)
+    .max(63)
+    .matches(
+      /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/,
+      'Incorrect email address'
+    ),
   password: Yup.string().min(7).max(32).required(),
 });
 
