@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://petly-backend-backup.onrender.com';
+axios.defaults.baseURL = 'http://localhost:3002';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -17,7 +18,8 @@ const register = createAsyncThunk(
   async (creds, { rejectWithValue }) => {
     try {
       const response = await axios.post('/api/auth/signup', creds);
-      setAuthHeader(response.data.token);
+      await setAuthHeader(response.data.token);
+      console.log(axios.defaults);
       return response.data;
     } catch (e) {
       return rejectWithValue(e.message);
