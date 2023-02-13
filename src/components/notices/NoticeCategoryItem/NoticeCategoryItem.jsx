@@ -4,6 +4,9 @@ import Modal from 'components/notices/Modal';
 import hooks from 'hooks';
 import styles from './NoticeCategoryItem.styled';
 import useCategories from 'hooks/useCategories';
+// import operations from 'redux/notices/operations';
+
+// const { addFavNotice, removeFavNotice, getFavorite } = operations;
 
 const NoticeCategoryItem = ({ notice, category }) => {
   const { isLoggedIn } = hooks.useAuth();
@@ -37,6 +40,21 @@ const NoticeCategoryItem = ({ notice, category }) => {
       ? Notify.info('Please authorize to access your account and add notice')
       : setAddedToFav(true);
   };
+
+  // const [isFavourite, setIsFavourite] = useState(favorite);
+  // const handleSubmit = e => {
+  // console.log(getFavorite);
+  // if (!isLoggedIn) {
+  //   Notify.info('Please authorize to access your account and add notice');
+  //   return;
+  // }
+  // // setIsFavourite(!isFavourite);
+  // if (!favorite) {
+  //   //   removeFavNotice(_id);
+  //   // } else {
+  // addFavNotice(_id);
+  // }
+  // };
 
   return (
     <NoticeItemCard>

@@ -7,8 +7,22 @@ const noticesInitialState = {
   error: null,
 };
 
-const { fetchNotices, addNotice, getFavorite, getMyNotices } = operations;
-const extraActions = [fetchNotices, addNotice, getFavorite, getMyNotices];
+const {
+  fetchNotices,
+  addNotice,
+  getFavorite,
+  getMyNotices,
+  addFavNotice,
+  removeFavNotice,
+} = operations;
+const extraActions = [
+  fetchNotices,
+  addNotice,
+  getFavorite,
+  getMyNotices,
+  addFavNotice,
+  removeFavNotice,
+];
 const getActionsByType = type => extraActions.map(action => action[type]);
 const onFetchSuccessReducer = (state, action) => {
   state.items = action.payload;
@@ -31,6 +45,18 @@ const onFetchMyNoticesSuccessReducer = (state, action) => {
   state.isLoading = false;
   state.error = null;
 };
+const onAddFavNoticeSuccessReducer = (state, action) => {
+  state.items = [action.payload, ...state.items];
+  state.isLoading = false;
+  state.error = null;
+};
+
+const onRemoveFavNoticeSuccessReducer = (state, action) => {
+  const index = state.items.findIndex(
+    notice => notice._id === action.payload._id
+  );
+  state.items.splice(index, 1);
+};
 
 const onPendingReducer = state => {
   state.isLoading = true;
@@ -50,6 +76,8 @@ const noticesSlice = createSlice({
       .addCase(addNotice.fulfilled, onAddSuccessReducer)
       .addCase(getFavorite.fulfilled, onFetchFavoriteSuccessReducer)
       .addCase(getMyNotices.fulfilled, onFetchMyNoticesSuccessReducer)
+      .addCase(addFavNotice.fulfilled, onAddFavNoticeSuccessReducer)
+      .addCase(removeFavNotice.fulfilled, onRemoveFavNoticeSuccessReducer)
       .addMatcher(isAnyOf(...getActionsByType('pending')), onPendingReducer)
       .addMatcher(isAnyOf(...getActionsByType('rejected')), onRejectedReducer),
 });
