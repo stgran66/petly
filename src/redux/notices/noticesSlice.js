@@ -45,16 +45,17 @@ const onFetchMyNoticesSuccessReducer = (state, action) => {
   state.isLoading = false;
   state.error = null;
 };
-const onaddFavNoticeSuccessReducer = (state, action) => {
+const onAddFavNoticeSuccessReducer = (state, action) => {
   state.items = [action.payload, ...state.items];
   state.isLoading = false;
   state.error = null;
 };
 
-const onremoveFavNoticeSuccessReducer = (state, action) => {
-  state.items = [action.payload, ...state.items];
-  state.isLoading = false;
-  state.error = null;
+const onRemoveFavNoticeSuccessReducer = (state, action) => {
+  const index = state.items.findIndex(
+    notice => notice._id === action.payload._id
+  );
+  state.items.splice(index, 1);
 };
 
 const onPendingReducer = state => {
@@ -75,8 +76,8 @@ const noticesSlice = createSlice({
       .addCase(addNotice.fulfilled, onAddSuccessReducer)
       .addCase(getFavorite.fulfilled, onFetchFavoriteSuccessReducer)
       .addCase(getMyNotices.fulfilled, onFetchMyNoticesSuccessReducer)
-      .addCase(addFavNotice.fulfilled, onaddFavNoticeSuccessReducer)
-      .addCase(removeFavNotice.fulfilled, onremoveFavNoticeSuccessReducer)
+      .addCase(addFavNotice.fulfilled, onAddFavNoticeSuccessReducer)
+      .addCase(removeFavNotice.fulfilled, onRemoveFavNoticeSuccessReducer)
       .addMatcher(isAnyOf(...getActionsByType('pending')), onPendingReducer)
       .addMatcher(isAnyOf(...getActionsByType('rejected')), onRejectedReducer),
 });
