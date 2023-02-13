@@ -1,23 +1,26 @@
 {
   "files": {
     "main.css": "/petly/static/css/main.90fc78fa.css",
-    "main.js": "/petly/static/js/main.98cb3a6b.js",
+    "main.js": "/petly/static/js/main.92a6ce23.js",
     "static/media/1280Vector.png": "/petly/static/media/1280Vector.0f6d477f53c11cbe8d09.png",
     "static/media/happy_client.png": "/petly/static/media/happy_client.6c68c7c49db4fa3756da.png",
     "static/media/Dog.jpeg": "/petly/static/media/Dog.9e7d7e43600e88e7eb22.jpeg",
     "static/media/addPet.png": "/petly/static/media/addPet.c561659ca86311ebb2ad.png",
     "static/media/ErrorPage.jpg": "/petly/static/media/ErrorPage.0a97c5eb3c8c38d8e599.jpg",
     "static/media/DogModal.jpeg": "/petly/static/media/DogModal.71b3f2243ca4892ea45d.jpeg",
+    "static/media/female-icon.svg": "/petly/static/media/female-icon.00550ea02f9b94c9b7484719b6428794.svg",
     "static/media/add-fav-icon.svg": "/petly/static/media/add-fav-icon.fe22c04b399eba7897a208382813bae1.svg",
     "static/media/fav-icon.svg": "/petly/static/media/fav-icon.275a30517802ebfe95c327b936f3c664.svg",
+    "static/media/male-icon.svg": "/petly/static/media/male-icon.1aceff21d5fc4f60c7fb9aa108bb3eef.svg",
     "static/media/close-icon.svg": "/petly/static/media/close-icon.5834ead530089c4d60da8e792cb8930b.svg",
     "static/media/320Vector.svg": "/petly/static/media/320Vector.32afb0f061c4a2617b906fd8fb944d87.svg",
     "index.html": "/petly/index.html",
+    "static/media/plus-icon.svg": "/petly/static/media/plus-icon.deec2b9327a6f7e779ae3cbb9fa31798.svg",
     "main.90fc78fa.css.map": "/petly/static/css/main.90fc78fa.css.map",
-    "main.98cb3a6b.js.map": "/petly/static/js/main.98cb3a6b.js.map"
+    "main.92a6ce23.js.map": "/petly/static/js/main.92a6ce23.js.map"
   },
   "entrypoints": [
     "static/css/main.90fc78fa.css",
-    "static/js/main.98cb3a6b.js"
+    "static/js/main.92a6ce23.js"
   ]
 }
