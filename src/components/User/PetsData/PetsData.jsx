@@ -1,34 +1,31 @@
+import { useState } from 'react';
 import PetsList from '../PetsList';
+import ModalAddsPet from '../ModalAddsPet';
+import ModalUser from '../ModalUser';
 import styles from './PetsData.styled';
 const { ContainerWrapp, Title, UserPetAddButton, PetAddIcon } = styles;
 
 const PetsData = () => {
-  // state = {
-  //   isModalOpen: false,
-  // };
-  // openModal = () => this.setState({ isModalOpen: true });
-  // closeModal = () => this.setState({ isModalOpen: false });
+  const [showModal, setShowModal] = useState(false);
 
-  // додати на кнопку onClick={this.openModal} та в код умову:
-  // {
-  //   isModalOpen && (
-  //     <Modal
-  //       largeImageLink={largeImageLink}
-  //       other={other}
-  //       closeModal={this.closeModal}
-  //     />
-  //   );
-  // }
+  const onClose = () => {
+    setShowModal(true);
+  };
 
   return (
     <>
       <ContainerWrapp>
         <Title>My pets:</Title>
-        <UserPetAddButton type="button">
+        <UserPetAddButton type="button" onClick={onClose}>
           Add pet <PetAddIcon />
         </UserPetAddButton>
       </ContainerWrapp>
       <PetsList />
+      {showModal && (
+        <ModalUser setShowModal={setShowModal}>
+          <ModalAddsPet setShowModal={setShowModal} />
+        </ModalUser>
+      )}
     </>
   );
 };

@@ -42,6 +42,19 @@ const deleteUserPet = createAsyncThunk(
   async (petId, thunkAPI) => {
     try {
       const response = await axios.patch(`/api/user/pet/${petId}`);
+      console.log(response.data);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+const addUserPet = createAsyncThunk(
+  'user/addUserPet',
+  async (newData, thunkAPI) => {
+    try {
+      const response = await axios.post(`/api/user/pet`, newData);
+      console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -54,6 +67,7 @@ const userOperations = {
   updateUserData,
   updateUserFoto,
   deleteUserPet,
+  addUserPet,
 };
 
 export default userOperations;

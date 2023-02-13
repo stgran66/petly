@@ -20,8 +20,18 @@ const MainContainer = styled('div')`
   }
 `;
 
-const ContainerWrapp = styled('div')`
+const ContainerWrappUser = styled('div')`
   /* width: 100%; */
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    flex-grow: 0;
+  }
+`;
+
+const ContainerWrappPets = styled('div')`
+  /* width: 100%; */
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    flex-grow: 3;
+  }
 `;
 
 const Title = styled('h2')`
@@ -70,6 +80,12 @@ const UserContainer = styled('div')`
   }
 `;
 
-const styles = { MainContainer, ContainerWrapp, Title, UserContainer };
+const styles = {
+  MainContainer,
+  ContainerWrappPets,
+  ContainerWrappUser,
+  Title,
+  UserContainer,
+};
 
 export default styles;
