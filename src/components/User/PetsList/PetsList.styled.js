@@ -14,6 +14,7 @@ const PetsListWpapp = styled('ul')`
 const PetItemWrapp = styled('li')`
   display: flex;
   flex-direction: column;
+
   gap: 20px;
   padding: 16px 20px 40px 20px;
   border-radius: 20px;
@@ -47,7 +48,8 @@ const PetInfoFoto = styled('img')`
 `;
 
 const PetInfoWrapp = styled('div')`
-  flex-shrink: 2;
+  /* flex-shrink: 0; */
+  width: 100%;
   position: relative;
 `;
 

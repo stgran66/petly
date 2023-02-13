@@ -4,6 +4,7 @@ import {
   Modal,
   Radio,
   RadioGroup,
+  TextareaAutosize,
 } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import CloseIcon from '@mui/icons-material/Close';
@@ -135,19 +136,21 @@ const ModalCategoryLabel = styled(FormControlLabel)`
 `;
 
 const ModalCategoryField = styled(Radio)`
-  display: none;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 `;
 
 const ModalFieldLabel = styled('label')`
   display: flex;
+  position: relative;
   flex-direction: column;
   margin-bottom: 16px;
   cursor: pointer;
   font-family: ${({ theme }) => theme.fonts[0]};
   font-size: ${({ theme }) => theme.fontSizes.text.l};
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.text.black};
   line-height: ${({ theme }) => theme.lineHeights.l};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
 
@@ -160,6 +163,7 @@ const ModalField = styled(Field)`
   padding: 12px 14px;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
+  font-size: ${({ theme }) => theme.fontSizes.text.s};
   background-color: ${({ theme }) => theme.colors.commonBackground};
   color: ${({ theme }) => theme.colors.text};
   line-height: ${({ theme }) => theme.lineHeights.s};
@@ -192,7 +196,7 @@ const ModalBtn = styled('button')`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: move;
+  cursor: pointer;
   letter-spacing: 0.04em;
   border: 2px solid ${({ theme }) => theme.colors.accent};
   border-radius: 40px;
@@ -213,22 +217,96 @@ transition: ${({ theme }) => theme.transitions.normal};
 const ModalRadioGroup = styled(RadioGroup)`
   display: flex;
   flex-direction: row;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 `;
+
+const RadioWrap = styled('div')`
+  display: flex;
+  flex-direction: column;
+  &:not(:last-child) {
+    margin-right: 40px;
+  }
+`;
+
+const RadiImg = styled('img')`
+  display: block;
+  margin-bottom: 10px;
+  width: 40px;
+  height: auto;
+`;
+
 const ModalLabel = styled(FormControlLabel)`
   font-family: ${({ theme }) => theme.fonts[0]};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-size: ${({ theme }) => theme.fontSizes.text.l};
   line-height: ${({ theme }) => theme.lineHeights.l};
   display: flex;
+  margin: 0;
   flex-direction: row;
   color: ${({ theme, checked }) =>
     checked ? theme.colors.accent : theme.colors.black};
 `;
 const ModalSexField = styled(Radio)`
-  display: none;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 `;
+const ModalFile = styled('input')`
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+`;
+
+const AddImageWrap = styled('span')`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  border-radius: 20px;
+  height: 116px;
+  width: 116px;
+
+  background-color: ${({ theme }) => theme.colors.commonBackground};
+`;
+const AddImage = styled('img')`
+  display: block;
+`;
+
+const ModalTextarea = styled(TextareaAutosize)`
+  margin-top: 8px;
+  padding: 12px 14px;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  maxlength: 120;
+  background-color: ${({ theme }) => theme.colors.commonBackground};
+  color: ${({ theme }) => theme.colors.text.black};
+  line-height: ${({ theme }) => theme.lineHeights.xl};
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
+  font-size: ${({ theme }) => theme.fontSizes.text.s};
+  transition: ${({ theme }) => theme.transitions.normal};
+  outline: none;
+  // font-family: 'Manrope';
+  // font-style: normal;
+  // font-weight: 400;
+  // font-size: 14px;
+  // line-height: 22px;
+  // /* or 161% */
+
+  // display: flex;
+  // align-items: center;
+  &::placeholder {
+    color: rgba(27, 27, 27, 0.6);
+  }
+  &:hover,
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.accent};
+  }
+`;
+
 const styles = {
+  ModalFile,
   ModalBox,
   ModalTitle,
   ModalInfo,
@@ -245,5 +323,10 @@ const styles = {
   ModalSexField,
   ModalLabel,
   ModalBackdrop,
+  AddImageWrap,
+  AddImage,
+  RadioWrap,
+  RadiImg,
+  ModalTextarea,
 };
 export default styles;

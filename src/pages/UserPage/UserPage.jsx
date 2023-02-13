@@ -7,7 +7,13 @@ import userSelectors from 'redux/user/selectors';
 import Loader from 'components/Loader';
 
 const { UserData, Logout, PetsData } = user;
-const { MainContainer, ContainerWrapp, UserContainer, Title } = styles;
+const {
+  MainContainer,
+  ContainerWrappUser,
+  ContainerWrappPets,
+  UserContainer,
+  Title,
+} = styles;
 const { fetchUserData } = userOperations;
 
 const { selectLoadingUser, selectErrorUser } = userSelectors;
@@ -30,16 +36,16 @@ const UserPage = () => {
       ) : (
         <>
           {' '}
-          <ContainerWrapp>
+          <ContainerWrappUser>
             <Title>My information:</Title>
             <UserContainer>
               <UserData />
               <Logout />
             </UserContainer>
-          </ContainerWrapp>
-          <ContainerWrapp>
+          </ContainerWrappUser>
+          <ContainerWrappPets>
             <PetsData />
-          </ContainerWrapp>
+          </ContainerWrappPets>
         </>
       )}
     </MainContainer>
@@ -47,3 +53,25 @@ const UserPage = () => {
 };
 
 export default UserPage;
+
+// return (
+//   <MainContainer>
+//     {isLoading && !error ? (
+//       <Loader />
+//     ) : (
+//       <>
+//         {' '}
+//         <ContainerWrapp>
+//           <Title>My information:</Title>
+//           <UserContainer>
+//             <UserData />
+//             <Logout />
+//           </UserContainer>
+//         </ContainerWrapp>
+//         <ContainerWrapp>
+//           <PetsData />
+//         </ContainerWrapp>
+//       </>
+//     )}
+//   </MainContainer>
+// );

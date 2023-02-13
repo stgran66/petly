@@ -39,6 +39,9 @@ const Wrapper = styled('div')`
       background-size: auto;
       background-position: center bottom 0%;
     }
+    @media screen and (min-width: 1400px) {
+      background-size: cover;
+    }
   }
   @media screen and (orientation: landscape) {
     margin-top: 40px;
