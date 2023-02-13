@@ -10,7 +10,7 @@ import NotFound from '../NotFound';
 import NotFoundNotices from '../NotFoundNotices/NotFoundNotices';
 
 const { fetchNotices, getFavorite, getMyNotices } = operations;
-const { List, ListItem, NotFoundMessage, NoticesContainer } = styles;
+const { List, ListItem, NoticesContainer } = styles;
 const { selectFilteredList, selectLoadingStatus, selectErrorMessage } =
   selectors;
 
