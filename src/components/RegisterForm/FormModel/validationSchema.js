@@ -11,7 +11,7 @@ const validationSchema = [
       .min(10)
       .max(63)
       .matches(
-        /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/,
+        /^(([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5}))$/,
         'Please enter a valid email address'
       )
       .required(`${email.requiredErrorMsg}`),
