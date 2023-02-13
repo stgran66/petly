@@ -67,7 +67,7 @@ const ModelPetStepOne = ({ data, next, onClose }) => {
       validationSchema={schema}
       onSubmit={handleFormSubmit}
     >
-      <FormWrapp autoComplete="on">
+      <FormWrapp>
         <FormInputWrapp>
           <LabelWrapp>
             <label htmlFor="name">Name pet</label>

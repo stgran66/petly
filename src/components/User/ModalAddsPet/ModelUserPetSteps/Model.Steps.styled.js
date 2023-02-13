@@ -2,7 +2,7 @@ import { styled } from '@mui/system';
 import { Form, Field } from 'formik';
 import { Add28Regular } from '@fluentui/react-icons';
 
-const FormWrapp = styled(Form)`
+const FormWrapp = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 40px;

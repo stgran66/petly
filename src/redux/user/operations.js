@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+// hack to await when image is really achievable on sent url from cloudinary
+const timeout = () => {
+  return new Promise(resolve => setTimeout(resolve, 1000));
+};
+
 const fetchUserData = createAsyncThunk(
   'user/fetchData',
   async (_, thunkAPI) => {
@@ -32,9 +37,6 @@ const updateUserFoto = createAsyncThunk(
       const response = await axios.patch('/api/auth/avatars', newData);
 
       // hack to await when image is really achievable on sent url from cloudinary
-      const timeout = () => {
-        return new Promise(resolve => setTimeout(resolve, 500));
-      };
       await timeout();
 
       return response.data;
@@ -59,8 +61,11 @@ const addUserPet = createAsyncThunk(
   'user/addUserPet',
   async (newData, thunkAPI) => {
     try {
-      console.log(newData);
       const response = await axios.post(`/api/user/pet`, newData);
+
+      // hack to await when image is really achievable on sent url from cloudinary
+      await timeout();
+
       return response.data;
     } catch (e) {
       console.log(e.message);
