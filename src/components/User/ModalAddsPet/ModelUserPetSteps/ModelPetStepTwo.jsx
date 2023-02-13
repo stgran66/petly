@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Formik, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import styles from './Model.Steps.styled';
 const {
