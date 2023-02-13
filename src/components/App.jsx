@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { lazy, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
-import pages from 'pages';
 import NoticesCategoryList from './notices/NoticesCategoryList';
-
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'components/Loader';
 import operations from 'redux/auth/operations';
 import select from 'redux/auth/selectors';
@@ -15,15 +12,13 @@ import select from 'redux/auth/selectors';
 const { refreshUser } = operations;
 const { selectIsRefreshing } = select;
 
-const {
-  HomePage,
-  LoginPage,
-  RegisterPage,
-  UserPage,
-  NewsPage,
-  NoticesPage,
-  FriendsPage,
-} = pages;
+const HomePage = lazy(() => import('../pages/HomePage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const UserPage = lazy(() => import('../pages/UserPage'));
+const NewsPage = lazy(() => import('../pages/NewsPage'));
+const NoticesPage = lazy(() => import('../pages/NoticesPage'));
+const FriendsPage = lazy(() => import('../pages/FriendsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
