@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import Notiflix from 'notiflix'
- 
+import Notiflix from 'notiflix';
+
 axios.defaults.baseURL = 'https://petly-backend-backup.onrender.com';
 
 const setAuthHeader = token => {
@@ -13,32 +13,26 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
-const register = createAsyncThunk(
-  'auth/register',
-  async (creds) => {
-    try {
-      const response = await axios.post('/api/auth/signup', creds);
-      await setAuthHeader(response.data.token);
-      console.log(axios.defaults);
-      return response.data;
-    } catch (e) {
-        return Notiflix.Notify.info(e.message);
-    }
+const register = createAsyncThunk('auth/register', async creds => {
+  try {
+    const response = await axios.post('/api/auth/signup', creds);
+    await setAuthHeader(response.data.token);
+    console.log(axios.defaults);
+    return response.data;
+  } catch (e) {
+    return Notiflix.Notify.info(e.message);
   }
-);
+});
 
-const login = createAsyncThunk(
-  'auth/login',
-  async (creds) => {
-    try {
-      const response = await axios.post('/api/auth/login', creds);
-      setAuthHeader(response.data.token);
-      return response.data;
-    } catch (e) {
-       return Notiflix.Notify.info(e.message);
-    }
+const login = createAsyncThunk('auth/login', async creds => {
+  try {
+    const response = await axios.post('/api/auth/login', creds);
+    setAuthHeader(response.data.token);
+    return response.data;
+  } catch (e) {
+    return Notiflix.Notify.info(e.message);
   }
-);
+});
 
 const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
@@ -54,7 +48,6 @@ const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
 
   if (!persistedToken) {
     return Notiflix.Notify.info('Unable to fetch user');
-  
   }
 
   try {
@@ -62,7 +55,7 @@ const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     const response = await axios.get('/api/auth/current');
     return response.data;
   } catch (e) {
-    return Notiflix.Notify.info(e.message);;
+    return Notiflix.Notify.info(e.message);
   }
 });
 
