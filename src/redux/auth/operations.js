@@ -13,6 +13,7 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
+
 const register = createAsyncThunk('auth/register', async (creds, thunkAPI) => {
   try {
     const response = await axios.post('/api/auth/signup', creds);
@@ -22,6 +23,7 @@ const register = createAsyncThunk('auth/register', async (creds, thunkAPI) => {
   } catch (e) {
     Notiflix.Notify.info(e.message);
     return thunkAPI.rejectWithValue(e.message);
+
   }
 });
 
@@ -49,13 +51,20 @@ const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
   const persistedToken = state.auth.token;
 
+
+  if (!persistedToken) {
+    return thunkAPI.rejectWithValue('Unable to fetch user');
+  
+  }
+
   try {
     setAuthHeader(persistedToken);
     const response = await axios.get('/api/auth/current');
     return response.data;
   } catch (e) {
-    return thunkAPI.rejectWithValue(e.message);
-  }
+     Notiflix.Notify.info(e.message);
+     return thunkAPI.rejectWithValue(e.message);
+}
 });
 
 const operations = { register, logOut, login, refreshUser };

@@ -16,14 +16,18 @@ const validationSchema = [
       )
       .required(`${email.requiredErrorMsg}`),
     [password.name]: Yup.string()
-      .min(7)
-      .max(32)
+      // .min(7)
+      // .max(32)
+      .matches(
+        /^[^ ]{7,32}$/,
+        'password should be from 7 to 32 characters long, without spaces'
+      )
       .required(`${password.requiredErrorMsg}`),
     [confirmPassword.name]: Yup.string()
       .min(7)
       .max(32)
       .required(`${confirmPassword.requiredErrorMsg}`)
-      .oneOf([Yup.ref('password')], 'Passwords does not match'),
+      .oneOf([Yup.ref('password')], 'passwords does not match'),
   }),
   Yup.object().shape({
     [name.name]: Yup.string().required(`${name.requiredErrorMsg}`),
