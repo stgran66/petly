@@ -7,6 +7,7 @@ import operations from 'redux/notices/operations';
 import { useEffect } from 'react';
 import Loader from 'components/Loader';
 import NotFound from '../NotFound';
+import NotFoundNotices from '../NotFoundNotices/NotFoundNotices';
 
 const { fetchNotices, getFavorite, getMyNotices } = operations;
 const { List, ListItem, NotFoundMessage, NoticesContainer } = styles;
@@ -24,6 +25,7 @@ const NoticesCategoryList = () => {
   const myNotices = urlPath.pathname.includes('own');
 
   const noNoticesFind = filteredNotices.length === 0;
+  const searchOptions = { favorite, myNotices, category };
 
   useEffect(() => {
     if (favorite) {
@@ -41,12 +43,13 @@ const NoticesCategoryList = () => {
     <NoticesContainer>
       {error && <NotFound />}
       {isLoading && <Loader />}
-      {!isLoading && !error && (
-        <List>
-          {noNoticesFind ? (
-            <NotFoundMessage>We didn't find pets</NotFoundMessage>
-          ) : (
-            filteredNotices.map(notice => (
+      {!isLoading &&
+        !error &&
+        (noNoticesFind ? (
+          <NotFoundNotices searchOptions={searchOptions} />
+        ) : (
+          <List>
+            {filteredNotices.map(notice => (
               <ListItem key={notice._id}>
                 <NoticeCategoryItem
                   id={notice._id}
@@ -54,10 +57,9 @@ const NoticesCategoryList = () => {
                   category={category}
                 />
               </ListItem>
-            ))
-          )}
-        </List>
-      )}
+            ))}
+          </List>
+        ))}
     </NoticesContainer>
   );
 };

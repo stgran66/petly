@@ -135,9 +135,10 @@ const ModalCategoryLabel = styled(FormControlLabel)`
 `;
 
 const ModalCategoryField = styled(Radio)`
-  display: none;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 `;
 
 const ModalFieldLabel = styled('label')`
@@ -226,9 +227,35 @@ const ModalLabel = styled(FormControlLabel)`
     checked ? theme.colors.accent : theme.colors.black};
 `;
 const ModalSexField = styled(Radio)`
-  display: none;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 `;
+const ModalFile = styled('input')`
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+`;
+
+const AddImageWrap = styled('span')`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  border-radius: 20px;
+  height: 116px;
+  width: 116px;
+
+  background-color: ${({ theme }) => theme.colors.commonBackground};
+`;
+const AddImage = styled('img')`
+  display: block;
+`;
+
 const styles = {
+  ModalFile,
   ModalBox,
   ModalTitle,
   ModalInfo,
@@ -245,5 +272,7 @@ const styles = {
   ModalSexField,
   ModalLabel,
   ModalBackdrop,
+  AddImageWrap,
+  AddImage,
 };
 export default styles;
