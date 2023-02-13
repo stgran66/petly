@@ -7,7 +7,6 @@ import UserDataItem from './UserDataItem';
 import Loader from 'components/Loader';
 
 import styles from './UserData.styled';
-
 const { selectUserInfo, selectLoadingUser, selectErrorUser } = userSelectors;
 const { updateUserFoto } = userOperations;
 
@@ -39,6 +38,8 @@ const UserData = () => {
   //   dispatch(updateUserFoto(result));
   // };
 
+
+
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -48,6 +49,7 @@ const UserData = () => {
   };
 
   const patternEmail = /^(?!-)[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$/;
+
   // const patternDate=/\d{4}-\d{2}-\d{2}/
   const patternPhone = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
   const patternCity = /^\s*([A-ZА-Я][a-zа-я]+,\s?)?[A-ZА-Я][a-zа-я]+\s*$/;
@@ -78,6 +80,7 @@ const UserData = () => {
               setActive={setActive}
               active={active}
               id="name"
+            
             />
 
             <UserDataItem
@@ -87,9 +90,11 @@ const UserData = () => {
               name="email"
               setActive={setActive}
               active={active}
-              pattern={patternEmail}
               title="Email no valid"
               id="email"
+              required
+              aria-required="true"
+              // pattern="/^(([a-zA-Z0-9]{1}[a-zA-Z0-9_\-\.]{1,})@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}))$/"
             />
 
             <UserDataItem
@@ -110,7 +115,7 @@ const UserData = () => {
               name="phone"
               setActive={setActive}
               active={active}
-              pattern={patternPhone}
+              // pattern="/^\+380\d{3}\d{2}\d{2}\d{2}$/"
               title="Phone may be formated +3800000000"
               id="phone"
             />

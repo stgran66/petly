@@ -45,9 +45,9 @@ const {Container}= styles
                       onClick={showPassword}
                     >
                       {hidePassword ? (
-                        <VisibilityIcon />
-                      ) : (
                         <VisibilityOffIcon />
+                      ) : (
+                        <VisibilityIcon />
                       )}
                     </IconButton>
                   </InputAdornment>
@@ -69,9 +69,9 @@ const {Container}= styles
                       onClick={showPassword}
                     >
                       {hidePassword ? (
-                        <VisibilityIcon />
-                      ) : (
                         <VisibilityOffIcon />
+                      ) : (
+                        <VisibilityIcon />
                       )}
                     </IconButton>
                   </InputAdornment>
