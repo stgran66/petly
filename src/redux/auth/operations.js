@@ -18,7 +18,8 @@ const register = createAsyncThunk(
   async (creds) => {
     try {
       const response = await axios.post('/api/auth/signup', creds);
-      setAuthHeader(response.data.token);
+      await setAuthHeader(response.data.token);
+      console.log(axios.defaults);
       return response.data;
     } catch (e) {
         return Notiflix.Notify.info(e.message);
