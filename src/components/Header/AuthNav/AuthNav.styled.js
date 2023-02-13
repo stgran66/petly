@@ -7,6 +7,7 @@ const Link = styled(NavLink)`
   border-radius: 40px;
   color: ${({ theme }) => theme.colors.text};
 
+  background-color: ${({ theme }) => theme.colors.white};
   &.active {
     background-color: ${({ theme }) => theme.colors.accent};
     color: ${({ theme }) => theme.colors.white};
