@@ -4,16 +4,23 @@ import Modal from 'components/notices/Modal';
 import hooks from 'hooks';
 import styles from './NoticeCategoryItem.styled';
 import useCategories from 'hooks/useCategories';
-// import operations from 'redux/notices/operations';
+import operations from 'redux/notices/operations';
+// import { useLocation } from 'react-router';
+import { useDispatch } from 'react-redux';
+// import { useEffect } from 'react';
 
 // const { addFavNotice, removeFavNotice, getFavorite } = operations;
+const { addFavNotice } = operations;
 
 const NoticeCategoryItem = ({ notice, category }) => {
+  const dispatch = useDispatch();
   const { isLoggedIn } = hooks.useAuth();
   const [addedToFav, setAddedToFav] = useState(false);
   const [categoryName, setCategoryName] = useState('sell');
+  // const urlPath = useLocation();
+  // const favoriteCategory = urlPath.pathname.includes('favorite');
   useCategories(category, setCategoryName);
-  const { title, breed, place, age, price } = notice;
+  const { title, breed, place, age, price, _id } = notice;
   const {
     NoticeItemCard,
     Image,
@@ -31,30 +38,29 @@ const NoticeCategoryItem = ({ notice, category }) => {
   } = styles;
 
   const [showModal, setShowModal] = useState(false);
-  const handleSubmit = e => {
-    Notify.init({
-      position: 'right-top',
-      distance: '8px',
-    });
-    !isLoggedIn
-      ? Notify.info('Please authorize to access your account and add notice')
-      : setAddedToFav(true);
-  };
-
-  // const [isFavourite, setIsFavourite] = useState(favorite);
   // const handleSubmit = e => {
-  // console.log(getFavorite);
-  // if (!isLoggedIn) {
-  //   Notify.info('Please authorize to access your account and add notice');
-  //   return;
-  // }
-  // // setIsFavourite(!isFavourite);
-  // if (!favorite) {
-  //   //   removeFavNotice(_id);
-  //   // } else {
-  // addFavNotice(_id);
-  // }
+  //   dispatch(addFavNotice(_id));
+  // Notify.init({
+  //   position: 'right-top',
+  //   distance: '8px',
+  // });
+  // !isLoggedIn
+  //   ? Notify.info('Please authorize to access your account and add notice')
+  //   : setAddedToFav(true);
   // };
+
+  const handleSubmit = e => {
+    if (!isLoggedIn) {
+      Notify.info('Please authorize to access your account and add notice');
+      return;
+    }
+    // setIsFavourite(!setAddedToFav);
+    // if (!addedToFav) {
+    //   dispatch(removeFavNotice(_id));
+    // } else {
+    dispatch(addFavNotice(_id));
+    setAddedToFav(true);
+  };
 
   return (
     <NoticeItemCard>

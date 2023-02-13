@@ -27,6 +27,8 @@ const NoticesCategoryList = () => {
   const noNoticesFind = filteredNotices.length === 0;
   const searchOptions = { favorite, myNotices, category };
 
+  // console.log(dispatch(getFavorite()));
+
   useEffect(() => {
     if (favorite) {
       dispatch(getFavorite());
