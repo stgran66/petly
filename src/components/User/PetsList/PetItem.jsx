@@ -15,9 +15,10 @@ const {
 
 const PetItem = ({ pet }) => {
   const { _id, name, birthday, breed, photo, comments } = pet;
+  // console.log(pet);
   const dispatch = useDispatch();
 
-  const handleDelete = () => dispatch(deleteUserPet(_id));
+  // const handleDelete = () => dispatch(deleteUserPet(_id));
 
   return (
     <>
@@ -37,7 +38,12 @@ const PetItem = ({ pet }) => {
             <PetInfoName>Comments:</PetInfoName> {comments}
           </li>
         </PetInfo>
-        <PetDeleteButton type="button" onClick={handleDelete}>
+        <PetDeleteButton
+          type="button"
+          onClick={() => {
+            dispatch(deleteUserPet(_id));
+          }}
+        >
           <PetDeleteIcon />
         </PetDeleteButton>
       </PetInfoWrapp>

@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import userSelectors from 'redux/user/selectors';
 import Loader from 'components/Loader';
-import NotFound from 'components/notices/NotFound';
-import NoPetList from 'components/User/noPetList';
+import ErrorUser from 'components/User/ErrorUser';
+import NoPetList from 'components/User/NoPetList';
 
 import styles from './PetsList.styled';
 import PetItem from './PetItem';
@@ -19,7 +19,7 @@ const PetsList = () => {
   return (
     <>
       {pets.length === 0 && <NoPetList />}
-      {error && <NotFound />}
+      {error && <ErrorUser />}
       {isLoading && <Loader />}
       <PetsListWpapp>
         {pets.length > 0 &&

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import userOperations from 'redux/user/operations';
@@ -28,18 +28,24 @@ const UserData = () => {
   const isLoading = useSelector(selectLoadingUser);
   const error = useSelector(selectErrorUser);
   const [active, setActive] = useState('');
-
-  const changeFoto = e => {
-    const result = new FormData();
-    console.log(result);
-    console.log(e.target.files[0]);
-    result.append('avatars', e.target.files[0]);
-    dispatch(updateUserFoto(result));
-  };
+  const selectForm = useRef(null);
 
   // const changeFoto = e => {
-  //   console.log(e.target.value);
+  //   const result = new FormData();
+
+  //   console.log(e.target.files[0]);
+  //   result.append('avatars', e.target.files[0]);
+  //   console.log(result);
+  //   dispatch(updateUserFoto(result));
   // };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    const result = new FormData(selectForm.current);
+
+    dispatch(updateUserFoto(result));
+  };
 
   const patternEmail = /^(?!-)[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$/;
   // const patternDate=/\d{4}-\d{2}-\d{2}/
@@ -47,24 +53,18 @@ const UserData = () => {
   const patternCity = /^\s*([A-ZА-Я][a-zа-я]+,\s?)?[A-ZА-Я][a-zа-я]+\s*$/;
 
   return (
-    <UserContainer>
+    <>
       {isLoading && !error && <Loader />}
       {user && !isLoading && (
-        <>
+        <UserContainer>
           <ContainerWrappFoto>
             <WrappFoto>
               <UserFoto src={user.avatarURL} alt="user foto" />
 
-              <FotoForm enctype="multipart/form-data">
+              <FotoForm ref={selectForm} onChange={handleSubmit}>
                 <FotoLabel>
                   <FotoIcon /> Edit photo
-                  <input
-                    type="file"
-                    accept="image/*"
-                    name="avatar"
-                    onChange={changeFoto}
-                    hidden
-                  />
+                  <input type="file" accept="image/*" name="avatar" hidden />
                 </FotoLabel>
               </FotoForm>
             </WrappFoto>
@@ -127,9 +127,9 @@ const UserData = () => {
               id="city"
             />
           </ContainerWrappInfo>
-        </>
+        </UserContainer>
       )}
-    </UserContainer>
+    </>
   );
 };
 
