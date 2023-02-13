@@ -1,12 +1,19 @@
-import { Formik, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
 import styles from './Model.Steps.styled';
 
 // import { parse, isDate } from 'date-fns';
 
-const { FormWrapp, FormInputWrapp, ButtonsGroup, ButtonAccent, ButtonWhite } =
-  styles;
+const {
+  FormWrapp,
+  FormInputWrapp,
+  ButtonsGroup,
+  ButtonAccent,
+  ButtonWhite,
+  LabelWrapp,
+  InputValue,
+} = styles;
 
 // const today = new Date();
 
@@ -62,9 +69,9 @@ const ModelPetStepOne = ({ data, next, onClose }) => {
     >
       <FormWrapp autoComplete="on">
         <FormInputWrapp>
-          <label htmlFor="name">
-            Name pet
-            <Field
+          <LabelWrapp>
+            <label htmlFor="name">Name pet</label>
+            <InputValue
               type="text"
               name="name"
               required
@@ -72,29 +79,29 @@ const ModelPetStepOne = ({ data, next, onClose }) => {
               id="name"
             />
             <ErrorMessage component="span" name="name" />
-          </label>
+          </LabelWrapp>
 
-          <label htmlFor="birthday">
-            Date of birth
-            <Field
+          <LabelWrapp>
+            <label htmlFor="birthday">Date of birth</label>
+            <InputValue
               name="birthday"
               required
               placeholder="Type date of birth"
               id="birthday"
             />
             <ErrorMessage component="span" name="birthday" />
-          </label>
+          </LabelWrapp>
 
-          <label htmlFor="breed">
-            Breed
-            <Field
+          <LabelWrapp>
+            <label htmlFor="breed">Breed</label>
+            <InputValue
               type="text"
               name="breed"
               placeholder="Type breed"
               id="breed"
             />
             <ErrorMessage component="span" name="breed" />
-          </label>
+          </LabelWrapp>
         </FormInputWrapp>
         <ButtonsGroup>
           <ButtonAccent type="submit">Next</ButtonAccent>

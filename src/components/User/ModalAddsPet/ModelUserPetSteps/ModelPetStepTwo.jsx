@@ -2,8 +2,20 @@ import React, { useState } from 'react';
 import { Formik, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import styles from './Model.Steps.styled';
-const { FormWrapp, FormInputWrapp, ButtonsGroup, ButtonWhite, ButtonAccent } =
-  styles;
+const {
+  FormWrapp,
+  FormInputWrappSecond,
+  ButtonsGroup,
+  ButtonWhite,
+  ButtonAccent,
+  FormText,
+  FotoWrap,
+  PetFoto,
+  PetFotoIcon,
+  PetFotoInputLabel,
+  CommentWrapp,
+  InputCommentValue,
+} = styles;
 
 // const IMAGE_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
 
@@ -52,43 +64,44 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
       onSubmit={handleFormSubmit}
     >
       {({ setFieldValue }) => (
-        <FormWrapp autoComplete="on" encType="multipart/form-data">
-          <FormInputWrapp>
-            <p>Add photo and some comments</p>
-            <div>
+        <FormWrapp autoComplete="on">
+          <FormInputWrappSecond>
+            <FormText>Add photo and some comments</FormText>
+            <FotoWrap enctype="multipart/form-data">
               {fileInput ? (
-                <img
+                <PetFoto
                   src={URL.createObjectURL(fileInput)}
                   alt={fileInput.name}
                 />
               ) : (
-                <button type="button">хрест</button>
+                <PetFotoInputLabel>
+                  <PetFotoIcon />
+                  <InputCommentValue
+                    type="file"
+                    name="photo"
+                    accept="image/*"
+                    onChange={e => selectFile(e, setFieldValue)}
+                    hidden
+                  />
+                </PetFotoInputLabel>
               )}
-              <input
-                type="file"
-                name="photo"
-                accept="image/*"
-                onChange={e => selectFile(e, setFieldValue)}
-              />
-              <ErrorMessage component="span" name="photo" />
-            </div>
 
-            <div>
+              <ErrorMessage component="span" name="photo" />
+            </FotoWrap>
+
+            <CommentWrapp>
               <label htmlFor="comments">Comments</label>
-              <Field
-                type="text"
+              <InputCommentValue
+                component="textarea"
                 name="comments"
                 required
                 placeholder="Type comments"
                 id="comments"
-              />
-              <ErrorMessage
-                component="span"
-                name="comments"
                 onChange={e => handleInputChange(e, setFieldValue)}
               />
-            </div>
-          </FormInputWrapp>
+              <ErrorMessage component="span" name="comments" />
+            </CommentWrapp>
+          </FormInputWrappSecond>
           <ButtonsGroup>
             <ButtonAccent type="submit">Done</ButtonAccent>
             <ButtonWhite type="button" onClick={() => prev(setFieldValue)}>

@@ -76,11 +76,10 @@ const userSlice = createSlice({
     [deleteUserPet.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.error = null;
-      state.userInfo.pets = payload.pets;
-      // const index = state.userInfo.pets.findIndex(
-      //   pet => pet._id === payload._id
-      // );
-      // state.userInfo.pets.splice(index, 1);
+      const index = state.userInfo.pets.findIndex(
+        pet => pet._id === payload._id
+      );
+      state.userInfo.pets.splice(index, 1);
     },
 
     [addUserPet.pending](state) {
