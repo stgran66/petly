@@ -62,7 +62,8 @@ const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     const response = await axios.get('/api/auth/current');
     return response.data;
   } catch (e) {
-    return Notiflix.Notify.info(e.message);
+     Notiflix.Notify.info(e.message);
+     return thunkAPI.rejectWithValue(e.message);
 }
 });
 
