@@ -29,23 +29,27 @@ const ModalAddsPet = ({ setShowModal }) => {
   };
 
   const fetchPets = form => {
-    const dataForm = {
-      ...form,
-      birthday: parseDateToISO(form.birthday),
-    };
-    dispatch(addUserPet(dataForm));
+    dispatch(addUserPet(form));
   };
 
-  function parseDateToISO(str) {
-    const dateParts = str.split('.');
-    const formattedDate = new Date(
-      +dateParts[2],
-      dateParts[1] - 1,
-      +dateParts[0]
-    );
+  // const fetchPets = form => {
+  //   const dataForm = {
+  //     ...form,
+  //     birthday: parseDateToISO(form.birthday),
+  //   };
+  //   dispatch(addUserPet(dataForm));
+  // };
 
-    return formattedDate.toISOString();
-  }
+  // function parseDateToISO(str) {
+  //   const dateParts = str.split('.');
+  //   const formattedDate = new Date(
+  //     +dateParts[2],
+  //     dateParts[1] - 1,
+  //     +dateParts[0]
+  //   );
+
+  //   return formattedDate.toISOString();
+  // }
 
   const handleNextStep = async (newData, final = false) => {
     setFormData(prev => (prev = newData));

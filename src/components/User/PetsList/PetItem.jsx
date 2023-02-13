@@ -15,6 +15,7 @@ const {
 
 const PetItem = ({ pet }) => {
   const { _id, name, birthday, breed, photo, comments } = pet;
+  console.log(pet);
   const dispatch = useDispatch();
 
   // const handleDelete = () => dispatch(deleteUserPet(_id));

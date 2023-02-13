@@ -99,7 +99,3 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
 };
 
 export default ModelPetStepTwo;
-
-// {
-//   /* <Label htmlFor="comments" lastMargin> */
-// }

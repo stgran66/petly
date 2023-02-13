@@ -1,9 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import { parse, isDate } from 'date-fns';
-// import getCurrent from './ValidationData';
+// import { parse, isDate } from 'date-fns';
 
-const today = new Date();
+// const today = new Date();
 
 const RegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
 
@@ -17,22 +16,22 @@ let schema = yup.object().shape({
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
     )
     .required(),
-  birthday: yup
-    .date()
-    .test('len', 'Must be exactly DD.MM.YYYY', (_, { originalValue }) => {
-      if (originalValue) {
-        return originalValue.length === 10;
-      }
-    })
-    .transform(function (_, originalValue) {
-      const result = isDate(originalValue)
-        ? originalValue
-        : parse(originalValue, 'dd.MM.yyyy', new Date());
+  birthday: yup.string(),
+  // .date()
+  // .test('len', 'Must be exactly DD.MM.YYYY', (_, { originalValue }) => {
+  //   if (originalValue) {
+  //     return originalValue.length === 10;
+  //   }
+  // })
+  // .transform(function (_, originalValue) {
+  //   const result = isDate(originalValue)
+  //     ? originalValue
+  //     : parse(originalValue, 'dd.MM.yyyy', new Date());
 
-      return result;
-    })
-    .min('01.01.1950', 'Date is too early')
-    .max(today),
+  //   return result;
+  // })
+  // .min('01.01.1950', 'Date is too early')
+  // .max(today),
   breed: yup
     .string()
     .min(2)
