@@ -1,5 +1,18 @@
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import { NavLink } from 'react-router-dom';
+
+const Link = styled(NavLink)`
+  display: block;
+  border-radius: 40px;
+  color: ${({ theme }) => theme.colors.text};
+
+  background-color: ${({ theme }) => theme.colors.white};
+  &.active {
+    background-color: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.white};
+  }
+`;
 
 const ButtonEl = styled(Button)(({ theme }) => ({
   padding: '8px 28px',
@@ -9,15 +22,15 @@ const ButtonEl = styled(Button)(({ theme }) => ({
   lineHeight: theme.lineHeights.m,
   textTransform: 'inherit',
   letterSpacing: '0.04em',
-  color: theme.colors.text,
+  color: 'inherit',
   borderRadius: '40px',
   border: `2px solid ${theme.colors.accent}`,
   backgroundColor: 'transparent',
 
   ':hover': {
     border: `2px solid ${theme.colors.accent}`,
-    color: theme.colors.white,
     backgroundColor: theme.colors.accent,
+    color: theme.colors.white,
   },
 
   '@media only screen and (min-width: 768px)': {
@@ -37,5 +50,6 @@ const AuthBtns = styled('ul')`
 const styles = {
   ButtonEl,
   AuthBtns,
+  Link,
 };
 export default styles;

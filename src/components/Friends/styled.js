@@ -6,6 +6,8 @@ const StyledList = styled('ul')`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 100px;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     gap: 32px;
@@ -17,6 +19,8 @@ const StyledList = styled('ul')`
 
   li {
     display: flex;
+    justify-content: center;
+    align-self: stretch;
     @media screen and (max-width: 767px) {
       width: 100%;
     }
@@ -57,6 +61,7 @@ const StyledContainer = styled('div')`
 
 const StyledFriend = styled('div')`
   width: 100%;
+  max-width: 280px;
   font-family: ${props => props.theme.fonts[0]};
   font-size: ${props => props.theme.fontSizes.text.xs};
   line-height: ${props => props.theme.lineHeights.xs};
@@ -66,8 +71,11 @@ const StyledFriend = styled('div')`
   border-radius: 20px;
   padding: 14px 4px 12px 4px;
   overflow: hidden;
+  box-shadow: ${props => props.theme.shadows.cardsShadow};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    max-width: 336px;
+
     font-size: ${props => props.theme.fontSizes.text.s};
     line-height: ${props => props.theme.lineHeights.s};
     border-radius: 40px;
@@ -75,6 +83,8 @@ const StyledFriend = styled('div')`
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    max-width: 395px;
+
     font-size: ${props => props.theme.fontSizes.text.m};
     line-height: ${props => props.theme.lineHeights.s};
     border-radius: 40px;
@@ -96,6 +106,7 @@ const StyledFriend = styled('div')`
   h3 > a {
     color: ${props => props.theme.colors.accent};
     text-decoration-line: underline;
+
     font-weight: ${props => props.theme.fontWeights.bold};
 
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
@@ -174,6 +185,10 @@ const StyledFriend = styled('div')`
 
   dd {
     margin: 0;
+
+    button {
+      padding: 0;
+    }
   }
 
   img {
@@ -190,16 +205,30 @@ const StyledFriend = styled('div')`
       height: 112px;
     }
   }
+
+  div.empty-image {
+    background-color: transparent;
+    position: relative;
+    padding: 39px 55px;
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      padding: 42.5px 60px;
+    }
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+      padding: 56px 79px;
+    }
+  }
 `;
 
 const StyledModal = styled('div')`
   border: 1px solid ${props => props.theme.colors.accent};
   border-radius: 8px;
   box-shadow: ${props => props.theme.shadows.timeModalShadow};
-  padding: 12px;
+  padding: 12px 10px;
   position: absolute;
   background-color: ${props => props.theme.colors.white};
-  min-width: 96px;
+  width: 120px;
 
   font-family: ${props => props.theme.fonts[0]};
   font-weight: ${props => props.theme.fontWeights.medium};

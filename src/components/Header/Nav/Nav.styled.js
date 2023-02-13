@@ -17,18 +17,26 @@ const NavList = styled('ul')`
 `;
 
 const Link = styled(NavLink)`
-  display: flex;
-  align-items: center;
-
   font-family: ${({ theme }) => theme.fonts[0]};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-size: ${({ theme }) => theme.fontSizes.navLinks.mobile};
   line-height: 44px;
   letter-spacing: 0.04em;
   color: ${({ theme }) => theme.colors.navLinks};
+  transition: font-weight 0.1s linear;
+
+  &:after {
+    display: block;
+    content: attr(title);
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
 
   &:hover,
   &.active {
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
     color: ${({ theme }) => theme.colors.accent};
     text-decoration: revert;
   }

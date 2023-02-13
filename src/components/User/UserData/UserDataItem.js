@@ -6,6 +6,7 @@ import userOperations from 'redux/user/operations';
 import userSelectors from 'redux/user/selectors';
 import styles from './UserData.styled';
 import Loader from 'components/Loader';
+
 // import ButtonChange from './ButtonChange';
 // import ButtonSubmit from './ButtonSubmit';
 const {
@@ -93,10 +94,13 @@ const UserDataItem = ({
               </ButtonWrapp>
             ) : (
               <ButtonWrapp
+                disabled={active ? name : !name}
                 type="button"
                 onClick={() => activeHandleClick(name)}
               >
-                <InfoChangeIcon />
+                <InfoChangeIcon
+                  style={active ? { color: 'black' } : { color: '#F59256' }}
+                />
               </ButtonWrapp>
             )}
           </InputWrapp>

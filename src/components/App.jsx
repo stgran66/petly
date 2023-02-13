@@ -1,9 +1,19 @@
+import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
 import pages from 'pages';
 import NoticesCategoryList from './notices/NoticesCategoryList';
+
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Loader from 'components/Loader';
+import operations from 'redux/auth/operations';
+import select from 'redux/auth/selectors';
+
+const { refreshUser } = operations;
+const { selectIsRefreshing } = select;
 
 const {
   HomePage,
@@ -16,7 +26,16 @@ const {
 } = pages;
 
 export const App = () => {
-  return (
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />

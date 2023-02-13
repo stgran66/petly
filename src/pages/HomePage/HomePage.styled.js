@@ -1,6 +1,6 @@
 import { styled } from '@mui/system';
 import bgImage320 from '../../images/home_page/320Vector.svg';
-import bgImage1280 from '../../images/home_page/1280Vector.svg';
+import bgImage1280 from '../../images/home_page/1280Vector.png';
 import happyClient from '../../images/home_page/happy_client.png';
 
 const Wrapper = styled('div')`
@@ -19,15 +19,8 @@ const Wrapper = styled('div')`
     background-repeat: no-repeat;
     background-position: bottom center, left 32% bottom -12%;
 
-    @media screen and (min-width: 645px) {
-      background-image: url(${happyClient}), url(${bgImage320});
-      background-size: 55%, 200%;
-      background-position: bottom center, 25% 120%;
-      /* background-position: bottom center, 25% -19%; */
-    }
-
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-      background-image: url(${happyClient}), url(${bgImage320});
+      background-size: 70%, 200%;
       background-position: bottom center, 45% -75%;
     }
     @media screen and (orientation: landscape) {
@@ -41,10 +34,13 @@ const Wrapper = styled('div')`
       }
     }
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-      top: 60px;
+      top: 70px;
       background-image: url(${bgImage1280});
+      background-size: auto;
+      background-position: center bottom 0%;
+    }
+    @media screen and (min-width: 1400px) {
       background-size: cover;
-      background-position: right bottom 100%;
     }
   }
   @media screen and (orientation: landscape) {

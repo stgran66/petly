@@ -30,13 +30,12 @@ const ButtonEl = styled(Button)(({ theme }) => ({
     backgroundColor: theme.colors.accent,
   },
   '& span': {
-    marginRight: '12px',
-    marginLeft: '0',
+    marginRight: '0',
     '& svg': {
-      ' @media only screen and (min-width: 768px) ': {
-        width: '23px',
-        height: '23px',
-      },
+      width: '23px',
+      height: '23px',
+      marginRight: '12px',
+
       ' @media only screen and (min-width: 1280px)': {
         width: '28px',
         height: '28px',

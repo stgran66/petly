@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import operations from './operations';
 
-const { register, logOut, login } = operations;
+const { register, logOut, login, refreshUser } = operations;
 
 const initialState = {
   user: {
@@ -9,10 +9,9 @@ const initialState = {
     email: null,
   },
   token: null,
-
-  isLoggedIn: false, //Add logic for redirecting  or true
+  isLoggedIn: false,
   error: null,
-  isRefreshing: false,
+  isRefreshing: true,
 };
 
 const authSlice = createSlice({
@@ -34,12 +33,27 @@ const authSlice = createSlice({
     },
     [login.rejected](state, action) {
       state.isLoggedIn = false;
-      state.error = action.payload
+      state.error = action.payload;
     },
     [logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
+    },
+    [refreshUser.fulfilled](state, action) {
+      state.user = action.payload;
+      state.isLoggedIn = true;
+      state.isRefreshing = false;
+    },
+    [refreshUser.rejected](state, action) {
+      state.isLoggedIn = false;
+      state.error = action.payload;
+      state.isRefreshing = false;
+    },
+    [refreshUser.pending](state, action) {
+      state.isLoggedIn = false;
+      state.error = null;
+      state.isRefreshing = true;
     },
   },
 });
