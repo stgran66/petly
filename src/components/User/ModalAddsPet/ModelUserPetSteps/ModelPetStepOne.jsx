@@ -45,15 +45,6 @@ let schema = yup.object().shape({
 });
 
 const ModelPetStepOne = ({ data, next, onClose }) => {
-  // const handleFormSubmit = (values, { resetForm }) => {
-  //     const { name, number } = values;
-  //     if (contacts.some(contact => contact.name === name)) {
-  //       return alert(`${name} is already in contacts.`);
-  //     }
-  //     dispatch(addContact({ name, number }));
-  //     resetForm();
-  // };
-
   const handleFormSubmit = values => {
     next({ ...values }, false);
   };
@@ -85,7 +76,7 @@ const ModelPetStepOne = ({ data, next, onClose }) => {
           />
           <ErrorMessage component="span" name="birthday" />
 
-          <label htmlFor="birthday">Breed</label>
+          <label htmlFor="breed">Breed</label>
           <Field type="text" name="breed" placeholder="Type breed" id="breed" />
           <ErrorMessage component="span" name="breed" />
         </div>

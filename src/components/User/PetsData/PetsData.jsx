@@ -20,12 +20,12 @@ const PetsData = () => {
           Add pet <PetAddIcon />
         </UserPetAddButton>
       </ContainerWrapp>
+      <PetsList />
       {showModal && (
         <ModalUser setShowModal={setShowModal}>
           <ModalAddsPet setShowModal={setShowModal} />
         </ModalUser>
       )}
-      <PetsList />
     </>
   );
 };

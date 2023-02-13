@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
-const IMAGE_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
+// const IMAGE_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
 
 let schema = yup.object().shape({
-  photo: yup
-    .mixed()
-    .required('Image is Required! Example: jpg,jpeg,png')
-    .test(
-      'fileFormat',
-      'Unsupported file type',
-      value => value === null || (value && IMAGE_FORMATS.includes(value.type))
-    ),
+  photo: yup.mixed().required('Image is Required! Example: jpg,jpeg,png'),
+  // .test(
+  //   'fileFormat',
+  //   'Unsupported file type',
+  //   value => value === null || (value && IMAGE_FORMATS.includes(value.type))
+  // ),
   comments: yup
     .string()
     .min(8)
@@ -39,7 +37,7 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
 
     if (fileImg) {
       setFileInput(fileImg);
-      setFieldValue('avatar', fileImg);
+      setFieldValue('photo', fileImg);
       setFormData(values => ({ ...values, photo: fileImg }));
     }
   };
@@ -51,7 +49,7 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
       onSubmit={handleFormSubmit}
     >
       {({ setFieldValue }) => (
-        <Form autoComplete="on">
+        <Form autoComplete="on" encType="multipart/form-data">
           <p>Add photo and some comments</p>
           <div>
             <div>
@@ -66,7 +64,7 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
               <input
                 type="file"
                 name="photo"
-                accept=".jpg, .png, .jpeg"
+                accept="image/*"
                 onChange={e => selectFile(e, setFieldValue)}
               />
               <ErrorMessage component="span" name="photo" />

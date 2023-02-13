@@ -29,6 +29,8 @@ const UserData = () => {
   const error = useSelector(selectErrorUser);
   const [active, setActive] = useState('');
 
+  console.log(user);
+
   const changeFoto = e => {
     const result = new FormData();
 
@@ -47,10 +49,10 @@ const UserData = () => {
   const patternCity = /^\s*([A-ZА-Я][a-zа-я]+,\s?)?[A-ZА-Я][a-zа-я]+\s*$/;
 
   return (
-    <UserContainer>
+    <>
       {isLoading && !error && <Loader />}
       {user && !isLoading && (
-        <>
+        <UserContainer>
           <ContainerWrappFoto>
             <WrappFoto>
               <UserFoto src={user.avatarURL} alt="user foto" />
@@ -127,9 +129,9 @@ const UserData = () => {
               id="city"
             />
           </ContainerWrappInfo>
-        </>
+        </UserContainer>
       )}
-    </UserContainer>
+    </>
   );
 };
 
