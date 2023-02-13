@@ -57,13 +57,10 @@ const ModalAddsPet = ({ setShowModal }) => {
 
     if (final) {
       try {
-        console.log(newData);
         const dataToSend = new FormData();
         for (const [key, value] of Object.entries(newData)) {
-          console.log(key, value);
           dataToSend.append(key, value);
         }
-        console.log(dataToSend);
         await fetchPets(dataToSend);
         onClose();
       } catch (error) {
