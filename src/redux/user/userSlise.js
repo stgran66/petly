@@ -7,6 +7,8 @@ const {
   updateUserFoto,
   deleteUserPet,
   addUserPet,
+  addFavNotice,
+  removeFavNotice,
 } = userOperations;
 
 const userInitialState = {
@@ -111,6 +113,40 @@ const userSlice = createSlice({
     [addUserPet.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
+    },
+    [addFavNotice.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = false;
+      const newFavorite = state.userInfo.favorite.includes(action.payload)
+        ? state.userInfo.favorite
+        : [...state.userInfo.favorite, action.payload];
+      console.log(newFavorite);
+      state.userInfo.favorite = newFavorite;
+    },
+    [addFavNotice.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [addFavNotice.pending](state, action) {
+      state.isLoading = true;
+      state.error = false;
+    },
+    [removeFavNotice.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = false;
+      const newFavorite = state.userInfo.favorite.filter(
+        item => item !== action.payload
+      );
+      console.log(newFavorite);
+      state.userInfo.favorite = newFavorite;
+    },
+    [removeFavNotice.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [removeFavNotice.pending](state, action) {
+      state.isLoading = true;
+      state.error = false;
     },
   },
 });

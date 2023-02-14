@@ -4,16 +4,36 @@ import Modal from 'components/notices/Modal';
 import hooks from 'hooks';
 import styles from './NoticeCategoryItem.styled';
 import useCategories from 'hooks/useCategories';
-// import operations from 'redux/notices/operations';
+import userOperations from 'redux/user/operations';
+// import { useLocation } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+// import { useEffect } from 'react';
+import userSelectors from 'redux/user/selectors';
+import operations from 'redux/notices/operations';
+import { useLocation } from 'react-router-dom';
 
-// const { addFavNotice, removeFavNotice, getFavorite } = operations;
+const { deleteNotice, getFavorite, getMyNotices, fetchNotices } = operations;
+const { addFavNotice, removeFavNotice } = userOperations;
 
 const NoticeCategoryItem = ({ notice, category }) => {
+  const dispatch = useDispatch();
+  const { selectUserFavorites, selectUserId } = userSelectors;
+  const favoriteNotices = useSelector(selectUserFavorites);
+  const userId = useSelector(selectUserId);
+  const { title, breed, place, age, price, _id, imageUrl, name, owner } =
+    notice;
   const { isLoggedIn } = hooks.useAuth();
-  const [addedToFav, setAddedToFav] = useState(false);
+  const [addedToFav, setAddedToFav] = useState(() => {
+    return favoriteNotices.includes(_id) ? true : false;
+  });
   const [categoryName, setCategoryName] = useState('sell');
+  const urlPath = useLocation();
+  const favorite = urlPath.pathname.includes('favorite');
+  const myNotices = urlPath.pathname.includes('own');
+  // const urlPath = useLocation();
+  // const favoriteCategory = urlPath.pathname.includes('favorite');
   useCategories(category, setCategoryName);
-  const { title, breed, place, age, price, imageUrl, name } = notice;
+
   const {
     NoticeItemCard,
     Image,
@@ -31,30 +51,50 @@ const NoticeCategoryItem = ({ notice, category }) => {
   } = styles;
 
   const [showModal, setShowModal] = useState(false);
+  // const handleSubmit = e => {
+  //   dispatch(addFavNotice(_id));
+  // Notify.init({
+  //   position: 'right-top',
+  //   distance: '8px',
+  // });
+  // !isLoggedIn
+  //   ? Notify.info('Please authorize to access your account and add notice')
+  //   : setAddedToFav(true);
+  // };
+
   const handleSubmit = e => {
-    Notify.init({
-      position: 'right-top',
-      distance: '8px',
-    });
-    !isLoggedIn
-      ? Notify.info('Please authorize to access your account and add notice')
-      : setAddedToFav(true);
+    if (!isLoggedIn) {
+      Notify.info('Please authorize to access your account and add notice');
+      return;
+    }
+    // setIsFavourite(!setAddedToFav);
+    // if (!addedToFav) {
+    //   dispatch(removeFavNotice(_id));
+    // } else {
+    if (addedToFav) {
+      dispatch(removeFavNotice(_id));
+      setAddedToFav(false);
+      return;
+    }
+    dispatch(addFavNotice(_id));
+    setAddedToFav(true);
   };
 
-  // const [isFavourite, setIsFavourite] = useState(favorite);
-  // const handleSubmit = e => {
-  // console.log(getFavorite);
-  // if (!isLoggedIn) {
-  //   Notify.info('Please authorize to access your account and add notice');
-  //   return;
-  // }
-  // // setIsFavourite(!isFavourite);
-  // if (!favorite) {
-  //   //   removeFavNotice(_id);
-  //   // } else {
-  // addFavNotice(_id);
-  // }
-  // };
+  const handleDelete = () => {
+    const getNoticesAfterDelete = async () => {
+      await dispatch(deleteNotice(_id));
+      if (favorite) {
+        dispatch(getFavorite());
+        return;
+      }
+      if (myNotices) {
+        dispatch(getMyNotices());
+        return;
+      }
+      dispatch(fetchNotices(category));
+    };
+    getNoticesAfterDelete();
+  };
 
   return (
     <NoticeItemCard>
@@ -86,8 +126,8 @@ const NoticeCategoryItem = ({ notice, category }) => {
         <LearnMore type="button" onClick={() => setShowModal(true)}>
           Learn more
         </LearnMore>
-        {addedToFav ? (
-          <BtnDelete type="button" onClick={() => setAddedToFav(false)}>
+        {userId === owner ? (
+          <BtnDelete type="button" onClick={handleDelete}>
             Delete
           </BtnDelete>
         ) : (

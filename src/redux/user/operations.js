@@ -63,12 +63,40 @@ const addUserPet = createAsyncThunk(
   }
 );
 
+const addFavNotice = createAsyncThunk(
+  '/user/addFavNotice',
+  async (noticeId, thunkAPI) => {
+    try {
+      const response = await axios.post(`/api/notices/${noticeId}/favorite`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+const removeFavNotice = createAsyncThunk(
+  '/user/removeFavNotice',
+  async (noticeId, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `/api/notices/${noticeId}/remove-favorite`
+      );
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 const userOperations = {
   fetchUserData,
   updateUserData,
   updateUserFoto,
   deleteUserPet,
   addUserPet,
+  addFavNotice,
+  removeFavNotice,
 };
 
 export default userOperations;

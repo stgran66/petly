@@ -6,18 +6,39 @@ import hooks from 'hooks';
 import useCategories from 'hooks/useCategories';
 import { ReactComponent as HeartIcon } from 'images/fav-icon.svg';
 import ModalBtnClose from '../ModalBtnClose';
+import { useDispatch } from 'react-redux';
+import userOperations from 'redux/user/operations';
+
+const { addFavNotice, removeFavNotice } = userOperations;
 
 const NoticeModal = ({ notice, category, toggleModal, favorite }) => {
   const [categoryName, setCategoryName] = useState('sell');
   useCategories(category, setCategoryName);
   const { isLoggedIn } = hooks.useAuth();
+  const dispatch = useDispatch();
+  const [addedToFav, setAddedToFav] = useState(favorite);
+
+  const { title, name, birthday, breed, place, sex, email, phone, price, _id } =
+    notice;
 
   const handleSubmit = e => {
     Notify.init({
       position: 'right-top',
       distance: '8px',
     });
-    Notify.info('Please authorize to access your account and add notice');
+
+    if (!isLoggedIn) {
+      Notify.info('Please authorize to access your account and add notice');
+      return;
+    }
+
+    if (addedToFav) {
+      dispatch(removeFavNotice(_id));
+      setAddedToFav(false);
+      return;
+    }
+    dispatch(addFavNotice(_id));
+    setAddedToFav(true);
   };
   const {
     Container,
@@ -35,8 +56,6 @@ const NoticeModal = ({ notice, category, toggleModal, favorite }) => {
     ChangeFavoriteStatusBtn,
     ContLink,
   } = style;
-  const { title, name, birthday, breed, place, sex, email, phone, price } =
-    notice;
 
   return (
     <Container>
@@ -105,8 +124,8 @@ const NoticeModal = ({ notice, category, toggleModal, favorite }) => {
             <HeartIcon />
           </ChangeFavoriteStatusBtn>
         ) : (
-          <ChangeFavoriteStatusBtn type="button">
-            {!favorite ? 'Add to' : 'Remove from'}
+          <ChangeFavoriteStatusBtn type="button" onClick={handleSubmit}>
+            {!addedToFav ? 'Add to' : 'Remove from'}
             <HeartIcon />
           </ChangeFavoriteStatusBtn>
         )}
