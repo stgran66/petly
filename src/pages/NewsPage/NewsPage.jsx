@@ -61,16 +61,13 @@ function NewsPage() {
   };
   const getFormattedData = date => {
     let formattedDay = new Date(date).getDate();
-    let formattedMonth = new Date(date).getMonth();
+    let formattedMonth = new Date(date).getMonth() + 1 ;
     let formattedYear = new Date(date).getFullYear();
     if (formattedDay < 10) {
       formattedDay = `0${formattedDay}`;
     }
     if (formattedMonth < 10) {
       formattedMonth = `0${formattedMonth}`;
-    }
-    if (formattedYear < 2018 || formattedMonth === 0 || formattedDay === 0) {
-      return `--/--/----`;
     }
     return `${formattedDay}/${formattedMonth}/${formattedYear}`;
   };
