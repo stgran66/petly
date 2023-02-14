@@ -18,8 +18,19 @@ const NoticeModal = ({ notice, category, toggleModal, favorite, img }) => {
   const dispatch = useDispatch();
   const [addedToFav, setAddedToFav] = useState(favorite);
 
-  const { title, name, birthday, breed, place, sex, email, phone, price, _id } =
-    notice;
+  const {
+    title,
+    name,
+    birthday,
+    breed,
+    place,
+    sex,
+    email,
+    phone,
+    price,
+    _id,
+    comments,
+  } = notice;
 
   const handleSubmit = e => {
     Notify.init({
@@ -111,10 +122,7 @@ const NoticeModal = ({ notice, category, toggleModal, favorite, img }) => {
         </ListWrapper>
       </Wrapper>
       <ItemInfo>
-        <b>Comments:</b> Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Quidem, rem vero delectus quibusdam tempora sapiente! Praesentium
-        eaque consequuntur quas repellendus fuga sint officiis ea sed velit a
-        quos, recusandae natus!
+        <b>Comments:</b> {comments ? comments : '--------'}
       </ItemInfo>
       <BtnWrapper>
         <ContactButton href={`tel: ${phone}`}>Contact</ContactButton>
