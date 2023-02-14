@@ -234,6 +234,7 @@ const ArticleUrl = styled('a')`
   font-size: ${({ theme }) => theme.fontSizes.text.m};
   line-height: ${({ theme }) => theme.lineHeights.m};
   text-align: left;
+  text-decoration: underline ;
   color: ${({ theme }) => theme.colors.accent};
   margin: 0;
   padding: 0;
