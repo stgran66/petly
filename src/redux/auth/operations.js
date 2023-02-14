@@ -3,6 +3,7 @@ import axios from 'axios';
 import Notiflix from 'notiflix';
 
 axios.defaults.baseURL = 'https://petly-backend-backup.onrender.com';
+// axios.defaults.baseURL = 'http://localhost:3002';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
