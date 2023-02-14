@@ -6,6 +6,12 @@ const FormWrapp = styled(Form)`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (max-width: 1279.9px) {
+    max-width: 448px;
+  }
 `;
 
 const FotoWrap = styled('div')`
