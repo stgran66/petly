@@ -70,9 +70,6 @@ function NewsPage() {
     if (formattedMonth < 10) {
       formattedMonth = `0${formattedMonth}`;
     }
-    if (formattedYear < 2018 || formattedMonth === 0 || formattedDay === 0) {
-      return `--/--/----`;
-    }
     return `${formattedDay}/${formattedMonth}/${formattedYear}`;
   };
 
