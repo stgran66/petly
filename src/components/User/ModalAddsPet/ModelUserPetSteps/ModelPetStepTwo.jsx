@@ -77,9 +77,10 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
                 <PetFotoInputLabel>
                   <PetFotoIcon />
                   <InputCommentValue
+                    required
                     type="file"
                     name="photo"
-                    accept="image/*"
+                    accept="image/png, image/jpeg, image/jpg"
                     onChange={e => selectFile(e, setFieldValue)}
                     hidden
                   />
