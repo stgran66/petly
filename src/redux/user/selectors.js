@@ -3,6 +3,7 @@ const selectLoadingUser = state => state.user.isLoading;
 const selectErrorUser = state => state.user.error;
 // const selectUserPets = state => state.user.profile.userPets;
 const selectUserFavorites = state => state.user.userInfo.favorite;
+const selectUserId = state => state.user.userInfo._id;
 
 const userSelectors = {
   selectUserInfo,
@@ -10,5 +11,6 @@ const userSelectors = {
   selectErrorUser,
   //   selectUserPets,
   selectUserFavorites,
+  selectUserId,
 };
 export default userSelectors;

@@ -7,21 +7,14 @@ const noticesInitialState = {
   error: null,
 };
 
-const {
-  fetchNotices,
-  addNotice,
-  getFavorite,
-  getMyNotices,
-  addFavNotice,
-  removeFavNotice,
-} = operations;
+const { fetchNotices, addNotice, getFavorite, getMyNotices, deleteNotice } =
+  operations;
 const extraActions = [
   fetchNotices,
   addNotice,
   getFavorite,
   getMyNotices,
-  addFavNotice,
-  removeFavNotice,
+  deleteNotice,
 ];
 const getActionsByType = type => extraActions.map(action => action[type]);
 const onFetchSuccessReducer = (state, action) => {
@@ -46,6 +39,11 @@ const onFetchMyNoticesSuccessReducer = (state, action) => {
   state.error = null;
 };
 
+const onDeleteSuccessReducer = (state, action) => {
+  state.isLoading = false;
+  state.error = null;
+};
+
 const onPendingReducer = state => {
   state.isLoading = true;
   state.error = null;
@@ -64,6 +62,7 @@ const noticesSlice = createSlice({
       .addCase(addNotice.fulfilled, onAddSuccessReducer)
       .addCase(getFavorite.fulfilled, onFetchFavoriteSuccessReducer)
       .addCase(getMyNotices.fulfilled, onFetchMyNoticesSuccessReducer)
+      .addCase(deleteNotice.fulfilled, onDeleteSuccessReducer)
       .addMatcher(isAnyOf(...getActionsByType('pending')), onPendingReducer)
       .addMatcher(isAnyOf(...getActionsByType('rejected')), onRejectedReducer),
 });

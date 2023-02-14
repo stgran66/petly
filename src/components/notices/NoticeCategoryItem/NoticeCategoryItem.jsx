@@ -9,20 +9,27 @@ import userOperations from 'redux/user/operations';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useEffect } from 'react';
 import userSelectors from 'redux/user/selectors';
+import operations from 'redux/notices/operations';
+import { useLocation } from 'react-router-dom';
 
-// const { addFavNotice, removeFavNotice, getFavorite } = operations;
+const { deleteNotice, getFavorite, getMyNotices, fetchNotices } = operations;
 const { addFavNotice, removeFavNotice } = userOperations;
 
 const NoticeCategoryItem = ({ notice, category }) => {
   const dispatch = useDispatch();
-  const { selectUserFavorites } = userSelectors;
+  const { selectUserFavorites, selectUserId } = userSelectors;
   const favoriteNotices = useSelector(selectUserFavorites);
-  const { title, breed, place, age, price, _id, imageUrl, name } = notice;
+  const userId = useSelector(selectUserId);
+  const { title, breed, place, age, price, _id, imageUrl, name, owner } =
+    notice;
   const { isLoggedIn } = hooks.useAuth();
   const [addedToFav, setAddedToFav] = useState(() => {
     return favoriteNotices.includes(_id) ? true : false;
   });
   const [categoryName, setCategoryName] = useState('sell');
+  const urlPath = useLocation();
+  const favorite = urlPath.pathname.includes('favorite');
+  const myNotices = urlPath.pathname.includes('own');
   // const urlPath = useLocation();
   // const favoriteCategory = urlPath.pathname.includes('favorite');
   useCategories(category, setCategoryName);
@@ -73,6 +80,22 @@ const NoticeCategoryItem = ({ notice, category }) => {
     setAddedToFav(true);
   };
 
+  const handleDelete = () => {
+    const getNoticesAfterDelete = async () => {
+      await dispatch(deleteNotice(_id));
+      if (favorite) {
+        dispatch(getFavorite());
+        return;
+      }
+      if (myNotices) {
+        dispatch(getMyNotices());
+        return;
+      }
+      dispatch(fetchNotices(category));
+    };
+    getNoticesAfterDelete();
+  };
+
   return (
     <NoticeItemCard>
       <ImgWrapper>
@@ -103,8 +126,8 @@ const NoticeCategoryItem = ({ notice, category }) => {
         <LearnMore type="button" onClick={() => setShowModal(true)}>
           Learn more
         </LearnMore>
-        {addedToFav ? (
-          <BtnDelete type="button" onClick={() => setAddedToFav(false)}>
+        {userId === owner ? (
+          <BtnDelete type="button" onClick={handleDelete}>
             Delete
           </BtnDelete>
         ) : (
