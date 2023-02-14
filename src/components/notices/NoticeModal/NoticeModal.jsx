@@ -18,8 +18,19 @@ const NoticeModal = ({ notice, category, toggleModal, favorite }) => {
   const dispatch = useDispatch();
   const [addedToFav, setAddedToFav] = useState(favorite);
 
-  const { title, name, birthday, breed, place, sex, email, phone, price, _id } =
-    notice;
+  const {
+    title,
+    name,
+    birthday,
+    breed,
+    place,
+    sex,
+    email,
+    phone,
+    price,
+    _id,
+    imageUrl,
+  } = notice;
 
   const handleSubmit = e => {
     Notify.init({
@@ -61,7 +72,7 @@ const NoticeModal = ({ notice, category, toggleModal, favorite }) => {
     <Container>
       <Wrapper>
         <ImgWrapper>
-          <Img src={require('./DogModal.jpeg')} alt="dog" />
+          <Img src={imageUrl} alt={name} />
           <Category>{categoryName}</Category>
         </ImgWrapper>
         <ListWrapper>
