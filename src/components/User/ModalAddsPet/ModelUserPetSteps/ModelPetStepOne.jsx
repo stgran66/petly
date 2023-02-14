@@ -3,7 +3,7 @@ import * as yup from 'yup';
 
 import styles from './Model.Steps.styled';
 
-// import { parse, isDate } from 'date-fns';
+import { parse, isDate } from 'date-fns';
 
 const {
   FormWrapp,
@@ -14,8 +14,6 @@ const {
   LabelWrapp,
   InputValue,
 } = styles;
-
-// const today = new Date();
 
 const RegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
 
@@ -29,26 +27,21 @@ let schema = yup.object().shape({
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
     )
     .required(),
-  birthday: yup.string(),
-  // .date()
-  // .test('len', 'Must be exactly DD.MM.YYYY', (_, { originalValue }) => {
-  //   if (originalValue) {
-  //     return originalValue.length === 10;
-  //   }
-  // })
-  // .transform(function (_, originalValue) {
-  //   const result = isDate(originalValue)
-  //     ? originalValue
-  //     : parse(originalValue, 'dd.MM.yyyy', new Date());
-
-  //   return result;
-  // })
-  // .min('01.01.1950', 'Date is too early')
-  // .max(today),
+  birthday: yup
+    .date()
+    .transform((value, originalValue) => {
+      const parsedDate = isDate(originalValue)
+        ? originalValue
+        : parse(originalValue, 'dd.MM.yyyy', new Date());
+      return parsedDate;
+    })
+    .min(new Date(1950, 1, 1), 'birthday should be after 1950')
+    .max(new Date(), 'birthday could not be after today')
+    .typeError('date should be in dd.mm.yyyy format'),
   breed: yup
     .string()
     .min(2)
-    .max(16)
+    .max(24)
     .matches(
       RegExp,
       'Breed may contain only letters, apostrophe, dash and spaces.'
