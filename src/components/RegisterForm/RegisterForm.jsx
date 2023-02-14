@@ -44,19 +44,22 @@ const RegisterForm = () => {
 
   const _submitForm = values => {
     const { email, password, name, city, phone } = values;
+    const ifCityNoString = city === '' ? 'unknown' : city
+    const ifPhoneNoString = phone === '' ? '+380000000000' : phone;
 
     dispatch(
       register({
         email: email.toLowerCase().trim(),
         password: password.toLowerCase().trim(),
         name: name.toLowerCase().trim(),
-        city: city.toLowerCase().trim(),
-        phone: phone.toLowerCase().trim(),
+        city: ifCityNoString.toLowerCase().trim(),
+        phone: ifPhoneNoString.toLowerCase().trim(),
       })
     );
     setActiveLoader(true);
     setTimeout(() => {
       setActiveStep(0);
+      setActiveLoader(false)
     }, 3000);
   };
 

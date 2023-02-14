@@ -24,6 +24,8 @@ const checkoutFormModel = {
     city: {
       name: 'city',
       label: 'City',
+      requiredErrorMsg: 'City is required',
+      defaultValue: 'unknown'
     },
     phone: {
       name: 'phone',

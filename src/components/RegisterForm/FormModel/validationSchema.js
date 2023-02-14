@@ -37,20 +37,19 @@ const validationSchema = [
       )
       .required(`${name.requiredErrorMsg}`),
     [city.name]: Yup.string()
-      .min(2)
-      .max(16)
+      .min(3)
+      .max(19)
       .matches(
         /^[^ -,][a-zA-zа-яіїєА-ЯІЇЄ, -]+[^ -]$/,
-        `city can contain only Latin and Cyrillic characters, 2 - 19 symbols and can't start or end with spaces and hyphen`
+        `city can contain only Latin and Cyrillic characters, 3 - 19 symbols and can't start or end with spaces and hyphen`
       ),
     [phone.name]: Yup.string()
       .min(13)
       .max(13)
-      // .matches(
-      //   /^+380\d{3}\d{2}\d{2}\d{2}$/,
-      //   `Phone number can contain only 13 symbols: starts from  '+380' and 9 digits after.`
-      // )
-      .required(`${phone.requiredErrorMsg}`),
+      .matches(
+        /^[+]380\d{3}\d{2}\d{2}\d{2}$/,
+        `Phone number can contain only 13 symbols: starts from  '+380' and 9 digits after.`
+      ),
   }),
 ];
 
