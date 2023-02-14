@@ -110,7 +110,7 @@ const UserDataItem = ({
     } else if (name === 'email') {
       setActive('email');
       if (!inputValue.match(RegExpEmail)) {
-        setIsError('type valid email');
+        setIsError('type valid email, min 6 symbols');
         return;
       }
       setIsError('');
