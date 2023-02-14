@@ -80,7 +80,7 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
                     required
                     type="file"
                     name="photo"
-                    accept="image/png, image/jpeg, image/jpg"
+                    accept=".png, .jpeg, .jpg"
                     onChange={e => selectFile(e, setFieldValue)}
                     hidden
                   />
