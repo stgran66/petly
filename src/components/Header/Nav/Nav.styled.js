@@ -34,7 +34,10 @@ const Link = styled(NavLink)`
     visibility: hidden;
   }
 
-  &:hover,
+  &:hover {
+    color: ${({ theme }) => theme.colors.accent};
+    text-decoration: revert;
+  }
   &.active {
     font-weight: ${({ theme }) => theme.fontWeights.bold};
     color: ${({ theme }) => theme.colors.accent};

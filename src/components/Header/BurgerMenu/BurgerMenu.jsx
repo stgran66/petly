@@ -15,6 +15,11 @@ const BurgerMenu = () => {
   const closeMenu = () => {
     setMenuOpen(false);
   };
+  if (menuOpen) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'visible';
+  }
   return (
     <Burger id="burger">
       <Menu
