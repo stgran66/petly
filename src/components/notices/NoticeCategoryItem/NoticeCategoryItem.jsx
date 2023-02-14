@@ -67,13 +67,16 @@ const NoticeCategoryItem = ({ notice, category }) => {
       Notify.info('Please authorize to access your account and add notice');
       return;
     }
-    // setIsFavourite(!setAddedToFav);
-    // if (!addedToFav) {
-    //   dispatch(removeFavNotice(_id));
-    // } else {
-    if (addedToFav) {
-      dispatch(removeFavNotice(_id));
+    const removeFavorite = async () => {
       setAddedToFav(false);
+      await dispatch(removeFavNotice(_id));
+      if (favorite) {
+        dispatch(getFavorite());
+        return;
+      }
+    };
+    if (addedToFav) {
+      removeFavorite();
       return;
     }
     dispatch(addFavNotice(_id));
@@ -94,6 +97,14 @@ const NoticeCategoryItem = ({ notice, category }) => {
       dispatch(fetchNotices(category));
     };
     getNoticesAfterDelete();
+  };
+
+  const toggleModal = () => {
+    setShowModal(s => !s);
+    if (favorite) {
+      dispatch(getFavorite());
+      return;
+    }
   };
 
   return (
@@ -136,10 +147,11 @@ const NoticeCategoryItem = ({ notice, category }) => {
       </About>
       {showModal && (
         <Modal
-          toggleModal={() => setShowModal(s => !s)}
+          toggleModal={toggleModal}
           notice={notice}
           category={category}
           favorite={addedToFav}
+          img={imageUrl}
         ></Modal>
       )}
     </NoticeItemCard>

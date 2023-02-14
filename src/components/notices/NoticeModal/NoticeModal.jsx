@@ -11,7 +11,7 @@ import userOperations from 'redux/user/operations';
 
 const { addFavNotice, removeFavNotice } = userOperations;
 
-const NoticeModal = ({ notice, category, toggleModal, favorite }) => {
+const NoticeModal = ({ notice, category, toggleModal, favorite, img }) => {
   const [categoryName, setCategoryName] = useState('sell');
   useCategories(category, setCategoryName);
   const { isLoggedIn } = hooks.useAuth();
@@ -61,7 +61,7 @@ const NoticeModal = ({ notice, category, toggleModal, favorite }) => {
     <Container>
       <Wrapper>
         <ImgWrapper>
-          <Img src={require('./DogModal.jpeg')} alt="dog" />
+          <Img src={img} alt="pet" />
           <Category>{categoryName}</Category>
         </ImgWrapper>
         <ListWrapper>
