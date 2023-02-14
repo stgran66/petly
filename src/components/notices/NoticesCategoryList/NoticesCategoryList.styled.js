@@ -21,6 +21,7 @@ const List = styled('ul')`
 `;
 const ListItem = styled('li')`
   margin-bottom: 32px;
+  display: flex;
 `;
 
 const NotFoundMessage = styled('p')`
