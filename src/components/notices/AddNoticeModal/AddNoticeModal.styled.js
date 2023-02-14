@@ -5,6 +5,7 @@ import {
   Radio,
   RadioGroup,
   TextareaAutosize,
+  Typography,
 } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import CloseIcon from '@mui/icons-material/Close';
@@ -143,6 +144,7 @@ const ModalCategoryField = styled(Radio)`
 `;
 
 const ModalFieldLabel = styled('label')`
+  position: relative;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -246,6 +248,14 @@ const ModalLabel = styled(FormControlLabel)`
   color: ${({ theme, checked }) =>
     checked ? theme.colors.accent : theme.colors.black};
 `;
+
+const LabelText = styled(Typography)`
+  font-family: ${({ theme }) => theme.fonts[0]};
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  font-size: ${({ theme }) => theme.fontSizes.text.l};
+  line-height: ${({ theme }) => theme.lineHeights.l};
+  color: inherit;
+`;
 const ModalSexField = styled(Radio)`
   position: absolute;
   opacity: 0;
@@ -313,6 +323,16 @@ const ModalTextarea = styled(TextareaAutosize)`
     border-color: ${({ theme }) => theme.colors.accent};
   }
 `;
+const ErrorMessage = styled('p')`
+  position: absolute;
+  bottom: -20px;
+  left: 12px;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.errorColor};
+  line-height: ${({ theme }) => theme.lineHeights.xl};
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
+  font-size: ${({ theme }) => theme.fontSizes.text.xs};
+`;
 
 const styles = {
   ModalFile,
@@ -321,6 +341,7 @@ const styles = {
   ModalInfo,
   ModalBtnWrap,
   ModalBtn,
+  ErrorMessage,
   ModalCategoryGroup,
   ModalCategoryLabel,
   InputButton,
@@ -338,5 +359,6 @@ const styles = {
   RadiImg,
   ModalTextarea,
   PetImg,
+  LabelText,
 };
 export default styles;
