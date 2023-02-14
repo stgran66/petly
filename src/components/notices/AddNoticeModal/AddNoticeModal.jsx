@@ -12,6 +12,7 @@ const {
   ModalBackdrop,
   ModalTextarea,
   ModalBox,
+  AddImageWrap,
   ModalTitle,
   ModalInfo,
   ModalCategoryGroup,
@@ -27,10 +28,10 @@ const {
   ModalSexField,
   ModalLabel,
   ModalFile,
-  AddImageWrap,
   AddImage,
   RadioWrap,
   RadiImg,
+  PetImg,
 } = styles;
 const { addNotice } = operations;
 const initialValues = {
@@ -42,9 +43,11 @@ const initialValues = {
   place: '',
   comments: '',
   sex: 'male',
+  imageUrl: '',
+  price: '',
 };
 
-// const SignupSchema = Yup.object().shape({
+// const addModalSchema = Yup.object().shape({
 //   title: Yup.string()
 //     .min(2, 'Too Short!')
 //     .max(48, 'Too Long!')
@@ -74,7 +77,8 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
   const [selectedSexValue, setSelectedSexValue] = useState('');
   const [firstPage, setFirstPage] = useState(true);
   const dispatch = useDispatch();
-  // const imageFormats = ['image/png', 'image/svg', 'image/jpeg'];
+  const [formData, setFormData] = useState(initialValues);
+  const [isAddImg, setIsAddImg] = useState(initialValues.imageUrl);
 
   const onRadioCategoryChange = event => {
     const { value } = event.target;
@@ -89,17 +93,49 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
     setIsModalOpen(false);
   };
 
+  const handleInputChange = (e, setFieldValue) => {
+    const inputName = e.target.name;
+    let value = e.target.value;
+    setFieldValue(inputName, value);
+    setFormData(values => ({ ...values, [inputName]: value }));
+  };
+
+  const onAddImage = (e, setFieldValue) => {
+    const imageUrl = e.target.files[0];
+    if (imageUrl) {
+      setIsAddImg(imageUrl);
+      setFieldValue('imageUrl', imageUrl);
+      setFormData(values => ({
+        ...values,
+        imageUrl: imageUrl,
+      }));
+    }
+  };
+
+  const onChangeData = async data => {
+    try {
+      const dataToSend = new FormData();
+      for (const [key, value] of Object.entries(data)) {
+        dataToSend.append(key, value);
+      }
+      await dispatch(addNotice(dataToSend));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const onHandleSubmit = async (values, actions) => {
-    const notice = await {
-      ...values,
-    };
-    dispatch(addNotice(notice));
+    onChangeData(formData);
     setIsModalOpen(false);
-    // actions.setSubmitting(false);
   };
 
   return (
     <ModalBackdrop
+      sx={{
+        '& .MuiModal-backdrop': {
+          opacity: '0 !important',
+        },
+      }}
       open={isModalOpen}
       onClose={() => setIsModalOpen(false)}
       aria-labelledby="modal-modal-title"
@@ -121,22 +157,25 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
         </InputButton>
         <Formik
           initialValues={initialValues}
-          // validationSchema={SignupSchema}
+          // validationSchema={addModalSchema}
           onSubmit={onHandleSubmit}
         >
-          {({
-            handleSubmit,
-            handleChange,
-            setFieldValue,
-            values,
-            errors,
-            touched,
-          }) => (
+          {({ handleSubmit, setFieldValue }) => (
             <Form onSubmit={handleSubmit}>
               {firstPage ? (
                 <>
-                  <ModalCategoryGroup onChange={handleChange} name="category">
+                  <ModalCategoryGroup
+                    onChange={e => {
+                      handleInputChange(e, setFieldValue);
+                    }}
+                    name="category"
+                  >
                     <ModalCategoryLabel
+                      sx={{
+                        '& .MuiFormControlLabel': {
+                          fontSize: '30px !important',
+                        },
+                      }}
                       value="lost/found"
                       control={<ModalCategoryField />}
                       checked={selectedCategoryValue === 'lost/found'}
@@ -163,7 +202,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                     <ModalField
                       required
                       type="text"
-                      onChange={handleChange}
+                      onChange={e => handleInputChange(e, setFieldValue)}
                       name="title"
                       placeholder="Type pet info"
                     />
@@ -173,7 +212,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                     Name pet
                     <ModalField
                       type="text"
-                      onChange={handleChange}
+                      onChange={e => handleInputChange(e, setFieldValue)}
                       name="name"
                       placeholder="Type name pet"
                     />
@@ -183,7 +222,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                     Date of birth
                     <ModalField
                       type="text"
-                      onChange={handleChange}
+                      onChange={e => handleInputChange(e, setFieldValue)}
                       name="birthday"
                       placeholder="Type date of birth (DD.MM.YY)"
                     />
@@ -193,7 +232,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                     Type breed
                     <ModalField
                       type="text"
-                      onChange={handleChange}
+                      onChange={e => handleInputChange(e, setFieldValue)}
                       name="breed"
                       placeholder="Type breed"
                     />
@@ -218,7 +257,9 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                   </ModalFieldLabel>
                   <ModalRadioGroup
                     id="radiogroup"
-                    onChange={handleChange}
+                    onChange={e => {
+                      handleInputChange(e, setFieldValue);
+                    }}
                     name="sex"
                   >
                     <RadioWrap>
@@ -229,6 +270,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                         label="Male"
                         checked={selectedSexValue === 'male'}
                         onChange={onRadioSexChange}
+                        component={<RadiImg />}
                       />
                     </RadioWrap>
                     <RadioWrap>
@@ -246,7 +288,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                     Location
                     <ModalField
                       type="text"
-                      onChange={handleChange}
+                      onChange={e => handleInputChange(e, setFieldValue)}
                       name="place"
                       placeholder="Type pet location"
                     />
@@ -256,41 +298,41 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                       Price
                       <ModalField
                         type="text"
-                        onChange={handleChange}
+                        onChange={e => handleInputChange(e, setFieldValue)}
                         name="price"
                         placeholder="Type pet price"
                         required={selectedCategoryValue === 'sell' && true}
                       />
                     </ModalFieldLabel>
                   )}
-                  <ModalFieldLabel
-                    component={ModalFile}
-                    htmlFor="imageUrl"
-                    sx={{ paddingTop: '4px' }}
-                  >
-                    Load the pet's image
-                    <ModalFile
-                      accept="image/*"
-                      // onChange={handleChange}
-                      name="imageUrl"
-                      type="file"
-                      id="imageUrl"
-                      onChange={event => {
-                        const imageUrl = event.target.files[0].name;
-                        // if (imageUrl) {
-                        //   let fr = new FileReader();
-                        //   fr.onload = function () {
-                        //     document.getElementById('iconPlus').src = fr.result;
-                        //   };
-                        //   fr.readAsDataURL(imageUrl);
-                        // }
-                        setFieldValue('imageUrl', imageUrl);
-                      }}
+                  {isAddImg ? (
+                    <PetImg
+                      src={URL.createObjectURL(isAddImg)}
+                      alt={isAddImg.name}
                     />
-                    <AddImageWrap aria-label="upload image">
-                      <AddImage id="iconPlus" src={plusIcon} alt="upload pet" />
-                    </AddImageWrap>
-                  </ModalFieldLabel>
+                  ) : (
+                    <ModalFieldLabel
+                      component={ModalFile}
+                      htmlFor="imageUrl"
+                      sx={{ paddingTop: '4px' }}
+                    >
+                      Load the pet's image
+                      <ModalFile
+                        accept="image/*"
+                        name="imageUrl"
+                        type="file"
+                        id="imageUrl"
+                        onChange={e => onAddImage(e, setFieldValue)}
+                      />
+                      <AddImageWrap>
+                        <AddImage
+                          id="iconPlus"
+                          src={plusIcon}
+                          alt="upload pet"
+                        />
+                      </AddImageWrap>
+                    </ModalFieldLabel>
+                  )}
 
                   <ModalFieldLabel>
                     Comments
@@ -298,7 +340,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                       aria-label="empty textarea"
                       required
                       maxRows="5"
-                      onChange={handleChange}
+                      onChange={e => handleInputChange(e, setFieldValue)}
                       name="comments"
                       draggable="false"
                       placeholder="Type your comments"

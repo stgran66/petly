@@ -27,7 +27,7 @@ export const addNotice = createAsyncThunk(
 
 export const getFavorite = createAsyncThunk(
   'notices/favoriteNotices',
-  async (category, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
       const response = await axios.get(`/api/notices/favorite`);
       return response.data;
