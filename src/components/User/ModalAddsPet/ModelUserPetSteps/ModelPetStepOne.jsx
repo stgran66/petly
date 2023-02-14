@@ -41,7 +41,7 @@ let schema = yup.object().shape({
   breed: yup
     .string()
     .min(2)
-    .max(24)
+    .max(16)
     .matches(
       RegExp,
       'Breed may contain only letters, apostrophe, dash and spaces.'
