@@ -20,12 +20,12 @@ const {
 // const IMAGE_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
 
 let schema = yup.object().shape({
-  photo: yup.mixed().required('Image is Required! Example: jpg,jpeg,png'),
-  // .test(
-  //   'fileFormat',
-  //   'Unsupported file type',
-  //   value => value === null || (value && IMAGE_FORMATS.includes(value.type))
-  // ),
+  photo: yup
+    .mixed()
+    .required('Image is Required! Example: jpg,jpeg,png')
+    .test('fileType', 'Unsupported file type', value =>
+      ['image/jpeg', 'image/png', 'image/webp'].includes(value.type)
+    ),
   comments: yup
     .string()
     .min(8)
@@ -69,10 +69,12 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
             <FormText>Add photo and some comments</FormText>
             <FotoWrap enctype="multipart/form-data">
               {fileInput ? (
-                <PetFoto
-                  src={URL.createObjectURL(fileInput)}
-                  alt={fileInput.name}
-                />
+                <>
+                  <PetFoto
+                    src={URL.createObjectURL(fileInput)}
+                    alt={fileInput.name}
+                  />
+                </>
               ) : (
                 <PetFotoInputLabel>
                   <PetFotoIcon />
