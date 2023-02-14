@@ -29,6 +29,7 @@ const NoticeModal = ({ notice, category, toggleModal, favorite }) => {
     phone,
     price,
     _id,
+    comments,
     imageUrl,
   } = notice;
 
@@ -83,7 +84,7 @@ const NoticeModal = ({ notice, category, toggleModal, favorite }) => {
               <ItemInfo>{name}</ItemInfo>
             </Item>
             <Item>
-              <ItemInfo>Birthtay:</ItemInfo>
+              <ItemInfo>Birthday:</ItemInfo>
               <ItemInfo>{birthday}</ItemInfo>
             </Item>
             <Item>
@@ -122,10 +123,7 @@ const NoticeModal = ({ notice, category, toggleModal, favorite }) => {
         </ListWrapper>
       </Wrapper>
       <ItemInfo>
-        <b>Comments:</b> Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Quidem, rem vero delectus quibusdam tempora sapiente! Praesentium
-        eaque consequuntur quas repellendus fuga sint officiis ea sed velit a
-        quos, recusandae natus!
+        <b>Comments:</b> {comments ? comments : '--------'}
       </ItemInfo>
       <BtnWrapper>
         <ContactButton href={`tel: ${phone}`}>Contact</ContactButton>

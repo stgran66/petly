@@ -5,9 +5,7 @@ import hooks from 'hooks';
 import styles from './NoticeCategoryItem.styled';
 import useCategories from 'hooks/useCategories';
 import userOperations from 'redux/user/operations';
-// import { useLocation } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useEffect } from 'react';
 import userSelectors from 'redux/user/selectors';
 import operations from 'redux/notices/operations';
 import { useLocation } from 'react-router-dom';
@@ -26,12 +24,11 @@ const NoticeCategoryItem = ({ notice, category }) => {
   const [addedToFav, setAddedToFav] = useState(() => {
     return favoriteNotices.includes(_id) ? true : false;
   });
-  const [categoryName, setCategoryName] = useState('sell');
+  const [categoryName, setCategoryName] = useState('');
   const urlPath = useLocation();
   const favorite = urlPath.pathname.includes('favorite');
   const myNotices = urlPath.pathname.includes('own');
-  // const urlPath = useLocation();
-  // const favoriteCategory = urlPath.pathname.includes('favorite');
+
   useCategories(category, setCategoryName);
 
   const {
@@ -51,16 +48,6 @@ const NoticeCategoryItem = ({ notice, category }) => {
   } = styles;
 
   const [showModal, setShowModal] = useState(false);
-  // const handleSubmit = e => {
-  //   dispatch(addFavNotice(_id));
-  // Notify.init({
-  //   position: 'right-top',
-  //   distance: '8px',
-  // });
-  // !isLoggedIn
-  //   ? Notify.info('Please authorize to access your account and add notice')
-  //   : setAddedToFav(true);
-  // };
 
   const handleSubmit = e => {
     if (!isLoggedIn) {

@@ -32,31 +32,13 @@ const ModalAddsPet = ({ setShowModal }) => {
     dispatch(addUserPet(form));
   };
 
-  // const fetchPets = form => {
-  //   const dataForm = {
-  //     ...form,
-  //     birthday: parseDateToISO(form.birthday),
-  //   };
-  //   dispatch(addUserPet(dataForm));
-  // };
-
-  // function parseDateToISO(str) {
-  //   const dateParts = str.split('.');
-  //   const formattedDate = new Date(
-  //     +dateParts[2],
-  //     dateParts[1] - 1,
-  //     +dateParts[0]
-  //   );
-
-  //   return formattedDate.toISOString();
-  // }
-
   const handleNextStep = async (newData, final = false) => {
     setFormData(prev => (prev = newData));
     setPage(prev => prev + 1);
 
     if (final) {
       try {
+        console.log(newData);
         const dataToSend = new FormData();
         for (const [key, value] of Object.entries(newData)) {
           dataToSend.append(key, value);

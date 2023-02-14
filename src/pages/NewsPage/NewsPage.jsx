@@ -19,6 +19,7 @@ const {
   Article,
   NewsList,
   TopBorder,
+  NotFoundArticle,
 } = styles;
 
 function NewsPage() {
@@ -61,7 +62,7 @@ function NewsPage() {
   };
   const getFormattedData = date => {
     let formattedDay = new Date(date).getDate();
-    let formattedMonth = new Date(date).getMonth();
+    let formattedMonth = new Date(date).getMonth() + 1;
     let formattedYear = new Date(date).getFullYear();
     if (formattedDay < 10) {
       formattedDay = `0${formattedDay}`;
@@ -100,27 +101,33 @@ function NewsPage() {
       </SearchForm>
 
       {data ? (
-        <NewsList>
-          {data.map(data => (
-            <Article key={data._id}>
-              <div>
-                <TopBorder />
-                <ArticleTitle>{data.title}</ArticleTitle>
-                <ArticleText>{data.description}</ArticleText>
-                <DateAndLink>
-                  <ArticleDate>{getFormattedData(data.date)}</ArticleDate>
-                  <ArticleUrl
-                    href={data.url}
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
-                  >
-                    Read more
-                  </ArticleUrl>
-                </DateAndLink>
-              </div>
-            </Article>
-          ))}
-        </NewsList>
+        data.length === 0 ? (
+          <NotFoundArticle>
+            Sorry, we didn't find any news on that topic
+          </NotFoundArticle>
+        ) : (
+          <NewsList>
+            {data.map(data => (
+              <Article key={data._id}>
+                <div>
+                  <TopBorder />
+                  <ArticleTitle>{data.title}</ArticleTitle>
+                  <ArticleText>{data.description}</ArticleText>
+                  <DateAndLink>
+                    <ArticleDate>{getFormattedData(data.date)}</ArticleDate>
+                    <ArticleUrl
+                      href={data.url}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+                    >
+                      Read more
+                    </ArticleUrl>
+                  </DateAndLink>
+                </div>
+              </Article>
+            ))}
+          </NewsList>
+        )
       ) : (
         <Loader />
       )}

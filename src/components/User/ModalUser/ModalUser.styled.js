@@ -14,19 +14,13 @@ const OverlayModalUser = styled('div')`
   overflow-y: scroll;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    /* padding: 267px 0; */
     padding: 267px 80px;
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    /* padding: 99px 0; */
     padding: 99px 351px;
   }
-
-  /* width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1200; */
 `;
 const styles = { OverlayModalUser };
 
