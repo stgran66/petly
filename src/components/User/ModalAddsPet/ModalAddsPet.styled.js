@@ -7,6 +7,9 @@ const ModalAddPetWrapp = styled('div')`
   flex-direction: column;
   gap: 28px;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 280px;
 
   padding: 40px 20px;
   border-radius: 20px;
@@ -15,7 +18,9 @@ const ModalAddPetWrapp = styled('div')`
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     padding: 40px 80px;
     border-radius: 40px;
+    width: 608px;
   }
+
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     padding: 40px 84px;
   }
