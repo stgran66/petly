@@ -17,17 +17,15 @@ const {
   InputCommentValue,
 } = styles;
 
-const IMAGE_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
+// const IMAGE_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
 
 let schema = yup.object().shape({
-  photo: yup
-    .mixed()
-    .required('Image is Required! Example: jpg,jpeg,png')
-    .test(
-      'fileFormat',
-      'Unsupported file type',
-      value => value === null || (value && IMAGE_FORMATS.includes(value.type))
-    ),
+  photo: yup.mixed().required('Image is Required! Example: jpg,jpeg,png'),
+  // .test(
+  //   'fileFormat',
+  //   'Unsupported file type',
+  //   value => value === null || (value && IMAGE_FORMATS.includes(value.type))
+  // ),
   comments: yup
     .string()
     .min(8)
