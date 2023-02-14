@@ -151,6 +151,7 @@ const NoticeCategoryItem = ({ notice, category }) => {
           notice={notice}
           category={category}
           favorite={addedToFav}
+          img={imageUrl}
         ></Modal>
       )}
     </NoticeItemCard>
