@@ -13,7 +13,7 @@ const useCategories = (category, func) => {
         func('In good hands');
         break;
       default:
-        func('sell');
+        func('lost-found');
     }
   }, [category, func]);
 };

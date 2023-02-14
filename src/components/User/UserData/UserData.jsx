@@ -38,8 +38,6 @@ const UserData = () => {
   //   dispatch(updateUserFoto(result));
   // };
 
-
-
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -66,7 +64,12 @@ const UserData = () => {
               <FotoForm ref={selectForm} onChange={handleSubmit}>
                 <FotoLabel>
                   <FotoIcon /> Edit photo
-                  <input type="file" accept="image/*" name="avatar" hidden />
+                  <input
+                    type="file"
+                    accept="image/png, image/jpeg, image/jpg"
+                    name="avatar"
+                    hidden
+                  />
                 </FotoLabel>
               </FotoForm>
             </WrappFoto>
@@ -80,7 +83,6 @@ const UserData = () => {
               setActive={setActive}
               active={active}
               id="name"
-            
             />
 
             <UserDataItem

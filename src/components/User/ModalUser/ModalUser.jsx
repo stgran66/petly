@@ -27,16 +27,8 @@ const ModalUser = ({ setShowModal, children }) => {
   return (
     <OverlayModalUser onClick={handleBackdropClose}>
       <div>{children}</div>
-      {/* <div>Hello ModalAddsPet</div> */}
     </OverlayModalUser>
   );
-
-  // return createPortal(
-  //   <OverlayModalUser onClick={handleBackdropClose}>
-  //     <div>Hello ModalAddsPet</div>
-  //   </OverlayModalUser>,
-  //   modalRoot
-  // );
 };
 
 export default ModalUser;

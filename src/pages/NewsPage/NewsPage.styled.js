@@ -83,7 +83,6 @@ const DateAndLink = styled('div')`
   justify-content: space-between;
   width: 100%;
   height: auto;
-
   @media screen and (min-width: ${props => props.theme.breakpoints.mobile}) {
     margin-top: 20px;
   }
@@ -95,42 +94,32 @@ const DateAndLink = styled('div')`
     margin-top: 40px;
   }
 `;
-
 const Article = styled('li')`
   display: flex;
+  position: relative;
 
   @media screen and (max-width: 767px) {
     width: 100%;
-    margin-bottom: 40px;
-
-    &:last-child {
-      margin-bottom: 0px;
-    }
+    margin-bottom: 8px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     flex-basis: calc((100%) / 2 - 16px);
-    margin-bottom: 60px;
+    margin-bottom: 28px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     flex-basis: calc((100% - 64px) / 3);
-    margin-bottom: 60px;
+    margin-bottom: 28px;
   }
-  position: relative;
 `;
 
 const NewsList = styled('ul')`
   display: flex;
-
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 32px;
   margin-bottom: -40px;
-  &::after {
-    content: '';
-    flex: auto;
-  }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     margin-bottom: -60px;
@@ -147,10 +136,8 @@ const ArticleTitle = styled('h3')`
   font-family: ${({ theme }) => theme.fonts[0]};
   font-size: ${({ theme }) => theme.fontSizes.headers.xs};
   line-height: ${({ theme }) => theme.lineHeights.m};
-
   text-align: left;
   color: ${({ theme }) => theme.colors.text};
-
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
@@ -163,6 +150,12 @@ const ArticleTitle = styled('h3')`
   }
 `;
 
+const NotFoundArticle = styled('h2')`
+  text-align: center;
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${({ theme }) => theme.fontSizes.headers.s};
+`;
+
 const TopBorder = styled('p')`
   margin-bottom: 4px;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
@@ -171,11 +164,9 @@ const TopBorder = styled('p')`
 
   &:before {
     content: '';
-
     position: absolute;
     width: 200px;
     height: 4px;
-
     border-radius: 2px;
     background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
 
@@ -243,6 +234,7 @@ const ArticleUrl = styled('a')`
   font-size: ${({ theme }) => theme.fontSizes.text.m};
   line-height: ${({ theme }) => theme.lineHeights.m};
   text-align: left;
+  text-decoration: underline ;
   color: ${({ theme }) => theme.colors.accent};
   margin: 0;
   padding: 0;
@@ -294,5 +286,6 @@ const styles = {
   Article,
   NewsList,
   TopBorder,
+  NotFoundArticle,
 };
 export default styles;
