@@ -83,7 +83,7 @@ const NoticeModal = ({ notice, category, toggleModal, favorite, img }) => {
               <ItemInfo>{name}</ItemInfo>
             </Item>
             <Item>
-              <ItemInfo>Birthtay:</ItemInfo>
+              <ItemInfo>Birthday:</ItemInfo>
               <ItemInfo>{birthday}</ItemInfo>
             </Item>
             <Item>
