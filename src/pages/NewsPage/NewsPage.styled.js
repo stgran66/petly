@@ -83,7 +83,6 @@ const DateAndLink = styled('div')`
   justify-content: space-between;
   width: 100%;
   height: auto;
-
   @media screen and (min-width: ${props => props.theme.breakpoints.mobile}) {
     margin-top: 20px;
   }
@@ -95,45 +94,39 @@ const DateAndLink = styled('div')`
     margin-top: 40px;
   }
 `;
-
 const Article = styled('li')`
   display: flex;
 
   @media screen and (max-width: 767px) {
     width: 100%;
-    margin-bottom: 40px;
-
-    &:last-child {
-      margin-bottom: 0px;
-    }
+    margin-bottom: 8px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     flex-basis: calc((100%) / 2 - 16px);
-    margin-bottom: 60px;
+    margin-bottom: 28px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     flex-basis: calc((100% - 64px) / 3);
-    margin-bottom: 60px;
+    margin-bottom: 28px;
   }
   position: relative;
 `;
 
 const NewsList = styled('ul')`
   display: flex;
-
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 32px;
+
   margin-bottom: -40px;
-  &::after {
-    content: '';
-    flex: auto;
-  }
+
+  
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     margin-bottom: -60px;
+    
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
@@ -161,6 +154,12 @@ const ArticleTitle = styled('h3')`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
     margin: 0 0 16px;
   }
+`;
+
+const NotFoundArticle = styled('h2')`
+text-align: center;
+color: ${({ theme }) => theme.colors.text};
+font-size: ${({ theme }) => theme.fontSizes.headers.s};
 `;
 
 const TopBorder = styled('p')`
@@ -294,5 +293,6 @@ const styles = {
   Article,
   NewsList,
   TopBorder,
+  NotFoundArticle,
 };
 export default styles;
