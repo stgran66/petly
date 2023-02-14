@@ -96,6 +96,7 @@ const DateAndLink = styled('div')`
 `;
 const Article = styled('li')`
   display: flex;
+  position: relative;
 
   @media screen and (max-width: 767px) {
     width: 100%;
@@ -111,7 +112,6 @@ const Article = styled('li')`
     flex-basis: calc((100% - 64px) / 3);
     margin-bottom: 28px;
   }
-  position: relative;
 `;
 
 const NewsList = styled('ul')`
@@ -119,14 +119,10 @@ const NewsList = styled('ul')`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 32px;
-
   margin-bottom: -40px;
-
-  
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     margin-bottom: -60px;
-    
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
@@ -140,10 +136,8 @@ const ArticleTitle = styled('h3')`
   font-family: ${({ theme }) => theme.fonts[0]};
   font-size: ${({ theme }) => theme.fontSizes.headers.xs};
   line-height: ${({ theme }) => theme.lineHeights.m};
-
   text-align: left;
   color: ${({ theme }) => theme.colors.text};
-
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
@@ -157,9 +151,9 @@ const ArticleTitle = styled('h3')`
 `;
 
 const NotFoundArticle = styled('h2')`
-text-align: center;
-color: ${({ theme }) => theme.colors.text};
-font-size: ${({ theme }) => theme.fontSizes.headers.s};
+  text-align: center;
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${({ theme }) => theme.fontSizes.headers.s};
 `;
 
 const TopBorder = styled('p')`
@@ -170,11 +164,9 @@ const TopBorder = styled('p')`
 
   &:before {
     content: '';
-
     position: absolute;
     width: 200px;
     height: 4px;
-
     border-radius: 2px;
     background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
 
@@ -242,6 +234,7 @@ const ArticleUrl = styled('a')`
   font-size: ${({ theme }) => theme.fontSizes.text.m};
   line-height: ${({ theme }) => theme.lineHeights.m};
   text-align: left;
+  text-decoration: underline ;
   color: ${({ theme }) => theme.colors.accent};
   margin: 0;
   padding: 0;

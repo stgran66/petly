@@ -35,8 +35,7 @@ const UserDataItem = ({
   setActive,
 }) => {
   const dispatch = useDispatch();
-  // const isLoading = useSelector(selectLoadingUser);
-  // const error = useSelector(selectErrorUser);
+
   const [inputValue, setInputValue] = useState(defaultValue);
   const [isError, setIsError] = useState('');
 
@@ -46,23 +45,13 @@ const UserDataItem = ({
   // mail can contain only latin letters, numbers and symbols . -  _ (dot, hyphen, underscore) and can't start from hyphen
   const RegExpCity = /^[^ -,][a-zA-zа-яіїєА-ЯІЇЄ, -]+[^ -]$/;
   // city can contain only Latin and Cyrillic characters, 2 - 19 symbols and can't start or end with spaces and hyphen
-  // const nowDay = new Date().toLocaleDateString();
-  // const minDate = new Date('01.01.1910').toLocaleDateString();
-  //   const inputRef = useRef(null);
-
-  // const {
-  //   register,
-  //   formState: { errors },
-  //   handleSubmit,
-  // } = useForm({
-  //   defaultValues: {
-  //     name: '',
-  //     email: '',
-  //     birthday: '',
-  //     phone: '',
-  //     city:''
-  //   }
-  // });
+  const RegExpBirthday =
+    /^([0-2][0-9]|(3)[0-1])\.(((0)[0-9])|((1)[0-2]))\.\d{4}$/;
+  const today = new Date();
+  const minDate = new Date(1910, 0, 1);
+  // date should be in dd.mm.yyyy format and not before 1910 and after today
+  const RegExpPhone = /^[+]380\d{3}\d{2}\d{2}\d{2}$/;
+  // phone number should contain 13 characters and start with +38 later only numbers
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -119,13 +108,28 @@ const UserDataItem = ({
     } else if (name === 'birthday') {
       setActive('birthday');
       // ===========
+      if (!inputValue.match(RegExpBirthday)) {
+        setIsError('date should be in dd.mm.yyyy format');
+        return;
+      }
+      const arr = inputValue.split('.');
+      const inputDate = new Date(arr[2], arr[1] - 1, arr[0]);
+      if (inputDate - today > 0) {
+        setIsError('birthday can not be set after today');
+        return;
+      }
+      if (minDate - inputDate > 0) {
+        setIsError('birthday can not be set before 1910');
+        return;
+      }
+      // ===========
       setIsError('');
       setActive('');
       dispatch(updateUserData({ birthday: inputValue }));
     } else if (name === 'phone') {
       setActive('phone');
-      if (inputValue.slice(0, 4) !== '+380') {
-        setIsError('phone should start +380');
+      if (!inputValue.match(RegExpPhone)) {
+        setIsError('phone format +38xxxxxxxxxx');
         return;
       }
       if (inputValue.length < 13) {
