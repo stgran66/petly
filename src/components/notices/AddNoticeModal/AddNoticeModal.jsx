@@ -6,15 +6,17 @@ import styles from './AddNoticeModal.styled';
 import FemaleIcon from '../../../images/female-icon.svg';
 import plusIcon from '../../../images/plus-icon.svg';
 import MaleIcon from '../../../images/male-icon.svg';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 
 const {
   ModalBackdrop,
   ModalTextarea,
   ModalBox,
+  LabelText,
   AddImageWrap,
   ModalTitle,
   ModalInfo,
+  ErrorMessage,
   ModalCategoryGroup,
   ModalCategoryLabel,
   IconClose,
@@ -47,35 +49,82 @@ const initialValues = {
   price: '',
 };
 
-// const addModalSchema = Yup.object().shape({
-//   title: Yup.string()
-//     .min(2, 'Too Short!')
-//     .max(48, 'Too Long!')
-//     .required('The title is required'),
-//   name: Yup.string()
-//     .min(2, 'Too Short!')
-//     .max(16, 'Too Long!')
-//     .required('Name is required'),
-//   birthday: Yup.date()
-//     .required('Date of birth is required')
-//     .max(new Date(), 'Future date not allowed'),
-//   breed: Yup.string()
-//     .min(2, 'Too Short!')
-//     .max(24, 'Too Long!')
-//     .required('The breed is required'),
-//   sex: Yup.string(),
-//   location: Yup.string(),
-//   price: Yup.string().required('The price is required'),
-//   comments: Yup.string()
-//     .min(8, 'Too Short!')
-//     .max(120, 'Too Long!')
-//     .required('The comments are required'),
-// });
+const sellPetSchema = Yup.object().shape({
+  title: Yup.string()
+    .min(2, 'Title should be from 2 to 48 symbols')
+    .max(48, 'Title should be from 2 to 48 symbols')
+    .matches(
+      /^[a-zA-zа-яіїєА-ЯІЇЄ,.! ]+$/,
+      'title should be from 2 to 48 symbols'
+    )
+    .required('The title is required'),
+  name: Yup.string()
+    .min(2, 'Name should be from 2 to 16 symbols')
+    .max(16, 'Name should be from 2 to 16 symbols')
+    .required('The name is required'),
+  // birthday: Yup.date()
+  //   .default('00.00.0000')
+  //   .format(['DD.MM.YYYY'])
+  //   .min('01.01.1900')
+  //   .max(new Date(), 'Future date not allowed')
+  //   .required('Date of birth is required'),
+  breed: Yup.string()
+    .min(2, 'Breed should be from 2 to 24 symbols')
+    .max(24, 'Breed should be from 2 to 24 symbols')
+    .required('The breed is required'),
+  // sex: Yup.string(),
+  // place: Yup.string().min(4, 'Too Short!').max(60, 'Too Long!').required(),
+  // price: Yup.string().required('The price is required'),
+  // comments: Yup.string()
+  //   .min(8, 'Too Short!')
+  //   .max(120, 'Too Long!')
+  //   .required('The comments are required'),
+  // imageUrl: Yup.mixed().required('Image is required (jpg, jpeg, png)'),
+});
+
+const schema = Yup.object().shape({
+  title: Yup.string()
+    .min(2, 'Title should be from 2 to 48 symbols')
+    .max(48, 'Title should be from 2 to 48 symbols')
+    .matches(
+      /^[a-zA-zа-яіїєА-ЯІЇЄ,.! ]+$/,
+      'title should be from 2 to 48 symbols'
+    )
+    .required('The title is required'),
+  name: Yup.string()
+    .min(2, 'Name should be from 2 to 16 symbols')
+    .max(16, 'Name should be from 2 to 16 symbols')
+    .required('The name is required'),
+  // birthday: Yup.date()
+  //   .default('00.00.0000')
+  //   .format(['DD.MM.YYYY'])
+  //   .utc()
+  //   .min('01.01.1900')
+  //   .max(new Date(), 'Future date not allowed')
+  //   .required('Date of birth is required'),
+  breed: Yup.string()
+    .min(2, 'Breed should be from 2 to 24 symbols')
+    .max(24, 'Breed should be from 2 to 24 symbols'),
+  // sex: Yup.string().required(),
+  // place: Yup.string().min(4, 'Too Short!').max(60, 'Too Long!').required(),
+  // price: Yup.string()
+  //   .min(1, 'Too Short!')
+  //   .matches(/^[1-9][0-9]*$/, 'price cannot starts from zero')
+  //   .required('The price is required'),
+  // comments: Yup.string()
+  //   .min(8, 'Too Short!')
+  //   .max(120, 'Too Long!')
+  // .message('breed should be from 8 to 120 symbols'),
+  //   .required('The comments are required'),
+  // imageUrl: Yup.mixed().required('Image is required (jpg, jpeg, png)'),
+  category: Yup.string().required(),
+});
 
 const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
   const [selectedCategoryValue, setSelectedCategoryValue] = useState('sell');
   const [selectedSexValue, setSelectedSexValue] = useState('');
   const [firstPage, setFirstPage] = useState(true);
+
   const dispatch = useDispatch();
   const [formData, setFormData] = useState(initialValues);
   const [isAddImg, setIsAddImg] = useState(initialValues.imageUrl);
@@ -129,6 +178,12 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
     setIsModalOpen(false);
   };
 
+  const addModalSchema = category => {
+    if (category === 'sell') {
+      return sellPetSchema;
+    }
+    return schema;
+  };
   return (
     <ModalBackdrop
       sx={{
@@ -157,10 +212,10 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
         </InputButton>
         <Formik
           initialValues={initialValues}
-          // validationSchema={addModalSchema}
+          validationSchema={() => addModalSchema(selectedCategoryValue)}
           onSubmit={onHandleSubmit}
         >
-          {({ handleSubmit, setFieldValue }) => (
+          {({ handleSubmit, setFieldValue, errors, touched }) => (
             <Form onSubmit={handleSubmit}>
               {firstPage ? (
                 <>
@@ -176,17 +231,17 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                           fontSize: '30px !important',
                         },
                       }}
-                      value="lost/found"
+                      value="lost-found"
                       control={<ModalCategoryField />}
-                      checked={selectedCategoryValue === 'lost/found'}
+                      checked={selectedCategoryValue === 'lost-found'}
                       onChange={onRadioCategoryChange}
                       label="lost/found"
                     />
                     <ModalCategoryLabel
-                      value="in good hands"
+                      value="for-free"
                       control={<ModalCategoryField />}
                       label="in good hands"
-                      checked={selectedCategoryValue === 'in good hands'}
+                      checked={selectedCategoryValue === 'for-free'}
                       onChange={onRadioCategoryChange}
                     />
                     <ModalCategoryLabel
@@ -206,6 +261,9 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                       name="title"
                       placeholder="Type pet info"
                     />
+                    {errors.title && touched.title ? (
+                      <ErrorMessage>{errors.title}</ErrorMessage>
+                    ) : null}
                   </ModalFieldLabel>
 
                   <ModalFieldLabel>
@@ -216,6 +274,9 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                       name="name"
                       placeholder="Type name pet"
                     />
+                    {errors.name && touched.name ? (
+                      <ErrorMessage>{errors.name}</ErrorMessage>
+                    ) : null}
                   </ModalFieldLabel>
 
                   <ModalFieldLabel>
@@ -226,6 +287,9 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                       name="birthday"
                       placeholder="Type date of birth (DD.MM.YY)"
                     />
+                    {/* {errors.birthday && touched.birthday ? (
+                      <ErrorMessage>{errors.birthday}</ErrorMessage>
+                    ) : null} */}
                   </ModalFieldLabel>
 
                   <ModalFieldLabel>
@@ -236,11 +300,24 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                       name="breed"
                       placeholder="Type breed"
                     />
+                    {errors.breed && touched.breed ? (
+                      <ErrorMessage>{errors.breed}</ErrorMessage>
+                    ) : null}
                   </ModalFieldLabel>
                   <ModalBtnWrap>
                     <ModalBtn
                       type="button"
                       active
+                      // disabled={
+                      //   errors.breed ||
+                      //   errors.name ||
+                      //   errors.title ||
+                      //   touched.breed ||
+                      //   touched.name ||
+                      //   touched.title
+                      //     ? true
+                      //     : false
+                      // }
                       onClick={() => setFirstPage(false)}
                     >
                       Next
@@ -263,24 +340,35 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                     name="sex"
                   >
                     <RadioWrap>
-                      <RadiImg src={FemaleIcon} alt="female" />
                       <ModalLabel
                         value="male"
                         control={<ModalSexField />}
-                        label="Male"
+                        label={
+                          <>
+                            <span>
+                              <RadiImg src={FemaleIcon} alt="female" />{' '}
+                            </span>
+                            <LabelText variant="headline">Male</LabelText>
+                          </>
+                        }
                         checked={selectedSexValue === 'male'}
                         onChange={onRadioSexChange}
-                        component={<RadiImg />}
                       />
                     </RadioWrap>
                     <RadioWrap>
-                      <RadiImg src={MaleIcon} alt="male" />
                       <ModalLabel
                         checked={selectedSexValue === 'female'}
                         onChange={onRadioSexChange}
                         value="female"
                         control={<ModalSexField />}
-                        label="Female"
+                        label={
+                          <>
+                            <span>
+                              <RadiImg src={MaleIcon} alt="male" />
+                            </span>
+                            <LabelText variant="headline">Female</LabelText>
+                          </>
+                        }
                       />
                     </RadioWrap>
                   </ModalRadioGroup>

@@ -21,6 +21,7 @@ const theme = createTheme({
     black: '#000000',
     navLinks: '#181C27',
     focusTextFields: '#FF6101',
+    errorColor: '#db3327',
   },
   gradients: {
     backgroundGradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
