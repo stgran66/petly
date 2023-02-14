@@ -4,23 +4,29 @@ import Modal from 'components/notices/Modal';
 import hooks from 'hooks';
 import styles from './NoticeCategoryItem.styled';
 import useCategories from 'hooks/useCategories';
-import operations from 'redux/notices/operations';
+import userOperations from 'redux/user/operations';
 // import { useLocation } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { useEffect } from 'react';
+import userSelectors from 'redux/user/selectors';
 
 // const { addFavNotice, removeFavNotice, getFavorite } = operations;
-const { addFavNotice } = operations;
+const { addFavNotice, removeFavNotice } = userOperations;
 
 const NoticeCategoryItem = ({ notice, category }) => {
   const dispatch = useDispatch();
+  const { selectUserFavorites } = userSelectors;
+  const favoriteNotices = useSelector(selectUserFavorites);
+  const { title, breed, place, age, price, _id } = notice;
+
   const { isLoggedIn } = hooks.useAuth();
-  const [addedToFav, setAddedToFav] = useState(false);
+  const [addedToFav, setAddedToFav] = useState(() => {
+    return favoriteNotices.includes(_id) ? true : false;
+  });
   const [categoryName, setCategoryName] = useState('sell');
   // const urlPath = useLocation();
   // const favoriteCategory = urlPath.pathname.includes('favorite');
   useCategories(category, setCategoryName);
-  const { title, breed, place, age, price, _id } = notice;
   const {
     NoticeItemCard,
     Image,
@@ -58,6 +64,11 @@ const NoticeCategoryItem = ({ notice, category }) => {
     // if (!addedToFav) {
     //   dispatch(removeFavNotice(_id));
     // } else {
+    if (addedToFav) {
+      dispatch(removeFavNotice(_id));
+      setAddedToFav(false);
+      return;
+    }
     dispatch(addFavNotice(_id));
     setAddedToFav(true);
   };
