@@ -41,6 +41,7 @@ const UserPetAddButton = styled('button')`
   border: 0;
   cursor: pointer;
   background-color: transparent;
+  outline: transparent;
 
   font-family: ${props => props.theme.fonts[0]};
   font-weight: ${props => props.theme.fontWeights.medium};
