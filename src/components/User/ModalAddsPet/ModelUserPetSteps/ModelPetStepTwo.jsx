@@ -19,12 +19,35 @@ const {
 
 // const IMAGE_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
 
+const IMAGE_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
+
+// let schema = yup.object().shape({
+//   photo: yup
+//     .mixed()
+//     .required('Image is Required! Example: jpg,jpeg,png')
+//     .test(
+//       'fileFormat',
+//       'Unsupported file type',
+//       value => value === null || (value && IMAGE_FORMATS.includes(value.type))
+//     ),
+//   comments: yup
+//     .string()
+//     .min(8)
+//     .max(120)
+//     .required('comment should be 8 to 120 characters long'),
+// });
+
 let schema = yup.object().shape({
   photo: yup
     .mixed()
     .required('Image is Required! Example: jpg,jpeg,png')
-    .test('fileType', 'Unsupported file type', value =>
-      ['image/jpeg', 'image/png', 'image/webp'].includes(value.type)
+    .test(
+      'fileFormat',
+      'Unsupported file type',
+      value =>
+        value === null ||
+        (value && IMAGE_FORMATS.includes(value.type)) ||
+        value === ''
     ),
   comments: yup
     .string()
@@ -32,6 +55,20 @@ let schema = yup.object().shape({
     .max(120)
     .required('comment should be 8 to 120 characters long'),
 });
+
+// let schema = yup.object().shape({
+//   photo: yup
+//     .mixed()
+//     .required('Image is Required! Example: jpg,jpeg,png')
+//     .test('fileType', 'Unsupported file type', value =>
+//       ['image/jpeg', 'image/png', 'image/webp'].includes(value.type)
+//     ),
+//   comments: yup
+//     .string()
+//     .min(8)
+//     .max(120)
+//     .required('comment should be 8 to 120 characters long'),
+// });
 
 const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
   const [fileInput, setFileInput] = useState(data.photo);
