@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Formik} from 'formik';
+import { Formik } from 'formik';
 
 import FirstStepInfo from './Forms/FirstStepInfo';
 import SecondStepInfo from './Forms/SecondStepInfo';
@@ -13,10 +13,8 @@ import { useDispatch } from 'react-redux';
 import operations from '../../redux/auth/operations';
 import Loader from 'components/Loader';
 
-
 import styles from './RegisterForm.styled';
 const { register } = operations;
-
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 const { formId, formField } = checkoutFormModel;
@@ -36,17 +34,16 @@ function _renderStepContent(step) {
 
 const RegisterForm = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const [ activeLoader,setActiveLoader] = useState(false);
+  const [activeLoader, setActiveLoader] = useState(false);
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
   const dispatch = useDispatch();
 
+  const { Title, LinkLoginRoute, Buttons, RegisterForm, AccountRedirect } =
+    styles;
 
-  const {Title,LinkLoginRoute, Buttons,RegisterForm, AccountRedirect} = styles
-
-  const _submitForm = (values) => {
+  const _submitForm = values => {
     const { email, password, name, city, phone } = values;
-    
 
     dispatch(
       register({
@@ -59,9 +56,8 @@ const RegisterForm = () => {
     );
     setActiveLoader(true);
     setTimeout(() => {
-     setActiveStep(0);
+      setActiveStep(0);
     }, 3000);
-     
   };
 
   const _handleSubmit = (values, actions) => {
@@ -88,7 +84,7 @@ const RegisterForm = () => {
         <RegisterForm id={formId}>
           <Title>Registration</Title>
           {_renderStepContent(activeStep)}
-          {!activeLoader ? (
+          {activeLoader ? (
             <Loader></Loader>
           ) : (
             <div>
@@ -97,7 +93,9 @@ const RegisterForm = () => {
                   {isLastStep ? 'Register' : 'Next'}
                 </Buttons>
                 {activeStep !== 0 && (
-                  <Buttons onClick={_handleBack} style={{marginTop: 16}}>Back</Buttons>
+                  <Buttons onClick={_handleBack} style={{ marginTop: 16 }}>
+                    Back
+                  </Buttons>
                 )}
                 <AccountRedirect>
                   Already have an account?
