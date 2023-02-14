@@ -90,16 +90,16 @@ const ContainerWrappInfo = styled('ul')`
   display: flex;
   flex-direction: column;
 
-  gap: 12px;
+  gap: 4px;
 
   @media screen and (max-width: ${props => props.theme.breakpoints.tablet}) {
     margin-left: auto;
     margin-right: auto;
-    gap: 15px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     flex-grow: 1;
+    gap: 8px;
   }
 `;
 const UserDataItemWrapp = styled('li')``;
@@ -111,9 +111,10 @@ const UserDataItemForm = styled('form')`
 `;
 
 const UserDataItemLabel = styled('label')`
+  margin-right: 8px;
   font-family: ${props => props.theme.fonts[0]};
   font-weight: ${props => props.theme.fontWeights.normal};
-  font-size: ${props => props.theme.fontSizes.text.s};
+  font-size: ${props => props.theme.fontSizes.text.xs};
   line-height: ${props => props.theme.lineHeights.xs};
   letter-spacing: 0.04em;
 
@@ -140,7 +141,7 @@ const UserDataItemInput = styled('input')`
 
   font-family: ${props => props.theme.fonts[0]};
   font-weight: ${props => props.theme.fontWeights.normal};
-  font-size: ${props => props.theme.fontSizes.text.s};
+  font-size: ${props => props.theme.fontSizes.text.xs};
   line-height: ${props => props.theme.lineHeights.xs};
   letter-spacing: 0.04em;
 
@@ -228,6 +229,19 @@ const InfoSubmitIcon = styled(BsCheckLg)`
   }
 `;
 
+const Error = styled('p')`
+  margin-left: 18px;
+
+  color: ${props => props.theme.colors.placeholderText};
+  font-weight: ${props => props.theme.fontWeights.normal};
+  font-size: ${props => props.theme.fontSizes.text.xs};
+  line-height: 1.2;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    margin-left: 12px;
+  }
+`;
+
 const styles = {
   UserContainer,
   ContainerWrappInfo,
@@ -245,5 +259,6 @@ const styles = {
   UserDataItemLabel,
   UserDataItemInput,
   UserDataItemForm,
+  Error,
 };
 export default styles;
