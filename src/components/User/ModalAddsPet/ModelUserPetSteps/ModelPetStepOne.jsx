@@ -95,6 +95,7 @@ const ModelPetStepOne = ({ data, next, onClose }) => {
           <LabelWrapp>
             <label htmlFor="breed">Breed</label>
             <InputValue
+              required
               type="text"
               name="breed"
               placeholder="Type breed"
