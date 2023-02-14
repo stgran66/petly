@@ -15,6 +15,7 @@ const {
   LabelText,
   AddImageWrap,
   ModalTitle,
+  ErrorDesc,
   ModalInfo,
   ErrorMessage,
   ModalCategoryGroup,
@@ -69,17 +70,17 @@ const sellPetSchema = Yup.object().shape({
   //   .max(new Date(), 'Future date not allowed')
   //   .required('Date of birth is required'),
   breed: Yup.string()
-    .min(2, 'Breed should be from 2 to 24 symbols')
-    .max(24, 'Breed should be from 2 to 24 symbols')
+    .min(2, 'Breed should be from 2 to 16 symbols')
+    .max(16, 'Breed should be from 2 to 16 symbols')
     .required('The breed is required'),
-  // sex: Yup.string(),
-  // place: Yup.string().min(4, 'Too Short!').max(60, 'Too Long!').required(),
-  // price: Yup.string().required('The price is required'),
-  // comments: Yup.string()
-  //   .min(8, 'Too Short!')
-  //   .max(120, 'Too Long!')
-  //   .required('The comments are required'),
-  // imageUrl: Yup.mixed().required('Image is required (jpg, jpeg, png)'),
+  sex: Yup.string(),
+  place: Yup.string().min(4, 'Too Short!').max(60, 'Too Long!').required(),
+  price: Yup.string().required('The price is required'),
+  comments: Yup.string()
+    .min(8, 'Too Short!')
+    .max(120, 'Too Long!')
+    .required('The comments are required'),
+  imageUrl: Yup.mixed().required('Image is required (jpg, jpeg, png)'),
 });
 
 const schema = Yup.object().shape({
@@ -93,8 +94,7 @@ const schema = Yup.object().shape({
     .required('The title is required'),
   name: Yup.string()
     .min(2, 'Name should be from 2 to 16 symbols')
-    .max(16, 'Name should be from 2 to 16 symbols')
-    .required('The name is required'),
+    .max(16, 'Name should be from 2 to 16 symbols'),
   // birthday: Yup.date()
   //   .default('00.00.0000')
   //   .format(['DD.MM.YYYY'])
@@ -103,20 +103,18 @@ const schema = Yup.object().shape({
   //   .max(new Date(), 'Future date not allowed')
   //   .required('Date of birth is required'),
   breed: Yup.string()
-    .min(2, 'Breed should be from 2 to 24 symbols')
-    .max(24, 'Breed should be from 2 to 24 symbols'),
-  // sex: Yup.string().required(),
-  // place: Yup.string().min(4, 'Too Short!').max(60, 'Too Long!').required(),
-  // price: Yup.string()
-  //   .min(1, 'Too Short!')
-  //   .matches(/^[1-9][0-9]*$/, 'price cannot starts from zero')
-  //   .required('The price is required'),
-  // comments: Yup.string()
-  //   .min(8, 'Too Short!')
-  //   .max(120, 'Too Long!')
-  // .message('breed should be from 8 to 120 symbols'),
-  //   .required('The comments are required'),
-  // imageUrl: Yup.mixed().required('Image is required (jpg, jpeg, png)'),
+    .min(2, 'Breed should be from 2 to 16 symbols')
+    .max(16, 'Breed should be from 2 to 16 symbols'),
+  sex: Yup.string().required(),
+  place: Yup.string().min(4, 'Too Short!').max(60, 'Too Long!').required(),
+  price: Yup.string()
+    .min(1, 'Too Short!')
+    .matches(/^[1-9][0-9]*$/, 'price cannot starts from zero'),
+  comments: Yup.string()
+    .min(8, 'Comments should be from 8 to 120 symbols')
+    .max(120, 'Comments should be from 8 to 120 symbols')
+    .required('The comments are required'),
+  imageUrl: Yup.mixed().required('Image is required (jpg, jpeg, png)'),
   category: Yup.string().required(),
 });
 
@@ -124,11 +122,11 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
   const [selectedCategoryValue, setSelectedCategoryValue] = useState('sell');
   const [selectedSexValue, setSelectedSexValue] = useState('');
   const [firstPage, setFirstPage] = useState(true);
-
+  const [missedField, setMissedField] = useState(false);
+  const [missedFielSecondStep, setMissedFielSecondStep] = useState(false);
   const dispatch = useDispatch();
   const [formData, setFormData] = useState(initialValues);
   const [isAddImg, setIsAddImg] = useState(initialValues.imageUrl);
-
   const onRadioCategoryChange = event => {
     const { value } = event.target;
     setSelectedCategoryValue(value);
@@ -184,6 +182,49 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
     }
     return schema;
   };
+  const validateFields = values => {
+    const { title, breed, name, birthday } = values;
+    if (selectedCategoryValue === 'sell') {
+      if (title === '' || breed === '' || name === '' || birthday === '') {
+        setMissedField(true);
+        return;
+      }
+    }
+    if (
+      selectedCategoryValue === 'for-free' &&
+      selectedCategoryValue === 'lost-found'
+    ) {
+      if (title === '') {
+        setMissedField(true);
+        return;
+      }
+    }
+    setMissedField(false);
+    setFirstPage(false);
+  };
+
+  const validateFinalFields = values => {
+    const { place, comments, price } = values;
+    if (selectedCategoryValue === 'sell') {
+      if (place === '' || comments === '' || price === '') {
+        setMissedFielSecondStep(true);
+        return;
+      }
+    }
+    if (
+      selectedCategoryValue === 'for-free' &&
+      selectedCategoryValue === 'lost-found'
+    ) {
+      if (place === '' || comments === '') {
+        console.log(true);
+        setMissedFielSecondStep(true);
+        return;
+      }
+    }
+
+    setMissedFielSecondStep(false);
+  };
+
   return (
     <ModalBackdrop
       sx={{
@@ -212,14 +253,18 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
         </InputButton>
         <Formik
           initialValues={initialValues}
-          validationSchema={() => addModalSchema(selectedCategoryValue)}
+          validationSchema={() => {
+            validateFinalFields(formData);
+            return addModalSchema(selectedCategoryValue);
+          }}
           onSubmit={onHandleSubmit}
         >
-          {({ handleSubmit, setFieldValue, errors, touched }) => (
+          {({ handleSubmit, setFieldValue, errors, touched, values }) => (
             <Form onSubmit={handleSubmit}>
               {firstPage ? (
                 <>
                   <ModalCategoryGroup
+                    defaultValue="sell"
                     onChange={e => {
                       handleInputChange(e, setFieldValue);
                     }}
@@ -253,11 +298,19 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                     />
                   </ModalCategoryGroup>
                   <ModalFieldLabel htmlFor="title">
-                    Title of ad
+                    <span> Title of ad</span>
                     <ModalField
                       required
                       type="text"
-                      onChange={e => handleInputChange(e, setFieldValue)}
+                      onChange={e =>
+                        // if (e.target.value === '') {
+                        //   setMissedField(true);
+                        // }
+                        // if (e.target.value !== '') {
+                        //   setMissedField(false);
+                        // }
+                        handleInputChange(e, setFieldValue)
+                      }
                       name="title"
                       placeholder="Type pet info"
                     />
@@ -267,8 +320,13 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                   </ModalFieldLabel>
 
                   <ModalFieldLabel>
-                    Name pet
+                    {selectedCategoryValue === 'sell' ? (
+                      <span>Name pet</span>
+                    ) : (
+                      <p>Name pet</p>
+                    )}
                     <ModalField
+                      required={selectedCategoryValue === 'sell' ? true : false}
                       type="text"
                       onChange={e => handleInputChange(e, setFieldValue)}
                       name="name"
@@ -280,8 +338,14 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                   </ModalFieldLabel>
 
                   <ModalFieldLabel>
-                    Date of birth
+                    {selectedCategoryValue === 'sell' ? (
+                      <span> Date of birth</span>
+                    ) : (
+                      <p> Date of birth</p>
+                    )}
+
                     <ModalField
+                      required={selectedCategoryValue === 'sell' ? true : false}
                       type="text"
                       onChange={e => handleInputChange(e, setFieldValue)}
                       name="birthday"
@@ -293,8 +357,14 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                   </ModalFieldLabel>
 
                   <ModalFieldLabel>
-                    Type breed
+                    {selectedCategoryValue === 'sell' ? (
+                      <span> Type breed</span>
+                    ) : (
+                      <p> Type breed</p>
+                    )}
+
                     <ModalField
+                      required={selectedCategoryValue === 'sell' ? true : false}
                       type="text"
                       onChange={e => handleInputChange(e, setFieldValue)}
                       name="breed"
@@ -308,20 +378,16 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                     <ModalBtn
                       type="button"
                       active
-                      // disabled={
-                      //   errors.breed ||
-                      //   errors.name ||
-                      //   errors.title ||
-                      //   touched.breed ||
-                      //   touched.name ||
-                      //   touched.title
-                      //     ? true
-                      //     : false
-                      // }
-                      onClick={() => setFirstPage(false)}
+                      onClick={() => {
+                        validateFields(values);
+                      }}
                     >
                       Next
+                      {missedField && (
+                        <ErrorDesc>Please type required fields *</ErrorDesc>
+                      )}
                     </ModalBtn>
+
                     <ModalBtn type="button" onClick={() => handleCancel()}>
                       Cancel
                     </ModalBtn>
@@ -330,7 +396,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
               ) : (
                 <>
                   <ModalFieldLabel htmlFor="radiogroup">
-                    The sex
+                    <span>The sex</span>
                   </ModalFieldLabel>
                   <ModalRadioGroup
                     id="radiogroup"
@@ -373,24 +439,34 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                     </RadioWrap>
                   </ModalRadioGroup>
                   <ModalFieldLabel>
-                    Location
+                    <span>Location</span>
+
                     <ModalField
+                      required
                       type="text"
                       onChange={e => handleInputChange(e, setFieldValue)}
                       name="place"
                       placeholder="Type pet location"
                     />
+                    {errors.place && touched.place ? (
+                      <ErrorMessage>{errors.place}</ErrorMessage>
+                    ) : null}
                   </ModalFieldLabel>
                   {selectedCategoryValue === 'sell' && (
                     <ModalFieldLabel sx={{ marginBottom: '12px' }}>
-                      Price
+                      <span>Price</span>
                       <ModalField
+                        required={
+                          selectedCategoryValue === 'sell' ? true : false
+                        }
                         type="text"
                         onChange={e => handleInputChange(e, setFieldValue)}
                         name="price"
                         placeholder="Type pet price"
-                        required={selectedCategoryValue === 'sell' && true}
                       />
+                      {errors.price && touched.price ? (
+                        <ErrorMessage>{errors.price}</ErrorMessage>
+                      ) : null}
                     </ModalFieldLabel>
                   )}
                   {isAddImg ? (
@@ -400,6 +476,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                     />
                   ) : (
                     <ModalFieldLabel
+                      required
                       component={ModalFile}
                       htmlFor="imageUrl"
                       sx={{ paddingTop: '4px' }}
@@ -419,22 +496,32 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                           alt="upload pet"
                         />
                       </AddImageWrap>
+                      {errors.imageUrl && touched.imageUrl ? (
+                        <ErrorMessage>{errors.imageUrl}</ErrorMessage>
+                      ) : null}
                     </ModalFieldLabel>
                   )}
 
                   <ModalFieldLabel>
-                    Comments
+                    <span>Comments</span>
+
                     <ModalTextarea
-                      aria-label="empty textarea"
                       required
+                      aria-label="empty textarea"
                       maxRows="5"
                       onChange={e => handleInputChange(e, setFieldValue)}
                       name="comments"
                       draggable="false"
                       placeholder="Type your comments"
                     />
+                    {errors.comments && touched.comments ? (
+                      <ErrorMessage>{errors.comments}</ErrorMessage>
+                    ) : null}
                   </ModalFieldLabel>
                   <ModalBtnWrap>
+                    {missedFielSecondStep && (
+                      <ErrorDesc>Please type required fields *</ErrorDesc>
+                    )}
                     <ModalBtn type="button" onClick={() => setFirstPage(true)}>
                       Back
                     </ModalBtn>
