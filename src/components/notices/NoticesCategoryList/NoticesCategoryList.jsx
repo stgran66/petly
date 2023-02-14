@@ -16,7 +16,6 @@ const { List, ListItem, NoticesContainer } = styles;
 const { selectFilteredList, selectLoadingStatus, selectErrorMessage } =
   selectors;
 const { fetchUserData } = userOperations;
-
 const NoticesCategoryList = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoadingStatus);

@@ -17,8 +17,7 @@ const NoticeCategoryItem = ({ notice, category }) => {
   const dispatch = useDispatch();
   const { selectUserFavorites } = userSelectors;
   const favoriteNotices = useSelector(selectUserFavorites);
-  const { title, breed, place, age, price, _id } = notice;
-
+  const { title, breed, place, age, price, _id, imageUrl, name } = notice;
   const { isLoggedIn } = hooks.useAuth();
   const [addedToFav, setAddedToFav] = useState(() => {
     return favoriteNotices.includes(_id) ? true : false;
@@ -27,6 +26,7 @@ const NoticeCategoryItem = ({ notice, category }) => {
   // const urlPath = useLocation();
   // const favoriteCategory = urlPath.pathname.includes('favorite');
   useCategories(category, setCategoryName);
+
   const {
     NoticeItemCard,
     Image,
@@ -77,7 +77,7 @@ const NoticeCategoryItem = ({ notice, category }) => {
     <NoticeItemCard>
       <ImgWrapper>
         <Category>{categoryName}</Category>
-        <Image src={require('./Dog.jpeg')} alt="Dog" />
+        <Image src={imageUrl} alt={name} />
         <Button type="button" onClick={handleSubmit}>
           {addedToFav ? <AddedToFav /> : <FavouriteIcon />}
         </Button>

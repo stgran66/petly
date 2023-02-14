@@ -12,6 +12,8 @@ import formInitialValues from './FormModel/formInitialValues';
 import { useDispatch } from 'react-redux';
 import operations from '../../redux/auth/operations';
 import Loader from 'components/Loader';
+
+
 import styles from './RegisterForm.styled';
 const { register } = operations;
 
@@ -34,10 +36,11 @@ function _renderStepContent(step) {
 
 const RegisterForm = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const [activeLoader, setActiveLoader] = useState(false);
+  const [ activeLoader,setActiveLoader] = useState(false);
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
   const dispatch = useDispatch();
+
 
   const {Title,LinkLoginRoute, Buttons,RegisterForm, AccountRedirect} = styles
 
@@ -55,6 +58,10 @@ const RegisterForm = () => {
       })
     );
     setActiveLoader(true);
+    setTimeout(() => {
+     setActiveStep(0);
+    }, 3000);
+     
   };
 
   const _handleSubmit = (values, actions) => {
@@ -81,12 +88,12 @@ const RegisterForm = () => {
         <RegisterForm id={formId}>
           <Title>Registration</Title>
           {_renderStepContent(activeStep)}
-          {activeLoader ? (
+          {!activeLoader ? (
             <Loader></Loader>
           ) : (
             <div>
               <div>
-                <Buttons disabled={isSubmitting} type="submit">
+                <Buttons type="submit">
                   {isLastStep ? 'Register' : 'Next'}
                 </Buttons>
                 {activeStep !== 0 && (

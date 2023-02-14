@@ -1,11 +1,12 @@
 import { useState } from 'react';
 // import { useRef } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import userOperations from 'redux/user/operations';
-import userSelectors from 'redux/user/selectors';
+// import userSelectors from 'redux/user/selectors';
 import styles from './UserData.styled';
-import Loader from 'components/Loader';
+// import Loader from 'components/Loader';
 // import { useForm } from 'react-hook-form';
 
 // import ButtonChange from './ButtonChange';
@@ -19,11 +20,11 @@ const {
   InfoSubmitIcon,
   InfoChangeIcon,
   UserDataItemForm,
+  Error,
 } = styles;
 
 const { updateUserData } = userOperations;
-const { selectLoadingUser, selectErrorUser } = userSelectors;
-
+// const { selectLoadingUser, selectErrorUser } = userSelectors;
 
 const UserDataItem = ({
   name,
@@ -34,12 +35,20 @@ const UserDataItem = ({
   setActive,
 }) => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoadingUser);
-  const error = useSelector(selectErrorUser);
+  // const isLoading = useSelector(selectLoadingUser);
+  // const error = useSelector(selectErrorUser);
   const [inputValue, setInputValue] = useState(defaultValue);
+  const [isError, setIsError] = useState('');
+
+  const RegExpName = /^[^ ][a-zA-zа-яіїєА-ЯІЇЄ ]+$/;
+  //name can contain only Latin and Cyrillic characters, 2 - 16 symbols and can't start from spaces
+  const RegExpEmail = /^((?!-)[a-zA-Z0-9_.-]+){2}@[a-zA-Z0-9.-]+$/;
+  // mail can contain only latin letters, numbers and symbols . -  _ (dot, hyphen, underscore) and can't start from hyphen
+  const RegExpCity = /^[^ -,][a-zA-zа-яіїєА-ЯІЇЄ, -]+[^ -]$/;
+  // city can contain only Latin and Cyrillic characters, 2 - 19 symbols and can't start or end with spaces and hyphen
+  // const nowDay = new Date().toLocaleDateString();
+  // const minDate = new Date('01.01.1910').toLocaleDateString();
   //   const inputRef = useRef(null);
-
-
 
   // const {
   //   register,
@@ -78,60 +87,107 @@ const UserDataItem = ({
 
   const activeHandleClick = name => {
     setActive(name);
-    
-  
     // handleFocus();
   };
 
-  const handleSubmit1 = name => {
-    setActive('');
-    // handleFocus();
-console.log('value', name)
-    dispatch(updateUserData({ [name]: inputValue }));
+  // const handleSubmit = name => {
+  //   setActive('');
+  //   // handleFocus();
+  //   console.log('value', name);
+  //   dispatch(updateUserData({ [name]: inputValue }));
+  // };
+
+  const handleSubmit = name => {
+    if (name === 'name') {
+      setActive('name');
+      if (!inputValue.match(RegExpName)) {
+        setIsError('type only 2 - 16 letters');
+        return;
+      }
+      setIsError('');
+      setActive('');
+      dispatch(updateUserData({ name: inputValue }));
+    } else if (name === 'email') {
+      setActive('email');
+      if (!inputValue.match(RegExpEmail)) {
+        setIsError('type valid email');
+        return;
+      }
+      setIsError('');
+      setActive('');
+      dispatch(updateUserData({ email: inputValue }));
+    } else if (name === 'birthday') {
+      setActive('birthday');
+      // ===========
+      setIsError('');
+      setActive('');
+      dispatch(updateUserData({ birthday: inputValue }));
+    } else if (name === 'phone') {
+      setActive('phone');
+      if (inputValue.slice(0, 4) !== '+380') {
+        setIsError('phone should start +380');
+        return;
+      }
+      if (inputValue.length < 13) {
+        setIsError('please type 13 signs');
+        return;
+      }
+      setIsError('');
+      setActive('');
+      dispatch(updateUserData({ phone: inputValue }));
+    } else if (name === 'city') {
+      setActive('city');
+      if (!inputValue.match(RegExpCity)) {
+        setIsError('type only 2 - 19 symbols');
+        return;
+      }
+      setIsError('');
+      setActive('');
+      dispatch(updateUserData({ city: inputValue }));
+    }
   };
 
   return (
     <UserDataItemWrapp>
-      {isLoading && !error ? (
-        <Loader />
-      ) : (
-  
-          <UserDataItemForm onSubmit={handleSubmit1}>
-            <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
-            <InputWrapp>
-              <UserDataItemInput
-                onChangeCapture={handleChange}
-                defaultValue={inputValue}
-                active={active === name}
-                disabled={active !== name}
-                type={type}
-                name={name}
-                id={name}
-                // {...register(name, { required: true })}
-            
-                //   ref={inputRef}
-              />
-              {/* {errors.name && 'is required'} */}
+      <UserDataItemForm>
+        <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
+        <InputWrapp>
+          <div>
+            <UserDataItemInput
+              onChangeCapture={handleChange}
+              defaultValue={inputValue}
+              active={active === name}
+              disabled={active !== name}
+              type={type}
+              name={name}
+              id={name}
+              //   ref={inputRef}
+            />
 
-              {active === name ? (
-                <ButtonWrapp type="submit">
-                  <InfoSubmitIcon />
-                </ButtonWrapp>
-              ) : (
-                <ButtonWrapp
-                  disabled={active ? name : !name}
-                  type="button"
-                  onClick={() => activeHandleClick(name)}
-                >
-                  <InfoChangeIcon
-                    style={active ? { color: 'black' } : { color: '#F59256' }}
-                  />
-                </ButtonWrapp>
-              )}
-            </InputWrapp>
-          </UserDataItemForm>
-    
-      )}
+            {isError && active === name ? <Error>{isError}</Error> : null}
+          </div>
+
+          {active === name ? (
+            <ButtonWrapp type="button" onClick={() => handleSubmit(name)}>
+              <InfoSubmitIcon />
+            </ButtonWrapp>
+          ) : (
+            <ButtonWrapp
+              disabled={active ? name : !name}
+              type="button"
+              onClick={() => activeHandleClick(name)}
+            >
+              <InfoChangeIcon
+                style={
+                  active
+                    ? { color: 'rgba(17, 17, 17, 0.6)' }
+                    : { color: '#F59256' }
+                }
+              />
+            </ButtonWrapp>
+          )}
+        </InputWrapp>
+      </UserDataItemForm>
     </UserDataItemWrapp>
   );
 };

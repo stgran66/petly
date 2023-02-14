@@ -270,6 +270,15 @@ const AddImageWrap = styled('span')`
 
   background-color: ${({ theme }) => theme.colors.commonBackground};
 `;
+
+const PetImg = styled('img')`
+  height: 116px;
+  width: 116px;
+  border-radius: 20px;
+  margin-top: 8px;
+  margin-bottom: 20px;
+  object-fit: cover;
+`;
 const AddImage = styled('img')`
   display: block;
 `;
@@ -328,5 +337,6 @@ const styles = {
   RadioWrap,
   RadiImg,
   ModalTextarea,
+  PetImg,
 };
 export default styles;
