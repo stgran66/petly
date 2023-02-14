@@ -22,7 +22,7 @@ const register = createAsyncThunk('auth/register', async (creds, thunkAPI) => {
     console.log(axios.defaults);
     return response.data;
   } catch (e) {
-    Notiflix.Notify.info(e.message);
+    Notiflix.Notify.info(e.response.data.message);
     return thunkAPI.rejectWithValue(e.message);
 
   }
@@ -34,7 +34,7 @@ const login = createAsyncThunk('auth/login', async (creds, thunkAPI) => {
     setAuthHeader(response.data.token);
     return response.data;
   } catch (e) {
-    Notiflix.Notify.info(e.message);
+    Notiflix.Notify.info(e.response.data.message);
     return thunkAPI.rejectWithValue(e.message);
   }
 });
@@ -43,7 +43,7 @@ const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     clearAuthHeader();
   } catch (e) {
-    Notiflix.Notify.info(e.message);
+    Notiflix.Notify.info(e.message.data.message);
     return thunkAPI.rejectWithValue(e.message);
   }
 });
