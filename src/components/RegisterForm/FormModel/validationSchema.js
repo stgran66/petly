@@ -37,7 +37,7 @@ const validationSchema = [
       )
       .required(`${name.requiredErrorMsg}`),
     [city.name]: Yup.string()
-      .min(2)
+      .min(3)
       .max(19)
       .matches(
         /^[^ -,][a-zA-zа-яіїєА-ЯІЇЄ, -]+[^ -]$/,
