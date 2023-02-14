@@ -155,7 +155,12 @@ const ModalFieldLabel = styled('label')`
   color: ${({ theme }) => theme.colors.text.black};
   line-height: ${({ theme }) => theme.lineHeights.l};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-
+  & span:after {
+    content: '*';
+    color: ${({ theme }) => theme.colors.errorColor};
+    position: absolute;
+    margin-left: 4px;
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
   }
 `;
@@ -187,8 +192,10 @@ const ModalBtnWrap = styled('div')`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
+  position: relative;
 `;
 const ModalBtn = styled('button')`
+  position: relative;
   style-decoration: none;
   padding: 10px 0;
   font-family: ${({ theme }) => theme.fonts[0]};
@@ -206,15 +213,25 @@ const ModalBtn = styled('button')`
     active ? theme.colors.white : theme.colors.black};
   background-color: ${({ theme, active }) =>
     active ? theme.colors.accent : theme.colors.white};
-transition: ${({ theme }) => theme.transitions.normal};
 
-&:not(:last-child) {
- margin-bottom: 12px;
-}
-    &:hover,
-    &:focus {
+  transition: ${({ theme }) => theme.transitions.normal};
+
+  &:not(:last-child) {
+    margin-bottom: 12px;
+  }
+  &:hover,
+  &:focus {
     background-color: ${({ theme }) => theme.colors.accent};
-    color: ${({ theme }) => theme.colors.white}`;
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  &:disabled,
+  button[disabled='disabled'] {
+    border: 1px solid #999999 !important;
+    background-color: #cccccc !important;
+    color: #666666 !important;
+  }
+`;
 
 const ModalRadioGroup = styled(RadioGroup)`
   display: flex;
@@ -269,7 +286,7 @@ const ModalFile = styled('input')`
   height: 0;
 `;
 
-const AddImageWrap = styled('span')`
+const AddImageWrap = styled('div')`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -323,9 +340,20 @@ const ModalTextarea = styled(TextareaAutosize)`
     border-color: ${({ theme }) => theme.colors.accent};
   }
 `;
-const ErrorMessage = styled('p')`
+const ErrorMessage = styled('span')`
   position: absolute;
   bottom: -20px;
+  left: 12px;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.errorColor};
+  line-height: ${({ theme }) => theme.lineHeights.xl};
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
+  font-size: ${({ theme }) => theme.fontSizes.text.xs};
+`;
+
+const ErrorDesc = styled('span')`
+  position: absolute;
+  top: -20px;
   left: 12px;
   align-items: center;
   color: ${({ theme }) => theme.colors.errorColor};
@@ -360,5 +388,6 @@ const styles = {
   ModalTextarea,
   PetImg,
   LabelText,
+  ErrorDesc,
 };
 export default styles;
