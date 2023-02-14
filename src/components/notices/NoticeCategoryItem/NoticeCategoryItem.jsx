@@ -13,7 +13,7 @@ const NoticeCategoryItem = ({ notice, category }) => {
   const [addedToFav, setAddedToFav] = useState(false);
   const [categoryName, setCategoryName] = useState('sell');
   useCategories(category, setCategoryName);
-  const { title, breed, place, age, price } = notice;
+  const { title, breed, place, age, price, imageUrl, name } = notice;
   const {
     NoticeItemCard,
     Image,
@@ -60,7 +60,7 @@ const NoticeCategoryItem = ({ notice, category }) => {
     <NoticeItemCard>
       <ImgWrapper>
         <Category>{categoryName}</Category>
-        <Image src={require('./Dog.jpeg')} alt="Dog" />
+        <Image src={imageUrl} alt={name} />
         <Button type="button" onClick={handleSubmit}>
           {addedToFav ? <AddedToFav /> : <FavouriteIcon />}
         </Button>
