@@ -9,7 +9,6 @@ const RegisterForm = styled(Form)`
   width: 100%;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    display: grid;
     margin: auto;
     margin-top: 173px;
     width: 608px;
@@ -21,6 +20,7 @@ const RegisterForm = styled(Form)`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     width: 618px;
+    margin-top: 57px;
     padding: 60px 80px;
     background: #ffffff;
     box-shadow: ${({ theme }) => theme.shadows.cardsShadowUser};
@@ -42,8 +42,8 @@ const Title = styled('h1')`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-family: ${({ theme }) => theme.fonts[0]};
     font-weight: ${prop => prop.theme.fontWeights.medium};
-    fon-size: ${prop => prop.theme.fontSizes.headers.m};
-    line-height: ${prop => prop.theme.lineHeights.s};
+    fon-size: ${prop => prop.theme.fontSizes.headers.xs};
+    line-height: ${prop => prop.theme.lineHeights.m};
   }
 `;
 
