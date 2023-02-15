@@ -7,7 +7,9 @@ const calcAge = birthday => {
       (new Date() - new Date(birthdayArr[2], birthdayArr[1], birthdayArr[0])) /
       (60000 * 60 * 24 * 365);
     const fullYears = Math.floor(yearsFloat);
-
+    if (isNaN(fullYears)) {
+      return 'unknown';
+    }
     const yearsWord = converter.toWords(fullYears);
     switch (yearsWord) {
       case 'zero':
