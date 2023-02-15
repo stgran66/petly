@@ -49,7 +49,8 @@ const validationSchema = [
       .matches(
         /^[+]380\d{3}\d{2}\d{2}\d{2}$/,
         `Phone number can contain only 13 symbols: starts from  '+380' and 9 digits after.`
-      ),
+      )
+      .required(`${phone.requiredErrorMsg}`),
   }),
 ];
 

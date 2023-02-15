@@ -45,7 +45,6 @@ const RegisterForm = () => {
   const _submitForm = values => {
     const { email, password, name, city, phone } = values;
     const ifCityNoString = city === '' ? 'unknown' : city
-    const ifPhoneNoString = phone === '' ? '+380000000000' : phone;
 
     dispatch(
       register({
@@ -53,7 +52,7 @@ const RegisterForm = () => {
         password: password.toLowerCase().trim(),
         name: name.toLowerCase().trim(),
         city: ifCityNoString.toLowerCase().trim(),
-        phone: ifPhoneNoString.toLowerCase().trim(),
+        phone: phone.toLowerCase().trim(),
       })
     );
     setActiveLoader(true);
