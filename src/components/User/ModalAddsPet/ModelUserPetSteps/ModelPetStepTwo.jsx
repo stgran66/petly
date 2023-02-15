@@ -12,10 +12,14 @@ const {
   FotoWrap,
   PetFoto,
   PetFotoIcon,
-  PetFotoInputLabel,
+  // PetFotoInputLabel,
   CommentWrapp,
   InputCommentValue,
+  ErrorMsg,
 } = styles;
+
+const MAX_FILE_SIZE = 1000000; //1MB
+// const MAX_FILE_SIZE = 102400; //100KB
 
 let schema = yup.object().shape({
   photo: yup
@@ -26,6 +30,11 @@ let schema = yup.object().shape({
       'Unsupported file type',
       value =>
         value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)
+    )
+    .test(
+      'is-valid-size',
+      'Max allowed size is 1MB',
+      value => value === null || (value && value.size <= MAX_FILE_SIZE)
     ),
   comments: yup
     .string()
@@ -77,20 +86,21 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
                   />
                 </>
               ) : (
-                <PetFotoInputLabel>
+                <button type="button">
                   <PetFotoIcon />
-                  <InputCommentValue
-                    type="file"
-                    name="photo"
-                    accept=".png, .jpeg, .jpg"
-                    onChange={e => selectFile(e, setFieldValue)}
-                    hidden
-                  />
-                </PetFotoInputLabel>
+                </button>
               )}
-
-              <ErrorMessage component="span" name="photo" />
+              <input
+                type="file"
+                name="photo"
+                accept=".png, .jpeg, .jpg, .webp"
+                onChange={e => selectFile(e, setFieldValue)}
+              />
             </FotoWrap>
+
+            <ErrorMessage name="photo">
+              {msg => <ErrorMsg>{msg}</ErrorMsg>}
+            </ErrorMessage>
 
             <CommentWrapp>
               <label htmlFor="comments">Comments</label>
@@ -102,7 +112,10 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
                 id="comments"
                 onChange={e => handleInputChange(e, setFieldValue)}
               />
-              <ErrorMessage component="span" name="comments" />
+              {/* <ErrorMessage component="span" name="comments" /> */}
+              <ErrorMessage name="comments">
+                {msg => <ErrorMsg>{msg}</ErrorMsg>}
+              </ErrorMessage>
             </CommentWrapp>
           </FormInputWrappSecond>
           <ButtonsGroup>
