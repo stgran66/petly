@@ -36,7 +36,7 @@ let schema = yup.object().shape({
       return parsedDate;
     })
     .min(new Date(1950, 1, 1), 'birthday should be after 1950')
-    .max(new Date(), 'birthday could not be after today')
+    .max(new Date(), 'birthday could not be before today')
     .typeError('date should be in dd.mm.yyyy format'),
   breed: yup
     .string()
