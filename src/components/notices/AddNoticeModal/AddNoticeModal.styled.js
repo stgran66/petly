@@ -4,7 +4,6 @@ import {
   Modal,
   Radio,
   RadioGroup,
-  TextareaAutosize,
   Typography,
 } from '@mui/material';
 import { Box, styled } from '@mui/system';
@@ -367,14 +366,13 @@ const AddImage = styled('img')`
   display: block;
 `;
 
-const ModalTextarea = styled(TextareaAutosize)`
+const ModalTextarea = styled(Field)`
   margin-top: 8px;
   padding: 12px 14px;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-  maxlength: 120;
+  min-height: 20px;
   resize: none;
-  min-height: 113px;
   background-color: ${({ theme }) => theme.colors.commonBackground};
   color: ${({ theme }) => theme.colors.text.black};
   line-height: ${({ theme }) => theme.lineHeights.xl};
@@ -390,7 +388,7 @@ const ModalTextarea = styled(TextareaAutosize)`
     border-color: ${({ theme }) => theme.colors.accent};
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    max-height: 116px;
+    height: 116px;
     padding: 16px 18px;
   }
 `;
