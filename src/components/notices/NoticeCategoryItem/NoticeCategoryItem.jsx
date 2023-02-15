@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import userSelectors from 'redux/user/selectors';
 import operations from 'redux/notices/operations';
 import { useLocation } from 'react-router-dom';
+import calcAge from 'utils/calcAge';
 
 const { deleteNotice, getFavorite, getMyNotices, fetchNotices } = operations;
 const { addFavNotice, removeFavNotice } = userOperations;
@@ -18,7 +19,7 @@ const NoticeCategoryItem = ({ notice, category }) => {
   const { selectUserFavorites, selectUserId } = userSelectors;
   const favoriteNotices = useSelector(selectUserFavorites);
   const userId = useSelector(selectUserId);
-  const { title, breed, place, age, price, _id, imageUrl, name, owner } =
+  const { title, breed, place, birthday, price, _id, imageUrl, name, owner } =
     notice;
   const { isLoggedIn } = hooks.useAuth();
   const [addedToFav, setAddedToFav] = useState(() => {
@@ -111,7 +112,7 @@ const NoticeCategoryItem = ({ notice, category }) => {
           <Content>Place:</Content>
           <Content>{place}</Content>
           <Content>Age:</Content>
-          <Content>{age}</Content>
+          <Content>{calcAge(birthday)}</Content>
           {category === 'sell' ? (
             <>
               <Content Content> Price:</Content>
