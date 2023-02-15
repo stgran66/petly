@@ -13,6 +13,7 @@ const {
   ButtonWhite,
   LabelWrapp,
   InputValue,
+  ErrorMsg,
 } = styles;
 
 const RegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
@@ -71,7 +72,10 @@ const ModelPetStepOne = ({ data, next, onClose }) => {
               placeholder="Type name pet"
               id="name"
             />
-            <ErrorMessage component="span" name="name" />
+            {/* <ErrorMessage component="span" name="name" /> */}
+            <ErrorMessage name="name">
+              {msg => <ErrorMsg>{msg}</ErrorMsg>}
+            </ErrorMessage>
           </LabelWrapp>
 
           <LabelWrapp>
@@ -82,19 +86,25 @@ const ModelPetStepOne = ({ data, next, onClose }) => {
               placeholder="Type date of birth"
               id="birthday"
             />
-            <ErrorMessage component="span" name="birthday" />
+            {/* <ErrorMessage component="span" name="birthday" /> */}
+            <ErrorMessage name="birthday">
+              {msg => <ErrorMsg>{msg}</ErrorMsg>}
+            </ErrorMessage>
           </LabelWrapp>
 
           <LabelWrapp>
             <label htmlFor="breed">Breed</label>
             <InputValue
-              required
+              // required
               type="text"
               name="breed"
               placeholder="Type breed"
               id="breed"
             />
-            <ErrorMessage component="span" name="breed" />
+            {/* <ErrorMessage component="span" name="breed" /> */}
+            <ErrorMessage name="breed">
+              {msg => <ErrorMsg>{msg}</ErrorMsg>}
+            </ErrorMessage>
           </LabelWrapp>
         </FormInputWrapp>
         <ButtonsGroup>
