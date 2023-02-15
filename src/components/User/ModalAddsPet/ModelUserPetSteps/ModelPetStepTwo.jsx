@@ -18,8 +18,8 @@ const {
   ErrorMsg,
 } = styles;
 
-const MAX_FILE_SIZE = 1000000; //1MB
-// const MAX_FILE_SIZE = 102400; //100KB
+// const MIN_FILE_SIZE = 1000000; //1MB
+const MIN_FILE_SIZE = 10240; //10KB
 
 let schema = yup.object().shape({
   photo: yup
@@ -33,8 +33,8 @@ let schema = yup.object().shape({
     )
     .test(
       'is-valid-size',
-      'Max allowed size is 1MB',
-      value => value === null || (value && value.size <= MAX_FILE_SIZE)
+      'Max allowed size is 10KB',
+      value => value === null || (value && value.size >= MIN_FILE_SIZE)
     ),
   comments: yup
     .string()
