@@ -127,7 +127,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
       }
     }
     if (
-      selectedCategoryValue === 'for-free' &&
+      selectedCategoryValue === 'for-free' ||
       selectedCategoryValue === 'lost-found'
     ) {
       if (title === '') {
@@ -148,7 +148,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
       }
     }
     if (
-      selectedCategoryValue === 'for-free' &&
+      selectedCategoryValue === 'for-free' ||
       selectedCategoryValue === 'lost-found'
     ) {
       if (place === '' || comments === '') {
@@ -178,10 +178,22 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
       <Box>
         <ModalBox>
           <ModalTitle id="modal-modal-title">Add pet</ModalTitle>
-          {firstPage && (
+          {firstPage && selectedCategoryValue === 'sell' && (
             <ModalInfo id="modal-modal-description">
-              Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit
-              amet, consectetur
+              Let help find a loving new home for your pet. Please enter
+              information in the form below
+            </ModalInfo>
+          )}
+          {firstPage && selectedCategoryValue === 'lost-found' && (
+            <ModalInfo id="modal-modal-description">
+              Enter details and a photo of your missing pet and search our
+              lost/found pet database to find them.
+            </ModalInfo>
+          )}
+          {firstPage && selectedCategoryValue === 'for-free' && (
+            <ModalInfo id="modal-modal-description">
+              We know, your pet is a member of your family. Let someone to care
+              for your pet as well as you do.
             </ModalInfo>
           )}
           <InputButton onClick={() => setIsModalOpen(false)}>
