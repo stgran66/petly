@@ -17,14 +17,15 @@ const {
   InputCommentValue,
 } = styles;
 
-// const IMAGE_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
-
 let schema = yup.object().shape({
   photo: yup
     .mixed()
-    .required('Image is Required! Example: jpg,jpeg,png')
-    .test('fileType', 'Unsupported file type', value =>
-      ['image/jpeg', 'image/png', 'image/webp'].includes(value.type)
+    .required('Image is Required!')
+    .test(
+      'fileType',
+      'Unsupported file type',
+      value =>
+        value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)
     ),
   comments: yup
     .string()
@@ -79,7 +80,6 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
                 <PetFotoInputLabel>
                   <PetFotoIcon />
                   <InputCommentValue
-                    required
                     type="file"
                     name="photo"
                     accept=".png, .jpeg, .jpg"
