@@ -127,7 +127,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
       }
     }
     if (
-      selectedCategoryValue === 'for-free' &&
+      selectedCategoryValue === 'for-free' ||
       selectedCategoryValue === 'lost-found'
     ) {
       if (title === '') {
@@ -148,7 +148,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
       }
     }
     if (
-      selectedCategoryValue === 'for-free' &&
+      selectedCategoryValue === 'for-free' ||
       selectedCategoryValue === 'lost-found'
     ) {
       if (place === '' || comments === '') {
