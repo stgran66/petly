@@ -38,9 +38,19 @@ let schema = yup.object().shape({
     ),
   comments: yup
     .string()
+    .test(
+      'legth',
+      'Comment should be 8 to 120 characters long with letters',
+      value => {
+        const validValue = value.trim();
+        if (validValue.length >= 8) {
+          return validValue;
+        }
+      }
+    )
     .min(8)
     .max(120)
-    .required('comment should be 8 to 120 characters long'),
+    .required('Comment should be 8 to 120 characters long'),
 });
 
 const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {

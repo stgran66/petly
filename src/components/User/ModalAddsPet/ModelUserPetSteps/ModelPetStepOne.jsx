@@ -30,7 +30,7 @@ let schema = yup.object().shape({
     .required(),
   birthday: yup
     .date()
-    .test('format', 'Type format 01.01.1910', (_, { originalValue }) => {
+    .test('format', 'Type in format 01.01.1910', (_, { originalValue }) => {
       if (originalValue) {
         return originalValue.length === 10;
       }
@@ -42,7 +42,7 @@ let schema = yup.object().shape({
       return parsedDate;
     })
     .min(new Date(1950, 1, 1), 'Birthday should be after 1950')
-    .max(new Date(), 'Birthday could not be before today')
+    .max(new Date(), 'Birthday could not be after today')
     .typeError('Date should be in dd.mm.yyyy format'),
   breed: yup
     .string()
