@@ -29,8 +29,10 @@ const Wrapper = styled('div')`
     }
     @media screen and (min-width: 825px) {
       @media screen and (orientation: landscape) {
-        background-size: 50%, 150%;
-        background-position: bottom center, 35% -35%;
+        /* background-size: 50%, 150%;
+        background-position: bottom center, 35% -35%; */
+        background-size: 35%, 150%;
+        background-position: bottom 30%, 35% -35%;
       }
     }
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
