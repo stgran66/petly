@@ -3,33 +3,40 @@ import { useState } from 'react';
 import Modal from 'components/notices/Modal';
 import hooks from 'hooks';
 import styles from './NoticeCategoryItem.styled';
-import useCategories from 'hooks/useCategories';
 import userOperations from 'redux/user/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import userSelectors from 'redux/user/selectors';
 import operations from 'redux/notices/operations';
 import { useLocation } from 'react-router-dom';
+import calcAge from 'utils/calcAge';
 
 const { deleteNotice, getFavorite, getMyNotices, fetchNotices } = operations;
 const { addFavNotice, removeFavNotice } = userOperations;
 
-const NoticeCategoryItem = ({ notice, category }) => {
+const NoticeCategoryItem = ({ notice }) => {
   const dispatch = useDispatch();
   const { selectUserFavorites, selectUserId } = userSelectors;
   const favoriteNotices = useSelector(selectUserFavorites);
   const userId = useSelector(selectUserId);
-  const { title, breed, place, age, price, _id, imageUrl, name, owner } =
-    notice;
+  const {
+    title,
+    breed,
+    place,
+    birthday,
+    price,
+    _id,
+    imageUrl,
+    name,
+    owner,
+    category,
+  } = notice;
   const { isLoggedIn } = hooks.useAuth();
   const [addedToFav, setAddedToFav] = useState(() => {
     return favoriteNotices.includes(_id) ? true : false;
   });
-  const [categoryName, setCategoryName] = useState('');
   const urlPath = useLocation();
   const favorite = urlPath.pathname.includes('favorite');
   const myNotices = urlPath.pathname.includes('own');
-
-  useCategories(category, setCategoryName);
 
   const {
     NoticeItemCard,
@@ -97,7 +104,7 @@ const NoticeCategoryItem = ({ notice, category }) => {
   return (
     <NoticeItemCard>
       <ImgWrapper>
-        <Category>{categoryName}</Category>
+        <Category>{category}</Category>
         <Image src={imageUrl} alt={name} />
         <Button type="button" onClick={handleSubmit}>
           {addedToFav ? <AddedToFav /> : <FavouriteIcon />}
@@ -111,7 +118,7 @@ const NoticeCategoryItem = ({ notice, category }) => {
           <Content>Place:</Content>
           <Content>{place}</Content>
           <Content>Age:</Content>
-          <Content>{age}</Content>
+          <Content>{calcAge(birthday)}</Content>
           {category === 'sell' ? (
             <>
               <Content Content> Price:</Content>
