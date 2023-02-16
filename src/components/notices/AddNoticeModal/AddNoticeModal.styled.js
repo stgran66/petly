@@ -100,6 +100,7 @@ const ModalCategoryGroup = styled(RadioGroup)`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  position: relative;
 
   margin-bottom: 20px;
 
@@ -110,6 +111,7 @@ const ModalCategoryGroup = styled(RadioGroup)`
 
 const ModalCategoryLabel = styled(FormControlLabel)`
   display: flex;
+  position: relative;
   align-items: center;
   height: 35px;
   padding: 8px 28px;
@@ -353,14 +355,13 @@ const PetImg = styled('img')`
   width: 116px;
   border-radius: 20px;
   margin-top: 8px;
-  margin-bottom: 20px;
   object-fit: cover;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     height: 140px;
     width: 140px;
     margin-top: 12px;
-    margin-bottom: 28px;
+    margin-bottom: 8px;
   }
 `;
 const AddImage = styled('img')`
@@ -415,8 +416,8 @@ const ErrorDesc = styled('span')`
   font-size: ${({ theme }) => theme.fontSizes.text.xs};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    top: -20px;
-    left: 45px;
+    top: -28px;
+    left: 0;
     align-items: left;
     font-size: ${({ theme }) => theme.fontSizes.text.s};
   }

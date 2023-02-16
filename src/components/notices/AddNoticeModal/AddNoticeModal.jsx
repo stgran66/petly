@@ -44,7 +44,7 @@ const {
 } = styles;
 
 const initialValues = {
-  category: 'sell',
+  category: '',
   title: '',
   name: '',
   birthday: '',
@@ -139,7 +139,8 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
     }
     if (
       selectedCategoryValue === 'for-free' ||
-      selectedCategoryValue === 'lost-found'
+      selectedCategoryValue === 'lost-found' ||
+      selectedCategoryValue === ''
     ) {
       if (title === '') {
         setMissedField(true);
@@ -223,7 +224,6 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                 {firstPage ? (
                   <>
                     <ModalCategoryGroup
-                      defaultValue="sell"
                       onChange={e => {
                         handleInputChange(e, setFieldValue);
                       }}
@@ -241,6 +241,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                         onChange={onRadioCategoryChange}
                         label="lost/found"
                       />
+
                       <ModalCategoryLabel
                         value="for-free"
                         control={<ModalCategoryField />}
@@ -332,7 +333,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                     </ModalFieldLabel>
                     <ModalBtnWrap>
                       {missedField && (
-                        <ErrorDesc>Please type required fields*</ErrorDesc>
+                        <ErrorDesc>* Please type required fields</ErrorDesc>
                       )}
                       <ModalBtn
                         type="button"
@@ -432,26 +433,27 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                         ) : null}
                       </ModalFieldLabel>
                     )}
-                    {isAddImg ? (
-                      <PetImg
-                        src={URL.createObjectURL(isAddImg)}
-                        alt={isAddImg.name}
+
+                    <ModalFieldLabel
+                      required
+                      component={ModalFile}
+                      htmlFor="imageUrl"
+                      sx={{ paddingTop: '4px' }}
+                    >
+                      <span>Load the pet's image</span>
+                      <ModalFile
+                        accept="image/*"
+                        name="imageUrl"
+                        type="file"
+                        id="imageUrl"
+                        onChange={e => onAddImage(e, setFieldValue)}
                       />
-                    ) : (
-                      <ModalFieldLabel
-                        required
-                        component={ModalFile}
-                        htmlFor="imageUrl"
-                        sx={{ paddingTop: '4px' }}
-                      >
-                        <span>Load the pet's image</span>
-                        <ModalFile
-                          accept="image/*"
-                          name="imageUrl"
-                          type="file"
-                          id="imageUrl"
-                          onChange={e => onAddImage(e, setFieldValue)}
+                      {isAddImg ? (
+                        <PetImg
+                          src={URL.createObjectURL(isAddImg)}
+                          alt={isAddImg.name}
                         />
+                      ) : (
                         <AddImageWrap>
                           <AddImage
                             id="iconPlus"
@@ -459,11 +461,11 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                             alt="upload pet"
                           />
                         </AddImageWrap>
-                        {errors.imageUrl && touched.imageUrl ? (
-                          <ErrorMessage>{errors.imageUrl}</ErrorMessage>
-                        ) : null}
-                      </ModalFieldLabel>
-                    )}
+                      )}
+                      {errors.imageUrl && touched.imageUrl ? (
+                        <ErrorMessage>{errors.imageUrl}</ErrorMessage>
+                      ) : null}
+                    </ModalFieldLabel>
 
                     <ModalFieldLabel>
                       Comments
@@ -480,7 +482,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                     </ModalFieldLabel>
                     <ModalBtnWrap>
                       {missedFielSecondStep && (
-                        <ErrorDesc>Please type required* fields</ErrorDesc>
+                        <ErrorDesc>* Please type required fields</ErrorDesc>
                       )}
 
                       <ModalBtn type="submit" active>
