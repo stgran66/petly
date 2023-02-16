@@ -7,10 +7,13 @@ import FemaleIcon from '../../../images/female-icon.svg';
 import plusIcon from '../../../images/plus-icon.svg';
 import MaleIcon from '../../../images/male-icon.svg';
 import validationSchemas from './ValidationModal';
+
 import { Box } from '@mui/system';
+import hooks from 'hooks';
 
 const { schema, sellPetSchema } = validationSchemas;
 const { addNotice } = operations;
+const { useDefaultCategoryValue } = hooks;
 const {
   ModalBackdrop,
   ModalTextarea,
@@ -48,13 +51,14 @@ const initialValues = {
   breed: '',
   place: '',
   comments: '',
-  sex: 'male',
+  sex: '',
   imageUrl: '',
   price: '',
 };
 
 const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
-  const [selectedCategoryValue, setSelectedCategoryValue] = useState('sell');
+  const [selectedCategoryValue, setSelectedCategoryValue] =
+    useDefaultCategoryValue();
   const [selectedSexValue, setSelectedSexValue] = useState('');
   const [firstPage, setFirstPage] = useState(true);
   const [missedField, setMissedField] = useState(false);
@@ -118,7 +122,14 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
     }
     return schema;
   };
-  const validateFields = values => {
+  const validateFields = (values, errors) => {
+    if (errors) {
+      if (errors.title || errors.breed || errors.name || errors.birthday) {
+        setMissedField(true);
+        return;
+      }
+    }
+
     const { title, breed, name, birthday } = values;
     if (selectedCategoryValue === 'sell') {
       if (title === '' || breed === '' || name === '' || birthday === '') {
@@ -140,9 +151,9 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
   };
 
   const validateFinalFields = values => {
-    const { place, comments, price } = values;
+    const { place, imageUrl, price, sex } = values;
     if (selectedCategoryValue === 'sell') {
-      if (place === '' || comments === '' || price === '') {
+      if (place === '' || sex === '' || price === '' || imageUrl === '') {
         setMissedFielSecondStep(true);
         return;
       }
@@ -151,7 +162,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
       selectedCategoryValue === 'for-free' ||
       selectedCategoryValue === 'lost-found'
     ) {
-      if (place === '' || comments === '') {
+      if (place === '' || sex === '' || imageUrl === '') {
         setMissedFielSecondStep(true);
         return;
       }
@@ -285,7 +296,6 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                       ) : (
                         <p> Date of birth</p>
                       )}
-
                       <ModalField
                         required={
                           selectedCategoryValue === 'sell' ? true : false
@@ -328,7 +338,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                         type="button"
                         active
                         onClick={() => {
-                          validateFields(values);
+                          validateFields(values, errors);
                         }}
                       >
                         Next
@@ -383,13 +393,19 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                             </>
                           }
                         />
+                        {errors.sex && touched.sex ? (
+                          <ErrorMessage
+                            sx={{ bottom: '0', left: '12', fontSize: '12px' }}
+                          >
+                            {errors.sex}
+                          </ErrorMessage>
+                        ) : null}
                       </RadioWrap>
                     </ModalRadioGroup>
                     <ModalFieldLabel>
                       <span>Location</span>
 
                       <ModalField
-                        required
                         type="text"
                         onChange={e => handleInputChange(e, setFieldValue)}
                         name="place"
@@ -428,7 +444,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                         htmlFor="imageUrl"
                         sx={{ paddingTop: '4px' }}
                       >
-                        Load the pet's image
+                        <span>Load the pet's image</span>
                         <ModalFile
                           accept="image/*"
                           name="imageUrl"
@@ -450,14 +466,11 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                     )}
 
                     <ModalFieldLabel>
-                      <span>Comments</span>
-
+                      Comments
                       <ModalTextarea
-                        required
-                        aria-label="empty textarea"
-                        maxRows="5"
-                        onChange={e => handleInputChange(e, setFieldValue)}
+                        component="textarea"
                         name="comments"
+                        onChange={e => handleInputChange(e, setFieldValue)}
                         draggable="false"
                         placeholder="Type your comments"
                       />

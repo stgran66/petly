@@ -29,7 +29,6 @@ const NoticesCategoryList = () => {
   const noNoticesFind = filteredNotices.length === 0;
   const searchOptions = { favorite, myNotices, category };
 
-  // console.log(dispatch(getFavorite()));
   const { isLoggedIn } = hooks.useAuth();
 
   useEffect(() => {
