@@ -32,7 +32,7 @@ const ModalLogout = ({ setShowModal }) => {
           Yes
         </ButtonYes>
         <ButtonNo type="button" onClick={e => onClose(e)}>
-          No
+          Cancel
         </ButtonNo>
       </ModalLogoutButtonsGroup>
     </ModalLogoutWrapp>
