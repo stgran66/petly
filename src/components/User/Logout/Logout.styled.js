@@ -47,40 +47,40 @@ const LogoutIcon = styled(IoExitOutline)`
 `;
 
 const ModalLogoutWrapp = styled('div')`
-  /* position: relative; */
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 60px;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
   width: 280px;
 
-  padding: 40px 20px;
+  padding: 15px 15px;
   border-radius: 20px;
   background-color: ${props => props.theme.colors.white};
   /* background-color: transparent; */
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    padding: 40px 80px;
-    gap: 60px;
+    padding: 30px 30px;
+    gap: 80px;
     width: 608px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    /* padding: 40px 84px; */
+    width: 800px;
   }
 `;
 
 const ModalLogoutTitle = styled('p')`
   text-align: center;
-  color: ${props => props.theme.colors.accent};
-  font-weight: ${props => props.theme.fontWeights.semiBold};
-  font-size: ${props => props.theme.fontSizes.text.xl};
-  line-height: ${props => props.theme.lineHeights.m};
+  /* color: ${props => props.theme.colors.accent}; */
+  font-weight: ${props => props.theme.fontWeights.normal};
+  font-size: ${props => props.theme.fontSizes.text.s};
+  line-height: ${props => props.theme.lineHeights.xs};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    font-size: ${props => props.theme.fontSizes.headers.xs};
+    text-align: start;
+    font-size: ${props => props.theme.fontSizes.text.l};
     line-height: ${props => props.theme.lineHeights.s};
   }
 `;
@@ -97,8 +97,8 @@ const ModalLogoutButtonsGroup = styled('div')`
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     flex-direction: row-reverse;
-    justify-content: center;
-    gap: 40px;
+    justify-content: flex-start;
+    gap: 15px;
     font-size: ${props => props.theme.fontSizes.text.xl};
     line-height: 1.35;
   }
@@ -111,7 +111,7 @@ const ModalLogoutButtonsGroup = styled('div')`
 const ButtonNo = styled('button')`
   width: 240px;
   padding: 9px;
-  border-radius: 40px;
+  border-radius: 10px;
   border: 2px solid ${props => props.theme.colors.accent};
   background-color: ${props => props.theme.colors.accent};
   color: ${props => props.theme.colors.white};
@@ -122,7 +122,7 @@ const ButtonNo = styled('button')`
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    width: 180px;
+    width: 140px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
@@ -132,7 +132,7 @@ const ButtonNo = styled('button')`
 const ButtonYes = styled('button')`
   width: 240px;
   padding: 9px;
-  border-radius: 40px;
+  border-radius: 10px;
   border: 2px solid ${props => props.theme.colors.accent};
   background-color: transparent;
   cursor: pointer;
@@ -141,7 +141,7 @@ const ButtonYes = styled('button')`
     width: 100%;
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    width: 180px;
+    width: 140px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
