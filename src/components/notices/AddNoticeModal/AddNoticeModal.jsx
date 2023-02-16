@@ -50,7 +50,7 @@ const initialValues = {
   breed: '',
   place: '',
   comments: '',
-  sex: 'male',
+  sex: '',
   imageUrl: '',
   price: '',
 };
@@ -386,6 +386,13 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                             </>
                           }
                         />
+                        {errors.sex && touched.sex ? (
+                          <ErrorMessage
+                            sx={{ bottom: '0', left: '12', fontSize: '12px' }}
+                          >
+                            {errors.sex}
+                          </ErrorMessage>
+                        ) : null}
                       </RadioWrap>
                     </ModalRadioGroup>
                     <ModalFieldLabel>
@@ -455,7 +462,6 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                       Comments
                       <ModalTextarea
                         component="textarea"
-                        maxRows="5"
                         name="comments"
                         onChange={e => handleInputChange(e, setFieldValue)}
                         draggable="false"

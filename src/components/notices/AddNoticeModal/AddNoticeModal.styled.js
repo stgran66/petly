@@ -269,6 +269,7 @@ const ModalRadioGroup = styled(RadioGroup)`
   display: flex;
   flex-direction: row;
   margin-bottom: 30px;
+  position: relative;
 `;
 
 const RadioWrap = styled('div')`

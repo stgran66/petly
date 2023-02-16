@@ -37,7 +37,7 @@ const sellPetSchema = Yup.object().shape({
       'Breed should be from 2 to 16 symbols'
     )
     .required('The breed is required'),
-  sex: Yup.string().required(),
+  sex: Yup.string().required('Sex is required field'),
   place: Yup.string()
     .min(4, 'Location should be from 4 to 60 symbols')
     .max(60, 'Location should be from 4 to 60 symbols')
@@ -45,9 +45,9 @@ const sellPetSchema = Yup.object().shape({
       /^[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+$/,
       'Location should be in format: CITY REGION'
     )
-    .required(),
+    .required('Location is required field'),
   price: Yup.string()
-    .min(1, 'Too Short!')
+    .min(1, 'Too Short! Min 1 symbol')
     .matches(
       /^[1-9][0-9]* ?(\$|₴)?$/,
       'Price is number not starting from zero with $ or ₴ symbol after'
@@ -93,7 +93,7 @@ const schema = Yup.object().shape({
       /^[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+$/,
       'Breed should be from 2 to 16 symbols'
     ),
-  sex: Yup.string().required(),
+  sex: Yup.string().required('Sex is required field'),
   place: Yup.string()
     .min(4, 'Location should be from 4 to 60 symbols')
     .max(60, 'Location should be from 4 to 60 symbols')
@@ -101,7 +101,7 @@ const schema = Yup.object().shape({
       /^[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+$/,
       'Location should be in format: CITY REGION'
     )
-    .required(),
+    .required('Location is required field'),
   comments: Yup.string()
     .min(8, 'Comments should be from 8 to 120 symbols')
     .max(120, 'Comments should be from 8 to 120 symbols'),
