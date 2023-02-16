@@ -7,6 +7,7 @@ const useDefaultCategoryValue = () => {
 
   useEffect(() => {
     if (!category) {
+      setSelectedCategory('sell');
       return;
     }
     setSelectedCategory(category);
