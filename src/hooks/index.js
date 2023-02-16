@@ -1,5 +1,7 @@
 import useAuth from './useAuth';
+import useDefaultCategoryValue from './useDefaultCategoryValue';
 const hooks = {
-  useAuth
+  useAuth,
+  useDefaultCategoryValue,
 };
 export default hooks;
