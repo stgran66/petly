@@ -1,6 +1,7 @@
 import BurgerMenu from './BurgerMenu';
 import Navigation from './Navigation';
 import styles from './Header.styled';
+import ToggleThemeButton from './ThemeToggle/ThemeToggle';
 
 const Header = () => {
   const { HeaderEl, Logo } = styles;
@@ -9,6 +10,7 @@ const Header = () => {
       <Logo to="/">
         pe<span>t</span>ly
       </Logo>
+      <ToggleThemeButton />
       <nav>
         <Navigation />
       </nav>
