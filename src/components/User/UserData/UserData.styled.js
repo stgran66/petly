@@ -234,11 +234,12 @@ const Error = styled('p')`
 
   color: ${props => props.theme.colors.placeholderText};
   font-weight: ${props => props.theme.fontWeights.normal};
-  font-size: ${props => props.theme.fontSizes.text.xs};
+  font-size: 10px;
   line-height: 1.2;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     margin-left: 12px;
+    font-size: ${props => props.theme.fontSizes.s};
   }
 `;
 
