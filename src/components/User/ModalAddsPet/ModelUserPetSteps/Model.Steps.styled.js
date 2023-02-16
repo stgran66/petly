@@ -120,6 +120,13 @@ const LabelWrapp = styled('div')`
       font-size: ${props => props.theme.fontSizes.headers.xs};
       line-height: 1.08;
     }
+
+    &:after {
+      content: '*';
+      width: 5px;
+      height: 5px;
+      color: ${props => props.theme.colors.accent};
+    }
   }
 `;
 
@@ -158,6 +165,12 @@ const FormText = styled('p')`
     font-size: ${props => props.theme.fontSizes.text.xl};
     line-height: 1.2;
   }
+  &:after {
+    content: '*';
+    width: 5px;
+    height: 5px;
+    color: ${props => props.theme.colors.accent};
+  }
 `;
 
 const CommentWrapp = styled('div')`
@@ -176,6 +189,12 @@ const CommentWrapp = styled('div')`
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
       font-size: ${props => props.theme.fontSizes.headers.xs};
       line-height: 1.08;
+    }
+    &:after {
+      content: '*';
+      width: 5px;
+      height: 5px;
+      color: ${props => props.theme.colors.accent};
     }
   }
 `;
