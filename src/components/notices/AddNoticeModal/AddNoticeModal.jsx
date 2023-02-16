@@ -7,6 +7,7 @@ import FemaleIcon from '../../../images/female-icon.svg';
 import plusIcon from '../../../images/plus-icon.svg';
 import MaleIcon from '../../../images/male-icon.svg';
 import validationSchemas from './ValidationModal';
+
 import { Box } from '@mui/system';
 import hooks from 'hooks';
 
@@ -121,7 +122,14 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
     }
     return schema;
   };
-  const validateFields = values => {
+  const validateFields = (values, errors) => {
+    if (errors) {
+      if (errors.title || errors.breed || errors.name || errors.birthday) {
+        setMissedField(true);
+        return;
+      }
+    }
+
     const { title, breed, name, birthday } = values;
     if (selectedCategoryValue === 'sell') {
       if (title === '' || breed === '' || name === '' || birthday === '') {
@@ -288,7 +296,6 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                       ) : (
                         <p> Date of birth</p>
                       )}
-
                       <ModalField
                         required={
                           selectedCategoryValue === 'sell' ? true : false
@@ -331,7 +338,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                         type="button"
                         active
                         onClick={() => {
-                          validateFields(values);
+                          validateFields(values, errors);
                         }}
                       >
                         Next
