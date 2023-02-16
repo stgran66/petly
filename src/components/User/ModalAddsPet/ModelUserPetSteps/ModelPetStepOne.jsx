@@ -30,15 +30,20 @@ let schema = yup.object().shape({
     .required(),
   birthday: yup
     .date()
-    .transform((value, originalValue) => {
+    .test('format', 'Type in format 01.01.1910', (_, { originalValue }) => {
+      if (originalValue) {
+        return originalValue.length === 10;
+      }
+    })
+    .transform((_, originalValue) => {
       const parsedDate = isDate(originalValue)
         ? originalValue
         : parse(originalValue, 'dd.MM.yyyy', new Date());
       return parsedDate;
     })
-    .min(new Date(1950, 1, 1), 'birthday should be after 1950')
-    .max(new Date(), 'birthday could not be before today')
-    .typeError('date should be in dd.mm.yyyy format'),
+    .min(new Date(1950, 1, 1), 'Birthday should be after 1950')
+    .max(new Date(), 'Birthday could not be after today')
+    .typeError('Date should be in dd.mm.yyyy format'),
   breed: yup
     .string()
     .min(2)
@@ -95,7 +100,7 @@ const ModelPetStepOne = ({ data, next, onClose }) => {
           <LabelWrapp>
             <label htmlFor="breed">Breed</label>
             <InputValue
-              // required
+              required
               type="text"
               name="breed"
               placeholder="Type breed"
