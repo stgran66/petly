@@ -75,7 +75,7 @@ const ModalAddsPet = ({ setShowModal }) => {
   return (
     <ModalAddPetWrapp>
       <ModalTitle>Add pet</ModalTitle>
-      <ModalCloseButton tupe="button" onClick={e => onClose(e)}>
+      <ModalCloseButton type="button" onClick={e => onClose(e)}>
         <ModalCloseIcon />
       </ModalCloseButton>
       {steps[page]}

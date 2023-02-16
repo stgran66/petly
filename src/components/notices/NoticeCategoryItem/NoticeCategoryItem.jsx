@@ -1,14 +1,16 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+
 import Modal from 'components/notices/Modal';
 import hooks from 'hooks';
 import styles from './NoticeCategoryItem.styled';
 import userOperations from 'redux/user/operations';
-import { useDispatch, useSelector } from 'react-redux';
 import userSelectors from 'redux/user/selectors';
 import operations from 'redux/notices/operations';
-import { useLocation } from 'react-router-dom';
 import calcAge from 'utils/calcAge';
+import adaptCategoryName from 'utils/adaptCategoryNames';
 
 const { deleteNotice, getFavorite, getMyNotices, fetchNotices } = operations;
 const { addFavNotice, removeFavNotice } = userOperations;
@@ -104,7 +106,7 @@ const NoticeCategoryItem = ({ notice }) => {
   return (
     <NoticeItemCard>
       <ImgWrapper>
-        <Category>{category}</Category>
+        <Category>{adaptCategoryName(category)}</Category>
         <Image src={imageUrl} alt={name} />
         <Button type="button" onClick={handleSubmit}>
           {addedToFav ? <AddedToFav /> : <FavouriteIcon />}

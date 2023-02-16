@@ -70,21 +70,10 @@ const UserDataItem = ({
     }
   };
 
-  //   function handleFocus() {
-  //     inputRef.current.focus();
-  //   }
-
   const activeHandleClick = name => {
     setActive(name);
     // handleFocus();
   };
-
-  // const handleSubmit = name => {
-  //   setActive('');
-  //   // handleFocus();
-  //   console.log('value', name);
-  //   dispatch(updateUserData({ [name]: inputValue }));
-  // };
 
   const handleSubmit = name => {
     if (name === 'name') {
@@ -107,7 +96,11 @@ const UserDataItem = ({
         return;
       }
       if (!inputValue.match(RegExpEmail)) {
-        setIsError('type valid email, min 6 symbols');
+        setIsError('type valid email, min 10 symbols');
+        return;
+      }
+      if (inputValue.length < 10) {
+        setIsError('type valid email, min 10 symbols');
         return;
       }
       setIsError('');
