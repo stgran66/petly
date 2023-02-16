@@ -44,21 +44,21 @@ const RegisterForm = () => {
 
   const _submitForm = values => {
     const { email, password, name, city, phone } = values;
-    const ifCityNoString = city === '' ? 'unknown' : city
+    const ifCityNoString = city === '' ? 'unknown' : city;
 
     dispatch(
       register({
-        email: email.toLowerCase().trim(),
-        password: password.toLowerCase().trim(),
-        name: name.toLowerCase().trim(),
-        city: ifCityNoString.toLowerCase().trim(),
-        phone: phone.toLowerCase().trim(),
+        email: email.trim(),
+        password: password.trim(),
+        name: name.trim(),
+        city: ifCityNoString.trim(),
+        phone: phone.trim(),
       })
     );
     setActiveLoader(true);
     setTimeout(() => {
       setActiveStep(0);
-      setActiveLoader(false)
+      setActiveLoader(false);
     }, 3000);
   };
 
