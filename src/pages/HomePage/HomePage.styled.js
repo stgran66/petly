@@ -23,14 +23,14 @@ const Wrapper = styled('div')`
       background-size: 70%, 200%;
       background-position: bottom center, 45% -75%;
     }
+
     @media screen and (orientation: landscape) {
       background-size: 255px, 200%;
-      background-position: bottom right, 25% -5%;
+      background-position: bottom right 22px, 35% -15%;
     }
+
     @media screen and (min-width: 825px) {
       @media screen and (orientation: landscape) {
-        /* background-size: 50%, 150%;
-        background-position: bottom center, 35% -35%; */
         background-size: 35%, 150%;
         background-position: bottom 30%, 35% -35%;
       }
@@ -48,7 +48,7 @@ const Wrapper = styled('div')`
   @media screen and (orientation: landscape) {
     margin-top: 40px;
   }
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-top: 92px;
   }
 `;

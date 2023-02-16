@@ -6,9 +6,13 @@ const Header = () => {
   const { HeaderEl, Logo } = styles;
   return (
     <HeaderEl>
-      <Logo to="/">
-        pe<span>t</span>ly
-      </Logo>
+      <div data-aos="zoom-in-down" data-aos-duration="500">
+        <Logo to="/">
+          pe
+          <span>t</span>
+          ly
+        </Logo>
+      </div>
       <nav>
         <Navigation />
       </nav>
