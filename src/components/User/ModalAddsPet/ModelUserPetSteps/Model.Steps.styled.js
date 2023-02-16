@@ -15,6 +15,7 @@ const FormWrapp = styled(Form)`
 `;
 
 const FotoWrap = styled('div')`
+  position: relative;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -31,6 +32,28 @@ const FotoWrap = styled('div')`
     width: 182px;
     height: 182px;
   }
+
+  button {
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+  }
+
+  input {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 208px;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    margin: auto;
+    &::-webkit-file-upload-button {
+      cursor: pointer;
+    }
+  }
 `;
 
 const PetFoto = styled('img')`
@@ -46,7 +69,7 @@ const PetFoto = styled('img')`
   }
 `;
 
-const PetFotoInputLabel = styled('label')``;
+// const PetFotoInputLabel = styled('label')``;
 
 const PetFotoIcon = styled(Add28Regular)`
   width: 52px;
@@ -188,6 +211,16 @@ const InputCommentValue = styled(Field)`
   }
 `;
 
+const ErrorMsg = styled('p')`
+  text-align: center;
+  margin-bottom: 5px;
+
+  color: ${props => props.theme.colors.placeholderText};
+  font-weight: ${props => props.theme.fontWeights.normal};
+  font-size: ${props => props.theme.fontSizes.text.xs};
+  line-height: 1.2;
+`;
+
 const ButtonsGroup = styled('div')`
   display: flex;
   flex-direction: column;
@@ -263,11 +296,12 @@ const styles = {
   InputValue,
   FormText,
   PetFoto,
-  PetFotoInputLabel,
+  // PetFotoInputLabel,
   PetFotoIcon,
   FotoWrap,
   CommentWrapp,
   InputCommentValue,
+  ErrorMsg,
 };
 
 export default styles;
