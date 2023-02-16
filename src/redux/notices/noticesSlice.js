@@ -23,7 +23,7 @@ const onFetchSuccessReducer = (state, action) => {
   state.error = null;
 };
 const onAddSuccessReducer = (state, action) => {
-  state.items = [action.payload, ...state.items];
+  state.items = [...state.items, action.payload];
   state.isLoading = false;
   state.error = null;
 };

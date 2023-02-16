@@ -13,6 +13,7 @@ const {
   ButtonWhite,
   LabelWrapp,
   InputValue,
+  ErrorMsg,
 } = styles;
 
 const RegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
@@ -29,15 +30,20 @@ let schema = yup.object().shape({
     .required(),
   birthday: yup
     .date()
-    .transform((value, originalValue) => {
+    .test('format', 'Type in format 01.01.1910', (_, { originalValue }) => {
+      if (originalValue) {
+        return originalValue.length === 10;
+      }
+    })
+    .transform((_, originalValue) => {
       const parsedDate = isDate(originalValue)
         ? originalValue
         : parse(originalValue, 'dd.MM.yyyy', new Date());
       return parsedDate;
     })
-    .min(new Date(1950, 1, 1), 'birthday should be after 1950')
-    .max(new Date(), 'birthday could not be after today')
-    .typeError('date should be in dd.mm.yyyy format'),
+    .min(new Date(1950, 1, 1), 'Birthday should be after 1950')
+    .max(new Date(), 'Birthday could not be after today')
+    .typeError('Date should be in dd.mm.yyyy format'),
   breed: yup
     .string()
     .min(2)
@@ -71,7 +77,10 @@ const ModelPetStepOne = ({ data, next, onClose }) => {
               placeholder="Type name pet"
               id="name"
             />
-            <ErrorMessage component="span" name="name" />
+            {/* <ErrorMessage component="span" name="name" /> */}
+            <ErrorMessage name="name">
+              {msg => <ErrorMsg>{msg}</ErrorMsg>}
+            </ErrorMessage>
           </LabelWrapp>
 
           <LabelWrapp>
@@ -82,7 +91,10 @@ const ModelPetStepOne = ({ data, next, onClose }) => {
               placeholder="Type date of birth"
               id="birthday"
             />
-            <ErrorMessage component="span" name="birthday" />
+            {/* <ErrorMessage component="span" name="birthday" /> */}
+            <ErrorMessage name="birthday">
+              {msg => <ErrorMsg>{msg}</ErrorMsg>}
+            </ErrorMessage>
           </LabelWrapp>
 
           <LabelWrapp>
@@ -94,7 +106,10 @@ const ModelPetStepOne = ({ data, next, onClose }) => {
               placeholder="Type breed"
               id="breed"
             />
-            <ErrorMessage component="span" name="breed" />
+            {/* <ErrorMessage component="span" name="breed" /> */}
+            <ErrorMessage name="breed">
+              {msg => <ErrorMsg>{msg}</ErrorMsg>}
+            </ErrorMessage>
           </LabelWrapp>
         </FormInputWrapp>
         <ButtonsGroup>

@@ -112,7 +112,7 @@ const NoticeModal = ({ notice, category, toggleModal, favorite, img }) => {
             </Item>
             {category === 'sell' ? (
               <Item>
-                <ItemInfo>Sell:</ItemInfo>
+                <ItemInfo>Price:</ItemInfo>
                 <ItemInfo>{price}</ItemInfo>
               </Item>
             ) : (

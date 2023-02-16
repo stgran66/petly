@@ -51,7 +51,7 @@ const LoginForm = () => {
     Container,
   } = styles;
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = (values) => {
     const { email, password } = values;
 
     dispatch(
@@ -60,7 +60,6 @@ const LoginForm = () => {
         password: password,
       })
     );
-    resetForm();
   };
 
   return (

@@ -3,17 +3,17 @@ const checkoutFormModel = {
   formField: {
     email: {
       name: 'email',
-      label: 'Email*',
+      label: 'Email',
       requiredErrorMsg: 'Email is required',
     },
     password: {
       name: 'password',
-      label: 'Password*',
+      label: 'Password',
       requiredErrorMsg: 'Password is required',
     },
     confirmPassword: {
       name: 'confirmPassword',
-      label: 'ConfirmPassword*',
+      label: 'ConfirmPassword',
       requiredErrorMsg: 'ConfirmPassword is required',
     },
     name: {

@@ -12,25 +12,45 @@ const {
   FotoWrap,
   PetFoto,
   PetFotoIcon,
-  PetFotoInputLabel,
+  // PetFotoInputLabel,
   CommentWrapp,
   InputCommentValue,
+  ErrorMsg,
 } = styles;
 
-// const IMAGE_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
+// const MIN_FILE_SIZE = 1000000; //1MB
+const MIN_FILE_SIZE = 10240; //10KB
 
 let schema = yup.object().shape({
   photo: yup
     .mixed()
-    .required('Image is Required! Example: jpg,jpeg,png')
-    .test('fileType', 'Unsupported file type', value =>
-      ['image/jpeg', 'image/png', 'image/webp'].includes(value.type)
+    .required('Image is Required!')
+    .test(
+      'fileType',
+      'Unsupported file type',
+      value =>
+        value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)
+    )
+    .test(
+      'is-valid-size',
+      'Max allowed size is 10KB',
+      value => value === null || (value && value.size >= MIN_FILE_SIZE)
     ),
   comments: yup
     .string()
+    .test(
+      'legth',
+      'Comment should be 8 to 120 characters long with letters',
+      value => {
+        const validValue = value.trim();
+        if (validValue.length >= 8) {
+          return validValue;
+        }
+      }
+    )
     .min(8)
     .max(120)
-    .required('comment should be 8 to 120 characters long'),
+    .required('Comment should be 8 to 120 characters long'),
 });
 
 const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
@@ -76,21 +96,21 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
                   />
                 </>
               ) : (
-                <PetFotoInputLabel>
+                <button type="button">
                   <PetFotoIcon />
-                  <InputCommentValue
-                    required
-                    type="file"
-                    name="photo"
-                    accept=".png, .jpeg, .jpg"
-                    onChange={e => selectFile(e, setFieldValue)}
-                    hidden
-                  />
-                </PetFotoInputLabel>
+                </button>
               )}
-
-              <ErrorMessage component="span" name="photo" />
+              <input
+                type="file"
+                name="photo"
+                accept=".png, .jpeg, .jpg, .webp"
+                onChange={e => selectFile(e, setFieldValue)}
+              />
             </FotoWrap>
+
+            <ErrorMessage name="photo">
+              {msg => <ErrorMsg>{msg}</ErrorMsg>}
+            </ErrorMessage>
 
             <CommentWrapp>
               <label htmlFor="comments">Comments</label>
@@ -102,7 +122,10 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
                 id="comments"
                 onChange={e => handleInputChange(e, setFieldValue)}
               />
-              <ErrorMessage component="span" name="comments" />
+              {/* <ErrorMessage component="span" name="comments" /> */}
+              <ErrorMessage name="comments">
+                {msg => <ErrorMsg>{msg}</ErrorMsg>}
+              </ErrorMessage>
             </CommentWrapp>
           </FormInputWrappSecond>
           <ButtonsGroup>

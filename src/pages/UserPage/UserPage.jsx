@@ -22,8 +22,6 @@ const UserPage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoadingUser);
   const error = useSelector(selectErrorUser);
-  // console.log(isLoading);
-  // console.log(error);
 
   useEffect(() => {
     dispatch(fetchUserData());

@@ -70,21 +70,10 @@ const UserDataItem = ({
     }
   };
 
-  //   function handleFocus() {
-  //     inputRef.current.focus();
-  //   }
-
   const activeHandleClick = name => {
     setActive(name);
     // handleFocus();
   };
-
-  // const handleSubmit = name => {
-  //   setActive('');
-  //   // handleFocus();
-  //   console.log('value', name);
-  //   dispatch(updateUserData({ [name]: inputValue }));
-  // };
 
   const handleSubmit = name => {
     if (name === 'name') {
@@ -98,8 +87,20 @@ const UserDataItem = ({
       dispatch(updateUserData({ name: inputValue }));
     } else if (name === 'email') {
       setActive('email');
+
+      const arrInputValue = inputValue.split('');
+      const symbolDot = arrInputValue.includes('.');
+      const symboAt = arrInputValue.includes('@');
+      if (!symbolDot || !symboAt) {
+        setIsError('type valid email with "." and "@"');
+        return;
+      }
       if (!inputValue.match(RegExpEmail)) {
-        setIsError('type valid email, min 6 symbols');
+        setIsError('type valid email, min 10 symbols');
+        return;
+      }
+      if (inputValue.length < 10) {
+        setIsError('type valid email, min 10 symbols');
         return;
       }
       setIsError('');
@@ -107,7 +108,6 @@ const UserDataItem = ({
       dispatch(updateUserData({ email: inputValue }));
     } else if (name === 'birthday') {
       setActive('birthday');
-      // ===========
       if (!inputValue.match(RegExpBirthday)) {
         setIsError('date should be in dd.mm.yyyy format');
         return;
@@ -122,7 +122,6 @@ const UserDataItem = ({
         setIsError('birthday can not be set before 1910');
         return;
       }
-      // ===========
       setIsError('');
       setActive('');
       dispatch(updateUserData({ birthday: inputValue }));

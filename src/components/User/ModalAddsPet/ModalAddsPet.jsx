@@ -38,7 +38,6 @@ const ModalAddsPet = ({ setShowModal }) => {
 
     if (final) {
       try {
-        console.log(newData);
         const dataToSend = new FormData();
         for (const [key, value] of Object.entries(newData)) {
           dataToSend.append(key, value);
@@ -76,7 +75,7 @@ const ModalAddsPet = ({ setShowModal }) => {
   return (
     <ModalAddPetWrapp>
       <ModalTitle>Add pet</ModalTitle>
-      <ModalCloseButton tupe="button" onClick={e => onClose(e)}>
+      <ModalCloseButton type="button" onClick={e => onClose(e)}>
         <ModalCloseIcon />
       </ModalCloseButton>
       {steps[page]}

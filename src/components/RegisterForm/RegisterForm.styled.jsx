@@ -14,9 +14,11 @@ const RegisterForm = styled(Form)`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+
     max-width: 608px;
     max-height: 100%;
     padding: 30px 80px;
+
     background: #ffffff;
     box-shadow: ${({ theme }) => theme.shadows.cardsShadowUser};
     border-radius: 40px;

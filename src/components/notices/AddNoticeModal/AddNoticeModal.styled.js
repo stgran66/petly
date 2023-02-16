@@ -4,7 +4,6 @@ import {
   Modal,
   Radio,
   RadioGroup,
-  TextareaAutosize,
   Typography,
 } from '@mui/material';
 import { Box, styled } from '@mui/system';
@@ -22,9 +21,6 @@ const ModalBackdrop = styled(Modal)`
   '& .css-i9fmh8-muibackdrop-root-muimodal-backdrop': {
     opacity: 0;
   }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-  }
 `;
 const ModalBox = styled(Box)`
   padding: 40px 20px;
@@ -41,7 +37,7 @@ const ModalBox = styled(Box)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding-left: 80px;
     padding-right: 80px;
-    min-width: 608px;
+    width: 608px;
   }
 `;
 const InputButton = styled(IconButton)`
@@ -81,6 +77,10 @@ const ModalTitle = styled('h2')`
     font-size: ${({ theme }) => theme.fontSizes.headers.m};
     line-height: ${({ theme }) => theme.lineHeights.s};
   }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-bottom: 40px;
+  }
 `;
 const ModalInfo = styled('p')`
   font-family: ${({ theme }) => theme.fonts[0]};
@@ -90,12 +90,17 @@ const ModalInfo = styled('p')`
   text-align: center;
   letter-spacing: -0.01em;
   margin-bottom: 20px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: ${({ theme }) => theme.fontSizes.text.xl};
+  }
 `;
 
 const ModalCategoryGroup = styled(RadioGroup)`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  position: relative;
 
   margin-bottom: 20px;
 
@@ -106,6 +111,7 @@ const ModalCategoryGroup = styled(RadioGroup)`
 
 const ModalCategoryLabel = styled(FormControlLabel)`
   display: flex;
+  position: relative;
   align-items: center;
   height: 35px;
   padding: 8px 28px;
@@ -128,10 +134,13 @@ const ModalCategoryLabel = styled(FormControlLabel)`
   &:focus {
     background-color: ${({ theme }) => theme.colors.accent};
     color: ${({ theme }) => theme.colors.white};
+    font-size: ${({ theme }) => theme.fontSizes.text.xl};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: 10px 28px;
+    margin-bottom: 16px;
+    line-height: ${({ theme }) => theme.lineHeights.s};
     font-size: ${({ theme }) => theme.fontSizes.text.xl};
   }
 `;
@@ -155,8 +164,16 @@ const ModalFieldLabel = styled('label')`
   color: ${({ theme }) => theme.colors.text.black};
   line-height: ${({ theme }) => theme.lineHeights.l};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-
+  & span:after {
+    content: '*';
+    color: ${({ theme }) => theme.colors.errorColor};
+    position: absolute;
+    margin-left: 4px;
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin-bottom: 28px;
+    line-height: 1.1;
+    font-size: ${({ theme }) => theme.fontSizes.headers.xs};
   }
 `;
 
@@ -181,15 +198,26 @@ const ModalField = styled(Field)`
   &:focus {
     border-color: ${({ theme }) => theme.colors.accent};
   }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 12px 16px;
+    margin-top: 12px;
+    line-height: ${({ theme }) => theme.lineHeights.xl};
+    font-size: ${({ theme }) => theme.fontSizes.text.m};
+  }
 `;
 
 const ModalBtnWrap = styled('div')`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
+  position: relative;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
 `;
 const ModalBtn = styled('button')`
-  style-decoration: none;
+  position: relative;
   padding: 10px 0;
   font-family: ${({ theme }) => theme.fonts[0]};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
@@ -206,20 +234,44 @@ const ModalBtn = styled('button')`
     active ? theme.colors.white : theme.colors.black};
   background-color: ${({ theme, active }) =>
     active ? theme.colors.accent : theme.colors.white};
-transition: ${({ theme }) => theme.transitions.normal};
 
-&:not(:last-child) {
- margin-bottom: 12px;
-}
-    &:hover,
-    &:focus {
+  transition: ${({ theme }) => theme.transitions.normal};
+
+  &:not(:last-child) {
+    margin-bottom: 12px;
+  }
+  &:hover,
+  &:focus {
     background-color: ${({ theme }) => theme.colors.accent};
-    color: ${({ theme }) => theme.colors.white}`;
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  // &:disabled,
+  // button[disabled='disabled'] {
+  //   border: 1px solid #999999 !important;
+  //   background-color: #cccccc !important;
+  //   color: #666666 !important;
+  // }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: ${({ theme }) => theme.fontSizes.text.xl};
+    line-height: ${({ theme }) => theme.lineHeights.s};
+    &:not(:last-child) {
+      margin-left: 20px;
+    }
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
+    width: 180px;
+    letter-spacing: 0.04em;
+  }
+`;
 
 const ModalRadioGroup = styled(RadioGroup)`
   display: flex;
   flex-direction: row;
   margin-bottom: 30px;
+  position: relative;
 `;
 
 const RadioWrap = styled('div')`
@@ -245,8 +297,14 @@ const ModalLabel = styled(FormControlLabel)`
   display: flex;
   margin: 0;
   flex-direction: row;
+
   color: ${({ theme, checked }) =>
     checked ? theme.colors.accent : theme.colors.black};
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin-bottom: 28px;
+    line-height: 1.1;
+    font-size: ${({ theme }) => theme.fontSizes.headers.xs};
+  }
 `;
 
 const LabelText = styled(Typography)`
@@ -255,6 +313,10 @@ const LabelText = styled(Typography)`
   font-size: ${({ theme }) => theme.fontSizes.text.l};
   line-height: ${({ theme }) => theme.lineHeights.l};
   color: inherit;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: ${({ theme }) => theme.fontSizes.text.xl};
+    line-height: ${({ theme }) => theme.lineHeights.xs};
+  }
 `;
 const ModalSexField = styled(Radio)`
   position: absolute;
@@ -269,7 +331,7 @@ const ModalFile = styled('input')`
   height: 0;
 `;
 
-const AddImageWrap = styled('span')`
+const AddImageWrap = styled('div')`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -279,6 +341,13 @@ const AddImageWrap = styled('span')`
   width: 116px;
 
   background-color: ${({ theme }) => theme.colors.commonBackground};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    height: 140px;
+    width: 140px;
+    margin-top: 12px;
+    margin-bottom: 4px;
+  }
 `;
 
 const PetImg = styled('img')`
@@ -286,19 +355,26 @@ const PetImg = styled('img')`
   width: 116px;
   border-radius: 20px;
   margin-top: 8px;
-  margin-bottom: 20px;
   object-fit: cover;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    height: 140px;
+    width: 140px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
 `;
 const AddImage = styled('img')`
   display: block;
 `;
 
-const ModalTextarea = styled(TextareaAutosize)`
+const ModalTextarea = styled(Field)`
   margin-top: 8px;
   padding: 12px 14px;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-  maxlength: 120;
+  min-height: 20px;
+  resize: none;
   background-color: ${({ theme }) => theme.colors.commonBackground};
   color: ${({ theme }) => theme.colors.text.black};
   line-height: ${({ theme }) => theme.lineHeights.xl};
@@ -306,15 +382,6 @@ const ModalTextarea = styled(TextareaAutosize)`
   font-size: ${({ theme }) => theme.fontSizes.text.s};
   transition: ${({ theme }) => theme.transitions.normal};
   outline: none;
-  // font-family: 'Manrope';
-  // font-style: normal;
-  // font-weight: 400;
-  // font-size: 14px;
-  // line-height: 22px;
-  // /* or 161% */
-
-  // display: flex;
-  // align-items: center;
   &::placeholder {
     color: rgba(27, 27, 27, 0.6);
   }
@@ -322,8 +389,12 @@ const ModalTextarea = styled(TextareaAutosize)`
   &:focus {
     border-color: ${({ theme }) => theme.colors.accent};
   }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    height: 116px;
+    padding: 16px 18px;
+  }
 `;
-const ErrorMessage = styled('p')`
+const ErrorMessage = styled('span')`
   position: absolute;
   bottom: -20px;
   left: 12px;
@@ -332,6 +403,24 @@ const ErrorMessage = styled('p')`
   line-height: ${({ theme }) => theme.lineHeights.xl};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
   font-size: ${({ theme }) => theme.fontSizes.text.xs};
+`;
+
+const ErrorDesc = styled('span')`
+  position: absolute;
+  top: -20px;
+  left: 12px;
+
+  color: ${({ theme }) => theme.colors.errorColor};
+  line-height: ${({ theme }) => theme.lineHeights.xl};
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
+  font-size: ${({ theme }) => theme.fontSizes.text.xs};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    top: -28px;
+    left: 0;
+    align-items: left;
+    font-size: ${({ theme }) => theme.fontSizes.text.s};
+  }
 `;
 
 const styles = {
@@ -360,5 +449,6 @@ const styles = {
   ModalTextarea,
   PetImg,
   LabelText,
+  ErrorDesc,
 };
 export default styles;
