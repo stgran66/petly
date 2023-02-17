@@ -17,11 +17,6 @@ const Logout = () => {
     setShowModal(true);
   };
 
-  // const handleLogOut = () => {
-  //   dispatch(logOut());
-  //   dispatch(clearState());
-  // };
-
   return (
     <>
       <LogoutButton type="button" onClick={onClose}>

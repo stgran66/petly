@@ -28,8 +28,7 @@ let schema = yup.object().shape({
     .test(
       'fileType',
       'Unsupported file type',
-      value =>
-        value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)
+      value => value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)
     )
     .test(
       'is-valid-size',
@@ -38,16 +37,17 @@ let schema = yup.object().shape({
     ),
   comments: yup
     .string()
-    .test(
-      'legth',
-      'Comment should be 8 to 120 characters long with letters',
-      value => {
-        const validValue = value.trim();
-        if (validValue.length >= 8) {
-          return validValue;
-        }
-      }
-    )
+    .trim()
+    // .test(
+    //   'legth',
+    //   'Comment should be 8 to 120 characters long with letters',
+    //   value => {
+    //     const validValue = value.trim();
+    //     if (validValue.length >= 8) {
+    //       return validValue;
+    //     }
+    //   }
+    // )
     .min(8)
     .max(120)
     .required('Comment should be 8 to 120 characters long'),
@@ -78,11 +78,7 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
   };
 
   return (
-    <Formik
-      initialValues={data}
-      validationSchema={schema}
-      onSubmit={handleFormSubmit}
-    >
+    <Formik initialValues={data} validationSchema={schema} onSubmit={handleFormSubmit}>
       {({ setFieldValue }) => (
         <FormWrapp autoComplete="on">
           <FormInputWrappSecond>
@@ -90,10 +86,7 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
             <FotoWrap enctype="multipart/form-data">
               {fileInput ? (
                 <>
-                  <PetFoto
-                    src={URL.createObjectURL(fileInput)}
-                    alt={fileInput.name}
-                  />
+                  <PetFoto src={URL.createObjectURL(fileInput)} alt={fileInput.name} />
                 </>
               ) : (
                 <button type="button">
@@ -108,9 +101,7 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
               />
             </FotoWrap>
 
-            <ErrorMessage name="photo">
-              {msg => <ErrorMsg>{msg}</ErrorMsg>}
-            </ErrorMessage>
+            <ErrorMessage name="photo">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
 
             <CommentWrapp>
               <label htmlFor="comments">Comments</label>
@@ -123,9 +114,7 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
                 onChange={e => handleInputChange(e, setFieldValue)}
               />
               {/* <ErrorMessage component="span" name="comments" /> */}
-              <ErrorMessage name="comments">
-                {msg => <ErrorMsg>{msg}</ErrorMsg>}
-              </ErrorMessage>
+              <ErrorMessage name="comments">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
             </CommentWrapp>
           </FormInputWrappSecond>
           <ButtonsGroup>
