@@ -1,12 +1,8 @@
 import { useState } from 'react';
 import styles from './PetsList.styled';
-// import { useDispatch } from 'react-redux/es/exports';
-// import userOperations from 'redux/user/operations';
 
 import ModalUser from '../ModalUser';
 import ModalPetDelete from './ModalPetDelete';
-
-// const { deleteUserPet } = userOperations;
 
 const { PetInfo, PetInfoName, PetInfoFoto, PetInfoWrapp, PetDeleteButton, PetDeleteIcon } = styles;
 
@@ -17,9 +13,6 @@ const PetItem = ({ pet }) => {
   const onClose = () => {
     setShowModal(true);
   };
-  // const dispatch = useDispatch();
-
-  // const handleDelete = () => dispatch(deleteUserPet(_id));
 
   return (
     <>

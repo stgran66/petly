@@ -1,10 +1,17 @@
 import { useDispatch } from 'react-redux';
 import userOperations from 'redux/user/operations';
 
-import styles from '../../Logout/Logout.styled';
+import styles from './ModalPetDelete.styled';
 
 const { deleteUserPet } = userOperations;
-const { ModalLogoutWrapp, ModalLogoutTitle, ModalLogoutButtonsGroup, ButtonYes, ButtonNo } = styles;
+const {
+  ModalDeletePetWrapp,
+  ModalDeletePetTitle,
+  ModalDeletePetButtonsGroup,
+  ButtonYes,
+  ButtonNo,
+  ButtonDeletePetIcon,
+} = styles;
 
 const ModalPetDelete = ({ setShowModal, petId }) => {
   const dispatch = useDispatch();
@@ -16,17 +23,17 @@ const ModalPetDelete = ({ setShowModal, petId }) => {
   const handleDelete = () => dispatch(deleteUserPet(petId));
 
   return (
-    <ModalLogoutWrapp>
-      <ModalLogoutTitle>Are you sure you want to leave us?</ModalLogoutTitle>
-      <ModalLogoutButtonsGroup>
+    <ModalDeletePetWrapp>
+      <ModalDeletePetTitle>Are you sure you want to delete the card?</ModalDeletePetTitle>
+      <ModalDeletePetButtonsGroup>
         <ButtonYes type="button" onClick={() => handleDelete(petId)}>
-          Yes
+          Yes <ButtonDeletePetIcon />
         </ButtonYes>
         <ButtonNo type="button" onClick={e => onClose(e)}>
-          Cancel
+          No <ButtonDeletePetIcon />
         </ButtonNo>
-      </ModalLogoutButtonsGroup>
-    </ModalLogoutWrapp>
+      </ModalDeletePetButtonsGroup>
+    </ModalDeletePetWrapp>
   );
 };
 
