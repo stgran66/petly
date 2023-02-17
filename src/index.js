@@ -8,6 +8,9 @@ import { App } from 'components/App';
 import './index.css';
 import redux from './redux/store';
 
+import AOS from 'aos';
+AOS.init();
+
 const { store, persistor } = redux;
 
 ReactDOM.createRoot(document.getElementById('root')).render(

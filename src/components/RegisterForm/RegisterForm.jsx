@@ -45,7 +45,7 @@ const RegisterForm = () => {
   const _submitForm = values => {
     const { email, password, name, city, phone } = values;
     const ifCityNoString = city === '' ? 'unknown' : city;
-
+    // const ifPhoneNoString = phone === '' ? '+380000000000' : phone;
     dispatch(
       register({
         email: email.trim(),
@@ -89,22 +89,20 @@ const RegisterForm = () => {
           {activeLoader ? (
             <Loader></Loader>
           ) : (
-            <div>
-              <div>
-                <Buttons type="submit">
-                  {isLastStep ? 'Register' : 'Next'}
+            <>
+              <Buttons type="submit">
+                {isLastStep ? 'Register' : 'Next'}
+              </Buttons>
+              {activeStep !== 0 && (
+                <Buttons onClick={_handleBack} style={{ marginTop: 16 }}>
+                  Back
                 </Buttons>
-                {activeStep !== 0 && (
-                  <Buttons onClick={_handleBack} style={{ marginTop: 16 }}>
-                    Back
-                  </Buttons>
-                )}
-                <AccountRedirect>
-                  Already have an account?
-                  <LinkLoginRoute to="/login"> Login</LinkLoginRoute>
-                </AccountRedirect>
-              </div>
-            </div>
+              )}
+              <AccountRedirect>
+                Already have an account?
+                <LinkLoginRoute to="/login"> Login</LinkLoginRoute>
+              </AccountRedirect>
+            </>
           )}
         </RegisterForm>
       )}

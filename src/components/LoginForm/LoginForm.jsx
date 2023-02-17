@@ -22,17 +22,16 @@ const formInitialValues = {
 
 const currentValidationSchema = Yup.object().shape({
   email: Yup.string()
-      .min(10)
-      .max(63)
-      .matches(
-        /^(([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5}))$/,
-        `email can contain only latin letters, numbers and symbols . -  _ (dot, hyphen, underscore) and can't start from hyphen`
-      ),
-  password: Yup.string()
-      .matches(
-        /^[^ ]{7,32}$/,
-        'password should be from 7 to 32 characters long, without spaces'
-      )
+    .min(10)
+    .max(63)
+    .matches(
+      /^(([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5}))$/,
+      `email can contain only latin letters, numbers and symbols . -  _ (dot, hyphen, underscore) and can't start from hyphen`
+    ),
+  password: Yup.string().matches(
+    /^[^ ]{7,32}$/,
+    'password should be from 7 to 32 characters long, without spaces'
+  ),
 });
 
 const LoginForm = () => {
@@ -102,9 +101,9 @@ const LoginForm = () => {
               />
             </Grid>
           </Grid>
+          <Buttons type="submit">Login</Buttons>
         </Container>
 
-        <Buttons type="submit">Login</Buttons>
         <AccountRedirect>
           Don`t have an account?
           <LinkRegisterRoute to="/register"> Register</LinkRegisterRoute>

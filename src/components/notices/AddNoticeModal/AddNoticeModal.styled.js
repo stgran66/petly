@@ -18,7 +18,7 @@ const ModalBackdrop = styled(Modal)`
   backdrop-filter: blur(10px);
   overflow-y: scroll;
   z-index: 20000;
-  '& .css-i9fmh8-muibackdrop-root-muimodal-backdrop': {
+  & .css-i9fmh8-muibackdrop-root-muimodal-backdrop: {
     opacity: 0;
   }
 `;
@@ -301,7 +301,6 @@ const ModalLabel = styled(FormControlLabel)`
   color: ${({ theme, checked }) =>
     checked ? theme.colors.accent : theme.colors.black};
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin-bottom: 28px;
     line-height: 1.1;
     font-size: ${({ theme }) => theme.fontSizes.headers.xs};
   }
@@ -364,6 +363,10 @@ const PetImg = styled('img')`
     margin-bottom: 8px;
   }
 `;
+
+const ModalFieldLabelTitle = styled('span')`
+  width: 240px;
+`;
 const AddImage = styled('img')`
   display: block;
 `;
@@ -402,7 +405,11 @@ const ErrorMessage = styled('span')`
   color: ${({ theme }) => theme.colors.errorColor};
   line-height: ${({ theme }) => theme.lineHeights.xl};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
-  font-size: ${({ theme }) => theme.fontSizes.text.xs};
+  font-size: 11px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: ${({ theme }) => theme.fontSizes.text.xs};
+  }
 `;
 
 const ErrorDesc = styled('span')`
@@ -450,5 +457,6 @@ const styles = {
   PetImg,
   LabelText,
   ErrorDesc,
+  ModalFieldLabelTitle,
 };
 export default styles;

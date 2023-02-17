@@ -1,52 +1,7 @@
 import { styled } from '@mui/system';
-import { IoExitOutline } from 'react-icons/io5';
+import { MdPets } from 'react-icons/md';
 
-const LogoutButton = styled('button')`
-  margin-left: auto;
-  display: flex;
-
-  align-items: flex-end;
-  padding: 0;
-  border: 0;
-  cursor: pointer;
-  background-color: transparent;
-  color: ${props => props.theme.colors.placeholderText};
-
-  transition: ${props => props.theme.transitions.normal};
-
-  &:hover,
-  &:focus {
-    color: ${props => props.theme.colors.accent};
-  }
-
-  font-family: ${props => props.theme.fonts[0]};
-  font-weight: ${props => props.theme.fontWeights.medium};
-  font-size: ${props => props.theme.fontSizes.text.m};
-  line-height: ${props => props.theme.lineHeights.m};
-  letter-spacing: 0.04em;
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    position: absolute;
-    bottom: 24px;
-    left: 32px;
-  }
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    position: relative;
-    margin-left: 0;
-    left: 0;
-    bottom: 0;
-  }
-`;
-
-const LogoutIcon = styled(IoExitOutline)`
-  margin-right: 8px;
-  width: 20px;
-  height: 20px;
-  color: ${props => props.theme.colors.accent};
-`;
-
-const ModalLogoutWrapp = styled('div')`
+const ModalDeletePetWrapp = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -57,34 +12,40 @@ const ModalLogoutWrapp = styled('div')`
 
   padding: 15px 15px;
   border-radius: 20px;
-  background-color: ${props => props.theme.colors.white};
-  /* background-color: transparent; */
+  /* background-color: ${props => props.theme.colors.white}; */
+  background-color: transparent;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     padding: 30px 30px;
     gap: 80px;
-    width: 608px;
+    width: 400px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    width: 800px;
+    width: 500px;
   }
 `;
 
-const ModalLogoutTitle = styled('p')`
+const ModalDeletePetTitle = styled('p')`
+  padding: 20px 10px;
+  border-radius: 10px;
   text-align: center;
+  background-color: ${props => props.theme.colors.white};
   /* color: ${props => props.theme.colors.accent}; */
   font-weight: ${props => props.theme.fontWeights.normal};
   font-size: ${props => props.theme.fontSizes.text.s};
   line-height: ${props => props.theme.lineHeights.xs};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    text-align: start;
+    /* text-align: start; */
     font-size: ${props => props.theme.fontSizes.text.l};
     line-height: ${props => props.theme.lineHeights.s};
   }
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    padding: 30px 15px;
+  }
 `;
-const ModalLogoutButtonsGroup = styled('div')`
+const ModalDeletePetButtonsGroup = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,7 +58,7 @@ const ModalLogoutButtonsGroup = styled('div')`
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     flex-direction: row-reverse;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 15px;
     font-size: ${props => props.theme.fontSizes.text.xl};
     line-height: 1.35;
@@ -109,9 +70,13 @@ const ModalLogoutButtonsGroup = styled('div')`
 `;
 
 const ButtonNo = styled('button')`
+  display: flex;
   width: 240px;
   padding: 9px;
+  justify-content: center;
+  align-items: center;
   border-radius: 10px;
+  align-items: stretch;
   border: 2px solid ${props => props.theme.colors.accent};
   background-color: ${props => props.theme.colors.accent};
   color: ${props => props.theme.colors.white};
@@ -122,7 +87,7 @@ const ButtonNo = styled('button')`
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    width: 140px;
+    width: 180px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
@@ -130,32 +95,46 @@ const ButtonNo = styled('button')`
 `;
 
 const ButtonYes = styled('button')`
+  display: flex;
   width: 240px;
   padding: 9px;
+  justify-content: center;
+  align-items: center;
   border-radius: 10px;
   border: 2px solid ${props => props.theme.colors.accent};
-  background-color: transparent;
+  /* background-color: transparent; */
+  background-color: ${props => props.theme.colors.white};
   cursor: pointer;
 
   @media screen and (max-width: ${props => props.theme.breakpoints.mobile}) {
     width: 100%;
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    width: 140px;
+    width: 180px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
   }
 `;
 
+const ButtonDeletePetIcon = styled(MdPets)`
+  margin-left: 10px;
+  scale: 1;
+
+  transition: ${props => props.theme.transitions.normal};
+
+  &:hover {
+    scale: 1.3;
+  }
+`;
+
 const styles = {
-  LogoutButton,
-  LogoutIcon,
-  ModalLogoutWrapp,
-  ModalLogoutTitle,
-  ModalLogoutButtonsGroup,
+  ModalDeletePetWrapp,
+  ModalDeletePetTitle,
+  ModalDeletePetButtonsGroup,
   ButtonNo,
   ButtonYes,
+  ButtonDeletePetIcon,
 };
 
 export default styles;

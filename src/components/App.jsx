@@ -14,8 +14,7 @@ import { styled } from '@mui/system';
 import { ThemeProvider } from '@mui/system';
 import selectTheme from 'redux/theme/selectors';
 
-
-const { lightTheme, darkTheme } = themes
+const { lightTheme, darkTheme } = themes;
 
 const StyledBody = styled('div')`
   background-color: ${props => props.theme.colors.backgroundBody};
@@ -35,8 +34,8 @@ const FriendsPage = lazy(() => import('../pages/FriendsPage'));
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-const selectedTheme = useSelector(selectTheme)
-    const theme = selectedTheme === 'light' ? lightTheme : darkTheme;
+  const selectedTheme = useSelector(selectTheme);
+  const theme = selectedTheme === 'light' ? lightTheme : darkTheme;
 
   useEffect(() => {
     dispatch(refreshUser());

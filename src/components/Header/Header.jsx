@@ -3,13 +3,14 @@ import Navigation from './Navigation';
 import styles from './Header.styled';
 import ThemeToggleButton from './ThemeToggleButton/ThemeToggleButton';
 
+import Logo from './Logo';
+
+
 const Header = () => {
-  const { HeaderEl, Logo } = styles;
+  const { HeaderEl } = styles;
   return (
     <HeaderEl>
-      <Logo to="/">
-        pe<span>t</span>ly
-      </Logo>
+      <Logo />
       <nav>
         <Navigation />
       </nav>
