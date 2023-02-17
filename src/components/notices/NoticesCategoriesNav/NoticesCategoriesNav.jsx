@@ -2,13 +2,8 @@ import { useLocation } from 'react-router-dom';
 import styles from './NoticesCategoriesNav.styled';
 import options from './options';
 import hooks from 'hooks';
-const {
-  CategoriesItem,
-  CategoriesList,
-  StyledLink,
-  LogInNoticesNav,
-  NoticesNav,
-} = styles;
+
+const { CategoriesItem, CategoriesList, StyledLink, LogInNoticesNav, NoticesNav } = styles;
 
 const NoticesCategoriesNav = () => {
   const location = useLocation();

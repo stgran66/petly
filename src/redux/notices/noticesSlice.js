@@ -3,38 +3,35 @@ import operations from './operations';
 
 const noticesInitialState = {
   items: [],
+  total: 1,
   isLoading: false,
   error: null,
 };
 
-const { fetchNotices, addNotice, getFavorite, getMyNotices, deleteNotice } =
-  operations;
-const extraActions = [
-  fetchNotices,
-  addNotice,
-  getFavorite,
-  getMyNotices,
-  deleteNotice,
-];
+const { fetchNotices, addNotice, getFavorite, getMyNotices, deleteNotice } = operations;
+const extraActions = [fetchNotices, addNotice, getFavorite, getMyNotices, deleteNotice];
 const getActionsByType = type => extraActions.map(action => action[type]);
 const onFetchSuccessReducer = (state, action) => {
-  state.items = action.payload;
+  state.items = action.payload.notices;
+  state.total = action.payload.total;
   state.isLoading = false;
   state.error = null;
 };
 const onAddSuccessReducer = (state, action) => {
-  state.items = [...state.items, action.payload];
+  state.items = [action.payload, ...state.items];
   state.isLoading = false;
   state.error = null;
 };
 const onFetchFavoriteSuccessReducer = (state, action) => {
-  state.items = action.payload.favorite;
+  state.items = action.payload.notices;
+  state.total = action.payload.total;
   state.isLoading = false;
   state.error = null;
 };
 
 const onFetchMyNoticesSuccessReducer = (state, action) => {
-  state.items = action.payload;
+  state.items = action.payload.notices;
+  state.total = action.payload.total;
   state.isLoading = false;
   state.error = null;
 };

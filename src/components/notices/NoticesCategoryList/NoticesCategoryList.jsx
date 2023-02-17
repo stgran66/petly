@@ -10,15 +10,16 @@ import NotFound from '../NotFound';
 import NotFoundNotices from '../NotFoundNotices/NotFoundNotices';
 import hooks from 'hooks';
 import userOperations from 'redux/user/operations';
+import { useSearchParams } from 'react-router-dom';
 
 const { fetchNotices, getFavorite, getMyNotices } = operations;
 const { List, ListItem, NoticesContainer, PaginationWrap } = styles;
-const { selectFilteredList, selectLoadingStatus, selectErrorMessage } =
-  selectors;
+const { selectFilteredList, selectLoadingStatus, selectErrorMessage, totalNotices } = selectors;
 const { fetchUserData } = userOperations;
 
 const NoticesCategoryList = () => {
   const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoadingStatus);
   const error = useSelector(selectErrorMessage);
@@ -30,8 +31,18 @@ const NoticesCategoryList = () => {
 
   const noNoticesFind = filteredNotices.length === 0;
   const searchOptions = { favorite, myNotices, category };
+  const pages = useSelector(totalNotices) / 6;
+  const totalPages = Math.ceil(pages);
 
   const { isLoggedIn } = hooks.useAuth();
+
+  useEffect(() => {
+    setSearchParams(`?page=${page}&limit=6`);
+  }, [setSearchParams, page]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [category, favorite, myNotices]);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -39,20 +50,20 @@ const NoticesCategoryList = () => {
         await dispatch(fetchUserData());
       }
       if (favorite) {
-        dispatch(getFavorite());
+        dispatch(getFavorite(page));
         return;
       }
       if (myNotices) {
-        dispatch(getMyNotices());
+        dispatch(getMyNotices(page));
         return;
       }
-      dispatch(fetchNotices(category));
+      await dispatch(fetchNotices({ category, page }));
     };
     getUserData();
-  }, [dispatch, category, favorite, myNotices, isLoggedIn]);
+  }, [dispatch, category, favorite, myNotices, isLoggedIn, page]);
 
-  const onPagesChange = e => {
-    setPage(page + 1);
+  const onPagesChange = (e, value) => {
+    setPage(value);
   };
 
   return (
@@ -68,16 +79,12 @@ const NoticesCategoryList = () => {
             <List>
               {filteredNotices.map(notice => (
                 <ListItem key={notice._id}>
-                  <NoticeCategoryItem
-                    id={notice._id}
-                    notice={notice}
-                    category={category}
-                  />
+                  <NoticeCategoryItem id={notice._id} notice={notice} category={category} />
                 </ListItem>
               ))}
             </List>
             <PaginationWrap
-              count={10}
+              count={totalPages}
               page={page}
               variant="outlined"
               onChange={onPagesChange}

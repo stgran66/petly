@@ -40,46 +40,27 @@ export const App = () => {
           <Route path=":category" element={<NoticesCategoryList />} />
           <Route
             path="favorite"
-            element={
-              <PrivateRoute
-                component={<NoticesCategoryList />}
-                redirectTo="/login"
-              />
-            }
+            element={<PrivateRoute component={<NoticesCategoryList />} redirectTo="/login" />}
           />
           <Route
             path="own"
-            element={
-              <PrivateRoute
-                component={<NoticesCategoryList />}
-                redirectTo="/login"
-              />
-            }
+            element={<PrivateRoute component={<NoticesCategoryList />} redirectTo="/login" />}
           />
         </Route>
         <Route path="friends" element={<FriendsPage />} />
         <Route
           path="register"
-          element={
-            <RestrictedRoute component={<RegisterPage />} redirectTo="/user" />
-          }
+          element={<RestrictedRoute component={<RegisterPage />} redirectTo="/user" />}
         />
         <Route
           path="login"
-          element={
-            <RestrictedRoute component={<LoginPage />} redirectTo="/user" />
-          }
+          element={<RestrictedRoute component={<LoginPage />} redirectTo="/user" />}
         />
         <Route
           path="user"
-          element={
-            <PrivateRoute component={<UserPage />} redirectTo="/login" />
-          }
+          element={<PrivateRoute component={<UserPage />} redirectTo="/login" />}
         />
-        <Route
-          path="news"
-          element={<PrivateRoute component={<NewsPage />} redirectTo="/news" />}
-        />
+        <Route path="news" element={<PrivateRoute component={<NewsPage />} redirectTo="/news" />} />
       </Route>
     </Routes>
   );

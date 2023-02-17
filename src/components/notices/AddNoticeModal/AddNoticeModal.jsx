@@ -59,8 +59,7 @@ const initialValues = {
 };
 
 const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
-  const [selectedCategoryValue, setSelectedCategoryValue] =
-    useDefaultCategoryValue();
+  const [selectedCategoryValue, setSelectedCategoryValue] = useDefaultCategoryValue();
   const [selectedSexValue, setSelectedSexValue] = useState('');
   const [firstPage, setFirstPage] = useState(true);
   const [missedField, setMissedField] = useState(false);
@@ -149,10 +148,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
         }
       }
       if (errors.birthday) {
-        if (
-          selectedCategoryValue === 'for-free' ||
-          selectedCategoryValue === 'lost-found'
-        ) {
+        if (selectedCategoryValue === 'for-free' || selectedCategoryValue === 'lost-found') {
           if (birthday === '' && errors.birthday && !title.error) {
             setFirstPage(false);
             return;
@@ -169,10 +165,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
         return;
       }
     }
-    if (
-      selectedCategoryValue === 'for-free' ||
-      selectedCategoryValue === 'lost-found'
-    ) {
+    if (selectedCategoryValue === 'for-free' || selectedCategoryValue === 'lost-found') {
       if (title === '') {
         setMissedField(true);
         return;
@@ -185,8 +178,8 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
   const validateFinalFields = (values, errors) => {
     if (errors) {
       if (errors.birthday) {
+        console.log(errors);
         setMissedFielSecondStep(false);
-        return;
       }
     }
     const { place, price, sex } = values;
@@ -196,10 +189,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
         return;
       }
     }
-    if (
-      selectedCategoryValue === 'for-free' ||
-      selectedCategoryValue === 'lost-found'
-    ) {
+    if (selectedCategoryValue === 'for-free' || selectedCategoryValue === 'lost-found') {
       if (place === '' || sex === '') {
         setMissedFielSecondStep(true);
         return;
@@ -219,29 +209,27 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
       onClose={() => setIsModalOpen(false)}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-      onClick={event =>
-        event.target === event.currentTarget && setIsModalOpen(false)
-      }
+      onClick={event => event.target === event.currentTarget && setIsModalOpen(false)}
     >
       <Box>
         <ModalBox>
           <ModalTitle id="modal-modal-title">Add pet</ModalTitle>
           {firstPage && selectedCategoryValue === 'sell' && (
             <ModalInfo id="modal-modal-description">
-              Let help find a loving new home for your pet. Please enter
-              information in the form below
+              Let help find a loving new home for your pet. Please enter information in the form
+              below
             </ModalInfo>
           )}
           {firstPage && selectedCategoryValue === 'lost-found' && (
             <ModalInfo id="modal-modal-description">
-              Enter details and a photo of your missing pet and search our
-              lost/found pet database to find them.
+              Enter details and a photo of your missing pet and search our lost/found pet database
+              to find them.
             </ModalInfo>
           )}
           {firstPage && selectedCategoryValue === 'for-free' && (
             <ModalInfo id="modal-modal-description">
-              We know, your pet is a member of your family. Let someone to care
-              for your pet as well as you do.
+              We know, your pet is a member of your family. Let someone to care for your pet as well
+              as you do.
             </ModalInfo>
           )}
           <InputButton onClick={() => setIsModalOpen(false)}>
@@ -307,15 +295,9 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                     </ModalFieldLabel>
 
                     <ModalFieldLabel>
-                      {selectedCategoryValue === 'sell' ? (
-                        <span>Name pet</span>
-                      ) : (
-                        <p>Name pet</p>
-                      )}
+                      {selectedCategoryValue === 'sell' ? <span>Name pet</span> : <p>Name pet</p>}
                       <ModalField
-                        required={
-                          selectedCategoryValue === 'sell' ? true : false
-                        }
+                        required={selectedCategoryValue === 'sell' ? true : false}
                         type="text"
                         onChange={e => handleInputChange(e, setFieldValue)}
                         name="name"
@@ -333,9 +315,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                         <p> Date of birth</p>
                       )}
                       <ModalField
-                        required={
-                          selectedCategoryValue === 'sell' ? true : false
-                        }
+                        required={selectedCategoryValue === 'sell' ? true : false}
                         type="text"
                         onChange={e => handleInputChange(e, setFieldValue)}
                         name="birthday"
@@ -354,9 +334,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                       )}
 
                       <ModalField
-                        required={
-                          selectedCategoryValue === 'sell' ? true : false
-                        }
+                        required={selectedCategoryValue === 'sell' ? true : false}
                         type="text"
                         onChange={e => handleInputChange(e, setFieldValue)}
                         name="breed"
@@ -367,9 +345,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                       ) : null}
                     </ModalFieldLabel>
                     <ModalBtnWrap>
-                      {missedField && (
-                        <ErrorDesc>* Please type required fields</ErrorDesc>
-                      )}
+                      {missedField && <ErrorDesc>* Please type required fields</ErrorDesc>}
                       <ModalBtn
                         type="button"
                         active
@@ -451,9 +427,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                       <ModalFieldLabel sx={{ marginBottom: '12px' }}>
                         <span>Price</span>
                         <ModalField
-                          required={
-                            selectedCategoryValue === 'sell' ? true : false
-                          }
+                          required={selectedCategoryValue === 'sell' ? true : false}
                           type="text"
                           onChange={e => handleInputChange(e, setFieldValue)}
                           name="price"
@@ -474,9 +448,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                         width: '144px',
                       }}
                     >
-                      <ModalFieldLabelTitle>
-                        Load the pet's image
-                      </ModalFieldLabelTitle>
+                      <ModalFieldLabelTitle>Load the pet's image</ModalFieldLabelTitle>
                       <ModalFile
                         accept="image/*"
                         name="imageUrl"
@@ -485,23 +457,14 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                         onChange={e => onAddImage(e, setFieldValue)}
                       />
                       {isAddImg ? (
-                        <PetImg
-                          src={URL.createObjectURL(isAddImg)}
-                          alt={isAddImg.name}
-                        />
+                        <PetImg src={URL.createObjectURL(isAddImg)} alt={isAddImg.name} />
                       ) : (
                         <AddImageWrap>
-                          <AddImage
-                            id="iconPlus"
-                            src={plusIcon}
-                            alt="upload pet"
-                          />
+                          <AddImage id="iconPlus" src={plusIcon} alt="upload pet" />
                         </AddImageWrap>
                       )}
                       {errors.imageUrl && touched.imageUrl ? (
-                        <ErrorMessage sx={{ width: '300px' }}>
-                          {errors.imageUrl}
-                        </ErrorMessage>
+                        <ErrorMessage sx={{ width: '300px' }}>{errors.imageUrl}</ErrorMessage>
                       ) : null}
                     </ModalFieldLabel>
 
@@ -519,9 +482,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                       ) : null}
                     </ModalFieldLabel>
                     <ModalBtnWrap>
-                      {missedFielSecondStep && (
-                        <ErrorDesc>* Please type required fields</ErrorDesc>
-                      )}
+                      {missedFielSecondStep && <ErrorDesc>* Please type required fields</ErrorDesc>}
 
                       <ModalBtn
                         type="submit"
@@ -533,10 +494,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                         Done
                       </ModalBtn>
 
-                      <ModalBtn
-                        type="button"
-                        onClick={() => setFirstPage(true)}
-                      >
+                      <ModalBtn type="button" onClick={() => setFirstPage(true)}>
                         Back
                       </ModalBtn>
                     </ModalBtnWrap>
