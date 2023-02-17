@@ -27,7 +27,8 @@ const UserDataItem = ({ name, label, type, defaultValue, active, setActive }) =>
   const [inputValue, setInputValue] = useState(defaultValue);
   const [isError, setIsError] = useState('');
 
-  const RegExpName = /^[^ ][a-zA-zа-яіїєА-ЯІЇЄ ]+$/;
+  const RegExpName =
+    /^[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']*$/;
   //name can contain only Latin and Cyrillic characters, 2 - 16 symbols and can't start from spaces
   const RegExpEmail = /^((?!-)[a-zA-Z0-9_.-]+){2}@[a-zA-Z0-9.-]+$/;
   // mail can contain only latin letters, numbers and symbols . -  _ (dot, hyphen, underscore) and can't start from hyphen
