@@ -18,7 +18,7 @@ const ModalBackdrop = styled(Modal)`
   backdrop-filter: blur(10px);
   overflow-y: scroll;
   z-index: 20000;
-  '& .css-i9fmh8-muibackdrop-root-muimodal-backdrop': {
+  & .css-i9fmh8-muibackdrop-root-muimodal-backdrop: {
     opacity: 0;
   }
 `;
@@ -363,6 +363,10 @@ const PetImg = styled('img')`
     margin-bottom: 8px;
   }
 `;
+
+const ModalFieldLabelTitle = styled('span')`
+  width: 240px;
+`;
 const AddImage = styled('img')`
   display: block;
 `;
@@ -453,5 +457,6 @@ const styles = {
   PetImg,
   LabelText,
   ErrorDesc,
+  ModalFieldLabelTitle,
 };
 export default styles;
