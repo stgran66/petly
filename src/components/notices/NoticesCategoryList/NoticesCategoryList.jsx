@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router';
 import selectors from 'redux/notices/selectors';
 import operations from 'redux/notices/operations';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Loader from 'components/Loader';
 import NotFound from '../NotFound';
 import NotFoundNotices from '../NotFoundNotices/NotFoundNotices';
@@ -12,11 +12,13 @@ import hooks from 'hooks';
 import userOperations from 'redux/user/operations';
 
 const { fetchNotices, getFavorite, getMyNotices } = operations;
-const { List, ListItem, NoticesContainer } = styles;
+const { List, ListItem, NoticesContainer, PaginationWrap } = styles;
 const { selectFilteredList, selectLoadingStatus, selectErrorMessage } =
   selectors;
 const { fetchUserData } = userOperations;
+
 const NoticesCategoryList = () => {
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoadingStatus);
   const error = useSelector(selectErrorMessage);
@@ -49,6 +51,10 @@ const NoticesCategoryList = () => {
     getUserData();
   }, [dispatch, category, favorite, myNotices, isLoggedIn]);
 
+  const onPagesChange = e => {
+    setPage(page + 1);
+  };
+
   return (
     <NoticesContainer>
       {error && <NotFound />}
@@ -58,17 +64,25 @@ const NoticesCategoryList = () => {
         (noNoticesFind ? (
           <NotFoundNotices searchOptions={searchOptions} />
         ) : (
-          <List>
-            {filteredNotices.map(notice => (
-              <ListItem key={notice._id}>
-                <NoticeCategoryItem
-                  id={notice._id}
-                  notice={notice}
-                  category={category}
-                />
-              </ListItem>
-            ))}
-          </List>
+          <>
+            <List>
+              {filteredNotices.map(notice => (
+                <ListItem key={notice._id}>
+                  <NoticeCategoryItem
+                    id={notice._id}
+                    notice={notice}
+                    category={category}
+                  />
+                </ListItem>
+              ))}
+            </List>
+            <PaginationWrap
+              count={10}
+              page={page}
+              variant="outlined"
+              onChange={onPagesChange}
+            />
+          </>
         ))}
     </NoticesContainer>
   );

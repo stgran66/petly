@@ -14,12 +14,17 @@ const sellPetSchema = Yup.object().shape({
     .min(2, 'Name should be from 2 to 16 symbols')
     .max(16, 'Name should be from 2 to 16 symbols')
     .matches(
-      /^[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+$/,
-      'Name should contain only letters with optional dashes and spaces inside'
+      /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
+      'Without dashes before and spaces inside'
     )
     .required('The name is required'),
   birthday: Yup.date()
-    .transform((value, originalValue) => {
+    .test('format', 'Type in format 01.01.1910', (_, { originalValue }) => {
+      if (originalValue) {
+        return originalValue.length === 10;
+      }
+    })
+    .transform((_, originalValue) => {
       const parsedDate = isDate(originalValue)
         ? originalValue
         : parse(originalValue, 'dd.MM.yyyy', new Date());
@@ -33,8 +38,8 @@ const sellPetSchema = Yup.object().shape({
     .min(2, 'Breed should be from 2 to 16 symbols')
     .max(16, 'Breed should be from 2 to 16 symbols')
     .matches(
-      /^[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+$/,
-      'Breed should be from 2 to 16 symbols'
+      /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
+      'Without dashes before and spaces inside'
     )
     .required('The breed is required'),
   sex: Yup.string().required('Sex is required field'),
@@ -73,12 +78,17 @@ const schema = Yup.object().shape({
     .min(2, 'Name should be from 2 to 16 symbols')
     .max(16, 'Name should be from 2 to 16 symbols')
     .matches(
-      /^[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+$/,
-      'Name should contain only letters with optional dashes and spaces inside'
+      /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
+      'Without dashes before and spaces inside'
     ),
 
   birthday: Yup.date()
-    .transform((value, originalValue) => {
+    .test('format', 'Type in format 01.01.1910', (_, { originalValue }) => {
+      if (originalValue) {
+        return originalValue.length === 10;
+      }
+    })
+    .transform((_, originalValue) => {
       const parsedDate = isDate(originalValue)
         ? originalValue
         : parse(originalValue, 'dd.MM.yyyy', new Date());
@@ -91,8 +101,8 @@ const schema = Yup.object().shape({
     .min(2, 'Breed should be from 2 to 16 symbols')
     .max(16, 'Breed should be from 2 to 16 symbols')
     .matches(
-      /^[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+$/,
-      'Breed should be from 2 to 16 symbols'
+      /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
+      'Without dashes before and spaces inside'
     ),
   sex: Yup.string().required('Sex is required field'),
   place: Yup.string()

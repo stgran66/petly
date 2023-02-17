@@ -301,7 +301,6 @@ const ModalLabel = styled(FormControlLabel)`
   color: ${({ theme, checked }) =>
     checked ? theme.colors.accent : theme.colors.black};
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin-bottom: 28px;
     line-height: 1.1;
     font-size: ${({ theme }) => theme.fontSizes.headers.xs};
   }
@@ -402,7 +401,11 @@ const ErrorMessage = styled('span')`
   color: ${({ theme }) => theme.colors.errorColor};
   line-height: ${({ theme }) => theme.lineHeights.xl};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
-  font-size: ${({ theme }) => theme.fontSizes.text.xs};
+  font-size: 11px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: ${({ theme }) => theme.fontSizes.text.xs};
+  }
 `;
 
 const ErrorDesc = styled('span')`

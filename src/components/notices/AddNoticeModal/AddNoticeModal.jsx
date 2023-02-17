@@ -123,14 +123,37 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
     return schema;
   };
   const validateFields = (values, errors) => {
+    const { title, breed, name, birthday } = values;
+    console.log(errors);
     if (errors) {
-      if (errors.title || errors.breed || errors.name || errors.birthday) {
+      if (errors.title || errors.breed || errors.name) {
         setMissedField(true);
         return;
       }
     }
+    if (errors) {
+      if (errors.birthday) {
+        if (selectedCategoryValue === 'sell') {
+          setMissedField(true);
+          return;
+        }
+      }
+      if (errors.birthday) {
+        if (
+          selectedCategoryValue === 'for-free' ||
+          selectedCategoryValue === 'lost-found'
+        ) {
+          if (birthday === '' && errors.birthday && !title.error) {
+            console.log(errors.birthday);
+            setFirstPage(false);
+            return;
+          }
+          setMissedField(true);
+          return;
+        }
+      }
+    }
 
-    const { title, breed, name, birthday } = values;
     if (selectedCategoryValue === 'sell') {
       if (title === '' || breed === '' || name === '' || birthday === '') {
         setMissedField(true);
@@ -139,8 +162,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
     }
     if (
       selectedCategoryValue === 'for-free' ||
-      selectedCategoryValue === 'lost-found' ||
-      selectedCategoryValue === ''
+      selectedCategoryValue === 'lost-found'
     ) {
       if (title === '') {
         setMissedField(true);
@@ -152,9 +174,9 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
   };
 
   const validateFinalFields = values => {
-    const { place, imageUrl, price, sex } = values;
+    const { place, price, sex } = values;
     if (selectedCategoryValue === 'sell') {
-      if (place === '' || sex === '' || price === '' || imageUrl === '') {
+      if (place === '' || sex === '' || price === '') {
         setMissedFielSecondStep(true);
         return;
       }
@@ -163,12 +185,11 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
       selectedCategoryValue === 'for-free' ||
       selectedCategoryValue === 'lost-found'
     ) {
-      if (place === '' || sex === '' || imageUrl === '') {
+      if (place === '' || sex === '') {
         setMissedFielSecondStep(true);
         return;
       }
     }
-
     setMissedFielSecondStep(false);
   };
 
@@ -395,11 +416,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                           }
                         />
                         {errors.sex && touched.sex ? (
-                          <ErrorMessage
-                            sx={{ bottom: '0', left: '12', fontSize: '12px' }}
-                          >
-                            {errors.sex}
-                          </ErrorMessage>
+                          <ErrorMessage>{errors.sex}</ErrorMessage>
                         ) : null}
                       </RadioWrap>
                     </ModalRadioGroup>
