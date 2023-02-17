@@ -1,24 +1,18 @@
+import { useState } from 'react';
 import styles from './PetsList.styled';
-import { useDispatch } from 'react-redux/es/exports';
-import userOperations from 'redux/user/operations';
 
-const { deleteUserPet } = userOperations;
+import ModalUser from '../ModalUser';
+import ModalPetDelete from './ModalPetDelete';
 
-const {
-  PetInfo,
-  PetInfoName,
-  PetInfoFoto,
-  PetInfoWrapp,
-  PetDeleteButton,
-  PetDeleteIcon,
-} = styles;
+const { PetInfo, PetInfoName, PetInfoFoto, PetInfoWrapp, PetDeleteButton, PetDeleteIcon } = styles;
 
 const PetItem = ({ pet }) => {
   const { _id, name, birthday, breed, photo, comments } = pet;
-  // console.log(pet);
-  const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
 
-  // const handleDelete = () => dispatch(deleteUserPet(_id));
+  const onClose = () => {
+    setShowModal(true);
+  };
 
   return (
     <>
@@ -38,14 +32,15 @@ const PetItem = ({ pet }) => {
             <PetInfoName>Comments:</PetInfoName> {comments}
           </li>
         </PetInfo>
-        <PetDeleteButton
-          type="button"
-          onClick={() => {
-            dispatch(deleteUserPet(_id));
-          }}
-        >
+        <PetDeleteButton type="button" onClick={onClose}>
           <PetDeleteIcon />
         </PetDeleteButton>
+
+        {showModal && (
+          <ModalUser setShowModal={setShowModal}>
+            <ModalPetDelete setShowModal={setShowModal} petId={_id} />
+          </ModalUser>
+        )}
       </PetInfoWrapp>
     </>
   );
