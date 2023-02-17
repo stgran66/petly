@@ -21,12 +21,10 @@ const RegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-�
 let schema = yup.object().shape({
   name: yup
     .string()
+    .trim()
     .min(2)
     .max(16)
-    .matches(
-      RegExp,
-      "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-    )
+    .matches(RegExp, 'Name may contain only letters, apostrophe, dash and spaces')
     .required(),
   birthday: yup
     .date()
@@ -46,12 +44,11 @@ let schema = yup.object().shape({
     .typeError('Date should be in dd.mm.yyyy format'),
   breed: yup
     .string()
+    .trim()
+    .matches(RegExp, 'Breed may contain only letters, apostrophe, dash and spaces.')
     .min(2)
     .max(16)
-    .matches(
-      RegExp,
-      'Breed may contain only letters, apostrophe, dash and spaces.'
-    )
+
     .required(),
 });
 
@@ -61,55 +58,28 @@ const ModelPetStepOne = ({ data, next, onClose }) => {
   };
 
   return (
-    <Formik
-      initialValues={data}
-      validationSchema={schema}
-      onSubmit={handleFormSubmit}
-    >
+    <Formik initialValues={data} validationSchema={schema} onSubmit={handleFormSubmit}>
       <FormWrapp>
         <FormInputWrapp>
           <LabelWrapp>
             <label htmlFor="name">Name pet</label>
-            <InputValue
-              type="text"
-              name="name"
-              required
-              placeholder="Type name pet"
-              id="name"
-            />
+            <InputValue type="text" name="name" required placeholder="Type name pet" id="name" />
             {/* <ErrorMessage component="span" name="name" /> */}
-            <ErrorMessage name="name">
-              {msg => <ErrorMsg>{msg}</ErrorMsg>}
-            </ErrorMessage>
+            <ErrorMessage name="name">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
           </LabelWrapp>
 
           <LabelWrapp>
             <label htmlFor="birthday">Date of birth</label>
-            <InputValue
-              name="birthday"
-              required
-              placeholder="Type date of birth"
-              id="birthday"
-            />
+            <InputValue name="birthday" required placeholder="Type date of birth" id="birthday" />
             {/* <ErrorMessage component="span" name="birthday" /> */}
-            <ErrorMessage name="birthday">
-              {msg => <ErrorMsg>{msg}</ErrorMsg>}
-            </ErrorMessage>
+            <ErrorMessage name="birthday">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
           </LabelWrapp>
 
           <LabelWrapp>
             <label htmlFor="breed">Breed</label>
-            <InputValue
-              required
-              type="text"
-              name="breed"
-              placeholder="Type breed"
-              id="breed"
-            />
+            <InputValue required type="text" name="breed" placeholder="Type breed" id="breed" />
             {/* <ErrorMessage component="span" name="breed" /> */}
-            <ErrorMessage name="breed">
-              {msg => <ErrorMsg>{msg}</ErrorMsg>}
-            </ErrorMessage>
+            <ErrorMessage name="breed">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
           </LabelWrapp>
         </FormInputWrapp>
         <ButtonsGroup>
