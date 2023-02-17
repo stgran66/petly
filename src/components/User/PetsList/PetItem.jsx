@@ -102,15 +102,15 @@ const PetItem = ({ pet }) => {
 
   // ----------------------------------------------------
 
-  // const handleFormSubmit = values => {
-  //   console.log(values);
-  //   return values;
-  //   // const { name, number } = values;
-  //   // setFormData({ ...values });
+  const handleFormSubmit = values => {
+    console.log(values);
+    return values;
+    // const { name, number } = values;
+    // setFormData({ ...values });
 
-  //   // dispatch(updateUserPet(values));
-  //   // resetForm();
-  // };
+    dispatch(updateUserPet(values));
+    // resetForm();
+  };
 
   return (
     <>

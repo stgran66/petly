@@ -48,9 +48,9 @@ const addUserPet = createAsyncThunk('user/addUserPet', async (newData, thunkAPI)
   }
 });
 
-const updateUserPet = createAsyncThunk('user/updateUserPet', async (newData, thunkAPI) => {
+const updateUserPet = createAsyncThunk('user/updateUserPet', async ({ _id, values }, thunkAPI) => {
   try {
-    const response = await axios.put(`/api/user/pet/${newData._id}`, newData);
+    const response = await axios.put(`/api/user/pet/${_id}`, values);
 
     return response.data;
   } catch (e) {
