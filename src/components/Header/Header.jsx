@@ -1,6 +1,7 @@
 import BurgerMenu from './BurgerMenu';
 import Navigation from './Navigation';
 import styles from './Header.styled';
+import ThemeToggleButton from './ThemeToggleButton/ThemeToggleButton';
 
 const Header = () => {
   const { HeaderEl, Logo } = styles;
@@ -12,6 +13,7 @@ const Header = () => {
       <nav>
         <Navigation />
       </nav>
+      <ThemeToggleButton></ThemeToggleButton>
       <BurgerMenu />
     </HeaderEl>
   );

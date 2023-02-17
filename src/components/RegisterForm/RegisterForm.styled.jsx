@@ -13,7 +13,7 @@ const RegisterForm = styled(Form)`
     margin-top: 173px;
     width: 608px;
     padding: 60px 80px 40px 80px;
-    background: #ffffff;
+    background: ${({ theme }) => theme.colors.white};
     box-shadow: ${({ theme }) => theme.shadows.cardsShadowUser};
     border-radius: 40px;
   }

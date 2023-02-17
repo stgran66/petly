@@ -16,6 +16,7 @@ import filterReducer from './notices/filterSlice';
 import noticesReducer from './notices/noticesSlice';
 import friendsReducer from './friends/friendsSlice';
 import userReducer from './user/userSlise';
+import themeReducer from './theme/themeSlice';
 
 const { authReducer } = auth;
 
@@ -33,6 +34,12 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const themePersistConfig = {
+  key: 'theme',
+  storage,
+  whitelist: ['theme'],
+}
+
 const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
@@ -40,6 +47,7 @@ const store = configureStore({
     filter: filterReducer,
     friends: friendsReducer,
     user: userReducer,
+    theme: persistReducer(themePersistConfig, themeReducer),
   },
   middleware,
 });
