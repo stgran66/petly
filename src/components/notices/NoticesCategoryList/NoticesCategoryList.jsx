@@ -14,7 +14,7 @@ import { useSearchParams } from 'react-router-dom';
 
 const { fetchNotices, getFavorite, getMyNotices } = operations;
 const { List, ListItem, NoticesContainer, PaginationWrap } = styles;
-const { selectFilteredList, selectLoadingStatus, selectErrorMessage } = selectors;
+const { selectFilteredList, selectLoadingStatus, selectErrorMessage, totalNotices } = selectors;
 const { fetchUserData } = userOperations;
 
 const NoticesCategoryList = () => {
@@ -31,12 +31,18 @@ const NoticesCategoryList = () => {
 
   const noNoticesFind = filteredNotices.length === 0;
   const searchOptions = { favorite, myNotices, category };
+  const pages = useSelector(totalNotices) / 6;
+  const totalPages = Math.ceil(pages);
 
   const { isLoggedIn } = hooks.useAuth();
 
   useEffect(() => {
-    setSearchParams(`?page=${page}&limit=12`);
+    setSearchParams(`?page=${page}&limit=6`);
   }, [setSearchParams, page]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [category, favorite, myNotices]);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -44,14 +50,14 @@ const NoticesCategoryList = () => {
         await dispatch(fetchUserData());
       }
       if (favorite) {
-        dispatch(getFavorite());
+        dispatch(getFavorite(page));
         return;
       }
       if (myNotices) {
-        dispatch(getMyNotices());
+        dispatch(getMyNotices(page));
         return;
       }
-      dispatch(fetchNotices({ category, page }));
+      await dispatch(fetchNotices({ category, page }));
     };
     getUserData();
   }, [dispatch, category, favorite, myNotices, isLoggedIn, page]);
@@ -77,7 +83,12 @@ const NoticesCategoryList = () => {
                 </ListItem>
               ))}
             </List>
-            <PaginationWrap count={10} page={page} variant="outlined" onChange={onPagesChange} />
+            <PaginationWrap
+              count={totalPages}
+              page={page}
+              variant="outlined"
+              onChange={onPagesChange}
+            />
           </>
         ))}
     </NoticesContainer>

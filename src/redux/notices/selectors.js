@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 const selectNotices = state => state.notices.items;
+const totalNotices = state => state.notices.total;
 const selectFilter = state => state.filter.value;
 const selectLoadingStatus = state => state.notices.isLoading;
 const selectErrorMessage = state => state.notices.error;
@@ -23,5 +24,6 @@ const selectors = {
   selectFilteredList,
   selectLoadingStatus,
   selectErrorMessage,
+  totalNotices,
 };
 export default selectors;
