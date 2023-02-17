@@ -27,7 +27,7 @@ const FriendsList = ({ children }) => {
       {isLoading && <Loader />}
       {friends.length > 0 &&
         friends.map(friend => (
-          <li key={friend._id}>
+          <li key={friend._id} data-aos="zoom-in">
             <Friend friend={friend} />
           </li>
         ))}
