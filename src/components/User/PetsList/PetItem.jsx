@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Formik, ErrorMessage } from 'formik';
+import { Form, Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { parse, isDate } from 'date-fns';
 
@@ -88,57 +88,61 @@ const PetItem = ({ pet }) => {
 
   return (
     <>
-      <PetItemPhotoWrapp enctype="multipart/form-data">
-        <PetInfoFoto src={fileInput} alt="pet foto" />
-        <input
-          type="file"
-          name="photo"
-          accept=".png, .jpeg, .jpg, .webp"
-          // onChange={e => selectFile(e, setFieldValue)}
-        />
-      </PetItemPhotoWrapp>
-
-      <PetInfoWrapp>
-        <PetInfo>
-          <li>
-            <label htmlFor="name">Name:</label>
-            <input type="text" name="name" defaultValue={name} required id="name" />
-          </li>
-
-          <li>
-            <label htmlFor="birthday">Date of birth:</label>
-            <input name="birthday" defaultValue={birthday} required id="birthday" />
-          </li>
-
-          <li>
-            <label htmlFor="breed">Date of birth:</label>
-            <input type="text" name="breed" defaultValue={breed} required id="breed" />
-          </li>
-
-          <li>
-            <label htmlFor="comments">Comments:</label>
-            <textarea
-              // component="textarea"
-              name="comments"
-              defaultValue={comments}
-              required
-              id="comments"
-              // onChange={e => handleInputChange(e, setFieldValue)}
+      <Formik>
+        <Form>
+          <PetItemPhotoWrapp enctype="multipart/form-data">
+            <PetInfoFoto src={fileInput} alt="pet foto" />
+            <input
+              type="file"
+              name="photo"
+              accept=".png, .jpeg, .jpg, .webp"
+              // onChange={e => selectFile(e, setFieldValue)}
             />
-          </li>
-        </PetInfo>
-        <PetDeleteButton type="button" onClick={onClose}>
-          <PetDeleteIcon />
-        </PetDeleteButton>
+          </PetItemPhotoWrapp>
 
-        {showModal && (
-          <ModalUser setShowModal={setShowModal}>
-            <ModalPetDelete setShowModal={setShowModal} petId={_id} />
-          </ModalUser>
-        )}
-      </PetInfoWrapp>
+          <PetInfoWrapp>
+            <PetInfo>
+              <li>
+                <label htmlFor="name">Name:</label>
+                <input type="text" name="name" defaultValue={name} required id="name" />
+              </li>
+
+              <li>
+                <label htmlFor="birthday">Date of birth:</label>
+                <input name="birthday" defaultValue={birthday} required id="birthday" />
+              </li>
+
+              <li>
+                <label htmlFor="breed">Date of birth:</label>
+                <input type="text" name="breed" defaultValue={breed} required id="breed" />
+              </li>
+
+              <li>
+                <label htmlFor="comments">Comments:</label>
+                <textarea
+                  // component="textarea"
+                  name="comments"
+                  defaultValue={comments}
+                  required
+                  id="comments"
+                  // onChange={e => handleInputChange(e, setFieldValue)}
+                />
+              </li>
+            </PetInfo>
+            <PetDeleteButton type="button" onClick={onClose}>
+              <PetDeleteIcon />
+            </PetDeleteButton>
+          </PetInfoWrapp>
+        </Form>
+      </Formik>
+
+      {showModal && (
+        <ModalUser setShowModal={setShowModal}>
+          <ModalPetDelete setShowModal={setShowModal} petId={_id} />
+        </ModalUser>
+      )}
     </>
-
+    // =======================================================================
     // <>
     //   <PetInfoFoto src={photo} alt="pet foto" />
     //   <PetInfoWrapp>
@@ -159,13 +163,13 @@ const PetItem = ({ pet }) => {
     //     <PetDeleteButton type="button" onClick={onClose}>
     //       <PetDeleteIcon />
     //     </PetDeleteButton>
-
-    //     {showModal && (
-    //       <ModalUser setShowModal={setShowModal}>
-    //         <ModalPetDelete setShowModal={setShowModal} petId={_id} />
-    //       </ModalUser>
-    //     )}
     //   </PetInfoWrapp>
+
+    //   {showModal && (
+    //     <ModalUser setShowModal={setShowModal}>
+    //       <ModalPetDelete setShowModal={setShowModal} petId={_id} />
+    //     </ModalUser>
+    //   )}
     // </>
   );
 };
