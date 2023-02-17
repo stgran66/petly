@@ -1,16 +1,11 @@
 import { useState } from 'react';
-// import { useRef } from 'react';
-
 import { useDispatch } from 'react-redux';
-// import { useSelector } from 'react-redux';
 import userOperations from 'redux/user/operations';
-// import userSelectors from 'redux/user/selectors';
-import styles from './UserData.styled';
-// import Loader from 'components/Loader';
-// import { useForm } from 'react-hook-form';
+import Tooltip from '@mui/material/Tooltip';
+import Zoom from '@mui/material/Zoom';
 
-// import ButtonChange from './ButtonChange';
-// import ButtonSubmit from './ButtonSubmit';
+import styles from './UserData.styled';
+
 const {
   InputWrapp,
   UserDataItemWrapp,
@@ -26,14 +21,7 @@ const {
 const { updateUserData } = userOperations;
 // const { selectLoadingUser, selectErrorUser } = userSelectors;
 
-const UserDataItem = ({
-  name,
-  label,
-  type,
-  defaultValue,
-  active,
-  setActive,
-}) => {
+const UserDataItem = ({ name, label, type, defaultValue, active, setActive }) => {
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = useState(defaultValue);
@@ -45,8 +33,7 @@ const UserDataItem = ({
   // mail can contain only latin letters, numbers and symbols . -  _ (dot, hyphen, underscore) and can't start from hyphen
   const RegExpCity = /^[^ -,][a-zA-zа-яіїєА-ЯІЇЄ, -]+[^ -]$/;
   // city can contain only Latin and Cyrillic characters, 2 - 19 symbols and can't start or end with spaces and hyphen
-  const RegExpBirthday =
-    /^([0-2][0-9]|(3)[0-1])\.(((0)[0-9])|((1)[0-2]))\.\d{4}$/;
+  const RegExpBirthday = /^([0-2][0-9]|(3)[0-1])\.(((0)[0-9])|((1)[0-2]))\.\d{4}$/;
   const today = new Date();
   const minDate = new Date(1910, 0, 1);
   // date should be in dd.mm.yyyy format and not before 1910 and after today
@@ -70,21 +57,10 @@ const UserDataItem = ({
     }
   };
 
-  //   function handleFocus() {
-  //     inputRef.current.focus();
-  //   }
-
   const activeHandleClick = name => {
     setActive(name);
     // handleFocus();
   };
-
-  // const handleSubmit = name => {
-  //   setActive('');
-  //   // handleFocus();
-  //   console.log('value', name);
-  //   dispatch(updateUserData({ [name]: inputValue }));
-  // };
 
   const handleSubmit = name => {
     if (name === 'name') {
@@ -107,7 +83,11 @@ const UserDataItem = ({
         return;
       }
       if (!inputValue.match(RegExpEmail)) {
-        setIsError('type valid email, min 6 symbols');
+        setIsError('type valid email, min 10 symbols');
+        return;
+      }
+      if (inputValue.length < 10) {
+        setIsError('type valid email, min 10 symbols');
         return;
       }
       setIsError('');
@@ -163,16 +143,25 @@ const UserDataItem = ({
         <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
         <InputWrapp>
           <div>
-            <UserDataItemInput
-              onChangeCapture={handleChange}
-              defaultValue={inputValue}
-              active={active === name}
-              disabled={active !== name}
-              type={type}
-              name={name}
-              id={name}
-              //   ref={inputRef}
-            />
+            <Tooltip
+              title={inputValue}
+              TransitionComponent={Zoom}
+              enterDelay={700}
+              leaveDelay={100}
+              placement="top-start"
+              arrow
+            >
+              <UserDataItemInput
+                onChangeCapture={handleChange}
+                defaultValue={inputValue}
+                active={active === name}
+                disabled={active !== name}
+                type={type}
+                name={name}
+                id={name}
+                //   ref={inputRef}
+              />
+            </Tooltip>
 
             {isError && active === name ? <Error>{isError}</Error> : null}
           </div>
@@ -188,11 +177,7 @@ const UserDataItem = ({
               onClick={() => activeHandleClick(name)}
             >
               <InfoChangeIcon
-                style={
-                  active
-                    ? { color: 'rgba(17, 17, 17, 0.6)' }
-                    : { color: '#F59256' }
-                }
+                style={active ? { color: 'rgba(17, 17, 17, 0.6)' } : { color: '#F59256' }}
               />
             </ButtonWrapp>
           )}

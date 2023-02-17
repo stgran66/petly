@@ -4,6 +4,13 @@
 /* Fonts import */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Poppins:wght@700&display=swap');
 
+/* styles for animation */
+@import 'aos/dist/aos.css';
+body[data-aos-duration='3500'] [data-aos],
+[data-aos][data-aos][data-aos-duration='3500'] {
+  transition-duration: 3500ms;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -13,7 +20,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #fdf7f2;
 }
-
+body::-webkit-scrollbar {
+  width: 7px;
+  background-color: inherit;
+}
+body::-webkit-scrollbar-thumb {
+  background: #f59256;
+  border-radius: 5px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

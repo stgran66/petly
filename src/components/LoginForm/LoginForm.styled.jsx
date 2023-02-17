@@ -4,27 +4,27 @@ import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 
 const LoginForm = styled(Form)`
-  display: grid;
-  margin-top: 42px;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px auto 0;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin: auto;
-    margin-top: 204px;
-    width: 608px;
-    padding: 60px 80px 40px 80px;
+    max-width: 608px;
+    max-height: 100%;
+    padding: 30px 80px;
     background: #ffffff;
     box-shadow: ${({ theme }) => theme.shadows.cardsShadowUser};
     border-radius: 40px;
   }
-
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    width: 618px;
-    margin-top: 91px;
-    padding: 60px 80px 60px 80px;
-    background: #ffffff;
-    box-shadow: ${({ theme }) => theme.shadows.cardsShadowUser};
-    border-radius: 40px;
+    max-width: 618px;
+    max-height: 100%;
+    padding: 60px 80px;
   }
 `;
 const Title = styled('h1')`
@@ -44,13 +44,12 @@ const Title = styled('h1')`
     fon-size: ${prop => prop.theme.fontSizes.headers.m};
     line-height: ${prop => prop.theme.lineHeights.s};
   }
-
 `;
 
 const Buttons = styled(Button)(({ theme }) => ({
   width: '100%',
   padding: '8px 0',
-
+  marginTop: '40px',
   color: theme.colors.black,
   background: theme.colors.white,
   borderRadius: '40px',
@@ -69,16 +68,15 @@ const Buttons = styled(Button)(({ theme }) => ({
 }));
 
 const AccountRedirect = styled('p')`
-color: ${prop => prop.theme.colors.placeholderText};
+  color: ${prop => prop.theme.colors.placeholderText};
 
+  text-align: center;
+  /* margin-top: 40px; */
 
-text-align: center;
-margin-top: 40px;
-
-font-family: ${prop => prop.theme.fonts[0]};
-font-weight: ${prop => prop.theme.fontWeights.normal};
-fon-size: ${prop => prop.theme.fontSizes.text.xs};
-line-height: ${prop => prop.theme.lineHeights.xs};
+  font-family: ${prop => prop.theme.fonts[0]};
+  font-weight: ${prop => prop.theme.fontWeights.normal};
+  fon-size: ${prop => prop.theme.fontSizes.text.xs};
+  line-height: ${prop => prop.theme.lineHeights.xs};
 `;
 
 const LinkRegisterRoute = styled(Link)`
@@ -95,8 +93,8 @@ const styles = {
   Buttons,
   AccountRedirect,
   LinkRegisterRoute,
-  LoginForm, 
-  Container
+  LoginForm,
+  Container,
 };
 
-export default styles
+export default styles;

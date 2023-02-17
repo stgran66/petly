@@ -1,14 +1,13 @@
 import BurgerMenu from './BurgerMenu';
 import Navigation from './Navigation';
 import styles from './Header.styled';
+import Logo from './Logo';
 
 const Header = () => {
-  const { HeaderEl, Logo } = styles;
+  const { HeaderEl } = styles;
   return (
     <HeaderEl>
-      <Logo to="/">
-        pe<span>t</span>ly
-      </Logo>
+      <Logo />
       <nav>
         <Navigation />
       </nav>

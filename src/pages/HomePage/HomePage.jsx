@@ -3,7 +3,12 @@ const HomePage = () => {
   const { Title, Wrapper } = styles;
   return (
     <Wrapper>
-      <Title>Take good care of your small pets</Title>
+      <Title
+        data-aos="zoom-in"
+        data-aos-duration="3000"
+      >
+        Take good care of your small pets
+      </Title>
     </Wrapper>
   );
 };
