@@ -7,15 +7,8 @@ const noticesInitialState = {
   error: null,
 };
 
-const { fetchNotices, addNotice, getFavorite, getMyNotices, deleteNotice } =
-  operations;
-const extraActions = [
-  fetchNotices,
-  addNotice,
-  getFavorite,
-  getMyNotices,
-  deleteNotice,
-];
+const { fetchNotices, addNotice, getFavorite, getMyNotices, deleteNotice } = operations;
+const extraActions = [fetchNotices, addNotice, getFavorite, getMyNotices, deleteNotice];
 const getActionsByType = type => extraActions.map(action => action[type]);
 const onFetchSuccessReducer = (state, action) => {
   state.items = action.payload;

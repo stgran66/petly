@@ -11,9 +11,7 @@ const selectFilteredList = createSelector(
     const normalizedFilter = filterValue.toLowerCase();
 
     const filteredNotices = filterValue
-      ? noticesList.filter(notice =>
-          notice.title.toLowerCase().includes(normalizedFilter)
-        )
+      ? noticesList.filter(notice => notice.title.toLowerCase().includes(normalizedFilter))
       : noticesList;
 
     return filteredNotices;
