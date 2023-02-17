@@ -38,7 +38,7 @@ const NoticesCategoryList = () => {
 
   useEffect(() => {
     setSearchParams(`?page=${page}&limit=6`);
-  }, [setSearchParams, page]);
+  }, [setSearchParams, page, searchParams]);
 
   useEffect(() => {
     setPage(1);
