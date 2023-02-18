@@ -96,10 +96,11 @@ const PetDeleteButton = styled('button')`
   border: 0;
   border-radius: 50%;
   cursor: pointer;
-  background-color: ${props => props.theme.colors.commonBackground};
+  background-color: transparent;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     top: 0;
+    background-color: ${props => props.theme.colors.commonBackground};
   }
 `;
 
