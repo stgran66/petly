@@ -73,6 +73,31 @@ const PetInfoWrapp = styled('div')`
   position: relative;
 `;
 
+const PetInfo = styled('ul')`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  font-weight: ${props => props.theme.fontWeights.normal};
+  font-size: ${props => props.theme.fontSizes.text.s};
+  line-height: 1.36;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    font-size: ${props => props.theme.fontSizes.text.m};
+    line-height: ${props => props.theme.lineHeights.m};
+  }
+`;
+
+const PetInfoName = styled('span')`
+  font-weight: ${props => props.theme.fontWeights.medium};
+  font-size: ${props => props.theme.fontSizes.text.m};
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    font-size: ${props => props.theme.fontSizes.text.m};
+    line-height: ${props => props.theme.lineHeights.m};
+  }
+`;
+
 const PetDeleteButton = styled('button')`
   position: absolute;
   top: -5px;
@@ -102,28 +127,20 @@ const PetDeleteIcon = styled(Delete20Filled)`
   }
 `;
 
-const PetInfo = styled('ul')`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  font-weight: ${props => props.theme.fontWeights.normal};
-  font-size: ${props => props.theme.fontSizes.text.s};
-  line-height: 1.36;
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    font-size: ${props => props.theme.fontSizes.text.m};
-    line-height: ${props => props.theme.lineHeights.m};
-  }
-`;
-
-const PetInfoName = styled('span')`
-  font-weight: ${props => props.theme.fontWeights.medium};
-  font-size: ${props => props.theme.fontSizes.text.m};
+const PetUpdateButton = styled('button')`
+  position: absolute;
+  bottom: -5px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  /* background-color: ${props => props.theme.colors.commonBackground}; */
+  background-color: red;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    font-size: ${props => props.theme.fontSizes.text.m};
-    line-height: ${props => props.theme.lineHeights.m};
+    top: 0;
   }
 `;
 
@@ -137,6 +154,7 @@ const styles = {
   PetInfoWrapp,
   PetDeleteButton,
   PetDeleteIcon,
+  PetUpdateButton,
 };
 
 export default styles;

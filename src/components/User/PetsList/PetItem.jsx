@@ -5,7 +5,15 @@ import styles from './PetsList.styled';
 import ModalUser from '../ModalUser';
 import ModalPetDelete from './ModalPetDelete';
 
-const { PetInfo, PetInfoName, PetInfoFoto, PetInfoWrapp, PetDeleteButton, PetDeleteIcon } = styles;
+const {
+  PetInfo,
+  PetInfoName,
+  PetInfoFoto,
+  PetInfoWrapp,
+  PetDeleteButton,
+  PetDeleteIcon,
+  PetUpdateButton,
+} = styles;
 
 const PetItem = ({ pet }) => {
   const { _id, name, birthday, breed, photo, comments } = pet;
@@ -36,6 +44,10 @@ const PetItem = ({ pet }) => {
         <PetDeleteButton type="button" onClick={onClose}>
           <PetDeleteIcon />
         </PetDeleteButton>
+
+        <PetUpdateButton type="button" onClick={onClose}>
+          <PetDeleteIcon />
+        </PetUpdateButton>
       </PetInfoWrapp>
 
       {showModal && (
