@@ -18,19 +18,7 @@ const NoticeModal = ({ notice, category, toggleModal, favorite, img }) => {
   const dispatch = useDispatch();
   const [addedToFav, setAddedToFav] = useState(favorite);
 
-  const {
-    title,
-    name,
-    birthday,
-    breed,
-    place,
-    sex,
-    email,
-    phone,
-    price,
-    _id,
-    comments,
-  } = notice;
+  const { title, name, birthday, breed, place, sex, email, phone, price, _id, comments } = notice;
 
   const handleSubmit = e => {
     Notify.init({
@@ -100,15 +88,11 @@ const NoticeModal = ({ notice, category, toggleModal, favorite, img }) => {
             </Item>
             <Item>
               <ItemInfo>Email:</ItemInfo>
-              <ContLink href={`mailto: ${email}`}>
-                {email ? email : '-------'}
-              </ContLink>
+              <ContLink href={`mailto: ${email}`}>{email ? email : '-------'}</ContLink>
             </Item>
             <Item>
               <ItemInfo>Phone:</ItemInfo>
-              <ContLink href={`tel: ${phone}`}>
-                {phone ? phone : '-------'}
-              </ContLink>
+              <ContLink href={`tel: ${phone}`}>{phone ? phone : '-------'}</ContLink>
             </Item>
             {category === 'sell' ? (
               <Item>
@@ -122,7 +106,8 @@ const NoticeModal = ({ notice, category, toggleModal, favorite, img }) => {
         </ListWrapper>
       </Wrapper>
       <ItemInfo>
-        <b>Comments:</b> {comments ? comments : '--------'}
+        <b>Comments:</b>
+        <ItemInfo> {comments ? comments : '--------'}</ItemInfo>
       </ItemInfo>
       <BtnWrapper>
         <ContactButton href={`tel: ${phone}`}>Contact</ContactButton>
