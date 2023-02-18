@@ -22,7 +22,7 @@ const Link = styled(NavLink)`
   font-size: ${({ theme }) => theme.fontSizes.navLinks.mobile};
   line-height: 44px;
   letter-spacing: 0.04em;
-  color: ${({ theme }) => theme.colors.navLinks};
+  color: ${({ theme }) => theme.colors.text};
   transition: font-weight 0.1s linear;
 
   &:after {

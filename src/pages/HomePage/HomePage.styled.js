@@ -5,6 +5,7 @@ import happyClient from '../../images/home_page/happy_client.png';
 
 const Wrapper = styled('div')`
   margin-top: 60px;
+  height: calc(100vh - 108px);
   &:before {
     content: '';
     position: absolute;
@@ -46,10 +47,15 @@ const Wrapper = styled('div')`
     }
   }
   @media screen and (orientation: landscape) {
+    height: calc(100vh - 88px);
+  }
+  
+  @media screen and (orientation: landscape) {
     margin-top: 40px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-top: 92px;
+    height: calc(100vh - 149px);
   }
 `;
 

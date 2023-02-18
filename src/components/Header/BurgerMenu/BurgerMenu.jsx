@@ -24,14 +24,17 @@ const BurgerMenu = () => {
     <Burger id="burger">
       <Menu
         outerContainerId={'burger'}
-        styles={BurgerStyle}
         width={'100%'}
         isOpen={menuOpen}
         onStateChange={state => handleStateChange(state)}
+        styles={{
+          ...BurgerStyle,
+          bmMenuWrap: { top: '0', background: ({theme}) => console.log(theme) },
+        }}
         right
         noOverlay
-        customBurgerIcon={<MenuIcon />}
-        customCrossIcon={<CloseIcon />}
+        customBurgerIcon={<MenuIcon sx={{ color: theme => theme.colors.text }} />}
+        customCrossIcon={<CloseIcon sx={{ color: theme => theme.colors.text }} />}
         itemListElement="div"
       >
         <Navigation hidden closeBurgerMenu={closeMenu} />
