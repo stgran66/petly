@@ -31,6 +31,7 @@ const lightTheme = createTheme({
     cardsShadow: '7px 4px 14px rgba(49, 21, 4, 0.07)',
     cardsShadowUser: '7px 4px 14px rgba(0, 0, 0, 0.11)',
     timeModalShadow: '4px 4px 8px rgba(0, 0, 0, 0.25)',
+    textShadow: ' 4px 2px 5px rgba(255, 255, 255, 1)',
   },
   fonts: ['Manrope', 'Poppins'],
   fontSizes: {
@@ -109,6 +110,7 @@ const darkTheme = createTheme({
     cardsShadow: '7px 4px 14px rgba(206, 234, 251, 0.07)',
     cardsShadowUser: '7px 4px 14px rgba(255, 255, 255, 0.11)',
     timeModalShadow: '4px 4px 8px rgba(255, 255, 255, 0.25)',
+    textShadow: ' 4px 2px 5px rgba(0, 0, 0, 1)',
   },
   fonts: ['Manrope', 'Poppins'],
   fontSizes: {
