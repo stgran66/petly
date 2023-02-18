@@ -137,6 +137,7 @@ const InputValue = styled(Field)`
   border-radius: 40px;
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: ${props => props.theme.colors.commonBackground};
+  color: ${props => props.theme.colors.text};
 
   &:focus {
     outline: 2px solid rgba(245, 146, 86, 0.5);
@@ -297,6 +298,7 @@ const ButtonWhite = styled('button')`
   border: 2px solid ${props => props.theme.colors.accent};
   background-color: transparent;
   cursor: pointer;
+  color: ${props => props.theme.colors.text};
 
   @media screen and (max-width: ${props => props.theme.breakpoints.mobile}) {
     width: 100%;

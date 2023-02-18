@@ -3,14 +3,21 @@ import selectTheme from 'redux/theme/selectors';
 import styles from './ThemeToggleButton.styled';
 import { changeTheme } from 'redux/theme/themeSlice';
 
-const { ToggleButton, StyledDarkIcon, StyledLightIcon } = styles;
+const { ToggleButton } = styles;
 
 const ThemeToggleButton = () => {
   const dispatch = useDispatch();
   const theme = useSelector(selectTheme);
   return (
-    <ToggleButton onClick={() => dispatch(changeTheme())}>
-      {theme === 'light' ? <StyledLightIcon /> : <StyledDarkIcon />}
+    <ToggleButton>
+      <input
+        type="checkbox"
+        defaultChecked={theme === 'ligth' ? true : false}
+        onChange={() => {
+          dispatch(changeTheme());
+        }}
+      />
+      <div />
     </ToggleButton>
   );
 };

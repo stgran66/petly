@@ -9,7 +9,7 @@ const NoticeItemCard = styled('div')`
   padding-bottom: 32px;
   border-radius: 0px 0px 20px 20px;
   background: ${props => props.theme.colors.white};
-  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  box-shadow: ${props => props.theme.shadows.cardsShadow};
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     width: 336px;
     border-radius: 0px 0px 40px 40px;
@@ -97,7 +97,7 @@ const ItemTitle = styled('h2')`
   line-height: ${props => props.theme.lineHeights.s};
   letter-spacing: -0.01em;
   flex-grow: 1;
-  color: ${props => props.theme.colors.text}
+  color: ${props => props.theme.colors.text};
 `;
 
 const AboutList = styled('div')`
@@ -148,7 +148,7 @@ const LearnMore = styled('button')`
     border-color: #ff6101;
     color: #ff6101;
   }
-  background: ${props => props.theme.colors.white}
+  background: ${props => props.theme.colors.white};
 `;
 
 const BtnDelete = styled('button')`

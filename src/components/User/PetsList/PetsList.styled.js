@@ -90,6 +90,7 @@ const PetInfo = styled('ul')`
   font-weight: ${props => props.theme.fontWeights.normal};
   font-size: ${props => props.theme.fontSizes.text.s};
   line-height: 1.36;
+  color: ${props => props.theme.colors.text};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: ${props => props.theme.fontSizes.text.m};
@@ -100,6 +101,7 @@ const PetInfo = styled('ul')`
 const PetInfoName = styled('span')`
   font-weight: ${props => props.theme.fontWeights.medium};
   font-size: ${props => props.theme.fontSizes.text.m};
+  color: ${props => props.theme.colors.text};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: ${props => props.theme.fontSizes.text.m};

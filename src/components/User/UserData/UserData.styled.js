@@ -64,6 +64,7 @@ const FotoLabel = styled('label')`
   font-weight: 400;
   font-size: 12px;
   line-height: 22px;
+  color: ${props => props.theme.colors.text};
 
   transition: ${props => props.theme.transitions.normal};
 
@@ -108,7 +109,6 @@ const UserDataItemForm = styled('form')`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
 `;
 
 const UserDataItemLabel = styled('label')`
@@ -118,7 +118,7 @@ const UserDataItemLabel = styled('label')`
   font-size: ${props => props.theme.fontSizes.text.xs};
   line-height: ${props => props.theme.lineHeights.xs};
   letter-spacing: 0.04em;
-
+  color: ${props => props.theme.colors.text};
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-weight: ${props => props.theme.fontWeights.medium};
     font-size: ${props => props.theme.fontSizes.text.l};
@@ -130,7 +130,6 @@ const InputWrapp = styled('div')`
   margin-left: auto;
   display: flex;
   align-items: center;
-  
 `;
 
 const UserDataItemInput = styled('input')`
@@ -140,7 +139,6 @@ const UserDataItemInput = styled('input')`
   border-radius: 40px;
   border: 0;
   background-color: transparent;
-
 
   font-family: ${props => props.theme.fonts[0]};
   font-weight: ${props => props.theme.fontWeights.normal};
@@ -154,7 +152,7 @@ const UserDataItemInput = styled('input')`
   }
 
   &:disabled {
-    color: black;
+    color: ${props => props.theme.colors.black};
   }
 
   /* &[type='disabled'],
