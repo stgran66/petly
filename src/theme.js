@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material';
 
-
 const lightTheme = createTheme({
   breakpoints: {
     mobile: `320px`,
@@ -92,7 +91,7 @@ const darkTheme = createTheme({
     links: '#3091EB',
     white: '#bdbdbd',
     black: '#e0e0e0',
-    navLinks: '#181C27',
+    navLinks: '#F2D2BD',
     focusTextFields: '#FF6101',
     errorColor: '#db3327',
   },
@@ -147,5 +146,5 @@ const darkTheme = createTheme({
   },
 });
 
-const themes = {lightTheme, darkTheme}
+const themes = { lightTheme, darkTheme };
 export default themes;
