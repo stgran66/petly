@@ -43,7 +43,7 @@ const Title = styled('h1')`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-family: ${({ theme }) => theme.fonts[0]};
     font-weight: ${prop => prop.theme.fontWeights.medium};
-    fon-size: ${prop => prop.theme.fontSizes.headers.m};
+    font-size: ${prop => prop.theme.fontSizes.headers.m};
     line-height: ${prop => prop.theme.lineHeights.s};
   }
 `;
