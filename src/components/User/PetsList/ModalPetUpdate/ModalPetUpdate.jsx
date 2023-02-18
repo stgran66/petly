@@ -112,7 +112,6 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
 
   const selectFile = (e, setFieldValue) => {
     const fileImg = e.target.files[0];
-    console.log(fileImg);
 
     if (fileImg) {
       setFileInput(fileImg);
