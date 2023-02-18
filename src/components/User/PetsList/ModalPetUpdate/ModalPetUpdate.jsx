@@ -9,9 +9,19 @@ import { parse, isDate } from 'date-fns';
 import styles from '../PetsList.styled';
 import stylesUbdate from './ModalPetUpdate.styled';
 
-const { PetItemUbdateWrapp, PetItemUpdatePhotoWrapp, PetUbdateFoto } = stylesUbdate;
+const {
+  PetItemUpdateWrapp,
+  PetItemUpdatePhotoWrapp,
+  PetUpdateFoto,
+  PetInfoUpdateWrapp,
+  PetInfoUpdate,
+  ErrorMsg,
+  ModalDeletePetButtonsGroup,
+  ButtonCancel,
+  ButtonUpdate,
+} = stylesUbdate;
 
-const { PetInfo, PetInfoName, PetInfoFoto, PetInfoWrapp, PetDeleteButton, PetDeleteIcon } = styles;
+const { PetDeleteButton, PetDeleteIcon } = styles;
 
 const { updateUserPet } = userOperations;
 
@@ -129,12 +139,12 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
         onSubmit={handleFormSubmit}
       >
         {({ setFieldValue }) => (
-          <PetItemUbdateWrapp encType="multipart/form-data">
+          <PetItemUpdateWrapp encType="multipart/form-data">
             <PetItemUpdatePhotoWrapp>
               {fileInput ? (
-                <PetUbdateFoto src={URL.createObjectURL(fileInput)} alt={fileInput.name} />
+                <PetUpdateFoto src={URL.createObjectURL(fileInput)} alt={fileInput.name} />
               ) : (
-                <PetUbdateFoto src={photo} alt="pet foto" />
+                <PetUpdateFoto src={photo} alt="pet foto" />
               )}
               {/* {fileInput && <PetInfoFoto src={fileInput} alt="pet foto" />} */}
               {/* {<PetInfoFoto src={URL.createObjectURL(fileInput)} alt="pet foto" />} */}
@@ -144,27 +154,27 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
                 accept=".png, .jpeg, .jpg, .webp"
                 onChange={e => selectFile(e, setFieldValue)}
               />
-              <ErrorMessage name="photo">{msg => <p>{msg}</p>}</ErrorMessage>
+              <ErrorMessage name="photo">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
             </PetItemUpdatePhotoWrapp>
 
-            <PetInfoWrapp>
-              <PetInfo>
+            <PetInfoUpdateWrapp>
+              <PetInfoUpdate>
                 <li>
                   <label htmlFor="name">Name:</label>
                   <Field type="text" name="name" id="name" />
-                  <ErrorMessage name="name">{msg => <p>{msg}</p>}</ErrorMessage>
+                  <ErrorMessage name="name">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
                 </li>
 
                 <li>
                   <label htmlFor="birthday">Date of birth:</label>
                   <Field name="birthday" id="birthday" />
-                  <ErrorMessage name="birthday">{msg => <p>{msg}</p>}</ErrorMessage>
+                  <ErrorMessage name="birthday">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
                 </li>
 
                 <li>
                   <label htmlFor="breed">Breed:</label>
                   <Field type="text" name="breed" id="breed" />
-                  <ErrorMessage name="breed">{msg => <p>{msg}</p>}</ErrorMessage>
+                  <ErrorMessage name="breed">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
                 </li>
 
                 <li>
@@ -175,17 +185,18 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
                     id="comments"
                     onChange={e => handleInputChange(e, setFieldValue)}
                   />
-                  <ErrorMessage name="comments">{msg => <p>{msg}</p>}</ErrorMessage>
+                  <ErrorMessage name="comments">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
                 </li>
-              </PetInfo>
+              </PetInfoUpdate>
 
-              <button type="submit">Update pet</button>
-
-              <PetDeleteButton type="button" onClick={e => onClosePet(e)}>
-                <PetDeleteIcon />
-              </PetDeleteButton>
-            </PetInfoWrapp>
-          </PetItemUbdateWrapp>
+              <ModalDeletePetButtonsGroup>
+                <ButtonUpdate type="submit">Update pet</ButtonUpdate>
+                <ButtonCancel type="button" onClick={e => onClosePet(e)}>
+                  Cancel
+                </ButtonCancel>
+              </ModalDeletePetButtonsGroup>
+            </PetInfoUpdateWrapp>
+          </PetItemUpdateWrapp>
         )}
       </Formik>
     </>
