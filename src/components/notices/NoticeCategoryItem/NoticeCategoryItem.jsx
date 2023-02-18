@@ -16,22 +16,14 @@ const { deleteNotice, getFavorite, getMyNotices, fetchNotices } = operations;
 const { addFavNotice, removeFavNotice } = userOperations;
 
 const NoticeCategoryItem = ({ notice }) => {
+  const queryParameters = new URLSearchParams(window.location.search);
+  const page = queryParameters.get('page');
+
   const dispatch = useDispatch();
   const { selectUserFavorites, selectUserId } = userSelectors;
   const favoriteNotices = useSelector(selectUserFavorites);
   const userId = useSelector(selectUserId);
-  const {
-    title,
-    breed,
-    place,
-    birthday,
-    price,
-    _id,
-    imageUrl,
-    name,
-    owner,
-    category,
-  } = notice;
+  const { title, breed, place, birthday, price, _id, imageUrl, name, owner, category } = notice;
   const { isLoggedIn } = hooks.useAuth();
   const [addedToFav, setAddedToFav] = useState(() => {
     return favoriteNotices.includes(_id) ? true : false;
@@ -58,7 +50,7 @@ const NoticeCategoryItem = ({ notice }) => {
 
   const [showModal, setShowModal] = useState(false);
 
-  const handleSubmit = e => {
+  const handleSubmit = () => {
     if (!isLoggedIn) {
       Notify.info('Please authorize to access your account and add notice');
       return;
@@ -83,14 +75,14 @@ const NoticeCategoryItem = ({ notice }) => {
     const getNoticesAfterDelete = async () => {
       await dispatch(deleteNotice(_id));
       if (favorite) {
-        dispatch(getFavorite());
+        dispatch(getFavorite(page));
         return;
       }
       if (myNotices) {
-        dispatch(getMyNotices());
+        dispatch(getMyNotices(page));
         return;
       }
-      dispatch(fetchNotices(category));
+      dispatch(fetchNotices({ category, page }));
     };
     getNoticesAfterDelete();
   };
