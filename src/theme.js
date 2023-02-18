@@ -8,6 +8,7 @@ const lightTheme = createTheme({
   },
   colors: {
     backgroundBody: '#fdf7f2',
+    burgerBackground: '#fdf7f2',
     accent: '#ffa726',
     pageBackground: '#7F7F7F',
     commonBackground: '#FDF7F2',
@@ -85,6 +86,7 @@ const darkTheme = createTheme({
   },
   colors: {
     backgroundBody: 'rgba(0, 0, 0, 0.87)',
+    burgerBackground: 'rgba(0, 0, 0)',
     accent: '#f57c00',
     pageBackground: '#7F7F7F',
     commonBackground: '#000',

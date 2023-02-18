@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import { useTheme } from '@mui/material/styles';
 
 import Navigation from '../Navigation';
 import styles from './BurgerMenu.styled';
 
-const BurgerMenu = () => {
+const BurgerMenu = props => {
   const { Burger, BurgerStyle } = styles;
   const [menuOpen, setMenuOpen] = useState(false);
   const handleStateChange = state => {
@@ -15,6 +16,7 @@ const BurgerMenu = () => {
   const closeMenu = () => {
     setMenuOpen(false);
   };
+  const theme = useTheme();
   if (menuOpen) {
     document.body.style.overflow = 'hidden';
   } else {
@@ -29,7 +31,7 @@ const BurgerMenu = () => {
         onStateChange={state => handleStateChange(state)}
         styles={{
           ...BurgerStyle,
-          bmMenuWrap: { top: '0', background: ({theme}) => console.log(theme) },
+          bmMenu: { top: '0', background: `${theme.colors.burgerBackground}` },
         }}
         right
         noOverlay
