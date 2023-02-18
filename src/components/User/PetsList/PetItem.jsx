@@ -22,7 +22,7 @@ const PetItem = ({ pet }) => {
   const [showModal, setShowModal] = useState(false);
   const [showModalPet, setShowModalPet] = useState(false);
 
-  console.log(pet);
+  // console.log(pet);
 
   const onClose = () => {
     setShowModal(true);
@@ -60,11 +60,11 @@ const PetItem = ({ pet }) => {
         </PetDeleteButton>
       </PetInfoWrapp>
 
-      {/* {showModalPet && (
+      {showModalPet && (
         <ModalUser setShowModal={setShowModalPet}>
           <ModalPetUpdate setShowModalPet={setShowModalPet} pet={pet} />
         </ModalUser>
-      )} */}
+      )}
 
       {showModal && (
         <ModalUser setShowModal={setShowModal}>

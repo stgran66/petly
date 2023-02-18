@@ -8,9 +8,6 @@ import { parse, isDate } from 'date-fns';
 
 import styles from '../PetsList.styled';
 
-import ModalUser from '../../ModalUser';
-import ModalPetDelete from '../ModalPetDelete';
-
 const {
   PetItemPhotoWrapp,
   PetInfo,
@@ -30,10 +27,11 @@ let schema = yup.object().shape({
   name: yup
     .string()
     .trim()
+    // .required()
     .min(2)
     .max(16)
-    .matches(RegExp, 'Name may contain only letters, apostrophe, dash and spaces')
-    .required(),
+    .matches(RegExp, 'Name may contain only letters, apostrophe, dash and spaces'),
+
   birthday: yup
     .date()
     .test('format', 'Type in format 01.01.1910', (_, { originalValue }) => {
@@ -54,13 +52,12 @@ let schema = yup.object().shape({
     .string()
     .trim()
     .matches(RegExp, 'Breed may contain only letters, apostrophe, dash and spaces.')
+    // .required()
     .min(2)
-    .max(16)
-
-    .required(),
+    .max(16),
   photo: yup
     .mixed()
-    .required('Image is Required!')
+    // .required('Image is Required!')
     .test(
       'fileType',
       'Unsupported file type',
@@ -71,31 +68,22 @@ let schema = yup.object().shape({
       'Max allowed size is 10KB',
       value => value === null || (value && value.size >= MIN_FILE_SIZE)
     ),
-  comments: yup
-    .string()
-    .trim()
-    .min(8)
-    .max(120)
-    .required('Comment should be 8 to 120 characters long'),
+  comments: yup.string('Comment should be 8 to 120 characters long').trim().min(8).max(120),
+  // .required('Comment should be 8 to 120 characters long'),
 });
 
 const ModalPetUpdate = ({ setShowModalPet, pet }) => {
+  console.log(pet);
   const { _id, name, birthday, breed, photo, comments } = pet;
   const [showModal, setShowModal] = useState(false);
   const [fileInput, setFileInput] = useState('');
 
-  const [formData, setFormData] = useState({
-    name: name,
-    birthday: birthday,
-    breed: breed,
-    photo: photo,
-    comments: comments,
-  });
+  const [formData, setFormData] = useState(pet);
 
   const dispatch = useDispatch();
   // console.log(pet);
 
-  const onClose = () => {
+  const onClosePet = () => {
     setShowModalPet(false);
   };
 
@@ -108,18 +96,13 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
   const handleFormSubmit = async newData => {
     console.log(newData);
     setFormData(values => ({ ...values, ...newData }));
+    console.log(formData);
 
-    try {
-      const dataToSend = new FormData();
-      for (const [key, value] of Object.entries(newData)) {
-        dataToSend.append(key, value);
-      }
-      await fetchPet(dataToSend);
-      onClose();
-    } catch (error) {
-      console.log(error);
-    }
+    fetchPet(formData);
+    onClosePet();
   };
+  // =================================================================
+
   const handleInputChange = (e, setFieldValue) => {
     const inputName = e.target.name;
     let value = e.target.value;
@@ -140,7 +123,17 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
 
   return (
     <>
-      <Formik initialValues={formData} validationSchema={schema} onSubmit={handleFormSubmit}>
+      <Formik
+        initialValues={{
+          name: name,
+          birthday: birthday,
+          breed: breed,
+          photo: photo,
+          comments: comments,
+        }}
+        validationSchema={schema}
+        onSubmit={handleFormSubmit}
+      >
         {({ setFieldValue }) => (
           <Form encType="multipart/form-data">
             <PetItemPhotoWrapp>
@@ -157,23 +150,27 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
                 accept=".png, .jpeg, .jpg, .webp"
                 onChange={e => selectFile(e, setFieldValue)}
               />
+              <ErrorMessage name="photo">{msg => <p>{msg}</p>}</ErrorMessage>
             </PetItemPhotoWrapp>
 
             <PetInfoWrapp>
               <PetInfo>
                 <li>
                   <label htmlFor="name">Name:</label>
-                  <Field type="text" name="name" required id="name" />
+                  <Field type="text" name="name" id="name" />
+                  <ErrorMessage name="name">{msg => <p>{msg}</p>}</ErrorMessage>
                 </li>
 
                 <li>
                   <label htmlFor="birthday">Date of birth:</label>
-                  <Field name="birthday" required id="birthday" />
+                  <Field name="birthday" id="birthday" />
+                  <ErrorMessage name="birthday">{msg => <p>{msg}</p>}</ErrorMessage>
                 </li>
 
                 <li>
                   <label htmlFor="breed">Breed:</label>
-                  <Field type="text" name="breed" required id="breed" />
+                  <Field type="text" name="breed" id="breed" />
+                  <ErrorMessage name="breed">{msg => <p>{msg}</p>}</ErrorMessage>
                 </li>
 
                 <li>
@@ -181,16 +178,16 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
                   <Field
                     component="textarea"
                     name="comments"
-                    required
                     id="comments"
                     onChange={e => handleInputChange(e, setFieldValue)}
                   />
+                  <ErrorMessage name="comments">{msg => <p>{msg}</p>}</ErrorMessage>
                 </li>
               </PetInfo>
 
               <button type="submit">Update pet</button>
 
-              <PetDeleteButton type="button" onClick={e => onClose(e)}>
+              <PetDeleteButton type="button" onClick={e => onClosePet(e)}>
                 <PetDeleteIcon />
               </PetDeleteButton>
             </PetInfoWrapp>

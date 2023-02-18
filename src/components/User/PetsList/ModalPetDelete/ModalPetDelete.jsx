@@ -16,8 +16,6 @@ const {
 const ModalPetDelete = ({ setShowModal, petId }) => {
   const dispatch = useDispatch();
 
-  console.log(petId);
-
   const onClose = () => {
     setShowModal(false);
   };
