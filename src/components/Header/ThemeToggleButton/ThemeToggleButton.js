@@ -9,7 +9,6 @@ const { ToggleButton } = styles;
 const ThemeToggleButton = () => {
   const dispatch = useDispatch();
   const theme = useSelector(selectTheme);
-
   const [isChecked, setIsChecked] = useState(theme === 'light' ? true : false);
 
   return (
