@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from 'redux/notices/operations';
 import styles from './AddNoticeModal.styled';
@@ -67,6 +67,12 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState(initialValues);
   const [isAddImg, setIsAddImg] = useState(initialValues.imageUrl);
+
+  useEffect(() => {
+    setFormData(() => {
+      return { ...initialValues, category: selectedCategoryValue };
+    });
+  }, [selectedCategoryValue]);
 
   const onRadioCategoryChange = event => {
     const { value } = event.target;

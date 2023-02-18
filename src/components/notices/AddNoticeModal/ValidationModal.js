@@ -62,7 +62,7 @@ const sellPetSchema = Yup.object().shape({
     .min(8, 'Comments should be from 8 to 120 symbols')
     .max(120, 'Comments should be from 8 to 120 symbols'),
   imageUrl: Yup.mixed().required('Image is required (jpg, jpeg, png)'),
-  category: Yup.string().required(),
+  category: Yup.string(),
 });
 
 const schema = Yup.object().shape({
@@ -117,7 +117,7 @@ const schema = Yup.object().shape({
     .min(8, 'Comments should be from 8 to 120 symbols')
     .max(120, 'Comments should be from 8 to 120 symbols'),
   imageUrl: Yup.mixed().required('Image is required (jpg, jpeg, png)'),
-  category: Yup.string().required(),
+  category: Yup.string(),
 });
 
 const validationSchemas = { schema, sellPetSchema };
