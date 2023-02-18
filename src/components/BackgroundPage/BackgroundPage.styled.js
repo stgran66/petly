@@ -18,7 +18,6 @@ const Wrapper = styled('div')`
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: -1;
     background-image: url(${bgImage320});
     background-size: 200%;
     background-repeat: no-repeat;
