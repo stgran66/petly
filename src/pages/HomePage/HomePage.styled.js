@@ -5,6 +5,7 @@ import happyClient from '../../images/home_page/happy_client.png';
 
 const Wrapper = styled('div')`
   margin-top: 60px;
+  height: calc(100vh - 108px);
   &:before {
     content: '';
     position: absolute;
@@ -12,7 +13,7 @@ const Wrapper = styled('div')`
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: -1;
+    z-index: 1;
 
     background-image: url(${happyClient}), url(${bgImage320});
     background-size: 95%, 200%;
@@ -46,10 +47,15 @@ const Wrapper = styled('div')`
     }
   }
   @media screen and (orientation: landscape) {
+    height: calc(100vh - 88px);
+  }
+  
+  @media screen and (orientation: landscape) {
     margin-top: 40px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-top: 92px;
+    height: calc(100vh - 149px);
   }
 `;
 
@@ -60,7 +66,7 @@ const Title = styled('h1')`
   font-size: ${({ theme }) => theme.fontSizes.text.xxl};
   line-height: ${({ theme }) => theme.lineHeights.m};
   color: ${({ theme }) => theme.colors.text};
-  text-shadow: #fff 5px 5px 10px;
+  text-shadow: #fff 4px 2px 5px;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     max-width: 90%;
     font-size: 68px;

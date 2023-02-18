@@ -16,10 +16,7 @@ const validationSchema = [
       )
       .required(`${email.requiredErrorMsg}`),
     [password.name]: Yup.string()
-      .matches(
-        /^[^ ]{7,32}$/,
-        'password should be from 7 to 32 characters long, without spaces'
-      )
+      .matches(/^[^ ]{7,32}$/, 'password should be from 7 to 32 characters long, without spaces')
       .required(`${password.requiredErrorMsg}`),
     [confirmPassword.name]: Yup.string()
       .min(7)
@@ -32,7 +29,7 @@ const validationSchema = [
       .min(2)
       .max(16)
       .matches(
-        /^[^ ][a-zA-zа-яіїєА-ЯІЇЄ ]+$/,
+        /^[a-zA-zа-яіїєА-ЯІЇЄ]+(-| |')?[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']*$/,
         `name can contain only Latin and Cyrillic characters and can't start from spaces`
       )
       .required(`${name.requiredErrorMsg}`),
@@ -40,7 +37,7 @@ const validationSchema = [
       .min(3)
       .max(19)
       .matches(
-        /^[^ -,][a-zA-zа-яіїєА-ЯІЇЄ, -]+[^ -]$/,
+        /^[a-zA-zа-яіїєА-ЯІЇЄ]+(-| |')?[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']*$/,
         `city can contain only Latin and Cyrillic characters, 3 - 19 symbols and can't start or end with spaces and hyphen`
       ),
     [phone.name]: Yup.string()

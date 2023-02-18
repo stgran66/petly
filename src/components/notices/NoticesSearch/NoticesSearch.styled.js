@@ -52,11 +52,11 @@ const SearchInput = styled(InputBase)`
   &::placeholder {
     padding: 8px 0;
     font-weight: ${({ theme }) => theme.fontWeights.medium};
-    color: #535353;
     font-size: inherit;
     font-family: ${({ theme }) => theme.fonts[0]};
     line-height: ${({ theme }) => theme.lineHeights.m};
     letter-spacing: 0.04em;
+    color: red;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: ${({ theme }) => theme.fontSizes.text.xl};
@@ -65,6 +65,7 @@ const SearchInput = styled(InputBase)`
     border-radius: 40px;
     &::placeholder {
       font-size: ${({ theme }) => theme.fontSizes.text.xl};
+      color: red;
     }
   }
 `;

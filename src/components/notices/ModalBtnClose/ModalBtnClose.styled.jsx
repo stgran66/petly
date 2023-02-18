@@ -13,8 +13,10 @@ const BtnClose = styled('button')`
   padding: 9px;
 
   background-color: ${props => props.theme.colors.cardsBackground};
+  color: ${props => props.theme.colors.text};
   backdrop-filter: blur(2px);
   border-radius: 50%;
+
   border: none;
   cursor: pointer;
 

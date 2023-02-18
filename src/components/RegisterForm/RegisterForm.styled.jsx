@@ -14,12 +14,12 @@ const RegisterForm = styled(Form)`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    background: ${({ theme }) => theme.colors.white};
 
     max-width: 608px;
     max-height: 100%;
     padding: 30px 80px;
 
-    background: #ffffff;
     box-shadow: ${({ theme }) => theme.shadows.cardsShadowUser};
     border-radius: 40px;
   }
@@ -52,7 +52,7 @@ const Title = styled('h1')`
 const Buttons = styled(Button)(({ theme }) => ({
   width: '100%',
   padding: '8px 0',
-  color: theme.colors.black,
+  color: theme.colors.text,
   background: theme.colors.white,
   borderRadius: '40px',
   border: `2px solid ${theme.colors.accent}`,
@@ -65,7 +65,7 @@ const Buttons = styled(Button)(({ theme }) => ({
 
   ':hover, :focus ': {
     backgroundColor: theme.colors.accent,
-    color: theme.colors.white,
+    color: theme.colors.whiteText,
   },
 }));
 

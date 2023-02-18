@@ -9,6 +9,20 @@ import Loader from 'components/Loader';
 import operations from 'redux/auth/operations';
 import select from 'redux/auth/selectors';
 
+import themes from '../theme';
+import { styled } from '@mui/system';
+import { ThemeProvider } from '@mui/system';
+import selectTheme from 'redux/theme/selectors';
+
+const { lightTheme, darkTheme } = themes;
+
+const StyledBody = styled('div')`
+  min-height: 100vh;
+  height: 100%;
+  background-color: ${props => props.theme.colors.backgroundBody};
+  transition: background-color linear 0.4s;
+`;
+
 const { refreshUser } = operations;
 const { selectIsRefreshing } = select;
 
@@ -23,45 +37,56 @@ const FriendsPage = lazy(() => import('../pages/FriendsPage'));
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const selectedTheme = useSelector(selectTheme);
+  const theme = selectedTheme === 'light' ? lightTheme : darkTheme;
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <Loader />
-  ) : (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path="news" element={<NewsPage />} />
-        <Route path="notices" element={<NoticesPage />}>
-          <Route index element={<Navigate to="sell" replace={true} />} />
-          <Route path=":category" element={<NoticesCategoryList />} />
-          <Route
-            path="favorite"
-            element={<PrivateRoute component={<NoticesCategoryList />} redirectTo="/login" />}
-          />
-          <Route
-            path="own"
-            element={<PrivateRoute component={<NoticesCategoryList />} redirectTo="/login" />}
-          />
-        </Route>
-        <Route path="friends" element={<FriendsPage />} />
-        <Route
-          path="register"
-          element={<RestrictedRoute component={<RegisterPage />} redirectTo="/user" />}
-        />
-        <Route
-          path="login"
-          element={<RestrictedRoute component={<LoginPage />} redirectTo="/user" />}
-        />
-        <Route
-          path="user"
-          element={<PrivateRoute component={<UserPage />} redirectTo="/login" />}
-        />
-        <Route path="news" element={<PrivateRoute component={<NewsPage />} redirectTo="/news" />} />
-      </Route>
-    </Routes>
+  return (
+    <ThemeProvider theme={theme}>
+      <StyledBody>
+        {isRefreshing ? (
+          <Loader />
+        ) : (
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<HomePage />} />
+              <Route path="news" element={<NewsPage />} />
+              <Route path="notices" element={<NoticesPage />}>
+                <Route index element={<Navigate to="sell" replace={true} />} />
+                <Route path=":category" element={<NoticesCategoryList />} />
+                <Route
+                  path="favorite"
+                  element={<PrivateRoute component={<NoticesCategoryList />} redirectTo="/login" />}
+                />
+                <Route
+                  path="own"
+                  element={<PrivateRoute component={<NoticesCategoryList />} redirectTo="/login" />}
+                />
+              </Route>
+              <Route path="friends" element={<FriendsPage />} />
+              <Route
+                path="register"
+                element={<RestrictedRoute component={<RegisterPage />} redirectTo="/user" />}
+              />
+              <Route
+                path="login"
+                element={<RestrictedRoute component={<LoginPage />} redirectTo="/user" />}
+              />
+              <Route
+                path="user"
+                element={<PrivateRoute component={<UserPage />} redirectTo="/login" />}
+              />
+              <Route
+                path="news"
+                element={<PrivateRoute component={<NewsPage />} redirectTo="/news" />}
+              />
+            </Route>
+          </Routes>
+        )}
+      </StyledBody>
+    </ThemeProvider>
   );
 };

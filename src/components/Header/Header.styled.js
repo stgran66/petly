@@ -3,6 +3,7 @@ import { styled } from '@mui/system';
 const HeaderEl = styled('header')`
   position: relative;
   padding-top: 16px;
+  z-index: 5;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     display: flex;

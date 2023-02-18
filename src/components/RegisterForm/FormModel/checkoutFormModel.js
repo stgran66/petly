@@ -13,7 +13,7 @@ const checkoutFormModel = {
     },
     confirmPassword: {
       name: 'confirmPassword',
-      label: 'ConfirmPassword',
+      label: 'Confirm Password',
       requiredErrorMsg: 'ConfirmPassword is required',
     },
     name: {

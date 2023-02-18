@@ -64,6 +64,7 @@ const FotoLabel = styled('label')`
   font-weight: 400;
   font-size: 12px;
   line-height: 22px;
+  color: ${props => props.theme.colors.text};
 
   transition: ${props => props.theme.transitions.normal};
 
@@ -117,7 +118,7 @@ const UserDataItemLabel = styled('label')`
   font-size: ${props => props.theme.fontSizes.text.xs};
   line-height: ${props => props.theme.lineHeights.xs};
   letter-spacing: 0.04em;
-
+  color: ${props => props.theme.colors.text};
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-weight: ${props => props.theme.fontWeights.medium};
     font-size: ${props => props.theme.fontSizes.text.l};
@@ -151,7 +152,7 @@ const UserDataItemInput = styled('input')`
   }
 
   &:disabled {
-    color: black;
+    color: ${props => props.theme.colors.black};
   }
 
   /* &[type='disabled'],

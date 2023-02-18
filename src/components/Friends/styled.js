@@ -7,7 +7,7 @@ const StyledList = styled('ul')`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 100px;
+  padding-bottom: 100px;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     gap: 32px;
@@ -44,6 +44,7 @@ const StyledContainer = styled('div')`
     line-height: ${props => props.theme.lineHeights.m};
     margin-top: 42px;
     margin-bottom: 28px;
+    color: ${props => props.theme.colors.text};
 
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
       font-size: ${props => props.theme.fontSizes.headers.l};
@@ -188,13 +189,15 @@ const StyledFriend = styled('div')`
 
     button {
       padding: 0;
+      color: ${props => props.theme.colors.text};
     }
   }
 
   img {
     width: 110px;
     height: 78px;
-
+    border-radius: 20px;
+    filter: ${props => props.theme.filters.image};
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
       width: 120px;
       height: 85px;

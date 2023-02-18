@@ -7,10 +7,10 @@ const Link = styled(NavLink)`
   border-radius: 40px;
   color: ${({ theme }) => theme.colors.text};
 
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: 'transparent';
   &.active {
     background-color: ${({ theme }) => theme.colors.accent};
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.whiteText};
   }
 `;
 
@@ -30,7 +30,7 @@ const ButtonEl = styled(Button)(({ theme }) => ({
   ':hover': {
     border: `2px solid ${theme.colors.accent}`,
     backgroundColor: theme.colors.accent,
-    color: theme.colors.white,
+    color: theme.colors.whiteText,
   },
 
   '@media only screen and (min-width: 768px)': {

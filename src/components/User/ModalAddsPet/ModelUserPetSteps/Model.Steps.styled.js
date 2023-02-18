@@ -107,6 +107,8 @@ const LabelWrapp = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  color: ${props => props.theme.colors.text};
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     gap: 12px;
   }
@@ -135,6 +137,7 @@ const InputValue = styled(Field)`
   border-radius: 40px;
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: ${props => props.theme.colors.commonBackground};
+  color: ${props => props.theme.colors.text};
 
   &:focus {
     outline: 2px solid rgba(245, 146, 86, 0.5);
@@ -160,6 +163,7 @@ const FormText = styled('p')`
   font-size: ${props => props.theme.fontSizes.text.m};
   line-height: ${props => props.theme.lineHeights.m};
   letter-spacing: -0.01em;
+  color: ${props => props.theme.colors.text};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: ${props => props.theme.fontSizes.text.xl};
@@ -177,6 +181,8 @@ const CommentWrapp = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  color: ${props => props.theme.colors.text};
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     gap: 12px;
   }
@@ -292,6 +298,7 @@ const ButtonWhite = styled('button')`
   border: 2px solid ${props => props.theme.colors.accent};
   background-color: transparent;
   cursor: pointer;
+  color: ${props => props.theme.colors.text};
 
   @media screen and (max-width: ${props => props.theme.breakpoints.mobile}) {
     width: 100%;
