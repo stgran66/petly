@@ -6,11 +6,10 @@ const useDefaultCategoryValue = () => {
   const { category } = useParams();
 
   useEffect(() => {
-    if (!category) {
-      setSelectedCategory('sell');
-      return;
+    if (category) {
+      return setSelectedCategory(category);
     }
-    setSelectedCategory(category);
+    setSelectedCategory('sell');
   }, [category]);
 
   return [selectedCategory, setSelectedCategory];

@@ -2,6 +2,15 @@ import { TextField } from '@mui/material';
 import { styled } from '@mui/system';
 
 const Input = styled(TextField)(({ theme }) => ({
+  // root: {
+  //   '& .MuiInputBase-root': {
+  //     color: 'white',
+  //   },
+  // },
+//   '&textfield':{
+//     // background-color: #000;
+//     color: "green",
+// },
   '& label.Mui-focused': {
     color: '#5e5b5d',
     border: `1px solid ${theme.colors.white}`,

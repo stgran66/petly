@@ -1,28 +1,22 @@
 import React, { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { ThemeProvider } from '@mui/system';
+
 import Layout from './Layout';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
 import NoticesCategoryList from './notices/NoticesCategoryList';
 import Loader from 'components/Loader';
+import StyledApp from './App.styled';
 import operations from 'redux/auth/operations';
 import select from 'redux/auth/selectors';
-
-import themes from '../theme';
-import { styled } from '@mui/system';
-import { ThemeProvider } from '@mui/system';
 import selectTheme from 'redux/theme/selectors';
 import NotFoundPages from './NotFoundPages';
 
-const { lightTheme, darkTheme } = themes;
+import themes from '../theme';
 
-const StyledBody = styled('div')`
-  min-height: 100vh;
-  height: 100%;
-  background-color: ${props => props.theme.colors.backgroundBody};
-  transition: background-color linear 0.4s;
-`;
+const { lightTheme, darkTheme } = themes;
 
 const { refreshUser } = operations;
 const { selectIsRefreshing } = select;
@@ -47,7 +41,7 @@ export const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <StyledBody>
+      <StyledApp>
         {isRefreshing ? (
           <Loader />
         ) : (
@@ -88,7 +82,7 @@ export const App = () => {
             <Route path="*" element={<NotFoundPages />} />
           </Routes>
         )}
-      </StyledBody>
+      </StyledApp>
     </ThemeProvider>
   );
 };
