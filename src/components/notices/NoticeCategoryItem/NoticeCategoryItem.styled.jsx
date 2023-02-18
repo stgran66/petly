@@ -97,6 +97,7 @@ const ItemTitle = styled('h2')`
   line-height: ${props => props.theme.lineHeights.s};
   letter-spacing: -0.01em;
   flex-grow: 1;
+  color: ${props => props.theme.colors.text}
 `;
 
 const AboutList = styled('div')`
@@ -122,6 +123,7 @@ const Content = styled('span')`
   font-size: ${props => props.theme.fontSizes.text.m};
   line-height: ${props => props.theme.lineHeights.m};
   word-break: break-word;
+  color: ${props => props.theme.colors.text};
 `;
 
 const LearnMore = styled('button')`
@@ -146,6 +148,7 @@ const LearnMore = styled('button')`
     border-color: #ff6101;
     color: #ff6101;
   }
+  background: ${props => props.theme.colors.white}
 `;
 
 const BtnDelete = styled('button')`

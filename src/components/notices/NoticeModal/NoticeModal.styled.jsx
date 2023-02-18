@@ -85,6 +85,7 @@ const Title = styled('h2')`
     font-size: 28px;
     line-height: 1.35;
   }
+  color: ${props => props.theme.colors.text};
 `;
 
 const List = styled('ul')`
@@ -106,7 +107,7 @@ const ItemInfo = styled('p')`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.35;
-  color: ${props => props.theme.colors.Text};
+  color: ${props => props.theme.colors.text};
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     min-width: 120px;
 
@@ -187,8 +188,9 @@ const ChangeFavoriteStatusBtn = styled('button')`
   border-radius: 40px;
   cursor: pointer;
   transition: border-color ${props => props.theme.transitions.long};
-
-  & > svg {
+  background: ${props => props.theme.colors.white};
+  
+   & > svg {
     width: 16px;
     height: 16px;
     margin-left: 8px;

@@ -44,6 +44,7 @@ const StyledContainer = styled('div')`
     line-height: ${props => props.theme.lineHeights.m};
     margin-top: 42px;
     margin-bottom: 28px;
+    color: ${props => props.theme.colors.text};
 
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
       font-size: ${props => props.theme.fontSizes.headers.l};

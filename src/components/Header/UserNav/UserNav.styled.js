@@ -6,10 +6,10 @@ const NavUser = styled('div')`
   @media screen and (min-width: 768px) {
     display: ${({ hiddenBlock }) => (hiddenBlock ? 'none' : 'block')};
     margin-left: auto;
-    margin-right: 60px;
+    margin-right: 90px;
   }
   @media screen and (min-width: 1280px) {
-    margin-right: 0;
+    margin-right: 60px;
   }
 `;
 

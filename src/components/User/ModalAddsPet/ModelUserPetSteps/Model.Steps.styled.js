@@ -107,6 +107,8 @@ const LabelWrapp = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  color: ${props => props.theme.colors.text};
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     gap: 12px;
   }
@@ -160,6 +162,7 @@ const FormText = styled('p')`
   font-size: ${props => props.theme.fontSizes.text.m};
   line-height: ${props => props.theme.lineHeights.m};
   letter-spacing: -0.01em;
+  color: ${props => props.theme.colors.text};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: ${props => props.theme.fontSizes.text.xl};
@@ -177,6 +180,8 @@ const CommentWrapp = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  color: ${props => props.theme.colors.text};
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     gap: 12px;
   }

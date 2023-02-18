@@ -82,11 +82,11 @@ const darkTheme = createTheme({
   },
   colors: {
     backgroundBody: 'rgba(0, 0, 0, 0.87)',
-    accent: '#ff6d00',
+    accent: '#f57c00',
     pageBackground: '#7F7F7F',
     commonBackground: '#fff',
     cardsBackground: '#D9D9D9',
-    text: '#757575',
+    text: '#616161',
     newsText: '#e0e0e0',
     placeholderText: 'rgba(17, 17, 17, 0.6)',
     links: '#3091EB',
@@ -95,7 +95,6 @@ const darkTheme = createTheme({
     navLinks: '#181C27',
     focusTextFields: '#FF6101',
     errorColor: '#db3327',
-    
   },
   gradients: {
     backgroundGradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',

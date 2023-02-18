@@ -31,6 +31,7 @@ const ModalTitle = styled('h2')`
   font-weight: ${props => props.theme.fontWeights.medium};
   font-size: ${props => props.theme.fontSizes.headers.xs};
   line-height: ${props => props.theme.lineHeights.m};
+  color: ${props => props.theme.colors.text};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: ${props => props.theme.fontSizes.headers.m};
