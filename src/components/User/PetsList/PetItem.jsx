@@ -82,7 +82,7 @@ let schema = yup.object().shape({
 const PetItem = ({ pet }) => {
   const { _id, name, birthday, breed, photo, comments } = pet;
   const [showModal, setShowModal] = useState(false);
-  const [fileInput, setFileInput] = useState(photo);
+  const [fileInput, setFileInput] = useState('');
 
   const [formData, setFormData] = useState({
     name: name,
@@ -153,8 +153,13 @@ const PetItem = ({ pet }) => {
         {({ setFieldValue }) => (
           <Form encType="multipart/form-data">
             <PetItemPhotoWrapp>
-              {fileInput && <PetInfoFoto src={fileInput} alt="pet foto" />}
-              {/* <PetInfoFoto src={URL.createObjectURL(fileInput)} alt="pet foto" /> */}
+              {fileInput ? (
+                <PetInfoFoto src={URL.createObjectURL(fileInput)} alt={fileInput.name} />
+              ) : (
+                <PetInfoFoto src={photo} alt="pet foto" />
+              )}
+              {/* {fileInput && <PetInfoFoto src={fileInput} alt="pet foto" />} */}
+              {/* {<PetInfoFoto src={URL.createObjectURL(fileInput)} alt="pet foto" />} */}
               <input
                 type="file"
                 name="photo"
