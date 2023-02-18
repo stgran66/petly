@@ -1,5 +1,6 @@
 import { styled } from '@mui/system';
 import { Delete20Filled } from '@fluentui/react-icons';
+import { RiPencilFill } from 'react-icons/ri';
 
 const PetsListWpapp = styled('ul')`
   display: flex;
@@ -77,6 +78,7 @@ const PetInfo = styled('ul')`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  overflow: hidden;
 
   font-weight: ${props => props.theme.fontWeights.normal};
   font-size: ${props => props.theme.fontSizes.text.s};
@@ -85,6 +87,11 @@ const PetInfo = styled('ul')`
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: ${props => props.theme.fontSizes.text.m};
     line-height: ${props => props.theme.lineHeights.m};
+  }
+
+  li {
+    white-space: normal;
+    word-wrap: break-word;
   }
 `;
 
@@ -129,18 +136,41 @@ const PetDeleteIcon = styled(Delete20Filled)`
 
 const PetUpdateButton = styled('button')`
   position: absolute;
-  bottom: -5px;
+  bottom: -40px;
   right: 0;
   width: 40px;
   height: 40px;
   border: 0;
   border-radius: 50%;
   cursor: pointer;
-  /* background-color: ${props => props.theme.colors.commonBackground}; */
-  background-color: red;
+
+  background-color: transparent;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     top: 0;
+    right: 50px;
+    background-color: ${props => props.theme.colors.commonBackground};
+  }
+`;
+
+const PetUpdateButtonIcon = styled(RiPencilFill)`
+  width: 20px;
+  height: 20px;
+
+  color: ${props => props.theme.colors.placeholderText};
+  scale: 1;
+
+  transition: ${props => props.theme.transitions.normal};
+
+  &:hover,
+  &:focus {
+    scale: 1.2;
+    color: ${props => props.theme.colors.accent};
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    width: 20px;
+    height: 20px;
   }
 `;
 
@@ -155,6 +185,7 @@ const styles = {
   PetDeleteButton,
   PetDeleteIcon,
   PetUpdateButton,
+  PetUpdateButtonIcon,
 };
 
 export default styles;

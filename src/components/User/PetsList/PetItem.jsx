@@ -13,6 +13,7 @@ const {
   PetDeleteButton,
   PetDeleteIcon,
   PetUpdateButton,
+  PetUpdateButtonIcon,
 } = styles;
 
 const PetItem = ({ pet }) => {
@@ -41,13 +42,14 @@ const PetItem = ({ pet }) => {
             <PetInfoName>Comments:</PetInfoName> {comments}
           </li>
         </PetInfo>
+
+        <PetUpdateButton type="button" onClick={onClose}>
+          <PetUpdateButtonIcon />
+        </PetUpdateButton>
+
         <PetDeleteButton type="button" onClick={onClose}>
           <PetDeleteIcon />
         </PetDeleteButton>
-
-        <PetUpdateButton type="button" onClick={onClose}>
-          <PetDeleteIcon />
-        </PetUpdateButton>
       </PetInfoWrapp>
 
       {showModal && (
