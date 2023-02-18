@@ -13,6 +13,7 @@ import themes from '../theme';
 import { styled } from '@mui/system';
 import { ThemeProvider } from '@mui/system';
 import selectTheme from 'redux/theme/selectors';
+import NotFoundPages from './NotFoundPages';
 
 const { lightTheme, darkTheme } = themes;
 
@@ -84,6 +85,7 @@ export const App = () => {
                 element={<PrivateRoute component={<NewsPage />} redirectTo="/news" />}
               />
             </Route>
+            <Route path="*" element={<NotFoundPages />} />
           </Routes>
         )}
       </StyledBody>
