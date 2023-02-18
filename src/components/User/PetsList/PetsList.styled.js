@@ -33,6 +33,26 @@ const PetItemWrapp = styled('li')`
   }
 `;
 
+// ==========================================
+const PetItemPhotoWrapp = styled('div')`
+  position: relative;
+  input {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 208px;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    margin: auto;
+    &::-webkit-file-upload-button {
+      cursor: pointer;
+    }
+  }
+`;
+
 const PetInfoFoto = styled('img')`
   display: block;
   width: 240px;
@@ -114,7 +134,7 @@ const styles = {
   PetItemWrapp,
   PetInfo,
   PetInfoName,
-
+  PetItemPhotoWrapp,
   PetInfoFoto,
   PetInfoWrapp,
   PetDeleteButton,
