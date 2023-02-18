@@ -35,6 +35,7 @@ const PetItemWrapp = styled('li')`
 
 // ==========================================
 const PetItemPhotoWrapp = styled('div')`
+  position: relative;
   input {
     position: absolute;
     left: 0;

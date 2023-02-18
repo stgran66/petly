@@ -80,7 +80,7 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
   return (
     <Formik initialValues={data} validationSchema={schema} onSubmit={handleFormSubmit}>
       {({ setFieldValue }) => (
-        <FormWrapp autoComplete="on" enctype="multipart/form-data">
+        <FormWrapp autoComplete="on" encType="multipart/form-data">
           <FormInputWrappSecond>
             <FormText>Add photo and some comments</FormText>
             <FotoWrap>

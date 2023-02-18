@@ -106,7 +106,8 @@ const PetItem = ({ pet }) => {
   // ----------------------------------------------------
 
   const handleFormSubmit = async newData => {
-    setFormData(...newData);
+    console.log(newData);
+    setFormData(values => ({ ...values, ...newData }));
 
     try {
       const dataToSend = new FormData();
@@ -119,9 +120,16 @@ const PetItem = ({ pet }) => {
       console.log(error);
     }
   };
+  const handleInputChange = (e, setFieldValue) => {
+    const inputName = e.target.name;
+    let value = e.target.value;
+    setFieldValue(inputName, value);
+    setFormData(values => ({ ...values, [inputName]: value }));
+  };
 
   const selectFile = (e, setFieldValue) => {
     const fileImg = e.target.files[0];
+    console.log(fileImg);
 
     if (fileImg) {
       setFileInput(fileImg);
@@ -143,16 +151,10 @@ const PetItem = ({ pet }) => {
         // }}
       >
         {({ setFieldValue }) => (
-          <Form enctype="multipart/form-data">
+          <Form encType="multipart/form-data">
             <PetItemPhotoWrapp>
-              {fileInput ? (
-                <>
-                  <PetInfoFoto src={URL.createObjectURL(fileInput)} alt="pet foto" />
-                </>
-              ) : (
-                <button type="button">{/* <PetFotoIcon /> */}</button>
-              )}
-
+              {fileInput && <PetInfoFoto src={fileInput} alt="pet foto" />}
+              {/* <PetInfoFoto src={URL.createObjectURL(fileInput)} alt="pet foto" /> */}
               <input
                 type="file"
                 name="photo"
@@ -165,28 +167,27 @@ const PetItem = ({ pet }) => {
               <PetInfo>
                 <li>
                   <label htmlFor="name">Name:</label>
-                  <Field type="text" name="name" defaultValue={name} required id="name" />
+                  <Field type="text" name="name" required id="name" />
                 </li>
 
                 <li>
                   <label htmlFor="birthday">Date of birth:</label>
-                  <Field name="birthday" defaultValue={birthday} required id="birthday" />
+                  <Field name="birthday" required id="birthday" />
                 </li>
 
                 <li>
                   <label htmlFor="breed">Breed:</label>
-                  <Field type="text" name="breed" defaultValue={breed} required id="breed" />
+                  <Field type="text" name="breed" required id="breed" />
                 </li>
 
                 <li>
                   <label htmlFor="comments">Comments:</label>
-                  <Field
+                  <input
                     component="textarea"
                     name="comments"
-                    defaultValue={comments}
                     required
                     id="comments"
-                    // onChange={e => handleInputChange(e, setFieldValue)}
+                    onChange={e => handleInputChange(e, setFieldValue)}
                   />
                 </li>
               </PetInfo>
@@ -207,36 +208,37 @@ const PetItem = ({ pet }) => {
         </ModalUser>
       )}
     </>
-    // =======================================================================
-    // <>
-    //   <PetInfoFoto src={photo} alt="pet foto" />
-    //   <PetInfoWrapp>
-    //     <PetInfo>
-    //       <li>
-    //         <PetInfoName>Name: </PetInfoName> {name}
-    //       </li>
-    //       <li>
-    //         <PetInfoName>Date of birth: </PetInfoName> {birthday}
-    //       </li>
-    //       <li>
-    //         <PetInfoName>Breed: </PetInfoName> {breed}
-    //       </li>
-    //       <li>
-    //         <PetInfoName>Comments:</PetInfoName> {comments}
-    //       </li>
-    //     </PetInfo>
-    //     <PetDeleteButton type="button" onClick={onClose}>
-    //       <PetDeleteIcon />
-    //     </PetDeleteButton>
-    //   </PetInfoWrapp>
-
-    //   {showModal && (
-    //     <ModalUser setShowModal={setShowModal}>
-    //       <ModalPetDelete setShowModal={setShowModal} petId={_id} />
-    //     </ModalUser>
-    //   )}
-    // </>
   );
 };
 
 export default PetItem;
+
+// =======================================================================
+// <>
+//   <PetInfoFoto src={photo} alt="pet foto" />
+//   <PetInfoWrapp>
+//     <PetInfo>
+//       <li>
+//         <PetInfoName>Name: </PetInfoName> {name}
+//       </li>
+//       <li>
+//         <PetInfoName>Date of birth: </PetInfoName> {birthday}
+//       </li>
+//       <li>
+//         <PetInfoName>Breed: </PetInfoName> {breed}
+//       </li>
+//       <li>
+//         <PetInfoName>Comments:</PetInfoName> {comments}
+//       </li>
+//     </PetInfo>
+//     <PetDeleteButton type="button" onClick={onClose}>
+//       <PetDeleteIcon />
+//     </PetDeleteButton>
+//   </PetInfoWrapp>
+
+//   {showModal && (
+//     <ModalUser setShowModal={setShowModal}>
+//       <ModalPetDelete setShowModal={setShowModal} petId={_id} />
+//     </ModalUser>
+//   )}
+// </>
