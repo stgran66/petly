@@ -90,6 +90,7 @@ const ModalInfo = styled('p')`
   text-align: center;
   letter-spacing: -0.01em;
   margin-bottom: 20px;
+  color: ${props => props.theme.colors.text};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: ${({ theme }) => theme.fontSizes.text.xl};
@@ -161,7 +162,7 @@ const ModalFieldLabel = styled('label')`
   cursor: pointer;
   font-family: ${({ theme }) => theme.fonts[0]};
   font-size: ${({ theme }) => theme.fontSizes.text.l};
-  color: ${({ theme }) => theme.colors.text.black};
+  color: ${({ theme }) => theme.colors.text};
   line-height: ${({ theme }) => theme.lineHeights.l};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   & span:after {

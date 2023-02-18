@@ -108,6 +108,7 @@ const UserDataItemForm = styled('form')`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
 `;
 
 const UserDataItemLabel = styled('label')`
@@ -129,6 +130,7 @@ const InputWrapp = styled('div')`
   margin-left: auto;
   display: flex;
   align-items: center;
+  
 `;
 
 const UserDataItemInput = styled('input')`
@@ -138,6 +140,7 @@ const UserDataItemInput = styled('input')`
   border-radius: 40px;
   border: 0;
   background-color: transparent;
+
 
   font-family: ${props => props.theme.fonts[0]};
   font-weight: ${props => props.theme.fontWeights.normal};

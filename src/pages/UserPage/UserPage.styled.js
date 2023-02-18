@@ -41,6 +41,7 @@ const Title = styled('h2')`
   font-size: ${props => props.theme.fontSizes.text.xl};
   line-height: 1.35;
   letter-spacing: 0.04em;
+  color: ${props => props.theme.colors.text};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     margin-bottom: 40px;

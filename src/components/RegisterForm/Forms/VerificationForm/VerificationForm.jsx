@@ -1,41 +1,52 @@
 import React from 'react';
 import { useFormikContext } from 'formik';
-import { Typography, Grid } from '@mui/material';
+import {Grid } from '@mui/material';
+import styles from './VerificationForm.styled';
+
+const { Container, ItemList } = styles;
 
 const VerificationForm = props => {
   const { values: formValues } = useFormikContext();
   const { email, name, city, phone } = formValues;
   return (
     <React.Fragment>
-      <Grid container spacing={2}>
+      <Container container spacing={3}>
         <Grid item container direction="column" xs={12}>
-          <Typography variant="h6" gutterBottom>
-            User details:
-          </Typography>
+          <ItemList variant="h5" gutterBottom>
+            Your verification details:
+          </ItemList>
           <Grid container>
             <React.Fragment>
               <Grid item xs={12}>
-                <Typography gutterBottom>Email:{` ${email}`}</Typography>
+                <ItemList gutterBottom>
+                  <b>Email:</b>
+                  {` ${email}`}
+                </ItemList>
               </Grid>
               <Grid item xs={12}>
-                <Typography gutterBottom>Name: {` ${name} `}</Typography>
+                <ItemList gutterBottom>
+                  <b>Name:</b> {` ${name} `}
+                </ItemList>
               </Grid>
             </React.Fragment>
             <React.Fragment>
               <Grid item xs={12}>
-                <Typography gutterBottom>City:{`${city}`}</Typography>
+                <ItemList gutterBottom>
+                  <b>City:</b>
+                   {` ${city}`}
+                </ItemList>
               </Grid>
             </React.Fragment>
             <React.Fragment>
               <Grid item xs={12}>
-                <Typography gutterBottom>
-                  Mobile phone: {` ${phone}`}
-                </Typography>
+                <ItemList gutterBottom>
+                  <b>Mobile phone:</b> {` ${phone}`}
+                </ItemList>
               </Grid>
             </React.Fragment>
           </Grid>
         </Grid>
-      </Grid>
+      </Container>
     </React.Fragment>
   );
 };
