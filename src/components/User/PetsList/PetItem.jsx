@@ -19,9 +19,14 @@ const {
 const PetItem = ({ pet }) => {
   const { _id, name, birthday, breed, photo, comments } = pet;
   const [showModal, setShowModal] = useState(false);
+  const [showModalPet, setShowModalPet] = useState(false);
 
   const onClose = () => {
     setShowModal(true);
+  };
+
+  const onClosePet = () => {
+    setShowModalPet(true);
   };
 
   return (
@@ -43,7 +48,7 @@ const PetItem = ({ pet }) => {
           </li>
         </PetInfo>
 
-        <PetUpdateButton type="button" onClick={onClose}>
+        <PetUpdateButton type="button" onClick={onClosePet}>
           <PetUpdateButtonIcon />
         </PetUpdateButton>
 
@@ -51,6 +56,12 @@ const PetItem = ({ pet }) => {
           <PetDeleteIcon />
         </PetDeleteButton>
       </PetInfoWrapp>
+
+      {showModalPet && (
+        <ModalUser setShowModal={setShowModalPet}>
+          <ModalPetDelete setShowModal={setShowModalPet} pet={pet} />
+        </ModalUser>
+      )}
 
       {showModal && (
         <ModalUser setShowModal={setShowModal}>
