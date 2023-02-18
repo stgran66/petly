@@ -7,7 +7,7 @@ const StyledList = styled('ul')`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 100px;
+  padding-bottom: 100px;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     gap: 32px;
