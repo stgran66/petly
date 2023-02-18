@@ -189,13 +189,15 @@ const StyledFriend = styled('div')`
 
     button {
       padding: 0;
+      color: ${props => props.theme.colors.text};
     }
   }
 
   img {
     width: 110px;
     height: 78px;
-
+    border-radius: 20px;
+    filter: ${props => props.theme.filters.image};
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
       width: 120px;
       height: 85px;

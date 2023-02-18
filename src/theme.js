@@ -21,6 +21,7 @@ const lightTheme = createTheme({
     navLinks: '#181C27',
     focusTextFields: '#FF6101',
     errorColor: '#db3327',
+    whiteText: '#ffffff',
   },
   gradients: {
     backgroundGradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
@@ -70,6 +71,9 @@ const lightTheme = createTheme({
     long: 'all 500ms linear',
     normal: 'all 250ms linear',
     short: 'all 100ms linear',
+  },
+  filters: {
+    image: 'none',
   },
 });
 
@@ -83,14 +87,15 @@ const darkTheme = createTheme({
     backgroundBody: 'rgba(0, 0, 0, 0.87)',
     accent: '#f57c00',
     pageBackground: '#7F7F7F',
-    commonBackground: '#fff',
-    cardsBackground: '#D9D9D9',
-    text: '#616161',
+    commonBackground: '#000',
+    cardsBackground: 'rgba(0, 0, 0, 0.87)',
+    text: '#f2d2bd',
     newsText: '#e0e0e0',
-    placeholderText: 'rgba(17, 17, 17, 0.6)',
+    placeholderText: 'rgba(238, 238, 238, 0.6)',
     links: '#3091EB',
-    white: '#bdbdbd',
-    black: '#e0e0e0',
+    white: '#111111',
+    whiteText: '#ffffff',
+    black: '#f2d2bd',
     navLinks: '#F2D2BD',
     focusTextFields: '#FF6101',
     errorColor: '#db3327',
@@ -99,9 +104,9 @@ const darkTheme = createTheme({
     backgroundGradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
   },
   shadows: {
-    cardsShadow: '7px 4px 14px rgba(49, 21, 4, 0.07)',
-    cardsShadowUser: '7px 4px 14px rgba(0, 0, 0, 0.11)',
-    timeModalShadow: '4px 4px 8px rgba(0, 0, 0, 0.25)',
+    cardsShadow: '7px 4px 14px rgba(206, 234, 251, 0.07)',
+    cardsShadowUser: '7px 4px 14px rgba(255, 255, 255, 0.11)',
+    timeModalShadow: '4px 4px 8px rgba(255, 255, 255, 0.25)',
   },
   fonts: ['Manrope', 'Poppins'],
   fontSizes: {
@@ -143,6 +148,9 @@ const darkTheme = createTheme({
     long: 'all 500ms linear',
     normal: 'all 250ms linear',
     short: 'all 100ms linear',
+  },
+  filters: {
+    image: 'contrast(30%)',
   },
 });
 

@@ -20,6 +20,7 @@ const StyledBody = styled('div')`
   min-height: 100vh;
   height: 100%;
   background-color: ${props => props.theme.colors.backgroundBody};
+  transition: background-color linear 0.4s;
 `;
 
 const { refreshUser } = operations;

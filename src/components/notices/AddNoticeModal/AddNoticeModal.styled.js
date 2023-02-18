@@ -1,11 +1,4 @@
-import {
-  FormControlLabel,
-  IconButton,
-  Modal,
-  Radio,
-  RadioGroup,
-  Typography,
-} from '@mui/material';
+import { FormControlLabel, IconButton, Modal, Radio, RadioGroup, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import CloseIcon from '@mui/icons-material/Close';
 import { Field } from 'formik';
@@ -125,10 +118,8 @@ const ModalCategoryLabel = styled(FormControlLabel)`
   font-size: ${({ theme }) => theme.fontSizes.text.s};
   border: 2px solid ${({ theme }) => theme.colors.accent};
   border-radius: 40px;
-  background-color: ${({ theme, checked }) =>
-    checked ? theme.colors.accent : theme.colors.white};
-  color: ${({ theme, checked }) =>
-    checked ? theme.colors.white : theme.colors.text};
+  background-color: ${({ theme, checked }) => (checked ? theme.colors.accent : theme.colors.white)};
+  color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.text)};
   transition: ${({ theme }) => theme.transitions.normal};
 
   &:hover,
@@ -193,7 +184,7 @@ const ModalField = styled(Field)`
 
   &::placeholder {
     padding: 12px 0;
-    color: rgba(27, 27, 27, 0.6);
+    color: ${({ theme }) => theme.colors.placeholderText};
   }
   &:hover,
   &:focus {
@@ -231,10 +222,8 @@ const ModalBtn = styled('button')`
   letter-spacing: 0.04em;
   border: 2px solid ${({ theme }) => theme.colors.accent};
   border-radius: 40px;
-  color: ${({ theme, active }) =>
-    active ? theme.colors.white : theme.colors.black};
-  background-color: ${({ theme, active }) =>
-    active ? theme.colors.accent : theme.colors.white};
+  color: ${({ theme, active }) => (active ? theme.colors.white : theme.colors.black)};
+  background-color: ${({ theme, active }) => (active ? theme.colors.accent : theme.colors.white)};
 
   transition: ${({ theme }) => theme.transitions.normal};
 
@@ -299,8 +288,7 @@ const ModalLabel = styled(FormControlLabel)`
   margin: 0;
   flex-direction: row;
 
-  color: ${({ theme, checked }) =>
-    checked ? theme.colors.accent : theme.colors.black};
+  color: ${({ theme, checked }) => (checked ? theme.colors.accent : theme.colors.black)};
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     line-height: 1.1;
     font-size: ${({ theme }) => theme.fontSizes.headers.xs};

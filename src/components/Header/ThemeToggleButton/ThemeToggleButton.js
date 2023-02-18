@@ -14,7 +14,6 @@ const ThemeToggleButton = () => {
         type="checkbox"
         defaultChecked={theme === 'ligth' ? true : false}
         onChange={() => {
-          console.log('clicked');
           dispatch(changeTheme());
         }}
       />
