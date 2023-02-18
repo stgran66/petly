@@ -7,16 +7,11 @@ import * as yup from 'yup';
 import { parse, isDate } from 'date-fns';
 
 import styles from '../PetsList.styled';
+import stylesUbdate from './ModalPetUpdate.styled';
 
-const {
-  PetItemPhotoWrapp,
-  PetInfo,
-  PetInfoName,
-  PetInfoFoto,
-  PetInfoWrapp,
-  PetDeleteButton,
-  PetDeleteIcon,
-} = styles;
+const { PetItemUbdateWrapp, PetItemUpdatePhotoWrapp, PetUbdateFoto } = stylesUbdate;
+
+const { PetInfo, PetInfoName, PetInfoFoto, PetInfoWrapp, PetDeleteButton, PetDeleteIcon } = styles;
 
 const { updateUserPet } = userOperations;
 
@@ -134,12 +129,12 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
         onSubmit={handleFormSubmit}
       >
         {({ setFieldValue }) => (
-          <Form encType="multipart/form-data">
-            <PetItemPhotoWrapp>
+          <PetItemUbdateWrapp encType="multipart/form-data">
+            <PetItemUpdatePhotoWrapp>
               {fileInput ? (
-                <PetInfoFoto src={URL.createObjectURL(fileInput)} alt={fileInput.name} />
+                <PetUbdateFoto src={URL.createObjectURL(fileInput)} alt={fileInput.name} />
               ) : (
-                <PetInfoFoto src={photo} alt="pet foto" />
+                <PetUbdateFoto src={photo} alt="pet foto" />
               )}
               {/* {fileInput && <PetInfoFoto src={fileInput} alt="pet foto" />} */}
               {/* {<PetInfoFoto src={URL.createObjectURL(fileInput)} alt="pet foto" />} */}
@@ -150,7 +145,7 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
                 onChange={e => selectFile(e, setFieldValue)}
               />
               <ErrorMessage name="photo">{msg => <p>{msg}</p>}</ErrorMessage>
-            </PetItemPhotoWrapp>
+            </PetItemUpdatePhotoWrapp>
 
             <PetInfoWrapp>
               <PetInfo>
@@ -190,7 +185,7 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
                 <PetDeleteIcon />
               </PetDeleteButton>
             </PetInfoWrapp>
-          </Form>
+          </PetItemUbdateWrapp>
         )}
       </Formik>
     </>
