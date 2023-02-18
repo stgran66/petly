@@ -6,7 +6,6 @@ import { Form, Formik, ErrorMessage, Field } from 'formik';
 import * as yup from 'yup';
 import { parse, isDate } from 'date-fns';
 
-import styles from '../PetsList.styled';
 import stylesUbdate from './ModalPetUpdate.styled';
 
 const {
@@ -15,13 +14,18 @@ const {
   PetUpdateFoto,
   PetInfoUpdateWrapp,
   PetInfoUpdate,
+  PetInfoUpdateLabel,
+  PetInfoUpdateInput,
+
+  PetInfoUpdateItemComment,
+  PetInfoUpdateInputComment,
+
   ErrorMsg,
   ModalDeletePetButtonsGroup,
   ButtonCancel,
   ButtonUpdate,
+  PetInfoUpdateItem,
 } = stylesUbdate;
-
-const { PetDeleteButton, PetDeleteIcon } = styles;
 
 const { updateUserPet } = userOperations;
 
@@ -80,7 +84,6 @@ let schema = yup.object().shape({
 const ModalPetUpdate = ({ setShowModalPet, pet }) => {
   console.log(pet);
   const { _id, name, birthday, breed, photo, comments } = pet;
-  const [showModal, setShowModal] = useState(false);
   const [fileInput, setFileInput] = useState('');
 
   const [formData, setFormData] = useState(pet);
@@ -159,34 +162,34 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
 
             <PetInfoUpdateWrapp>
               <PetInfoUpdate>
-                <li>
-                  <label htmlFor="name">Name:</label>
-                  <Field type="text" name="name" id="name" />
+                <PetInfoUpdateItem>
+                  <PetInfoUpdateLabel htmlFor="name">Name:</PetInfoUpdateLabel>
+                  <PetInfoUpdateInput type="text" name="name" id="name" />
                   <ErrorMessage name="name">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
-                </li>
+                </PetInfoUpdateItem>
 
-                <li>
-                  <label htmlFor="birthday">Date of birth:</label>
-                  <Field name="birthday" id="birthday" />
+                <PetInfoUpdateItem>
+                  <PetInfoUpdateLabel htmlFor="birthday">Date of birth:</PetInfoUpdateLabel>
+                  <PetInfoUpdateInput name="birthday" id="birthday" />
                   <ErrorMessage name="birthday">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
-                </li>
+                </PetInfoUpdateItem>
 
-                <li>
-                  <label htmlFor="breed">Breed:</label>
-                  <Field type="text" name="breed" id="breed" />
+                <PetInfoUpdateItem>
+                  <PetInfoUpdateLabel htmlFor="breed">Breed:</PetInfoUpdateLabel>
+                  <PetInfoUpdateInput type="text" name="breed" id="breed" />
                   <ErrorMessage name="breed">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
-                </li>
+                </PetInfoUpdateItem>
 
-                <li>
-                  <label htmlFor="comments">Comments:</label>
-                  <Field
+                <PetInfoUpdateItemComment>
+                  <PetInfoUpdateLabel htmlFor="comments">Comments:</PetInfoUpdateLabel>
+                  <PetInfoUpdateInputComment
                     component="textarea"
                     name="comments"
                     id="comments"
                     onChange={e => handleInputChange(e, setFieldValue)}
                   />
                   <ErrorMessage name="comments">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
-                </li>
+                </PetInfoUpdateItemComment>
               </PetInfoUpdate>
 
               <ModalDeletePetButtonsGroup>

@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import { Form, Formik, ErrorMessage, Field } from 'formik';
+import { Form, Field } from 'formik';
 
 const PetItemUpdateWrapp = styled(Form)`
   display: flex;
@@ -18,7 +18,6 @@ const PetItemUpdateWrapp = styled(Form)`
     flex-direction: row;
     gap: 32px;
     padding: 20px;
-    /* border-radius: 40px; */
     width: 608px;
   }
 
@@ -82,7 +81,6 @@ const PetUpdateFoto = styled('img')`
 `;
 
 const PetInfoUpdateWrapp = styled('div')`
-  /* flex-shrink: 0; */
   width: 100%;
   position: relative;
 `;
@@ -103,10 +101,98 @@ const PetInfoUpdate = styled('ul')`
     font-size: ${props => props.theme.fontSizes.text.m};
     line-height: ${props => props.theme.lineHeights.m};
   }
+`;
 
-  li {
-    white-space: normal;
-    word-wrap: break-word;
+const PetInfoUpdateItem = styled('li')`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+`;
+const PetInfoUpdateLabel = styled('label')`
+  display: flex;
+  flex-shrink: 0;
+  font-family: ${props => props.theme.fonts[0]};
+  font-weight: ${props => props.theme.fontWeights.normal};
+  font-size: ${props => props.theme.fontSizes.text.s};
+  line-height: ${props => props.theme.lineHeights.xs};
+  letter-spacing: 0.04em;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    font-weight: ${props => props.theme.fontWeights.medium};
+    font-size: ${props => props.theme.fontSizes.text.l};
+    line-height: 1.39;
+  }
+`;
+
+const PetInfoUpdateInput = styled(Field)`
+  display: inline-flex;
+  width: 100%;
+  padding: 4px 10px;
+  border-radius: 40px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+
+  font-family: ${props => props.theme.fonts[0]};
+  font-weight: ${props => props.theme.fontWeights.normal};
+  font-size: ${props => props.theme.fontSizes.text.s};
+  line-height: ${props => props.theme.lineHeights.xs};
+  letter-spacing: 0.04em;
+
+  &:focus {
+    outline: 1px solid rgba(245, 146, 86, 0.5);
+    background-color: ${props => props.theme.colors.commonBackground};
+  }
+  &:hover {
+    background-color: ${props => props.theme.colors.commonBackground};
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    padding: 4px 12px;
+    font-size: ${props => props.theme.fontSizes.text.l};
+    line-height: 1.39;
+  }
+`;
+// =====================================================
+
+const PetInfoUpdateItemComment = styled('li')`
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  gap: 8px;
+`;
+
+const PetInfoUpdateInputComment = styled(Field)`
+  display: inline-flex;
+  width: 100%;
+  padding: 4px 10px;
+  border-radius: 10px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  resize: block;
+  /* resize: none; */
+  overflow: visible;
+
+  font-family: ${props => props.theme.fonts[0]};
+  font-weight: ${props => props.theme.fontWeights.normal};
+  font-size: ${props => props.theme.fontSizes.text.s};
+  line-height: ${props => props.theme.lineHeights.xs};
+  letter-spacing: 0.04em;
+
+  &:focus {
+    outline: 1px solid rgba(245, 146, 86, 0.5);
+    background-color: ${props => props.theme.colors.commonBackground};
+  }
+  &:hover {
+    background-color: ${props => props.theme.colors.commonBackground};
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    padding: 4px 12px;
+    font-size: ${props => props.theme.fontSizes.text.l};
+    line-height: 1.39;
   }
 `;
 
@@ -202,6 +288,12 @@ const stylesUbdate = {
   PetUpdateFoto,
   PetInfoUpdateWrapp,
   PetInfoUpdate,
+  PetInfoUpdateItem,
+  PetInfoUpdateLabel,
+  PetInfoUpdateInput,
+
+  PetInfoUpdateItemComment,
+  PetInfoUpdateInputComment,
 
   ErrorMsg,
 
