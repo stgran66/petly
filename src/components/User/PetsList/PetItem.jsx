@@ -58,19 +58,19 @@ let schema = yup.object().shape({
     .max(16)
 
     .required(),
-  // photo: yup
-  //   .mixed()
-  //   .required('Image is Required!')
-  //   .test(
-  //     'fileType',
-  //     'Unsupported file type',
-  //     value => value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)
-  //   )
-  //   .test(
-  //     'is-valid-size',
-  //     'Max allowed size is 10KB',
-  //     value => value === null || (value && value.size >= MIN_FILE_SIZE)
-  //   ),
+  photo: yup
+    .mixed()
+    .required('Image is Required!')
+    .test(
+      'fileType',
+      'Unsupported file type',
+      value => value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)
+    )
+    .test(
+      'is-valid-size',
+      'Max allowed size is 10KB',
+      value => value === null || (value && value.size >= MIN_FILE_SIZE)
+    ),
   comments: yup
     .string()
     .trim()
@@ -82,15 +82,14 @@ let schema = yup.object().shape({
 const PetItem = ({ pet }) => {
   const { _id, name, birthday, breed, photo, comments } = pet;
   const [showModal, setShowModal] = useState(false);
-  const [fileInput, setFileInput] = useState(pet.photo);
+  const [fileInput, setFileInput] = useState(photo);
 
   const [formData, setFormData] = useState({
-    _id: '',
-    name: '',
-    birthday: '',
-    breed: '',
-    photo: '',
-    comments: '',
+    name: name,
+    birthday: birthday,
+    breed: breed,
+    photo: photo,
+    comments: comments,
   });
 
   const dispatch = useDispatch();
@@ -100,84 +99,106 @@ const PetItem = ({ pet }) => {
     setShowModal(true);
   };
 
+  const fetchPet = form => {
+    dispatch(updateUserPet(_id, form));
+  };
+
   // ----------------------------------------------------
 
-  const handleFormSubmit = values => {
-    console.log(values);
-    return values;
-    // const { name, number } = values;
-    // setFormData({ ...values });
+  const handleFormSubmit = async newData => {
+    setFormData(...newData);
 
-    dispatch(updateUserPet(values));
-    // resetForm();
+    try {
+      const dataToSend = new FormData();
+      for (const [key, value] of Object.entries(newData)) {
+        dataToSend.append(key, value);
+      }
+      await fetchPet(dataToSend);
+      onClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const selectFile = (e, setFieldValue) => {
+    const fileImg = e.target.files[0];
+
+    if (fileImg) {
+      setFileInput(fileImg);
+      setFieldValue('photo', fileImg);
+      setFormData(values => ({ ...values, photo: fileImg }));
+    }
   };
 
   return (
     <>
       <Formik
-        initialValues={{
-          name: '',
-          birthday: '',
-          breed: '',
-          // photo: '',
-          comments: '',
-        }}
+        initialValues={formData}
         validationSchema={schema}
-        // onSubmit={handleFormSubmit}
+        onSubmit={handleFormSubmit}
 
-        onSubmit={async values => {
-          await new Promise(r => setTimeout(r, 500));
-          alert(JSON.stringify(values, null, 2));
-        }}
+        // onSubmit={async values => {
+        //   await new Promise(r => setTimeout(r, 500));
+        //   alert(JSON.stringify(values, null, 2));
+        // }}
       >
-        <Form>
-          {/* <PetItemPhotoWrapp enctype="multipart/form-data">
-            <PetInfoFoto src={photo} alt="pet foto" />
-            <Field
-              type="file"
-              name="photo"
-              accept=".png, .jpeg, .jpg, .webp"
-              // onChange={e => selectFile(e, setFieldValue)}
-            />
-          </PetItemPhotoWrapp> */}
+        {({ setFieldValue }) => (
+          <Form enctype="multipart/form-data">
+            <PetItemPhotoWrapp>
+              {fileInput ? (
+                <>
+                  <PetInfoFoto src={URL.createObjectURL(fileInput)} alt="pet foto" />
+                </>
+              ) : (
+                <button type="button">{/* <PetFotoIcon /> */}</button>
+              )}
 
-          <PetInfoWrapp>
-            <PetInfo>
-              <li>
-                <label htmlFor="name">Name:</label>
-                <Field type="text" name="name" defaultValue={name} required id="name" />
-              </li>
+              <input
+                type="file"
+                name="photo"
+                accept=".png, .jpeg, .jpg, .webp"
+                onChange={e => selectFile(e, setFieldValue)}
+              />
+            </PetItemPhotoWrapp>
 
-              <li>
-                <label htmlFor="birthday">Date of birth:</label>
-                <Field name="birthday" defaultValue={birthday} required id="birthday" />
-              </li>
+            <PetInfoWrapp>
+              <PetInfo>
+                <li>
+                  <label htmlFor="name">Name:</label>
+                  <Field type="text" name="name" defaultValue={name} required id="name" />
+                </li>
 
-              <li>
-                <label htmlFor="breed">Breed:</label>
-                <Field type="text" name="breed" defaultValue={breed} required id="breed" />
-              </li>
+                <li>
+                  <label htmlFor="birthday">Date of birth:</label>
+                  <Field name="birthday" defaultValue={birthday} required id="birthday" />
+                </li>
 
-              <li>
-                <label htmlFor="comments">Comments:</label>
-                <Field
-                  component="textarea"
-                  name="comments"
-                  defaultValue={comments}
-                  required
-                  id="comments"
-                  // onChange={e => handleInputChange(e, setFieldValue)}
-                />
-              </li>
-            </PetInfo>
+                <li>
+                  <label htmlFor="breed">Breed:</label>
+                  <Field type="text" name="breed" defaultValue={breed} required id="breed" />
+                </li>
 
-            <button type="submit">Update pet</button>
+                <li>
+                  <label htmlFor="comments">Comments:</label>
+                  <Field
+                    component="textarea"
+                    name="comments"
+                    defaultValue={comments}
+                    required
+                    id="comments"
+                    // onChange={e => handleInputChange(e, setFieldValue)}
+                  />
+                </li>
+              </PetInfo>
 
-            <PetDeleteButton type="button" onClick={onClose}>
-              <PetDeleteIcon />
-            </PetDeleteButton>
-          </PetInfoWrapp>
-        </Form>
+              <button type="submit">Update pet</button>
+
+              <PetDeleteButton type="button" onClick={onClose}>
+                <PetDeleteIcon />
+              </PetDeleteButton>
+            </PetInfoWrapp>
+          </Form>
+        )}
       </Formik>
 
       {showModal && (
