@@ -3,9 +3,10 @@ import Button from '@mui/material/Button';
 
 const NavUser = styled('div')`
   margin: 0 auto;
+  margin-bottom: 60px;
   @media screen and (min-width: 768px) {
     display: ${({ hiddenBlock }) => (hiddenBlock ? 'none' : 'block')};
-    margin-left: auto;
+    margin-bottom: 0;
     margin-right: 90px;
   }
   @media screen and (min-width: 1280px) {
