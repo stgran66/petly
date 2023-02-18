@@ -182,13 +182,25 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
   };
 
   const validateFinalFields = (values, errors) => {
+    const { birthday, place, price, sex } = values;
     if (errors) {
-      if (errors.birthday) {
-        console.log(errors);
-        setMissedFielSecondStep(false);
+      if (errors.place || errors.price) {
+        setMissedFielSecondStep(true);
+        return;
       }
     }
-    const { place, price, sex } = values;
+    if (errors) {
+      if (errors.birthday) {
+        if (selectedCategoryValue === 'for-free' || selectedCategoryValue === 'lost-found') {
+          if (birthday === '' && errors.birthday) {
+            console.log(errors);
+            setMissedFielSecondStep(false);
+            return;
+          }
+        }
+      }
+    }
+
     if (selectedCategoryValue === 'sell') {
       if (place === '' || sex === '' || price === '') {
         setMissedFielSecondStep(true);
