@@ -4,6 +4,7 @@ import styles from './PetsList.styled';
 
 import ModalUser from '../ModalUser';
 import ModalPetDelete from './ModalPetDelete';
+import ModalPetUpdate from './ModalPetUpdate';
 
 const {
   PetInfo,
@@ -17,9 +18,11 @@ const {
 } = styles;
 
 const PetItem = ({ pet }) => {
-  const { _id, name, birthday, breed, photo, comments } = pet;
+  // const { _id, name, birthday, breed, photo, comments } = pet;
   const [showModal, setShowModal] = useState(false);
   const [showModalPet, setShowModalPet] = useState(false);
+
+  console.log(pet);
 
   const onClose = () => {
     setShowModal(true);
@@ -31,20 +34,20 @@ const PetItem = ({ pet }) => {
 
   return (
     <>
-      <PetInfoFoto src={photo} alt="pet foto" />
+      <PetInfoFoto src={pet.photo} alt="pet foto" />
       <PetInfoWrapp>
         <PetInfo>
           <li>
-            <PetInfoName>Name: </PetInfoName> {name}
+            <PetInfoName>Name: </PetInfoName> {pet.name}
           </li>
           <li>
-            <PetInfoName>Date of birth: </PetInfoName> {birthday}
+            <PetInfoName>Date of birth: </PetInfoName> {pet.birthday}
           </li>
           <li>
-            <PetInfoName>Breed: </PetInfoName> {breed}
+            <PetInfoName>Breed: </PetInfoName> {pet.breed}
           </li>
           <li>
-            <PetInfoName>Comments:</PetInfoName> {comments}
+            <PetInfoName>Comments:</PetInfoName> {pet.comments}
           </li>
         </PetInfo>
 
@@ -57,15 +60,15 @@ const PetItem = ({ pet }) => {
         </PetDeleteButton>
       </PetInfoWrapp>
 
-      {showModalPet && (
+      {/* {showModalPet && (
         <ModalUser setShowModal={setShowModalPet}>
-          <ModalPetDelete setShowModal={setShowModalPet} pet={pet} />
+          <ModalPetUpdate setShowModalPet={setShowModalPet} pet={pet} />
         </ModalUser>
-      )}
+      )} */}
 
       {showModal && (
         <ModalUser setShowModal={setShowModal}>
-          <ModalPetDelete setShowModal={setShowModal} petId={_id} />
+          <ModalPetDelete setShowModal={setShowModal} petId={pet._id} />
         </ModalUser>
       )}
     </>

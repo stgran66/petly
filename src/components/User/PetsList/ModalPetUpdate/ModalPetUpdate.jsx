@@ -6,10 +6,10 @@ import { Form, Formik, ErrorMessage, Field } from 'formik';
 import * as yup from 'yup';
 import { parse, isDate } from 'date-fns';
 
-import styles from './PetsList.styled';
+import styles from '../PetsList.styled';
 
-import ModalUser from '../ModalUser';
-import ModalPetDelete from './ModalPetDelete';
+import ModalUser from '../../ModalUser';
+import ModalPetDelete from '../ModalPetDelete';
 
 const {
   PetItemPhotoWrapp,
@@ -79,7 +79,7 @@ let schema = yup.object().shape({
     .required('Comment should be 8 to 120 characters long'),
 });
 
-const ModalPetUpdate = ({ pet }) => {
+const ModalPetUpdate = ({ setShowModalPet, pet }) => {
   const { _id, name, birthday, breed, photo, comments } = pet;
   const [showModal, setShowModal] = useState(false);
   const [fileInput, setFileInput] = useState('');
@@ -96,7 +96,7 @@ const ModalPetUpdate = ({ pet }) => {
   // console.log(pet);
 
   const onClose = () => {
-    setShowModal(true);
+    setShowModalPet(false);
   };
 
   const fetchPet = form => {
@@ -140,16 +140,7 @@ const ModalPetUpdate = ({ pet }) => {
 
   return (
     <>
-      <Formik
-        initialValues={formData}
-        validationSchema={schema}
-        onSubmit={handleFormSubmit}
-
-        // onSubmit={async values => {
-        //   await new Promise(r => setTimeout(r, 500));
-        //   alert(JSON.stringify(values, null, 2));
-        // }}
-      >
+      <Formik initialValues={formData} validationSchema={schema} onSubmit={handleFormSubmit}>
         {({ setFieldValue }) => (
           <Form encType="multipart/form-data">
             <PetItemPhotoWrapp>
@@ -199,19 +190,13 @@ const ModalPetUpdate = ({ pet }) => {
 
               <button type="submit">Update pet</button>
 
-              <PetDeleteButton type="button" onClick={onClose}>
+              <PetDeleteButton type="button" onClick={e => onClose(e)}>
                 <PetDeleteIcon />
               </PetDeleteButton>
             </PetInfoWrapp>
           </Form>
         )}
       </Formik>
-
-      {showModal && (
-        <ModalUser setShowModal={setShowModal}>
-          <ModalPetDelete setShowModal={setShowModal} petId={_id} />
-        </ModalUser>
-      )}
     </>
   );
 };
