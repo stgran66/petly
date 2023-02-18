@@ -11,7 +11,7 @@ function AuthNav({ closeBurgerMenu }) {
   return (
     <AuthBtns>
       {authNav.map(({ href, text }) => (
-        <li key={href} data-aos="fade-down" data-aos-easing="linear" data-aos-duration="500">
+        <li key={href} data-aos="fade-down" data-aos-easing="linear" data-aos-duration="3500">
           <Link to={href} onClick={closeBurgerMenu}>
             <ButtonEl
               variant="outlined"
