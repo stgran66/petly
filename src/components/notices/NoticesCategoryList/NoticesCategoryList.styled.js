@@ -37,9 +37,11 @@ const PaginationWrap = styled(Pagination)`
   & button {
     margin: 2px 4px;
     background-color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.text};
   }
   & .css-lqq3n7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
     background-color: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.whiteText};
   }
 `;
 
