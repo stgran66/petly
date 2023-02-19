@@ -4,11 +4,12 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import InputField from 'components/FormFields';
 import { Grid, InputAdornment } from '@mui/material';
+
 import IconButton from '@mui/material/IconButton';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { useTheme } from '@mui/material/styles';
 
+import { useTheme } from '@mui/material/styles';
 import styles from './LoginForm.styled';
 
 import { useDispatch } from 'react-redux';
