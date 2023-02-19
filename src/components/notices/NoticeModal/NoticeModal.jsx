@@ -107,7 +107,7 @@ const NoticeModal = ({ notice, category, toggleModal, favorite, img }) => {
       </Wrapper>
       <ItemInfo>
         <b>Comments:</b>
-        <ItemInfo> {comments ? comments : '--------'}</ItemInfo>
+        {comments ? comments : '--------'}
       </ItemInfo>
       <BtnWrapper>
         <ContactButton href={`tel: ${phone}`}>Contact</ContactButton>
