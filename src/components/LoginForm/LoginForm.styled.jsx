@@ -74,7 +74,6 @@ const AccountRedirect = styled('p')`
   color: ${prop => prop.theme.colors.placeholderText};
 
   text-align: center;
-  /* margin-top: 40px; */
 
   font-family: ${prop => prop.theme.fonts[0]};
   font-weight: ${prop => prop.theme.fontWeights.normal};
