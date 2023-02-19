@@ -16,6 +16,13 @@ const SearchTitle = styled('h2')`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
     margin: 42px 0 28px;
   }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin: 92px 0 40px;
+    font-size: ${({ theme }) => theme.fontSizes.headers.l};
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin: 60px 0 40px;
+  }
 `;
 const SearchForm = styled(FormControl)`
   width: 100%;
@@ -38,28 +45,32 @@ const SearchForm = styled(FormControl)`
 const SearchInput = styled(InputBase)`
   width: 100%;
   height: 40px;
-  font-size: 16px;
-  padding-left: 14px;
+  & input {
+    font-size: 16px;
+    padding-left: 14px;
+    cursor: pointer;
+    font-family: ${({ theme }) => theme.fonts[0]};
+    color: ${({ theme }) => theme.colors.placeholderColor};
+  }
 
-  cursor: pointer;
-  font-family: ${({ theme }) => theme.fonts[0]};
-
-  &::placeholder {
+  & input::placeholder {
     padding: 8px 0;
     font-weight: ${({ theme }) => theme.fontWeights.medium};
-    color: #535353;
     font-size: inherit;
     font-family: ${({ theme }) => theme.fonts[0]};
     line-height: ${({ theme }) => theme.lineHeights.m};
     letter-spacing: 0.04em;
+    color: ${({ theme }) => theme.colors.placeholderColor};
   }
-
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: ${({ theme }) => theme.fontSizes.text.xl};
-    padding-left: 20px;
     height: 44px;
-    border-radius: 40px;
-    &::placeholder {
+    & input {
+      font-size: ${({ theme }) => theme.fontSizes.text.xl};
+      padding-left: 20px;
+
+      border-radius: 40px;
+    }
+    & input::placeholder {
       font-size: ${({ theme }) => theme.fontSizes.text.xl};
     }
   }
