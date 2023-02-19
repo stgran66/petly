@@ -8,12 +8,11 @@ const Container = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
   height: 100vh;
   background: url(${errorImg});
   background-repeat: no-repeat;
   background-size: 768px;
-  background-position: top center;
+  background-position: bottom center;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     background-size: cover;
   }
@@ -26,7 +25,7 @@ const BackToMainBtn = styled(Button)`
   padding: 16px;
   position: absolute;
   min-width: 200px;
-  margin-top: 70px;
+  margin-top: 50px;
   margin-left: 32px;
   font-size: ${({ theme }) => theme.fontSizes.text.m};
   transition: ${({ theme }) => theme.transitions.normal};
@@ -41,8 +40,9 @@ const BackToMainBtn = styled(Button)`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin-left: 50px;
-    font-size: ${({ theme }) => theme.fontSizes.text.l};
+    margin-top: 50px;
+    align-self: flex-start;
+    margin-left: 100px;
   }
 `;
 
