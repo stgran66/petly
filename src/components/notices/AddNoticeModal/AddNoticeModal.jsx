@@ -69,8 +69,9 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
   const [isAddImg, setIsAddImg] = useState(initialValues.imageUrl);
 
   useEffect(() => {
-    setFormData(() => {
-      return { ...initialValues, category: selectedCategoryValue };
+    setFormData(values => {
+      const newData = { ...values, category: selectedCategoryValue };
+      return newData;
     });
   }, [selectedCategoryValue]);
 
