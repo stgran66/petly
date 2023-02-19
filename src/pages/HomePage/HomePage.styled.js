@@ -49,7 +49,7 @@ const Wrapper = styled('div')`
   @media screen and (orientation: landscape) {
     height: calc(100vh - 88px);
   }
-  
+
   @media screen and (orientation: landscape) {
     margin-top: 40px;
   }
@@ -66,7 +66,7 @@ const Title = styled('h1')`
   font-size: ${({ theme }) => theme.fontSizes.text.xxl};
   line-height: ${({ theme }) => theme.lineHeights.m};
   color: ${({ theme }) => theme.colors.text};
-  text-shadow: #fff 4px 2px 5px;
+  text-shadow: ${({ theme }) => theme.shadows.textShadow};
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     max-width: 90%;
     font-size: 68px;
@@ -83,9 +83,14 @@ const Title = styled('h1')`
     line-height: 100px;
   }
 `;
+const TitleBlock = styled('div')`
+  position: relative;
+  z-index: 1;
+`;
 
 const styles = {
   Title,
   Wrapper,
+  TitleBlock,
 };
 export default styles;

@@ -2,13 +2,13 @@ import { styled } from '@mui/system';
 // import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs';
 
 const ToggleButton = styled('label')`
-  cursor: pointer;
   position: absolute;
   top: 50%;
   left: 50%;
+  cursor: pointer;
+  z-index:1110;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     left: 30%;
-    /* transform: translateY(-50%); */
     top: 33%;
   }
 

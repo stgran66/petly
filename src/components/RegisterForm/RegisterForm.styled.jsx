@@ -8,18 +8,19 @@ const RegisterForm = styled(Form)`
   flex-direction: column;
   align-items: center;
   margin: 40px auto 0;
-  overflow-x: scroll;
+  overflow: scroll;
   &::-webkit-scrollbar {
     width: 0;
   }
-
+  z-index: 2;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    background: ${({ theme }) => theme.colors.white};
+    position: relative;
 
     max-width: 608px;
     max-height: 100%;
     padding: 30px 80px;
 
+    background: ${({ theme }) => theme.colors.white};
     box-shadow: ${({ theme }) => theme.shadows.cardsShadowUser};
     border-radius: 40px;
   }

@@ -8,18 +8,20 @@ const LoginForm = styled(Form)`
   flex-direction: column;
   align-items: center;
   margin: 40px auto 0;
-  overflow-x: scroll;
+  overflow: scroll;
   &::-webkit-scrollbar {
     width: 0;
   }
+  z-index: 2;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    background: ${({ theme }) => theme.colors.white};
+    position: relative;
 
     max-width: 608px;
     max-height: 100%;
     padding: 30px 80px;
 
+    background: ${({ theme }) => theme.colors.white};
     box-shadow: ${({ theme }) => theme.shadows.cardsShadowUser};
     border-radius: 40px;
   }
@@ -43,7 +45,7 @@ const Title = styled('h1')`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-family: ${({ theme }) => theme.fonts[0]};
     font-weight: ${prop => prop.theme.fontWeights.medium};
-    fon-size: ${prop => prop.theme.fontSizes.headers.m};
+    font-size: ${prop => prop.theme.fontSizes.headers.m};
     line-height: ${prop => prop.theme.lineHeights.s};
   }
 `;
@@ -77,7 +79,7 @@ const AccountRedirect = styled('p')`
 
   font-family: ${prop => prop.theme.fonts[0]};
   font-weight: ${prop => prop.theme.fontWeights.normal};
-  fon-size: ${prop => prop.theme.fontSizes.text.xs};
+  font-size: ${prop => prop.theme.fontSizes.text.xs};
   line-height: ${prop => prop.theme.lineHeights.xs};
 `;
 

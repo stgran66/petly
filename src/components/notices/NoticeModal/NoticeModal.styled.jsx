@@ -90,6 +90,7 @@ const Title = styled('h2')`
 
 const List = styled('ul')`
   margin-bottom: 28px;
+  overflow: hidden;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     margin-bottom: 0;
   }
@@ -107,6 +108,7 @@ const ItemInfo = styled('p')`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.35;
+  overflow: hidden;
   color: ${props => props.theme.colors.text};
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     min-width: 120px;
@@ -115,6 +117,7 @@ const ItemInfo = styled('p')`
     line-height: 1.5;
   }
 `;
+
 const ContLink = styled('a')`
   font-size: 14px;
   line-height: 1.35;
@@ -189,8 +192,8 @@ const ChangeFavoriteStatusBtn = styled('button')`
   cursor: pointer;
   transition: border-color ${props => props.theme.transitions.long};
   background: ${props => props.theme.colors.white};
-  
-   & > svg {
+
+  & > svg {
     width: 16px;
     height: 16px;
     margin-left: 8px;
