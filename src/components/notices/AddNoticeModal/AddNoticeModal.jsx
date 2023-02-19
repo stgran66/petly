@@ -194,7 +194,6 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
       if (errors.birthday) {
         if (selectedCategoryValue === 'for-free' || selectedCategoryValue === 'lost-found') {
           if (birthday === '' && errors.birthday) {
-            console.log(errors);
             setMissedFielSecondStep(false);
             return;
           }
