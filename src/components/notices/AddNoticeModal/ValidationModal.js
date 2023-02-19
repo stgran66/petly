@@ -84,16 +84,19 @@ const schema = Yup.object().shape({
 
   birthday: Yup.date()
     .test('format', 'Type in format 01.01.1910', (_, { originalValue }) => {
+      if (!originalValue) return true;
       if (originalValue) {
         return originalValue.length === 10;
       }
     })
     .transform((_, originalValue) => {
+      if (originalValue === '') return true;
       const parsedDate = isDate(originalValue)
         ? originalValue
         : parse(originalValue, 'dd.MM.yyyy', new Date());
       return parsedDate;
     })
+    .nullable(true)
     .min(new Date(1950, 1, 1), 'Birthday should be after 1950')
     .max(new Date(), 'Birthday could not be after today')
     .typeError('Date should be in dd.mm.yyyy format'),
