@@ -85,7 +85,7 @@ const Title = styled('h1')`
 `;
 const TitleBlock = styled('div')`
   position: relative;
-  z-index: 5;
+  z-index: 1;
 `;
 
 const styles = {

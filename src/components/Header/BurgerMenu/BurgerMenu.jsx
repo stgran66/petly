@@ -31,7 +31,7 @@ const BurgerMenu = props => {
         onStateChange={state => handleStateChange(state)}
         styles={{
           ...BurgerStyle,
-          bmMenu: { top: '0', background: `${theme.colors.burgerBackground}` },
+          bmMenuWrap: { ...BurgerStyle.bmMenuWrap, background: `${theme.colors.burgerBackground}` },
         }}
         right
         noOverlay
