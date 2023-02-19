@@ -43,18 +43,16 @@ const addUserPet = createAsyncThunk('user/addUserPet', async (newData, thunkAPI)
 
     return response.data;
   } catch (e) {
-    console.log(e.message);
     return thunkAPI.rejectWithValue(e.message);
   }
 });
 
-const updateUserPet = createAsyncThunk('user/updateUserPet', async ({ _id, values }, thunkAPI) => {
+const updateUserPet = createAsyncThunk('user/updateUserPet', async (props, thunkAPI) => {
   try {
-    const response = await axios.put(`/api/user/pet/${_id}`, values);
+    const response = await axios.put(`/api/user/pet/${props._id}`, props.dataToSend);
 
     return response.data;
   } catch (e) {
-    console.log(e.message);
     return thunkAPI.rejectWithValue(e.message);
   }
 });

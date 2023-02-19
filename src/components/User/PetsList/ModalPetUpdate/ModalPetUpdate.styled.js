@@ -117,6 +117,7 @@ const PetInfoUpdateLabel = styled('label')`
   font-size: ${props => props.theme.fontSizes.text.s};
   line-height: ${props => props.theme.lineHeights.xs};
   letter-spacing: 0.04em;
+  color: ${props => props.theme.colors.text};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-weight: ${props => props.theme.fontWeights.medium};
@@ -133,6 +134,7 @@ const PetInfoUpdateInput = styled(Field)`
   border: 0;
   background-color: transparent;
   cursor: pointer;
+  color: ${props => props.theme.colors.text};
 
   font-family: ${props => props.theme.fonts[0]};
   font-weight: ${props => props.theme.fontWeights.normal};
@@ -174,6 +176,7 @@ const PetInfoUpdateInputComment = styled(Field)`
   resize: block;
   /* resize: none; */
   overflow: visible;
+  color: ${props => props.theme.colors.text};
 
   font-family: ${props => props.theme.fonts[0]};
   font-weight: ${props => props.theme.fontWeights.normal};
@@ -270,6 +273,7 @@ const ButtonUpdate = styled('button')`
   /* background-color: transparent; */
   background-color: ${props => props.theme.colors.white};
   cursor: pointer;
+  color: ${props => props.theme.colors.text};
 
   @media screen and (max-width: ${props => props.theme.breakpoints.mobile}) {
     width: 100%;

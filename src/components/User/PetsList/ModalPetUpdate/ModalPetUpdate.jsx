@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import userOperations from 'redux/user/operations';
 
-import { Form, Formik, ErrorMessage, Field } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { parse, isDate } from 'date-fns';
 
@@ -67,46 +67,45 @@ let schema = yup.object().shape({
   photo: yup
     .mixed()
     // .required('Image is Required!')
-    .test(
-      'fileType',
-      'Unsupported file type',
-      value => value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)
-    )
+    .test('fileType', 'Unsupported file type', value => {
+      return (
+        typeof value === 'string' ||
+        (value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type))
+      );
+    })
     .test(
       'is-valid-size',
       'Max allowed size is 10KB',
-      value => value === null || (value && value.size >= MIN_FILE_SIZE)
+      value => typeof value === 'string' || (value && value.size >= MIN_FILE_SIZE)
     ),
   comments: yup.string('Comment should be 8 to 120 characters long').trim().min(8).max(120),
   // .required('Comment should be 8 to 120 characters long'),
 });
 
 const ModalPetUpdate = ({ setShowModalPet, pet }) => {
-  console.log(pet);
-  const { _id, name, birthday, breed, photo, comments } = pet;
+  const { _id, name, birthday, breed, comments, photo } = pet;
   const [fileInput, setFileInput] = useState('');
 
-  const [formData, setFormData] = useState(pet);
+  const [formData, setFormData] = useState({ name, birthday, breed, comments, photo });
 
   const dispatch = useDispatch();
-  // console.log(pet);
 
   const onClosePet = () => {
     setShowModalPet(false);
   };
 
-  const fetchPet = form => {
-    dispatch(updateUserPet({ _id, form }));
-  };
-
   // ----------------------------------------------------
 
   const handleFormSubmit = async newData => {
-    console.log(newData);
-    setFormData(values => ({ ...values, ...newData }));
-    console.log(formData);
-
-    fetchPet(formData);
+    setFormData({ ...formData, ...newData });
+    const dataToSend = new FormData();
+    for (const [key, value] of Object.entries(newData)) {
+      if (key === 'photo' && typeof value === 'string') {
+        continue;
+      }
+      dataToSend.append(key, value);
+    }
+    dispatch(updateUserPet({ _id, dataToSend }));
     onClosePet();
   };
   // =================================================================
