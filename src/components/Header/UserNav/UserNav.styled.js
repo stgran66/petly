@@ -13,9 +13,20 @@ const NavUser = styled('div')`
     margin-right: 60px;
   }
 `;
+const PhotoUser = styled('img')`
+  width: 23px;
+  border-radius: 50%;
+  margin-right: 12px;
+  @media screen and (min-width: 768px) {
+    width: 28px;
+    margin-right: 14px;
+  }
+
+`;
 
 const ButtonEl = styled(Button)(({ theme }) => ({
-  padding: '8px 36px',
+  minWidth: '164px',
+  padding: '8px 15px',
   fontFamily: theme.fonts[0],
   fontWeight: theme.fontWeights.medium,
   fontSize: theme.fontSizes.text.s,
@@ -51,5 +62,5 @@ const ButtonEl = styled(Button)(({ theme }) => ({
   },
 }));
 
-const styles = { NavUser, ButtonEl };
+const styles = { NavUser, ButtonEl, PhotoUser };
 export default styles;

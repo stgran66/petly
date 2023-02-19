@@ -23,6 +23,7 @@ const lightTheme = createTheme({
     focusTextFields: '#FF6101',
     errorColor: '#db3327',
     whiteText: '#ffffff',
+    placeholderColor: '#535353',
   },
   gradients: {
     backgroundGradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
@@ -102,6 +103,7 @@ const darkTheme = createTheme({
     navLinks: '#F2D2BD',
     focusTextFields: '#FF6101',
     errorColor: '#db3327',
+    placeholderColor: '#535353',
   },
   gradients: {
     backgroundGradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
