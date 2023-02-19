@@ -44,28 +44,33 @@ const SearchForm = styled(FormControl)`
 const SearchInput = styled(InputBase)`
   width: 100%;
   height: 40px;
-  font-size: 16px;
-  padding-left: 14px;
-  cursor: pointer;
-  font-family: ${({ theme }) => theme.fonts[0]};
+  & input {
+    font-size: 16px;
+    padding-left: 14px;
+    cursor: pointer;
+    font-family: ${({ theme }) => theme.fonts[0]};
+    color: ${({ theme }) => theme.colors.placeholderColor};
+  }
 
-  &::placeholder {
+  & input::placeholder {
     padding: 8px 0;
     font-weight: ${({ theme }) => theme.fontWeights.medium};
     font-size: inherit;
     font-family: ${({ theme }) => theme.fonts[0]};
     line-height: ${({ theme }) => theme.lineHeights.m};
     letter-spacing: 0.04em;
-    color: red;
+    color: ${({ theme }) => theme.colors.placeholderColor};
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: ${({ theme }) => theme.fontSizes.text.xl};
-    padding-left: 20px;
     height: 44px;
-    border-radius: 40px;
-    &::placeholder {
+    & input {
       font-size: ${({ theme }) => theme.fontSizes.text.xl};
-      color: red;
+      padding-left: 20px;
+
+      border-radius: 40px;
+    }
+    & input::placeholder {
+      font-size: ${({ theme }) => theme.fontSizes.text.xl};
     }
   }
 `;
