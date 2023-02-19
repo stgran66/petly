@@ -162,6 +162,12 @@ const ModalFieldLabel = styled('label')`
     position: absolute;
     margin-left: 4px;
   }
+  & textarea {
+    color: ${({ theme }) => theme.colors.text};
+  }
+  & textarea::placeholder {
+    color: ${({ theme }) => theme.colors.placeholderColor};
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-bottom: 28px;
     line-height: 1.1;
