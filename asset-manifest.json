@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/petly/static/css/main.6ad28eeb.css",
-    "main.js": "/petly/static/js/main.71f30875.js",
+    "main.js": "/petly/static/js/main.c4cb0835.js",
     "static/js/168.75cf8d53.chunk.js": "/petly/static/js/168.75cf8d53.chunk.js",
     "static/js/706.d992023c.chunk.js": "/petly/static/js/706.d992023c.chunk.js",
     "static/js/507.049f6730.chunk.js": "/petly/static/js/507.049f6730.chunk.js",
@@ -21,6 +21,7 @@
     "static/media/happy_client.png": "/petly/static/media/happy_client.6c68c7c49db4fa3756da.png",
     "static/media/addPet.png": "/petly/static/media/addPet.c561659ca86311ebb2ad.png",
     "static/media/ErrorPage.jpg": "/petly/static/media/ErrorPage.0a97c5eb3c8c38d8e599.jpg",
+    "static/media/error.png": "/petly/static/media/error.0765bdbd9c89fd043406.png",
     "static/media/338.svg": "/petly/static/media/338.9da97509ea0a2d8b10a2e1a3411bc53f.svg",
     "static/media/female-icon.svg": "/petly/static/media/female-icon.00550ea02f9b94c9b7484719b6428794.svg",
     "static/media/add-fav-icon.svg": "/petly/static/media/add-fav-icon.fe22c04b399eba7897a208382813bae1.svg",
@@ -31,7 +32,7 @@
     "index.html": "/petly/index.html",
     "static/media/plus-icon.svg": "/petly/static/media/plus-icon.deec2b9327a6f7e779ae3cbb9fa31798.svg",
     "main.6ad28eeb.css.map": "/petly/static/css/main.6ad28eeb.css.map",
-    "main.71f30875.js.map": "/petly/static/js/main.71f30875.js.map",
+    "main.c4cb0835.js.map": "/petly/static/js/main.c4cb0835.js.map",
     "168.75cf8d53.chunk.js.map": "/petly/static/js/168.75cf8d53.chunk.js.map",
     "706.d992023c.chunk.js.map": "/petly/static/js/706.d992023c.chunk.js.map",
     "507.049f6730.chunk.js.map": "/petly/static/js/507.049f6730.chunk.js.map",
@@ -50,6 +51,6 @@
   },
   "entrypoints": [
     "static/css/main.6ad28eeb.css",
-    "static/js/main.71f30875.js"
+    "static/js/main.c4cb0835.js"
   ]
 }
