@@ -125,6 +125,7 @@ const Content = styled('span')`
   line-height: ${props => props.theme.lineHeights.m};
   word-break: break-word;
   overflow: hidden;
+  hyphens: auto;
   color: ${props => props.theme.colors.text};
 `;
 
