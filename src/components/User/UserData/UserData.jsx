@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { useDispatch, useSelector } from 'react-redux';
 import userOperations from 'redux/user/operations';
@@ -29,15 +30,6 @@ const UserData = () => {
   const [active, setActive] = useState('');
   const selectForm = useRef(null);
 
-  // const changeFoto = e => {
-  //   const result = new FormData();
-
-  //   console.log(e.target.files[0]);
-  //   result.append('avatars', e.target.files[0]);
-  //   console.log(result);
-  //   dispatch(updateUserFoto(result));
-  // };
-
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -46,10 +38,6 @@ const UserData = () => {
     dispatch(updateUserFoto(result));
   };
 
-  // const patternEmail = /^(?!-)[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$/;
-
-  // const patternDate=/\d{4}-\d{2}-\d{2}/
-  // const patternPhone = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
   const patternCity = /^\s*([A-ZА-Я][a-zа-я]+,\s?)?[A-ZА-Я][a-zа-я]+\s*$/;
 
   return (
@@ -61,15 +49,21 @@ const UserData = () => {
             <WrappFoto>
               <UserFoto src={user.avatarURL} alt="user foto" />
 
-              <FotoForm ref={selectForm} onChange={handleSubmit}>
+              <FotoForm
+                ref={selectForm}
+                onChange={e => {
+                  const fileExtension = e.target.value.split('.')[1];
+                  console.log(fileExtension);
+                  if (!['png', 'jpg', 'jpeg', 'gif'].includes(fileExtension)) {
+                    Notify.warning('Avatar should be an image');
+                    return;
+                  }
+                  handleSubmit(e);
+                }}
+              >
                 <FotoLabel>
                   <FotoIcon /> Edit photo
-                  <input
-                    type="file"
-                    accept="image/png, image/jpeg, image/jpg"
-                    name="avatar"
-                    hidden
-                  />
+                  <input type="file" accept="image/*" name="avatar" hidden />
                 </FotoLabel>
               </FotoForm>
             </WrappFoto>
@@ -96,7 +90,6 @@ const UserData = () => {
               id="email"
               required
               aria-required="true"
-              // pattern="/^(([a-zA-Z0-9]{1}[a-zA-Z0-9_\-\.]{1,})@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}))$/"
             />
 
             <UserDataItem

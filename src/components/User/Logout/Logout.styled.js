@@ -4,6 +4,7 @@ import { IoExitOutline } from 'react-icons/io5';
 const LogoutButton = styled('button')`
   margin-left: auto;
   display: flex;
+  width: 120px;
 
   align-items: flex-end;
   padding: 0;
