@@ -12,7 +12,7 @@ const Input = styled(TextField)(({ theme }) => ({
 //     color: "green",
 // },
   '& label.Mui-focused': {
-    color: '#5e5b5d',
+    color: theme.colors.text,
     border: `1px solid ${theme.colors.white}`,
   },
 

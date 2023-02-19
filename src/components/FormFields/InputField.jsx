@@ -21,7 +21,10 @@ const InputField = props => {
     <Input
       error={meta.touched && meta.error && true}
       helperText={_renderHelperText()}
-      inputProps={{ style: { color: `${theme.colors.text}`} }}
+      InputLabelProps={{
+        style: { color: `${theme.colors.text}`},
+      }}
+      inputProps={{ style: { color: `${theme.colors.text}` } }}
       {...field}
       {...rest}
     />
