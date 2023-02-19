@@ -12,6 +12,7 @@ import StyledApp from './App.styled';
 import operations from 'redux/auth/operations';
 import select from 'redux/auth/selectors';
 import selectTheme from 'redux/theme/selectors';
+import NotFoundPages from './NotFoundPages';
 
 import themes from '../theme';
 
@@ -78,6 +79,7 @@ export const App = () => {
                 element={<PrivateRoute component={<NewsPage />} redirectTo="/news" />}
               />
             </Route>
+            <Route path="*" element={<NotFoundPages />} />
           </Routes>
         )}
       </StyledApp>
