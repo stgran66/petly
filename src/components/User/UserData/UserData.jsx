@@ -53,9 +53,11 @@ const UserData = () => {
                 ref={selectForm}
                 onChange={e => {
                   const fileExtension = e.target.value.split('.')[1];
-                  console.log(fileExtension);
-                  if (!['png', 'jpg', 'jpeg', 'gif'].includes(fileExtension)) {
-                    Notify.warning('Avatar should be an image');
+                  if (
+                    !['png', 'jpg', 'jpeg', 'gif'].includes(fileExtension) ||
+                    e.target.files[0].size < 100000
+                  ) {
+                    Notify.warning('Avatar should be an image and be at least 100kb');
                     return;
                   }
                   handleSubmit(e);

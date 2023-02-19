@@ -12,14 +12,12 @@ const {
   FotoWrap,
   PetFoto,
   PetFotoIcon,
-  // PetFotoInputLabel,
   CommentWrapp,
   InputCommentValue,
   ErrorMsg,
 } = styles;
 
-// const MIN_FILE_SIZE = 1000000; //1MB
-const MIN_FILE_SIZE = 10240; //10KB
+const MIN_FILE_SIZE = 100000; //100KB
 
 let schema = yup.object().shape({
   photo: yup
@@ -32,22 +30,12 @@ let schema = yup.object().shape({
     )
     .test(
       'is-valid-size',
-      'Max allowed size is 10KB',
+      'Min allowed size is 100KB',
       value => value === null || (value && value.size >= MIN_FILE_SIZE)
     ),
   comments: yup
     .string()
     .trim()
-    // .test(
-    //   'legth',
-    //   'Comment should be 8 to 120 characters long with letters',
-    //   value => {
-    //     const validValue = value.trim();
-    //     if (validValue.length >= 8) {
-    //       return validValue;
-    //     }
-    //   }
-    // )
     .min(8)
     .max(120)
     .required('Comment should be 8 to 120 characters long'),

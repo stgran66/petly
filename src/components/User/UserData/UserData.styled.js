@@ -145,6 +145,7 @@ const UserDataItemInput = styled('input')`
   font-size: ${props => props.theme.fontSizes.text.xs};
   line-height: ${props => props.theme.lineHeights.xs};
   letter-spacing: 0.04em;
+  color: ${props => props.theme.colors.text};
 
   &:focus {
     outline: 1px solid rgba(245, 146, 86, 0.5);
