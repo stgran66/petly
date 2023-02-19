@@ -14,7 +14,6 @@ const UserNav = ({ hidden, closeBurgerMenu }) => {
   const { isLoggedIn } = hooks.useAuth();
   const { selectUserInfo } = userSelectors;
   const user = useSelector(selectUserInfo);
-  console.log(user.avatarURL);
   return (
     <NavUser hiddenBlock={hidden}>
       {isLoggedIn ? (

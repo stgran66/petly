@@ -212,7 +212,7 @@ const InputCommentValue = styled(Field)`
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: ${props => props.theme.colors.commonBackground};
   resize: none;
-
+  color: ${props => props.theme.colors.text};
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     height: 116px;
     padding: 16px;
