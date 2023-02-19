@@ -17,6 +17,7 @@ import noticesReducer from './notices/noticesSlice';
 import friendsReducer from './friends/friendsSlice';
 import userReducer from './user/userSlise';
 import themeReducer from './theme/themeSlice';
+import newsReducer from './news/newsSlice';
 
 const { authReducer } = auth;
 
@@ -43,6 +44,7 @@ const themePersistConfig = {
 const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    news: newsReducer,
     notices: noticesReducer,
     filter: filterReducer,
     friends: friendsReducer,
