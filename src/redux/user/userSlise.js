@@ -6,6 +6,7 @@ const {
   updateUserData,
   updateUserFoto,
   deleteUserPet,
+  updateUserPet,
   addUserPet,
   addFavNotice,
   removeFavNotice,
@@ -95,10 +96,23 @@ const userSlice = createSlice({
     [deleteUserPet.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.error = null;
-      const index = state.userInfo.pets.findIndex(
-        pet => pet._id === payload._id
-      );
+      const index = state.userInfo.pets.findIndex(pet => pet._id === payload._id);
       state.userInfo.pets.splice(index, 1);
+    },
+
+    [updateUserPet.pending](state) {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [updateUserPet.fulfilled](state, { payload }) {
+      const index = state.userInfo.pets.findIndex(pet => pet._id === payload._id);
+      state.userInfo.pets.splice(index, 1, payload);
+      state.isLoading = false;
+      state.error = null;
+    },
+    [updateUserPet.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
     },
 
     [addUserPet.pending](state) {
@@ -134,9 +148,7 @@ const userSlice = createSlice({
     [removeFavNotice.fulfilled](state, action) {
       state.isLoading = false;
       state.error = false;
-      const newFavorite = state.userInfo.favorite.filter(
-        item => item !== action.payload
-      );
+      const newFavorite = state.userInfo.favorite.filter(item => item !== action.payload);
       console.log(newFavorite);
       state.userInfo.favorite = newFavorite;
     },

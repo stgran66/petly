@@ -20,7 +20,10 @@ const ModalPetDelete = ({ setShowModal, petId }) => {
     setShowModal(false);
   };
 
-  const handleDelete = () => dispatch(deleteUserPet(petId));
+  const handleDelete = () => {
+    dispatch(deleteUserPet(petId));
+    onClose();
+  };
 
   return (
     <ModalDeletePetWrapp>
