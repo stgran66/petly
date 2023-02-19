@@ -38,32 +38,23 @@ const BurgerStyle = {
     width: '35px',
     height: '35px',
   },
-  /* General sidebar styles */
-  bmMenu: {
-    width: '100%',
-    background: '#fdf7f2',
-    padding: '104px 0 35px',
-
-    display: 'flex',
-    flexDirection: 'column',
-  },
-
-  bmItemList: {
-    position: 'relative',
-    top: '120px',
-    display: 'flex',
-    flexDirection: 'column-reverse',
-    height: ' auto !important',
-  },
 
   bmMenuWrap: {
     position: 'fixed',
-    right: 0,
-    top: 0,
-    left: 0,
-    zIndex: 1100,
-    transition: 'all 0.5s ease 0s',
-    bottom: 0,
+    top: 0
+  },
+  
+  bmMenu: {
+    position: 'relative',
+    top: '70px',
+  },
+
+  bmItemList: {
+    display: 'flex',
+    flexDirection: 'column-reverse',
+    justifyContent: 'flex-end',
+    marginTop: '60px',
+    height: '400px',
   },
 };
 const styles = { Burger, BurgerStyle };

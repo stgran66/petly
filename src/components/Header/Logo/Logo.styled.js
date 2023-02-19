@@ -1,7 +1,7 @@
 import { styled } from '@mui/system';
 import { NavLink } from 'react-router-dom';
 
-const LogoEl = styled('header')`
+const LogoEl = styled('div')`
   position: relative;
   display: inline-block;
   z-index: 1110;
