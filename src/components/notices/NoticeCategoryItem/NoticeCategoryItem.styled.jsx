@@ -171,6 +171,7 @@ const BtnDelete = styled('button')`
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.accent};
   cursor: pointer;
+  background-color: ${props => props.theme.colors.white};
   :hover,
   :focus {
     border-color: #ff6101;
