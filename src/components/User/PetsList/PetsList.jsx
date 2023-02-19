@@ -4,7 +4,6 @@ import Loader from 'components/Loader';
 import ErrorUser from 'components/User/ErrorUser';
 import NoPetList from '../NoPetList';
 
-
 import styles from './PetsList.styled';
 import PetItem from './PetItem';
 

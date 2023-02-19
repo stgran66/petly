@@ -1,79 +1,69 @@
-import axios from 'axios';
-import React from 'react';
-import { useState, useEffect } from 'react';
-import styles from './NewsPage.styled';
+import newsSelectors from 'redux/news/selectors';
+import NotFound from 'components/notices/NotFound';
 import Loader from 'components/Loader';
-const {
-  IconSearch,
-  SearchForm,
-  SearchInput,
-  SearchTitle,
-  ArticleUrl,
-  InputSearchIcon,
-  ArticleDate,
-  ArticleTitle,
-  ArticleText,
-  IconClose,
-  InputButton,
-  DateAndLink,
-  Article,
-  NewsList,
-  TopBorder,
-  NotFoundArticle,
-} = styles;
+import Article from '../../components/News/Article';
+import fetchNews from 'redux/news/operations';
+import styles from './NewsPage.styled';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-function NewsPage() {
-  const [data, setData] = useState();
+const NewsPage = () => {
   const [searchArticle, setSearchArticle] = useState('');
+  const { selectNews, selectError, selectLoadingStatus } = newsSelectors;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getAllData = () => {
-      axios
-        .get('https://petly-backend-9tz8.onrender.com/api/news')
-        .then(response => {
-          let news = response.data;
-          for (let article of news) {
-            article.date = new Date(article.date).valueOf();
-          }
-          news.sort((a, b) => b.date - a.date);
-          const filterArticle = query => {
-            if (!query) {
-              return news;
-            }
-            return news.filter(({ title }) =>
-              title.toLowerCase().includes(query.toLowerCase())
-            );
-          };
-          const filteredNews = filterArticle(searchArticle);
-          setData(filteredNews);
+    dispatch(fetchNews());
+  }, [dispatch]);
+
+  const data = useSelector(selectNews);
+
+  const [filteredData, setFilteredData] = useState(data);
+
+  const {
+    SearchInput,
+    SearchTitle,
+    InputSearchIcon,
+    SearchForm,
+    InputButton,
+    IconClose,
+    IconSearch,
+    NewsListStyle,
+  } = styles;
+
+  useEffect(() => {
+    function filterData() {
+      const resultData = data
+        .map(item => {
+          return { ...item, date: new Date(item.date).valueOf() };
         })
-        .catch(error => {
-          console.log(error);
-        });
-    };
-    getAllData();
-  }, [searchArticle]);
+        .sort((a, b) => b.date - a.date);
+
+      if (searchArticle.length === 0 && data !== undefined && data.length > 0) {
+        setFilteredData(resultData);
+      } else if (searchArticle.length > 0 && data !== undefined) {
+        const newData = resultData.filter(({ title }) =>
+          title.toLowerCase().includes(searchArticle.toLowerCase())
+        );
+        setFilteredData(newData);
+      }
+    }
+    filterData();
+  }, [searchArticle, data]);
+
+  const isLoading = useSelector(selectLoadingStatus);
+  const error = useSelector(selectError);
+  const emptyInput = searchArticle === '';
+
+  const reset = () => {
+    setSearchArticle('');
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
   }
-  const reset = () => {
-    setSearchArticle('');
-  };
-  const getFormattedData = date => {
-    let formattedDay = new Date(date).getDate();
-    let formattedMonth = new Date(date).getMonth() + 1;
-    let formattedYear = new Date(date).getFullYear();
-    if (formattedDay < 10) {
-      formattedDay = `0${formattedDay}`;
-    }
-    if (formattedMonth < 10) {
-      formattedMonth = `0${formattedMonth}`;
-    }
-    return `${formattedDay}/${formattedMonth}/${formattedYear}`;
-  };
 
-  const emptyInput = searchArticle === '';
   return (
     <>
       <SearchTitle>News Page</SearchTitle>
@@ -96,40 +86,18 @@ function NewsPage() {
           }
         />
       </SearchForm>
+      {error && <NotFound />}
+      {isLoading && <Loader />}
 
-      {data ? (
-        data.length === 0 ? (
-          <NotFoundArticle>
-            Sorry, we didn't find any news on that topic
-          </NotFoundArticle>
-        ) : (
-          <NewsList>
-            {data.map(data => (
-              <Article key={data._id}>
-                <div>
-                  <TopBorder />
-                  <ArticleTitle>{data.title}</ArticleTitle>
-                  <ArticleText>{data.description}</ArticleText>
-                  <DateAndLink>
-                    <ArticleDate>{getFormattedData(data.date)}</ArticleDate>
-                    <ArticleUrl
-                      href={data.url}
-                      target="_blank"
-                      rel="nofollow noopener noreferrer"
-                    >
-                      Read more
-                    </ArticleUrl>
-                  </DateAndLink>
-                </div>
-              </Article>
-            ))}
-          </NewsList>
-        )
-      ) : (
-        <Loader />
-      )}
+      <NewsListStyle>
+        {filteredData !== undefined &&
+          filteredData.length > 0 &&
+          filteredData.map(article => (
+            <Article key={article._id} article={article} data-aos="zoom-in" />
+          ))}
+      </NewsListStyle>
     </>
   );
-}
+};
 
 export default NewsPage;

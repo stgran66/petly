@@ -98,6 +98,7 @@ const List = styled('ul')`
 
 const Item = styled('li')`
   display: flex;
+  hyphens: auto;
   &:not(:last-child) {
     margin-bottom: 8px;
   }
@@ -109,6 +110,7 @@ const ItemInfo = styled('p')`
   font-size: 14px;
   line-height: 1.35;
   overflow: hidden;
+  hyphens: auto;
   color: ${props => props.theme.colors.text};
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     min-width: 120px;

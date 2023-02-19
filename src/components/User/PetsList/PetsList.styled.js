@@ -1,5 +1,6 @@
 import { styled } from '@mui/system';
 import { Delete20Filled } from '@fluentui/react-icons';
+import { RiPencilFill } from 'react-icons/ri';
 
 const PetsListWpapp = styled('ul')`
   display: flex;
@@ -33,12 +34,14 @@ const PetItemWrapp = styled('li')`
   }
 `;
 
+// ==========================================
+
 const PetInfoFoto = styled('img')`
   display: block;
   width: 240px;
   height: 240px;
-  background-color: green;
   border-radius: 20px;
+  object-fit: cover;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     max-width: 161px;
@@ -53,6 +56,38 @@ const PetInfoWrapp = styled('div')`
   position: relative;
 `;
 
+const PetInfo = styled('ul')`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+
+  font-weight: ${props => props.theme.fontWeights.normal};
+  font-size: ${props => props.theme.fontSizes.text.s};
+  line-height: 1.36;
+  color: ${props => props.theme.colors.text};
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    font-size: ${props => props.theme.fontSizes.text.m};
+    line-height: ${props => props.theme.lineHeights.m};
+  }
+
+  li {
+    white-space: normal;
+    word-wrap: break-word;
+  }
+`;
+
+const PetInfoName = styled('span')`
+  font-weight: ${props => props.theme.fontWeights.medium};
+  font-size: ${props => props.theme.fontSizes.text.m};
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    font-size: ${props => props.theme.fontSizes.text.m};
+    line-height: ${props => props.theme.lineHeights.m};
+  }
+`;
+
 const PetDeleteButton = styled('button')`
   position: absolute;
   top: -5px;
@@ -62,10 +97,11 @@ const PetDeleteButton = styled('button')`
   border: 0;
   border-radius: 50%;
   cursor: pointer;
-  background-color: ${props => props.theme.colors.commonBackground};
+  background-color: transparent;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     top: 0;
+    background-color: ${props => props.theme.colors.commonBackground};
   }
 `;
 
@@ -82,30 +118,43 @@ const PetDeleteIcon = styled(Delete20Filled)`
   }
 `;
 
-const PetInfo = styled('ul')`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+const PetUpdateButton = styled('button')`
+  position: absolute;
+  bottom: -40px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
 
-  font-weight: ${props => props.theme.fontWeights.normal};
-  font-size: ${props => props.theme.fontSizes.text.s};
-  line-height: 1.36;
-  color: ${props => props.theme.colors.text};
+  background-color: transparent;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    font-size: ${props => props.theme.fontSizes.text.m};
-    line-height: ${props => props.theme.lineHeights.m};
+    top: 0;
+    right: 50px;
+    background-color: ${props => props.theme.colors.commonBackground};
   }
 `;
 
-const PetInfoName = styled('span')`
-  font-weight: ${props => props.theme.fontWeights.medium};
-  font-size: ${props => props.theme.fontSizes.text.m};
-  color: ${props => props.theme.colors.text};
+const PetUpdateButtonIcon = styled(RiPencilFill)`
+  width: 20px;
+  height: 20px;
+
+  color: ${props => props.theme.colors.placeholderText};
+  scale: 1;
+
+  transition: ${props => props.theme.transitions.normal};
+
+  &:hover,
+  &:focus {
+    scale: 1.2;
+    color: ${props => props.theme.colors.accent};
+  }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    font-size: ${props => props.theme.fontSizes.text.m};
-    line-height: ${props => props.theme.lineHeights.m};
+    width: 20px;
+    height: 20px;
   }
 `;
 
@@ -114,11 +163,12 @@ const styles = {
   PetItemWrapp,
   PetInfo,
   PetInfoName,
-
   PetInfoFoto,
   PetInfoWrapp,
   PetDeleteButton,
   PetDeleteIcon,
+  PetUpdateButton,
+  PetUpdateButtonIcon,
 };
 
 export default styles;
