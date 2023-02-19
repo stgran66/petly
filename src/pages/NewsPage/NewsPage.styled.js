@@ -42,8 +42,6 @@ const SearchForm = styled(FormControl)`
   }
 `;
 
-
-
 const SearchInput = styled(InputBase)`
   width: 100%;
   height: 40px;
