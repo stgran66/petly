@@ -116,6 +116,7 @@ const AboutList = styled('div')`
 const About = styled('div')`
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `;
 
 const Content = styled('span')`
@@ -123,6 +124,7 @@ const Content = styled('span')`
   font-size: ${props => props.theme.fontSizes.text.m};
   line-height: ${props => props.theme.lineHeights.m};
   word-break: break-word;
+  overflow: hidden;
   color: ${props => props.theme.colors.text};
 `;
 

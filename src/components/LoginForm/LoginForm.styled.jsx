@@ -14,14 +14,16 @@ const LoginForm = styled(Form)`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    background: ${({ theme }) => theme.colors.white};
+    position: relative;
 
     max-width: 608px;
     max-height: 100%;
     padding: 30px 80px;
 
+    background: ${({ theme }) => theme.colors.white};
     box-shadow: ${({ theme }) => theme.shadows.cardsShadowUser};
     border-radius: 40px;
+    z-index: 2;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     max-width: 618px;
@@ -43,7 +45,7 @@ const Title = styled('h1')`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-family: ${({ theme }) => theme.fonts[0]};
     font-weight: ${prop => prop.theme.fontWeights.medium};
-    fon-size: ${prop => prop.theme.fontSizes.headers.m};
+    font-size: ${prop => prop.theme.fontSizes.headers.m};
     line-height: ${prop => prop.theme.lineHeights.s};
   }
 `;

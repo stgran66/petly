@@ -31,13 +31,13 @@ const NoticesCategoryList = () => {
 
   const noNoticesFind = filteredNotices.length === 0;
   const searchOptions = { favorite, myNotices, category };
-  const pages = useSelector(totalNotices) / 6;
+  const pages = useSelector(totalNotices) / 12;
   const totalPages = Math.ceil(pages);
 
   const { isLoggedIn } = hooks.useAuth();
 
   useEffect(() => {
-    setSearchParams(`?page=${page}&limit=6`);
+    setSearchParams(`?page=${page}&limit=12`);
   }, [setSearchParams, page, searchParams]);
 
   useEffect(() => {
