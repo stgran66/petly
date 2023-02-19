@@ -6,16 +6,7 @@ import { Button } from '@mui/material';
 const LoginForm = styled(Form)`
  ${'' /* z-index active */}
   position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin: 40px auto 0;
   overflow-x: scroll;
@@ -25,9 +16,7 @@ const LoginForm = styled(Form)`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    position: relative;
-
-    max-width: 608px;
+max-width: 608px;
     max-height: 100%;
     padding: 30px 80px;
 
