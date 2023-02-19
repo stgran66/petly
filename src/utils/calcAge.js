@@ -4,7 +4,7 @@ const calcAge = birthday => {
   const birthdayArr = birthday.split('.');
   if (birthday) {
     const yearsFloat =
-      (new Date() - new Date(birthdayArr[2], birthdayArr[1], birthdayArr[0])) /
+      (new Date() - new Date(birthdayArr[2], birthdayArr[1] - 1, birthdayArr[0])) /
       (60000 * 60 * 24 * 365);
     const fullYears = Math.floor(yearsFloat);
     if (isNaN(fullYears)) {
