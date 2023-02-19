@@ -6,8 +6,10 @@ import { Grid, InputAdornment } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { useTheme } from '@mui/material/styles';
 
 const FirstStepInfo = props => {
+    const theme = useTheme();
   const [hidePassword, setHidePassword] = useState(true);
 
   const showPassword = () => {
@@ -24,12 +26,7 @@ const {Container}= styles
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <InputField
-              name={email.name}
-              label={email.label}
-              type="email"
-              fullWidth
-            />
+            <InputField name={email.name} label={email.label} type="email" fullWidth />
           </Grid>
           <Grid item xs={12}>
             <InputField
@@ -41,14 +38,11 @@ const {Container}= styles
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton
+                      style={{ color: `${theme.colors.text}` }}
                       aria-label="toggle password visibility"
                       onClick={showPassword}
                     >
-                      {hidePassword ? (
-                        <VisibilityOffIcon />
-                      ) : (
-                        <VisibilityIcon />
-                      )}
+                      {hidePassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -65,14 +59,11 @@ const {Container}= styles
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton
+                      style={{ color: `${theme.colors.text}` }}
                       aria-label="toggle password visibility"
                       onClick={showPassword}
                     >
-                      {hidePassword ? (
-                        <VisibilityOffIcon />
-                      ) : (
-                        <VisibilityIcon />
-                      )}
+                      {hidePassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                     </IconButton>
                   </InputAdornment>
                 ),

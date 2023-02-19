@@ -79,7 +79,7 @@ const AccountRedirect = styled('p')`
 
   font-family: ${prop => prop.theme.fonts[0]};
   font-weight: ${prop => prop.theme.fontWeights.normal};
-  fon-size: ${prop => prop.theme.fontSizes.text.xs};
+  font-size: ${prop => prop.theme.fontSizes.text.xs};
   line-height: ${prop => prop.theme.lineHeights.xs};
 `;
 

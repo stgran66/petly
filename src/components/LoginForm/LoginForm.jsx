@@ -7,6 +7,7 @@ import { Grid, InputAdornment } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { useTheme } from '@mui/material/styles';
 
 import styles from './LoginForm.styled';
 
@@ -35,6 +36,7 @@ const currentValidationSchema = Yup.object().shape({
 });
 
 const LoginForm = () => {
+  const theme = useTheme();
   const [hidePassword, setHidePassword] = useState(true);
 
   const showPassword = () => {
@@ -86,6 +88,7 @@ const LoginForm = () => {
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
+                        style ={{color: `${theme.colors.text}`}}
                         aria-label="toggle password visibility"
                         onClick={showPassword}
                       >
