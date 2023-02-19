@@ -4,20 +4,19 @@ import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 
 const LoginForm = styled(Form)`
-  display: flex;
+ ${'' /* z-index active */}
+  position: relative;
   flex-direction: column;
   align-items: center;
   margin: 40px auto 0;
-  overflow: scroll;
+  overflow-x: scroll;
+  z-index: 2;
   &::-webkit-scrollbar {
     width: 0;
   }
-  z-index: 2;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    position: relative;
-
-    max-width: 608px;
+max-width: 608px;
     max-height: 100%;
     padding: 30px 80px;
 
