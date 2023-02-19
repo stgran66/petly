@@ -8,10 +8,11 @@ const LoginForm = styled(Form)`
   flex-direction: column;
   align-items: center;
   margin: 40px auto 0;
-  overflow-x: scroll;
+  overflow: scroll;
   &::-webkit-scrollbar {
     width: 0;
   }
+  z-index: 2;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     position: relative;
@@ -23,7 +24,6 @@ const LoginForm = styled(Form)`
     background: ${({ theme }) => theme.colors.white};
     box-shadow: ${({ theme }) => theme.shadows.cardsShadowUser};
     border-radius: 40px;
-    z-index: 2;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     max-width: 618px;
