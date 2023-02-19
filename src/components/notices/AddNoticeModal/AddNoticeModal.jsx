@@ -69,8 +69,9 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
   const [isAddImg, setIsAddImg] = useState(initialValues.imageUrl);
 
   useEffect(() => {
-    setFormData(() => {
-      return { ...initialValues, category: selectedCategoryValue };
+    setFormData(values => {
+      const newData = { ...values, category: selectedCategoryValue };
+      return newData;
     });
   }, [selectedCategoryValue]);
 
@@ -182,13 +183,24 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
   };
 
   const validateFinalFields = (values, errors) => {
+    const { birthday, place, price, sex } = values;
     if (errors) {
-      if (errors.birthday) {
-        console.log(errors);
-        setMissedFielSecondStep(false);
+      if (errors.place || errors.price) {
+        setMissedFielSecondStep(true);
+        return;
       }
     }
-    const { place, price, sex } = values;
+    if (errors) {
+      if (errors.birthday) {
+        if (selectedCategoryValue === 'for-free' || selectedCategoryValue === 'lost-found') {
+          if (birthday === '' && errors.birthday) {
+            setMissedFielSecondStep(false);
+            return;
+          }
+        }
+      }
+    }
+
     if (selectedCategoryValue === 'sell') {
       if (place === '' || sex === '' || price === '') {
         setMissedFielSecondStep(true);
