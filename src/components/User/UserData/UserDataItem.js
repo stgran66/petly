@@ -160,7 +160,6 @@ const UserDataItem = ({ name, label, type, defaultValue, active, setActive }) =>
                 type={type}
                 name={name}
                 id={name}
-                //   ref={inputRef}
               />
             </Tooltip>
 

@@ -33,6 +33,8 @@ const ContainerWrappFoto = styled('div')`
 const WrappFoto = styled('div')`
   display: flex;
   flex-direction: column;
+  min-height: 233px;
+  justify-content: center;
 `;
 
 const UserFoto = styled('img')`
@@ -103,7 +105,11 @@ const ContainerWrappInfo = styled('ul')`
     gap: 8px;
   }
 `;
-const UserDataItemWrapp = styled('li')``;
+const UserDataItemWrapp = styled('li')`
+  &:not(:last-of-type) {
+    margin-bottom: 10px;
+  }
+`;
 
 const UserDataItemForm = styled('form')`
   display: flex;
@@ -138,7 +144,6 @@ const UserDataItemInput = styled('input')`
   padding: 4px 18px;
   border-radius: 40px;
   border: 0;
-  background-color: transparent;
 
   font-family: ${props => props.theme.fonts[0]};
   font-weight: ${props => props.theme.fontWeights.normal};
@@ -146,6 +151,8 @@ const UserDataItemInput = styled('input')`
   line-height: ${props => props.theme.lineHeights.xs};
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.text};
+  outline: 1px solid rgba(245, 146, 86, 0.5);
+  background-color: ${props => props.theme.colors.commonBackground};
 
   &:focus {
     outline: 1px solid rgba(245, 146, 86, 0.5);
@@ -154,6 +161,8 @@ const UserDataItemInput = styled('input')`
 
   &:disabled {
     color: ${props => props.theme.colors.black};
+    background-color: transparent;
+    outline: none;
   }
 
   /* &[type='disabled'],
@@ -233,8 +242,10 @@ const InfoSubmitIcon = styled(BsCheckLg)`
 
 const Error = styled('p')`
   margin-left: 18px;
+  position: absolute;
+  font-size: 8px;
 
-  color: ${props => props.theme.colors.placeholderText};
+  color: ${props => props.theme.colors.errorColor};
   font-weight: ${props => props.theme.fontWeights.normal};
   font-size: 10px;
   line-height: 1.2;
