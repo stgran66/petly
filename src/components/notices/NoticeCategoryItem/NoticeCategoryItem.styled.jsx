@@ -89,6 +89,8 @@ const Button = styled('button')`
 `;
 
 const ItemTitle = styled('h2')`
+  display: flex;
+  align-items: center;
   margin-bottom: 20px;
   padding: 0 20px;
   word-break: break-word;
