@@ -39,6 +39,10 @@ const SearchForm = styled(FormControl)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-bottom: 40px;
   }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-bottom: 60px;
+  }
 `;
 
 const SearchInput = styled(InputBase)`
@@ -49,7 +53,7 @@ const SearchInput = styled(InputBase)`
     padding-left: 14px;
     cursor: pointer;
     font-family: ${({ theme }) => theme.fonts[0]};
-    color: ${({ theme }) => theme.colors.placeholderColor};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   & input::placeholder {

@@ -24,7 +24,7 @@ let schema = yup.object().shape({
     .trim()
     .min(2)
     .max(16)
-    .matches(RegExp, 'Name may contain only letters, apostrophe, dash and spaces')
+    .matches(RegExp, 'Name may contain only letters, dashes and spaces')
     .required(),
   birthday: yup
     .date()

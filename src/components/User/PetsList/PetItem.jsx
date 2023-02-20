@@ -22,8 +22,6 @@ const PetItem = ({ pet }) => {
   const [showModal, setShowModal] = useState(false);
   const [showModalPet, setShowModalPet] = useState(false);
 
-  // console.log(pet);
-
   const onClose = () => {
     setShowModal(true);
   };

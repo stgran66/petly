@@ -10,16 +10,15 @@ import userOperations from 'redux/user/operations';
 
 const { addFavNotice, removeFavNotice } = userOperations;
 
-const NoticeModal = ({ notice, category, favorite, img }) => {
+const NoticeModal = ({ notice, category, favorite, img, toggleFavorite }) => {
   const [categoryName, setCategoryName] = useState('sell');
   useCategories(category, setCategoryName);
   const { isLoggedIn } = hooks.useAuth();
   const dispatch = useDispatch();
-  const [addedToFav, setAddedToFav] = useState(favorite);
 
   const { title, name, birthday, breed, place, sex, email, phone, price, _id, comments } = notice;
 
-  const handleSubmit = e => {
+  const handleFavoriteToggle = () => {
     Notify.init({
       position: 'right-top',
       distance: '8px',
@@ -29,14 +28,13 @@ const NoticeModal = ({ notice, category, favorite, img }) => {
       Notify.info('Please authorize to access your account and add notice');
       return;
     }
-
-    if (addedToFav) {
+    if (favorite) {
       dispatch(removeFavNotice(_id));
-      setAddedToFav(false);
+      toggleFavorite(false);
       return;
     }
     dispatch(addFavNotice(_id));
-    setAddedToFav(true);
+    toggleFavorite(true);
   };
   const {
     Container,
@@ -105,19 +103,19 @@ const NoticeModal = ({ notice, category, favorite, img }) => {
         </ListWrapper>
       </Wrapper>
       <ItemInfo>
-        <b>Comments:</b>
+        <b>Comments: </b>
         {comments ? comments : '--------'}
       </ItemInfo>
       <BtnWrapper>
         <ContactButton href={`tel: ${phone}`}>Contact</ContactButton>
         {!isLoggedIn ? (
-          <ChangeFavoriteStatusBtn type="button" onClick={handleSubmit}>
+          <ChangeFavoriteStatusBtn type="button" onClick={handleFavoriteToggle}>
             Add to
             <HeartIcon />
           </ChangeFavoriteStatusBtn>
         ) : (
-          <ChangeFavoriteStatusBtn type="button" onClick={handleSubmit}>
-            {!addedToFav ? 'Add to' : 'Remove from'}
+          <ChangeFavoriteStatusBtn type="button" onClick={handleFavoriteToggle}>
+            {!favorite ? 'Add to' : 'Remove from'}
             <HeartIcon />
           </ChangeFavoriteStatusBtn>
         )}

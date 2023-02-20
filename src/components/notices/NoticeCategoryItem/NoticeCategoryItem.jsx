@@ -2,6 +2,8 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import Highlighter from 'react-highlight-words';
+import selectors from 'redux/notices/selectors';
 
 import hooks from 'hooks';
 import styles from './NoticeCategoryItem.styled';
@@ -33,6 +35,9 @@ const NoticeCategoryItem = ({ notice }) => {
   const urlPath = useLocation();
   const favorite = urlPath.pathname.includes('favorite');
   const myNotices = urlPath.pathname.includes('own');
+  const { selectFilter } = selectors;
+  const filterValue = useSelector(selectFilter);
+  const searchValue = filterValue.toLowerCase().split(', ');
 
   const {
     NoticeItemCard,
@@ -64,7 +69,7 @@ const NoticeCategoryItem = ({ notice }) => {
       }
     };
 
-  const handleSubmit = () => {
+  const handleFavoriteToggle = () => {
     if (!isLoggedIn) {
       Notify.info('Please authorize to access your account and add notice');
       return;
@@ -106,11 +111,19 @@ const NoticeCategoryItem = ({ notice }) => {
       <ImgWrapper>
         <Category>{adaptCategoryName(category)}</Category>
         <Image src={imageUrl} alt={name} />
-        <Button type="button" onClick={handleSubmit}>
+        <Button type="button" onClick={handleFavoriteToggle}>
           {addedToFav ? <AddedToFav /> : <FavouriteIcon />}
         </Button>
       </ImgWrapper>
-      <ItemTitle>{title}</ItemTitle>
+      <ItemTitle>
+        <Highlighter
+          highlightClassName="YourHighlightClass"
+          searchWords={searchValue}
+          autoEscape={true}
+          textToHighlight={title}
+          highlightStyle={{ backgroundColor: '#f57c00' }}
+        />
+      </ItemTitle>
       <About>
         <AboutList>
           <Content>Breed:</Content>

@@ -49,8 +49,6 @@ const InputButton = styled(IconButton)`
     background-color: ${({ theme }) => theme.colors.accent};
     color: ${({ theme }) => theme.colors.white};
   }
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-  }
 `;
 
 const IconClose = styled(CloseIcon)`
@@ -333,7 +331,7 @@ const AddImageWrap = styled('div')`
   border-radius: 20px;
   height: 116px;
   width: 116px;
-
+  border: 1px solid ${({ light }) => (light ? 'transparent' : 'rgba(245, 146, 86, 0.5)')};
   background-color: ${({ theme }) => theme.colors.commonBackground};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {

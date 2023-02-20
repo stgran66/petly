@@ -1,13 +1,15 @@
 import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import operations from 'redux/notices/operations';
 import styles from './AddNoticeModal.styled';
 import FemaleIcon from '../../../images/female-icon.svg';
 import plusIcon from '../../../images/plus-icon.svg';
+import plusIconAccent from '../../../images/plus-icon-accent.svg';
 import MaleIcon from '../../../images/male-icon.svg';
 import validationSchemas from './ValidationModal';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import selectTheme from 'redux/theme/selectors';
 
 import { Box } from '@mui/system';
 import hooks from 'hooks';
@@ -74,6 +76,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
       return newData;
     });
   }, [selectedCategoryValue]);
+  const selectedTheme = useSelector(selectTheme);
 
   const onRadioCategoryChange = event => {
     const { value } = event.target;
@@ -478,7 +481,12 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
                         <PetImg src={URL.createObjectURL(isAddImg)} alt={isAddImg.name} />
                       ) : (
                         <AddImageWrap>
-                          <AddImage id="iconPlus" src={plusIcon} alt="upload pet" />
+                          <AddImage
+                            light={selectedTheme === 'light' ? true : false}
+                            id="iconPlus"
+                            src={selectedTheme !== 'light' ? plusIconAccent : plusIcon}
+                            alt="upload pet"
+                          />
                         </AddImageWrap>
                       )}
                       {errors.imageUrl && touched.imageUrl ? (

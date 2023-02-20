@@ -11,6 +11,11 @@ const CategoriesList = styled('div')`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-bottom: 44px;
   }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    flex-direction: row;
+    margin-bottom: 60px;
+  }
 `;
 
 const CategoriesItem = styled('li')`
@@ -20,6 +25,9 @@ const CategoriesItem = styled('li')`
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-bottom: 16px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-bottom: 0;
   }
 `;
 
@@ -51,6 +59,10 @@ const StyledLink = styled(NavLink)`
 const LogInNoticesNav = styled('ul')`
   display: flex;
   margin-right: auto;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-right: 0;
+    margin-left: 12px;
+  }
 `;
 
 const NoticesNav = styled('ul')`

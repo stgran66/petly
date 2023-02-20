@@ -5,8 +5,8 @@ const options = {
     { option: 'sell', path: 'sell' },
   ],
   privateNavOptions: [
-    { option: 'Favorite ads', path: 'favorite' },
-    { option: 'My ads', path: 'own' },
+    { option: 'favorite ads', path: 'favorite' },
+    { option: 'my ads', path: 'own' },
   ],
 };
 
