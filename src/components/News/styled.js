@@ -238,6 +238,9 @@ const ArticleUrl = styled('a')`
   color: ${({ theme }) => theme.colors.accent};
   margin: 0;
   padding: 0;
+  &:hover {
+    color: ${({ theme }) => theme.colors.focusTextFields};
+  }
 `;
 const InputSearchIcon = styled('span')`
   margin-right: 12px;

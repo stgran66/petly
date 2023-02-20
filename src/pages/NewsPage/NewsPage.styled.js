@@ -161,8 +161,9 @@ const ArticleTitle = styled('h3')`
   }
 `;
 
-const NotFoundArticle = styled('h2')`
+const NotFoundArticle = styled('h3')`
   text-align: center;
+  width: 100%;
   color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.headers.s};
 `;
