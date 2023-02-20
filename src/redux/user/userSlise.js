@@ -26,6 +26,7 @@ const userInitialState = {
   },
   isLoading: false,
   error: null,
+  avatarIsLoading: false,
 };
 
 const userSlice = createSlice({
@@ -64,33 +65,29 @@ const userSlice = createSlice({
     },
 
     [updateUserData.pending](state) {
-      state.isLoading = true;
       state.error = null;
     },
     [updateUserData.fulfilled](state, { payload }) {
       state.userInfo = payload;
-      state.isLoading = false;
       state.error = null;
     },
 
     [updateUserData.rejected](state, action) {
-      state.isLoading = false;
       state.error = action.payload;
     },
 
     [updateUserFoto.pending](state) {
-      state.isLoading = true;
       state.error = null;
+      state.avatarIsLoading = true;
     },
     [updateUserFoto.fulfilled](state, { payload }) {
       state.userInfo.avatarURL = payload.avatarURL;
-      // state.userInfo = { ...payload.user, avatarURL: payload.avatarURL };
-      state.isLoading = false;
       state.error = null;
+      state.avatarIsLoading = false;
     },
     [updateUserFoto.rejected](state, action) {
-      state.isLoading = false;
       state.error = action.error;
+      state.avatarIsLoading = false;
     },
 
     [deleteUserPet.fulfilled](state, { payload }) {
