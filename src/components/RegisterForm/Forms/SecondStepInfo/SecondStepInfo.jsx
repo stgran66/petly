@@ -7,29 +7,19 @@ const SecondStepInfo = props => {
   const {
     formField: { name, city, phone },
   } = props;
-  const { Container } = styles
+  const { Container, InputStyling } = styles;
 
   return (
     <React.Fragment>
       <Container>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <InputField
-              name={name.name}
-              label={name.label}
-              type="text"
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <InputField
-              name={city.name}
-              label={city.label}
-              type="text"
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
+        <Grid container>
+          <InputStyling>
+            <InputField name={name.name} label={name.label} type="text" fullWidth />
+          </InputStyling>
+          <InputStyling>
+            <InputField name={city.name} label={city.label} type="text" fullWidth />
+          </InputStyling>
+          <InputStyling>
             <InputField
               id="tel"
               placeholder="+380"
@@ -38,7 +28,7 @@ const SecondStepInfo = props => {
               type="tel"
               fullWidth
             />
-          </Grid>
+          </InputStyling>
         </Grid>
       </Container>
     </React.Fragment>
