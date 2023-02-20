@@ -19,58 +19,58 @@ const FirstStepInfo = props => {
   const {
     formField: { email, password, confirmPassword },
   } = props;
-const {Container}= styles
+const {Container, InputStyling}= styles
 
   return (
     <React.Fragment>
       <Container>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <InputField name={email.name} label={email.label} type="email" fullWidth />
+          <Grid container>
+            <InputStyling>
+              <InputField name={email.name} label={email.label} type="email" fullWidth />
+            </InputStyling>
+            <InputStyling>
+              <InputField
+                name={password.name}
+                label={password.label}
+                type={hidePassword ? 'password' : 'input'}
+                fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        style={{ color: `${theme.colors.text}` }}
+                        aria-label="toggle password visibility"
+                        onClick={showPassword}
+                      >
+                        {hidePassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </InputStyling>
+            <InputStyling>
+              <InputField
+                name={confirmPassword.name}
+                label={confirmPassword.label}
+                type={hidePassword ? 'password' : 'input'}
+                fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        style={{ color: `${theme.colors.text}` }}
+                        aria-label="toggle password visibility"
+                        onClick={showPassword}
+                      >
+                        {hidePassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </InputStyling>
           </Grid>
-          <Grid item xs={12}>
-            <InputField
-              name={password.name}
-              label={password.label}
-              type={hidePassword ? 'password' : 'input'}
-              fullWidth
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      style={{ color: `${theme.colors.text}` }}
-                      aria-label="toggle password visibility"
-                      onClick={showPassword}
-                    >
-                      {hidePassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <InputField
-              name={confirmPassword.name}
-              label={confirmPassword.label}
-              type={hidePassword ? 'password' : 'input'}
-              fullWidth
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      style={{ color: `${theme.colors.text}` }}
-                      aria-label="toggle password visibility"
-                      onClick={showPassword}
-                    >
-                      {hidePassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-        </Grid>
       </Container>
     </React.Fragment>
   );

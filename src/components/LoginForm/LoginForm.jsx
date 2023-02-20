@@ -28,12 +28,9 @@ const currentValidationSchema = Yup.object().shape({
     .max(63)
     .matches(
       /^(([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5}))$/,
-      `email can contain only latin letters, numbers and symbols . -  _ (dot, hyphen, underscore) and can't start from hyphen`
+      `contain only latin letters, numbers and symbols.`
     ),
-  password: Yup.string().matches(
-    /^[^ ]{7,32}$/,
-    'password should be from 7 to 32 characters long, without spaces'
-  ),
+  password: Yup.string().matches(/^[^ ]{7,32}$/, 'password should be from 7 to 32'),
 });
 
 const LoginForm = () => {
@@ -45,16 +42,10 @@ const LoginForm = () => {
   };
 
   const dispatch = useDispatch();
-  const {
-    Title,
-    Buttons,
-    AccountRedirect,
-    LinkRegisterRoute,
-    LoginForm,
-    Container,
-  } = styles;
+  const { Title, Buttons, AccountRedirect, LinkRegisterRoute, LoginForm, Container, InputStyling } =
+    styles;
 
-  const handleSubmit = (values) => {
+  const handleSubmit = values => {
     const { email, password } = values;
 
     dispatch(
@@ -75,11 +66,11 @@ const LoginForm = () => {
         <Title>Login</Title>
 
         <Container>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
+          <Grid container>
+            <InputStyling>
               <InputField type="email" name="email" label="Email" fullWidth />
-            </Grid>
-            <Grid item xs={12}>
+            </InputStyling>
+            <InputStyling>
               <InputField
                 type={hidePassword ? 'password' : 'input'}
                 name="password"
@@ -89,21 +80,17 @@ const LoginForm = () => {
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        style ={{color: `${theme.colors.text}`}}
+                        style={{ color: `${theme.colors.text}` }}
                         aria-label="toggle password visibility"
                         onClick={showPassword}
                       >
-                        {hidePassword ? (
-                          <VisibilityOffIcon />
-                        ) : (
-                          <VisibilityIcon />
-                        )}
+                        {hidePassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                       </IconButton>
                     </InputAdornment>
                   ),
                 }}
               />
-            </Grid>
+            </InputStyling>
           </Grid>
           <Buttons type="submit">Login</Buttons>
         </Container>
