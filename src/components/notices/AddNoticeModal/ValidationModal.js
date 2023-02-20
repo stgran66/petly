@@ -61,7 +61,13 @@ const sellPetSchema = Yup.object().shape({
   comments: Yup.string()
     .min(8, 'Comments should be from 8 to 120 symbols')
     .max(120, 'Comments should be from 8 to 120 symbols'),
-  imageUrl: Yup.mixed().required('Image is required (jpg, jpeg, png)'),
+  imageUrl: Yup.mixed()
+    .test(
+      'fileType',
+      'Unsupported file type',
+      value => value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)
+    )
+    .required('Image is required (jpg, jpeg, png)'),
   category: Yup.string(),
 });
 
@@ -119,7 +125,13 @@ const schema = Yup.object().shape({
   comments: Yup.string()
     .min(8, 'Comments should be from 8 to 120 symbols')
     .max(120, 'Comments should be from 8 to 120 symbols'),
-  imageUrl: Yup.mixed().required('Image is required (jpg, jpeg, png)'),
+  imageUrl: Yup.mixed()
+    .test(
+      'fileType',
+      'Unsupported file type',
+      value => value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)
+    )
+    .required('Image is required (jpg, jpeg, png)'),
   category: Yup.string(),
 });
 

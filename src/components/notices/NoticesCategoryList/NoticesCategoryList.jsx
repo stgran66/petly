@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router';
 import selectors from 'redux/notices/selectors';
 import operations from 'redux/notices/operations';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Loader from 'components/Loader';
 import NotFound from '../NotFound';
 import NotFoundNotices from '../NotFoundNotices/NotFoundNotices';
@@ -35,6 +35,10 @@ const NoticesCategoryList = () => {
   const totalPages = Math.ceil(pages);
 
   const { isLoggedIn } = hooks.useAuth();
+
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 90, behavior: 'smooth' });
+  }, []);
 
   useEffect(() => {
     setSearchParams(`?page=${page}&limit=12`);
@@ -88,6 +92,7 @@ const NoticesCategoryList = () => {
               page={page}
               variant="outlined"
               onChange={onPagesChange}
+              onClick={scrollToTop}
             />
           </>
         ))}
