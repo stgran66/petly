@@ -1,3 +1,9 @@
+/*
+  object-assign
+  (c) Sindre Sorhus
+  @license MIT
+  */
+
 /*!
  * Number-To-Words util
  * @version v1.2.4
