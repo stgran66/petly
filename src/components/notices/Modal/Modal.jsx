@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Overlay from './Modal.styled';
 import NoticeModal from 'components/notices/NoticeModal';
 
-const Modal = ({ toggleModal, notice, category, favorite, img }) => {
+const Modal = ({ toggleModal, notice, category, favorite, img, toggleFavorite }) => {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -28,6 +28,7 @@ const Modal = ({ toggleModal, notice, category, favorite, img }) => {
         toggleModal={toggleModal}
         favorite={favorite}
         img={img}
+        toggleFavorite={toggleFavorite}
       />
     </Overlay>
   );

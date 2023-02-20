@@ -131,7 +131,6 @@ const userSlice = createSlice({
       const newFavorite = state.userInfo.favorite.includes(action.payload)
         ? state.userInfo.favorite
         : [...state.userInfo.favorite, action.payload];
-      console.log(newFavorite);
       state.userInfo.favorite = newFavorite;
     },
     [addFavNotice.rejected](state, action) {
@@ -146,7 +145,6 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.error = false;
       const newFavorite = state.userInfo.favorite.filter(item => item !== action.payload);
-      console.log(newFavorite);
       state.userInfo.favorite = newFavorite;
     },
     [removeFavNotice.rejected](state, action) {

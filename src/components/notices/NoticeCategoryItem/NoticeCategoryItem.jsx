@@ -50,7 +50,7 @@ const NoticeCategoryItem = ({ notice }) => {
 
   const [showModal, setShowModal] = useState(false);
 
-  const handleSubmit = () => {
+  const handleFavoriteToggle = () => {
     if (!isLoggedIn) {
       Notify.info('Please authorize to access your account and add notice');
       return;
@@ -100,7 +100,7 @@ const NoticeCategoryItem = ({ notice }) => {
       <ImgWrapper>
         <Category>{adaptCategoryName(category)}</Category>
         <Image src={imageUrl} alt={name} />
-        <Button type="button" onClick={handleSubmit}>
+        <Button type="button" onClick={handleFavoriteToggle}>
           {addedToFav ? <AddedToFav /> : <FavouriteIcon />}
         </Button>
       </ImgWrapper>
@@ -140,6 +140,7 @@ const NoticeCategoryItem = ({ notice }) => {
           category={category}
           favorite={addedToFav}
           img={imageUrl}
+          toggleFavorite={setAddedToFav}
         ></Modal>
       )}
     </NoticeItemCard>
