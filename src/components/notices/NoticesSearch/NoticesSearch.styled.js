@@ -53,7 +53,7 @@ const SearchInput = styled(InputBase)`
     padding-left: 14px;
     cursor: pointer;
     font-family: ${({ theme }) => theme.fonts[0]};
-    color: ${({ theme }) => theme.colors.placeholderColor};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   & input::placeholder {
