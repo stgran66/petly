@@ -1,8 +1,13 @@
+import ModalBtnClose from '../Modal/ModalBtnClose';
+import NoticeModal from '../NoticeModal';
 import { useEffect } from 'react';
-import Overlay from './Modal.styled';
-import NoticeModal from 'components/notices/NoticeModal';
+import { createPortal } from 'react-dom';
+import styles from './Modal.styled';
 
-const Modal = ({ toggleModal, notice, category, favorite, img, toggleFavorite }) => {
+const modalRoot = document.querySelector('#modal-root');
+
+const Modal = ({ notice, category, favorite, img, toggleFavorite, close }) => {
+  const { ModalBackdrop, ModalContent } = styles;
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -10,28 +15,30 @@ const Modal = ({ toggleModal, notice, category, favorite, img, toggleFavorite })
 
   function handleKeyDown(e) {
     if (e.code === 'Escape') {
-      toggleModal();
+      close();
     }
   }
 
-  const onBackdropClick = e => {
+  const handleModalClick = e => {
     if (e.currentTarget === e.target) {
-      toggleModal();
+      close();
     }
   };
 
-  return (
-    <Overlay onClick={onBackdropClick}>
-      <NoticeModal
-        notice={notice}
-        category={category}
-        toggleModal={toggleModal}
-        favorite={favorite}
-        img={img}
-        toggleFavorite={toggleFavorite}
-      />
-    </Overlay>
+  return createPortal(
+    <ModalBackdrop onClick={handleModalClick}>
+      <ModalContent>
+        <ModalBtnClose toggleModal={() => close()} />
+        <NoticeModal
+          notice={notice}
+          category={category}
+          favorite={favorite}
+          img={img}
+          toggleFavorite={toggleFavorite}
+        />
+      </ModalContent>
+    </ModalBackdrop>,
+    modalRoot
   );
 };
-
 export default Modal;

@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import Highlighter from 'react-highlight-words';
 import selectors from 'redux/notices/selectors';
 
-import Modal from 'components/notices/Modal';
+import Modal from '../Modal';
 import hooks from 'hooks';
 import styles from './NoticeCategoryItem.styled';
 import userOperations from 'redux/user/operations';
@@ -92,8 +92,13 @@ const NoticeCategoryItem = ({ notice }) => {
     getNoticesAfterDelete();
   };
 
+  if (showModal) {
+    document.body.style.overflow = 'hidden';
+  }
+
   const toggleModal = () => {
     setShowModal(s => !s);
+    document.body.style.overflow = 'visible';
     if (favorite) {
       dispatch(getFavorite());
       return;
@@ -148,7 +153,7 @@ const NoticeCategoryItem = ({ notice }) => {
       </About>
       {showModal && (
         <Modal
-          toggleModal={toggleModal}
+          close={toggleModal}
           notice={notice}
           category={category}
           favorite={addedToFav}

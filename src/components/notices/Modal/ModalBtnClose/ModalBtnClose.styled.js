@@ -1,7 +1,7 @@
 import { styled } from '@mui/system';
 
 const BtnClose = styled('button')`
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 20px;
 
@@ -19,7 +19,7 @@ const BtnClose = styled('button')`
 
   border: none;
   cursor: pointer;
-
+  z-index: 5;
   transition: background-color ${props => props.theme.transitions.long};
 
   :hover,
