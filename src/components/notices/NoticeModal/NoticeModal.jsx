@@ -29,7 +29,6 @@ const NoticeModal = ({ notice, category, toggleModal, favorite, img, toggleFavor
       Notify.info('Please authorize to access your account and add notice');
       return;
     }
-    console.log(toggleFavorite);
     if (favorite) {
       dispatch(removeFavNotice(_id));
       toggleFavorite(false);

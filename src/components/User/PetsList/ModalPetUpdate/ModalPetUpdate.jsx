@@ -63,7 +63,6 @@ let schema = yup.object().shape({
     .min(2)
     .max(16),
   photo: yup.mixed().test('fileType', 'Unsupported file type', value => {
-    console.log(value);
     return (
       typeof value === 'string' ||
       (value &&
