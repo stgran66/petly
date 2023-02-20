@@ -48,13 +48,13 @@ const StyledContainer = styled('div')`
 
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
       font-size: ${props => props.theme.fontSizes.headers.l};
-      margin-top: 88px;
+      margin-top: 92px;
       margin-bottom: 40px;
     }
 
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
       font-size: ${props => props.theme.fontSizes.headers.l};
-      margin-top: 72px;
+      margin-top: 60px;
       margin-bottom: 60px;
     }
   }
