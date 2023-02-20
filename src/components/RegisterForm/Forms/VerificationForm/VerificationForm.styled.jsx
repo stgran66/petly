@@ -1,19 +1,14 @@
-import {styled} from '@mui/system'
+import { styled } from '@mui/system';
 import { Grid, Typography } from '@mui/material';
 
-
-
 const Container = styled(Grid)`
-padding:24px 0;
+  padding: 24px 0;
 `;
 
 const ItemList = styled(Typography)(({ theme }) => ({
-  color:  theme.colors.text
-}))
+  color: theme.colors.text,
+}));
 
-const styles = { Container, ItemList }
+const styles = { Container, ItemList };
 
-export default styles
-
-
-
+export default styles;

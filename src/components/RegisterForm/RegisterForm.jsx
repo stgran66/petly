@@ -16,7 +16,7 @@ import Loader from 'components/Loader';
 import styles from './RegisterForm.styled';
 const { register } = operations;
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ['First step registration', 'Second step registration', 'Registration details'];
 const { formId, formField } = checkoutFormModel;
 
 function _renderStepContent(step) {
@@ -45,7 +45,7 @@ const RegisterForm = () => {
   const _submitForm = values => {
     const { email, password, name, city, phone } = values;
     const ifCityNoString = city === '' ? 'unknown' : city;
-    // const ifPhoneNoString = phone === '' ? '+380000000000' : phone;
+
     dispatch(
       register({
         email: email.trim(),

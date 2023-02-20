@@ -30,13 +30,12 @@ const {
 const { updateUserPet } = userOperations;
 
 const RegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
-const MIN_FILE_SIZE = 10240; //10KB
+const MIN_FILE_SIZE = 100000; //100KB
 
 let schema = yup.object().shape({
   name: yup
     .string()
     .trim()
-    // .required()
     .min(2)
     .max(16)
     .matches(RegExp, 'Name may contain only letters, apostrophe, dash and spaces'),
@@ -66,7 +65,6 @@ let schema = yup.object().shape({
     .max(16),
   photo: yup
     .mixed()
-    // .required('Image is Required!')
     .test('fileType', 'Unsupported file type', value => {
       return (
         typeof value === 'string' ||
@@ -75,11 +73,10 @@ let schema = yup.object().shape({
     })
     .test(
       'is-valid-size',
-      'Max allowed size is 10KB',
+      'Min allowed size is 100KB',
       value => typeof value === 'string' || (value && value.size >= MIN_FILE_SIZE)
     ),
   comments: yup.string('Comment should be 8 to 120 characters long').trim().min(8).max(120),
-  // .required('Comment should be 8 to 120 characters long'),
 });
 
 const ModalPetUpdate = ({ setShowModalPet, pet }) => {

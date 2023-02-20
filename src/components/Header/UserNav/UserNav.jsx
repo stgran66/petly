@@ -1,32 +1,36 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
 import AuthNav from '../AuthNav';
 import hooks from 'hooks';
 import userSelectors from 'redux/user/selectors';
 
-// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import styles from './UserNav.styled';
+const { selectUserInfo } = userSelectors;
 
 const UserNav = ({ hidden, closeBurgerMenu }) => {
   const { NavUser, ButtonEl, PhotoUser } = styles;
-  const navigate = useNavigate();
   const { isLoggedIn } = hooks.useAuth();
-  const { selectUserInfo } = userSelectors;
   const user = useSelector(selectUserInfo);
-  console.log(user.avatarURL);
+  const navigate = useNavigate();
+
   return (
     <NavUser hiddenBlock={hidden}>
       {isLoggedIn ? (
         <ButtonEl
-          // startIcon={<AccountCircleIcon />}
-          startIcon={<PhotoUser src={user.avatarURL} alt={user.name} />}
+          startIcon={
+            user?.avatarURL ? (
+              <PhotoUser src={user.avatarURL} alt={user.name} />
+            ) : (
+              <AccountCircleIcon />
+            )
+          }
           onClick={() => {
             navigate('/user');
             closeBurgerMenu && closeBurgerMenu();
           }}
         >
-          {user.name}
+          {user?.name ? user.name : 'Account'}
         </ButtonEl>
       ) : (
         <AuthNav closeBurgerMenu={closeBurgerMenu} />
@@ -34,5 +38,4 @@ const UserNav = ({ hidden, closeBurgerMenu }) => {
     </NavUser>
   );
 };
-
 export default UserNav;
