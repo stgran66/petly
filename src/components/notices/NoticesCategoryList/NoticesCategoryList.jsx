@@ -9,13 +9,11 @@ import Loader from 'components/Loader';
 import NotFound from '../NotFound';
 import NotFoundNotices from '../NotFoundNotices/NotFoundNotices';
 import hooks from 'hooks';
-import userOperations from 'redux/user/operations';
 import { useSearchParams } from 'react-router-dom';
 
 const { fetchNotices, getFavorite, getMyNotices } = operations;
 const { List, ListItem, NoticesContainer, PaginationWrap } = styles;
 const { selectFilteredList, selectLoadingStatus, selectErrorMessage, totalNotices } = selectors;
-const { fetchUserData } = userOperations;
 
 const NoticesCategoryList = () => {
   const [page, setPage] = useState(1);
@@ -46,9 +44,6 @@ const NoticesCategoryList = () => {
 
   useEffect(() => {
     const getUserData = async () => {
-      if (isLoggedIn) {
-        await dispatch(fetchUserData());
-      }
       if (favorite) {
         dispatch(getFavorite(page));
         return;
@@ -78,7 +73,7 @@ const NoticesCategoryList = () => {
           <>
             <List>
               {filteredNotices.map(notice => (
-                <ListItem key={notice._id}>
+                <ListItem key={notice._id} data-aos="zoom-in">
                   <NoticeCategoryItem id={notice._id} notice={notice} category={category} />
                 </ListItem>
               ))}

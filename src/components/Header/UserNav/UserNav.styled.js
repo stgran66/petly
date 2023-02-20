@@ -9,7 +9,7 @@ const NavUser = styled('div')`
     margin-bottom: 0;
     margin-right: 90px;
   }
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     margin-right: 60px;
   }
 `;
@@ -17,11 +17,10 @@ const PhotoUser = styled('img')`
   width: 23px;
   border-radius: 50%;
   margin-right: 12px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 28px;
     margin-right: 14px;
   }
-
 `;
 
 const ButtonEl = styled(Button)(({ theme }) => ({

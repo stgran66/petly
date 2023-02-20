@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-import Modal from 'components/notices/Modal';
 import hooks from 'hooks';
 import styles from './NoticeCategoryItem.styled';
 import userOperations from 'redux/user/operations';
@@ -11,6 +10,9 @@ import userSelectors from 'redux/user/selectors';
 import operations from 'redux/notices/operations';
 import calcAge from 'utils/calcAge';
 import adaptCategoryName from 'utils/adaptCategoryNames';
+
+import Modal from 'components/Modal';
+import NoticeModal from '../NoticeModal';
 
 const { deleteNotice, getFavorite, getMyNotices, fetchNotices } = operations;
 const { addFavNotice, removeFavNotice } = userOperations;
@@ -49,6 +51,18 @@ const NoticeCategoryItem = ({ notice }) => {
   } = styles;
 
   const [showModal, setShowModal] = useState(false);
+  if (showModal) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'visible';
+  }
+    const toggleModal = () => {
+      setShowModal(s => !s);
+      if (favorite) {
+        dispatch(getFavorite());
+        return;
+      }
+    };
 
   const handleSubmit = () => {
     if (!isLoggedIn) {
@@ -85,14 +99,6 @@ const NoticeCategoryItem = ({ notice }) => {
       dispatch(fetchNotices({ category, page }));
     };
     getNoticesAfterDelete();
-  };
-
-  const toggleModal = () => {
-    setShowModal(s => !s);
-    if (favorite) {
-      dispatch(getFavorite());
-      return;
-    }
   };
 
   return (
@@ -134,13 +140,14 @@ const NoticeCategoryItem = ({ notice }) => {
         )}
       </About>
       {showModal && (
-        <Modal
-          toggleModal={toggleModal}
-          notice={notice}
-          category={category}
-          favorite={addedToFav}
-          img={imageUrl}
-        ></Modal>
+        <Modal close={toggleModal}>
+          <NoticeModal
+            notice={notice}
+            category={category}
+            favorite={favorite}
+            img={imageUrl}
+          />
+        </Modal>
       )}
     </NoticeItemCard>
   );

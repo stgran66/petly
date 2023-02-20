@@ -5,13 +5,12 @@ import { useState } from 'react';
 import hooks from 'hooks';
 import useCategories from 'hooks/useCategories';
 import { ReactComponent as HeartIcon } from 'images/fav-icon.svg';
-import ModalBtnClose from '../ModalBtnClose';
 import { useDispatch } from 'react-redux';
 import userOperations from 'redux/user/operations';
 
 const { addFavNotice, removeFavNotice } = userOperations;
 
-const NoticeModal = ({ notice, category, toggleModal, favorite, img }) => {
+const NoticeModal = ({ notice, category, favorite, img }) => {
   const [categoryName, setCategoryName] = useState('sell');
   useCategories(category, setCategoryName);
   const { isLoggedIn } = hooks.useAuth();
@@ -123,7 +122,6 @@ const NoticeModal = ({ notice, category, toggleModal, favorite, img }) => {
           </ChangeFavoriteStatusBtn>
         )}
       </BtnWrapper>
-      <ModalBtnClose toggleModal={toggleModal} />
     </Container>
   );
 };

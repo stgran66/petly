@@ -3,12 +3,13 @@ import { styled } from '@mui/system';
 const Container = styled('div')`
   position: relative;
   max-width: 400px;
-  margin: 0px auto;
-  padding: 60px 20px 40px;
+  margin: 0px auto 30px;
+  padding: 60px 10px 40px;
   background-color: ${props => props.theme.colors.white};
   border-radius: 20px;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     max-width: 704px;
+    margin: 0px auto 0px;
     padding: 32px 20px;
   }
 `;
