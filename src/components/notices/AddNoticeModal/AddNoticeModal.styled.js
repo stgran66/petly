@@ -331,7 +331,7 @@ const AddImageWrap = styled('div')`
   border-radius: 20px;
   height: 116px;
   width: 116px;
-
+  border: 1px solid ${({ light }) => (light ? 'transparent' : 'rgba(245, 146, 86, 0.5)')};
   background-color: ${({ theme }) => theme.colors.commonBackground};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
