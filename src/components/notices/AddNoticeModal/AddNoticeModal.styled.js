@@ -49,8 +49,6 @@ const InputButton = styled(IconButton)`
     background-color: ${({ theme }) => theme.colors.accent};
     color: ${({ theme }) => theme.colors.white};
   }
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-  }
 `;
 
 const IconClose = styled(CloseIcon)`
