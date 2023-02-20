@@ -17,9 +17,11 @@ const List = styled('ul')`
   margin-bottom: 8px;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     grid-template-columns: repeat(4, 1fr);
+    gap: 38px;
     margin-bottom: 168px;
   }
 `;
