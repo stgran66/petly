@@ -2,6 +2,8 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import Highlighter from 'react-highlight-words';
+import selectors from 'redux/notices/selectors';
 
 import Modal from 'components/notices/Modal';
 import hooks from 'hooks';
@@ -31,6 +33,9 @@ const NoticeCategoryItem = ({ notice }) => {
   const urlPath = useLocation();
   const favorite = urlPath.pathname.includes('favorite');
   const myNotices = urlPath.pathname.includes('own');
+  const { selectFilter } = selectors;
+  const filterValue = useSelector(selectFilter);
+  const searchValue = filterValue.toLowerCase().split(', ');
 
   const {
     NoticeItemCard,
@@ -104,7 +109,15 @@ const NoticeCategoryItem = ({ notice }) => {
           {addedToFav ? <AddedToFav /> : <FavouriteIcon />}
         </Button>
       </ImgWrapper>
-      <ItemTitle>{title}</ItemTitle>
+      <ItemTitle>
+        <Highlighter
+          highlightClassName="YourHighlightClass"
+          searchWords={searchValue}
+          autoEscape={true}
+          textToHighlight={title}
+          highlightStyle={{ backgroundColor: '#f57c00' }}
+        />
+      </ItemTitle>
       <About>
         <AboutList>
           <Content>Breed:</Content>
