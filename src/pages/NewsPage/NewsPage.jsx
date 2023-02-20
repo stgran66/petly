@@ -30,6 +30,7 @@ const NewsPage = () => {
     IconClose,
     IconSearch,
     NewsListStyle,
+    NotFoundArticle,
   } = styles;
 
   useEffect(() => {
@@ -88,13 +89,14 @@ const NewsPage = () => {
       </SearchForm>
       {error && <NotFound />}
       {isLoading && <Loader />}
-
       <NewsListStyle>
-        {filteredData !== undefined &&
-          filteredData.length > 0 &&
+        {filteredData !== undefined && filteredData.length > 0 ? (
           filteredData.map(article => (
             <Article key={article._id} article={article} data-aos="zoom-in" />
-          ))}
+          ))
+        ) : (
+          <NotFoundArticle>Sorry, we didn't find any news on that topic</NotFoundArticle>
+        )}
       </NewsListStyle>
     </>
   );
