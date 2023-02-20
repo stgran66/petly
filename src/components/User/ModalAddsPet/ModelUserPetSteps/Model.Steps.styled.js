@@ -108,9 +108,12 @@ const LabelWrapp = styled('div')`
   flex-direction: column;
   gap: 8px;
   color: ${props => props.theme.colors.text};
+  min-height: 100px;
+  width: 100%;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     gap: 12px;
+    min-height: 110px;
   }
 
   label {
@@ -182,9 +185,11 @@ const CommentWrapp = styled('div')`
   flex-direction: column;
   gap: 8px;
   color: ${props => props.theme.colors.text};
+  min-height: 154px;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     gap: 12px;
+    min-height: 180px;
   }
 
   label {
@@ -239,8 +244,9 @@ const InputCommentValue = styled(Field)`
 const ErrorMsg = styled('p')`
   text-align: center;
   margin-bottom: 5px;
+  margin-top: -8px;
 
-  color: ${props => props.theme.colors.placeholderText};
+  color: ${props => props.theme.colors.errorColor};
   font-weight: ${props => props.theme.fontWeights.normal};
   font-size: ${props => props.theme.fontSizes.text.xs};
   line-height: 1.2;

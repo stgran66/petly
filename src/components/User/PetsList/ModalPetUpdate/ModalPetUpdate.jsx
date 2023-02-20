@@ -30,7 +30,6 @@ const {
 const { updateUserPet } = userOperations;
 
 const RegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
-const MIN_FILE_SIZE = 100000; //100KB
 
 let schema = yup.object().shape({
   name: yup
@@ -63,19 +62,24 @@ let schema = yup.object().shape({
     // .required()
     .min(2)
     .max(16),
-  photo: yup
-    .mixed()
-    .test('fileType', 'Unsupported file type', value => {
-      return (
-        typeof value === 'string' ||
-        (value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type))
-      );
-    })
-    .test(
-      'is-valid-size',
-      'Min allowed size is 100KB',
-      value => typeof value === 'string' || (value && value.size >= MIN_FILE_SIZE)
-    ),
+  photo: yup.mixed().test('fileType', 'Unsupported file type', value => {
+    console.log(value);
+    return (
+      typeof value === 'string' ||
+      (value &&
+        [
+          'image/jpeg',
+          'image/png',
+          'image/jpg',
+          'image/gif',
+          'image/jpg',
+          'image/jfif',
+          'image/pjpeg',
+          'image/pjp',
+          'image/webp',
+        ].includes(value.type))
+    );
+  }),
   comments: yup.string('Comment should be 8 to 120 characters long').trim().min(8).max(120),
 });
 
@@ -145,8 +149,6 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
               ) : (
                 <PetUpdateFoto src={photo} alt="pet foto" />
               )}
-              {/* {fileInput && <PetInfoFoto src={fileInput} alt="pet foto" />} */}
-              {/* {<PetInfoFoto src={URL.createObjectURL(fileInput)} alt="pet foto" />} */}
               <input
                 type="file"
                 name="photo"

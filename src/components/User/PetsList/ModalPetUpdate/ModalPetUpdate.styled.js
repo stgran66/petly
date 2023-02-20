@@ -108,6 +108,7 @@ const PetInfoUpdateItem = styled('li')`
   align-items: center;
   width: 100%;
   gap: 8px;
+  min-height: 39px;
 `;
 const PetInfoUpdateLabel = styled('label')`
   display: flex;
@@ -205,7 +206,7 @@ const ErrorMsg = styled('p')`
   margin-top: 5px;
   margin-bottom: 5px;
 
-  color: ${props => props.theme.colors.placeholderText};
+  color: ${props => props.theme.colors.errorColor};
   font-weight: ${props => props.theme.fontWeights.normal};
   font-size: ${props => props.theme.fontSizes.text.xs};
   line-height: 1.2;

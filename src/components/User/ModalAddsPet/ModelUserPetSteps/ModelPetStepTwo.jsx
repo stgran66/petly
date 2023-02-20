@@ -12,12 +12,11 @@ const {
   FotoWrap,
   PetFoto,
   PetFotoIcon,
+
   CommentWrapp,
   InputCommentValue,
   ErrorMsg,
 } = styles;
-
-const MIN_FILE_SIZE = 100000; //100KB
 
 let schema = yup.object().shape({
   photo: yup
@@ -27,18 +26,8 @@ let schema = yup.object().shape({
       'fileType',
       'Unsupported file type',
       value => value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)
-    )
-    .test(
-      'is-valid-size',
-      'Min allowed size is 100KB',
-      value => value === null || (value && value.size >= MIN_FILE_SIZE)
     ),
-  comments: yup
-    .string()
-    .trim()
-    .min(8)
-    .max(120)
-    .required('Comment should be 8 to 120 characters long'),
+  comments: yup.string().trim().min(8).max(120).required('Comment should be 8 to 120 characters'),
 });
 
 const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
@@ -101,7 +90,6 @@ const ModelPetStepTwo = ({ next, data, setFormData, prev }) => {
                 id="comments"
                 onChange={e => handleInputChange(e, setFieldValue)}
               />
-              {/* <ErrorMessage component="span" name="comments" /> */}
               <ErrorMessage name="comments">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
             </CommentWrapp>
           </FormInputWrappSecond>
