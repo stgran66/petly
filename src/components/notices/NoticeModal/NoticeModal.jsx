@@ -104,7 +104,7 @@ const NoticeModal = ({ notice, category, toggleModal, favorite, img, toggleFavor
         </ListWrapper>
       </Wrapper>
       <ItemInfo>
-        <b>Comments:</b>
+        <b>Comments: </b>
         {comments ? comments : '--------'}
       </ItemInfo>
       <BtnWrapper>
