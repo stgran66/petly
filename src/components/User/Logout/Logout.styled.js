@@ -52,6 +52,7 @@ const ModalLogoutWrapp = styled('div')`
   flex-direction: column;
   gap: 60px;
   justify-content: center;
+  align-items: center;
   margin-left: auto;
   margin-right: auto;
   width: 280px;
@@ -65,10 +66,6 @@ const ModalLogoutWrapp = styled('div')`
     padding: 30px 30px;
     gap: 80px;
     width: 608px;
-  }
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    width: 800px;
   }
 `;
 

@@ -188,14 +188,13 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
                   <ErrorMessage name="comments">{msg => <ErrorMsg>{msg}</ErrorMsg>}</ErrorMessage>
                 </PetInfoUpdateItemComment>
               </PetInfoUpdate>
-
-              <ModalDeletePetButtonsGroup>
-                <ButtonUpdate type="submit">Update pet</ButtonUpdate>
-                <ButtonCancel type="button" onClick={e => onClosePet(e)}>
-                  Cancel
-                </ButtonCancel>
-              </ModalDeletePetButtonsGroup>
             </PetInfoUpdateWrapp>
+            <ModalDeletePetButtonsGroup>
+              <ButtonUpdate type="submit">Update pet</ButtonUpdate>
+              <ButtonCancel type="button" onClick={e => onClosePet(e)}>
+                Cancel
+              </ButtonCancel>
+            </ModalDeletePetButtonsGroup>
           </PetItemUpdateWrapp>
         )}
       </Formik>
