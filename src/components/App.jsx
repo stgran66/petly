@@ -10,16 +10,18 @@ import NoticesCategoryList from './notices/NoticesCategoryList';
 import Loader from 'components/Loader';
 import StyledApp from './App.styled';
 import operations from 'redux/auth/operations';
-import select from 'redux/auth/selectors';
 import selectTheme from 'redux/theme/selectors';
 import NotFoundPages from './NotFoundPages';
 
 import themes from '../theme';
 
+import hooks from 'hooks';
+import userOperations from 'redux/user/operations';
+
 const { lightTheme, darkTheme } = themes;
 
 const { refreshUser } = operations;
-const { selectIsRefreshing } = select;
+const { fetchUserData } = userOperations;
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
@@ -30,8 +32,8 @@ const NoticesPage = lazy(() => import('../pages/NoticesPage'));
 const FriendsPage = lazy(() => import('../pages/FriendsPage'));
 
 export const App = () => {
+    const { isLoggedIn,isRefreshing } = hooks.useAuth();
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing);
   const selectedTheme = useSelector(selectTheme);
   const theme = selectedTheme === 'light' ? lightTheme : darkTheme;
 
@@ -39,6 +41,10 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
+    useEffect(() => {
+      if (isLoggedIn) dispatch(fetchUserData());
+    }, [dispatch, isLoggedIn]);
+  
   return (
     <ThemeProvider theme={theme}>
       <StyledApp>

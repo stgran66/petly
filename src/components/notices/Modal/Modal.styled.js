@@ -1,17 +1,28 @@
 import { styled } from '@mui/system';
 
-const Overlay = styled('div')`
+const ModalBackdrop = styled('div')`
   position: fixed;
   top: 0;
+  right: 0;
   left: 0;
-  z-index: 1000;
-  width: 100%;
-  height: 100%;
-  padding: 158px 20px 60px 20px;
+  bottom: 0;
 
   background: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
   overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  z-index: 1000;
 `;
-
-export default Overlay;
+const ModalContent = styled('div')`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    transform: translate(-50%, -50%);
+  }
+`;
+const styles = { ModalBackdrop, ModalContent };
+export default styles;

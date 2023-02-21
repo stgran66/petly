@@ -55,7 +55,7 @@ const Wrapper = styled('div')`
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-top: 92px;
-    height: calc(100vh - 149px);
+    height: calc(100vh - 152px);
   }
 `;
 
