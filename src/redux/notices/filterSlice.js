@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const filterInitialState = {
   value: '',
+  queryValue: '',
 };
 const filterSlice = createSlice({
   name: 'filter',
@@ -10,10 +11,13 @@ const filterSlice = createSlice({
     setFilter(state, action) {
       state.value = action.payload;
     },
+    setQueryValue(state, action) {
+      state.queryValue = action.payload;
+    },
   },
 });
 
-export const { setFilter } = filterSlice.actions;
+export const { setFilter, setQueryValue } = filterSlice.actions;
 
 const filterReducer = filterSlice.reducer;
 

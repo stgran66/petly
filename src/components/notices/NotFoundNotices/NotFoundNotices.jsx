@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
-import { setFilter } from 'redux/notices/filterSlice';
+import { setFilter, setQueryValue } from 'redux/notices/filterSlice';
 import styles from './NotFoundNotices.styled';
 
 const {
@@ -13,9 +13,7 @@ const {
   TryIcon,
   FindIcon,
 } = styles;
-const NotFoundNotices = ({
-  searchOptions: { favorite, myNotices, category },
-}) => {
+const NotFoundNotices = ({ searchOptions: { favorite, myNotices, category } }) => {
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -29,6 +27,7 @@ const NotFoundNotices = ({
             <NotFoundBtn
               onClick={() => {
                 dispatch(setFilter(''));
+                dispatch(setQueryValue(''));
               }}
               variant="contained"
               endIcon={<FavorIcon />}
@@ -40,14 +39,13 @@ const NotFoundNotices = ({
       )}
       {category && (
         <>
-          <NotFoundTitle>
-            Sorry, we didn't find notices in this category
-          </NotFoundTitle>
+          <NotFoundTitle>Sorry, we didn't find notices in this category</NotFoundTitle>
           <NotFoundDesc>Please specify your request</NotFoundDesc>
 
           <NotFoundBtn
             onClick={() => {
               dispatch(setFilter(''));
+              dispatch(setQueryValue(''));
             }}
             variant="contained"
             endIcon={<FindIcon />}
@@ -63,6 +61,7 @@ const NotFoundNotices = ({
             <NotFoundBtn
               onClick={() => {
                 dispatch(setFilter(''));
+                dispatch(setQueryValue(''));
               }}
               variant="contained"
               endIcon={<TryIcon />}
