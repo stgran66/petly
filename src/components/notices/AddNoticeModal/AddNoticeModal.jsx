@@ -134,7 +134,7 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
 
   const onHandleSubmit = (values, actions) => {
     onChangeData(formData);
-    navigate(`/notices/${selectedCategoryValue}`, { replace: true });
+    navigate('/notices/own', { replace: true });
     setIsModalOpen(false);
     onSuccessAddNotice();
   };
