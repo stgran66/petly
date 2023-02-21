@@ -20,6 +20,7 @@ const { addFavNotice, removeFavNotice } = userOperations;
 const NoticeCategoryItem = ({ notice }) => {
   const queryParameters = new URLSearchParams(window.location.search);
   const page = queryParameters.get('page');
+  const query = queryParameters.get('query');
 
   const dispatch = useDispatch();
   const { selectUserFavorites, selectUserId } = userSelectors;
@@ -64,7 +65,7 @@ const NoticeCategoryItem = ({ notice }) => {
       setAddedToFav(false);
       await dispatch(removeFavNotice(_id));
       if (favorite) {
-        dispatch(getFavorite());
+        dispatch(getFavorite({ page, query }));
         return;
       }
     };
@@ -80,11 +81,11 @@ const NoticeCategoryItem = ({ notice }) => {
     const getNoticesAfterDelete = async () => {
       await dispatch(deleteNotice(_id));
       if (favorite) {
-        dispatch(getFavorite(page));
+        dispatch(getFavorite({ page, query }));
         return;
       }
       if (myNotices) {
-        dispatch(getMyNotices(page));
+        dispatch(getMyNotices({ page, query }));
         return;
       }
       dispatch(fetchNotices({ category, page }));

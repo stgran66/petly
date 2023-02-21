@@ -3,7 +3,9 @@ import { Form, Field } from 'formik';
 
 const PetItemUpdateWrapp = styled(Form)`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* flex-direction: column; */
   margin-left: auto;
   margin-right: auto;
   width: 280px;
@@ -29,8 +31,6 @@ const PetItemUpdateWrapp = styled(Form)`
 
 const PetItemUpdatePhotoWrapp = styled('div')`
   position: relative;
-  /* margin-left: auto;
-  margin-right: auto; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,8 +81,8 @@ const PetUpdateFoto = styled('img')`
 `;
 
 const PetInfoUpdateWrapp = styled('div')`
-  width: 100%;
   position: relative;
+  flex-grow: 2;
 `;
 
 const PetInfoUpdate = styled('ul')`
