@@ -2,8 +2,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const fetchNotices = createAsyncThunk('notices/fetchByCategory', async (data, thunkAPI) => {
-  const { category, page } = data;
+  const { category, page, query } = data;
   try {
+    if (query) {
+      const response = await axios.get(
+        `/api/notices/${category}?query=${query}&page=${page}&limit=12`
+      );
+      return response.data;
+    }
     const response = await axios.get(`/api/notices/${category}?page=${page}&limit=12`);
     return response.data;
   } catch (e) {
@@ -11,7 +17,7 @@ const fetchNotices = createAsyncThunk('notices/fetchByCategory', async (data, th
   }
 });
 
-export const addNotice = createAsyncThunk('notices/addNotice', async (newNotice, thunkAPI) => {
+const addNotice = createAsyncThunk('notices/addNotice', async (newNotice, thunkAPI) => {
   try {
     const response = await axios.post('/api/notices', newNotice);
     return response.data;
@@ -20,17 +26,30 @@ export const addNotice = createAsyncThunk('notices/addNotice', async (newNotice,
   }
 });
 
-export const getFavorite = createAsyncThunk('notices/favoriteNotices/', async (page, thunkAPI) => {
-  try {
-    const response = await axios.get(`/api/notices/favorite?page=${page}&limit=12`);
-    return response.data;
-  } catch (e) {
-    return thunkAPI.rejectWithValue(e.message);
+const getFavorite = createAsyncThunk(
+  'notices/favoriteNotices/',
+  async ({ page, query }, thunkAPI) => {
+    try {
+      if (query) {
+        const response = await axios.get(
+          `/api/notices/favorite?query=${query}&page=${page}&limit=12`
+        );
+        return response.data;
+      }
+      const response = await axios.get(`/api/notices/favorite?page=${page}&limit=12`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
   }
-});
+);
 
-export const getMyNotices = createAsyncThunk('notices/myNotices', async (page, thunkAPI) => {
+const getMyNotices = createAsyncThunk('notices/myNotices', async ({ page, query }, thunkAPI) => {
   try {
+    if (query) {
+      const response = await axios.get(`/api/notices/own?query=${query}&page=${page}&limit=12`);
+      return response.data;
+    }
     const response = await axios.get(`/api/notices/own?page=${page}&limit=12`);
     return response.data;
   } catch (e) {
