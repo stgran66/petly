@@ -126,7 +126,15 @@ const NoticeCategoryItem = ({ notice }) => {
       <About>
         <AboutList>
           <Content>Breed:</Content>
-          <Content>{breed}</Content>
+          <Content>
+            <Highlighter
+              highlightClassName="YourHighlightClass"
+              searchWords={searchValue}
+              autoEscape={true}
+              textToHighlight={breed}
+              highlightStyle={{ backgroundColor: '#f57c00' }}
+            />
+          </Content>
           <Content>Place:</Content>
           <Content>{place}</Content>
           <Content>Age:</Content>
