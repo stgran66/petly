@@ -37,6 +37,10 @@ const SearchForm = styled(FormControl)`
   box-shadow: ${({ theme }) => theme.shadows.cardsShadow};
   border-radius: 20px;
 
+  &:focus-within {
+    box-shadow: 4px 2px 8px rgba(255, 167, 38, 0.69);
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-bottom: 40px;
   }
@@ -50,7 +54,7 @@ const SearchInput = styled(InputBase)`
     padding-left: 14px;
     cursor: pointer;
     font-family: ${({ theme }) => theme.fonts[0]};
-    color: ${({ theme }) => theme.colors.placeholderColor};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   & input::placeholder {
