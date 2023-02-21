@@ -60,7 +60,6 @@ const ModalLogoutWrapp = styled('div')`
   padding: 15px 15px;
   border-radius: 20px;
   background-color: ${props => props.theme.colors.white};
-  /* background-color: transparent; */
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     padding: 30px 30px;
