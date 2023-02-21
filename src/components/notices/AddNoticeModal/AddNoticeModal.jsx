@@ -10,6 +10,7 @@ import MaleIcon from '../../../images/male-icon.svg';
 import validationSchemas from './ValidationModal';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import selectTheme from 'redux/theme/selectors';
+import { useNavigate } from 'react-router-dom';
 
 import { Box } from '@mui/system';
 import hooks from 'hooks';
@@ -76,8 +77,9 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
       return newData;
     });
   }, [selectedCategoryValue]);
-  const selectedTheme = useSelector(selectTheme);
 
+  const selectedTheme = useSelector(selectTheme);
+  const navigate = useNavigate();
   const onRadioCategoryChange = event => {
     const { value } = event.target;
     setSelectedCategoryValue(value);
@@ -130,10 +132,11 @@ const AddNoticeModal = ({ isModalOpen, setIsModalOpen }) => {
     }
   };
 
-  const onHandleSubmit = async (values, actions) => {
+  const onHandleSubmit = (values, actions) => {
     onChangeData(formData);
+    navigate(`/notices/${selectedCategoryValue}`, { replace: true });
     setIsModalOpen(false);
-    await onSuccessAddNotice();
+    onSuccessAddNotice();
   };
 
   const addModalSchema = type => {
