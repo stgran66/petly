@@ -1,16 +1,12 @@
 import { useDispatch } from 'react-redux';
 import operations from 'redux/auth/operations';
 import { clearState } from 'redux/user/userSlise';
+import { setFilter } from 'redux/notices/filterSlice';
+
 import styles from './Logout.styled';
 
 const { logOut } = operations;
-const {
-  ModalLogoutWrapp,
-  ModalLogoutTitle,
-  ModalLogoutButtonsGroup,
-  ButtonYes,
-  ButtonNo,
-} = styles;
+const { ModalLogoutWrapp, ModalLogoutTitle, ModalLogoutButtonsGroup, ButtonYes, ButtonNo } = styles;
 
 const ModalLogout = ({ setShowModal }) => {
   const dispatch = useDispatch();
@@ -22,6 +18,7 @@ const ModalLogout = ({ setShowModal }) => {
   const handleLogOut = () => {
     dispatch(logOut());
     dispatch(clearState());
+    dispatch(setFilter(''));
   };
 
   return (
