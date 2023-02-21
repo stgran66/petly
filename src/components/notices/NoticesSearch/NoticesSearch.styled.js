@@ -36,6 +36,10 @@ const SearchForm = styled(FormControl)`
   box-shadow: ${({ theme }) => theme.shadows.cardsShadow};
   border-radius: 20px;
 
+  &:focus-within {
+    box-shadow: 4px 2px 8px rgba(255, 167, 38, 0.69);
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-bottom: 40px;
   }
@@ -65,6 +69,7 @@ const SearchInput = styled(InputBase)`
     letter-spacing: 0.04em;
     color: ${({ theme }) => theme.colors.placeholderColor};
   }
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     height: 44px;
     & input {
@@ -83,20 +88,25 @@ const InputSearchIcon = styled('span')`
   margin-right: 12px;
   display: flex;
   align-items: center;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const InputButton = styled(IconButton)`
-  width: 35px;
-  height: 35px;
+  width: ${({ active }) => (active ? '33px' : '35px')};
+  height: ${({ active }) => (active ? '33px' : '35px')};
   margin-right: 4px;
-  padding: 8px;
+  padding: ${({ active }) => (active ? '4px' : '8px')};
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.text};
+  border: 1px solid transparent;
+  background-color: ${({ theme, active }) => (active ? theme.colors.accent : 'transparent')};
+  color: ${({ theme, active }) => (active ? theme.colors.white : theme.colors.text)};
   transition: ${({ theme }) => theme.transitions.normal};
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: ${({ theme }) => theme.colors.accent};
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme, active }) => (active ? theme.colors.text : theme.colors.white)};
+    border-color: ${({ theme, active }) => (active ? theme.colors.text : 'transparent')};
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: 14px;
@@ -104,7 +114,7 @@ const InputButton = styled(IconButton)`
 `;
 
 const IconSearch = styled(SearchIcon)`
-  fill: ${({ theme }) => theme.colors.text};
+  fill: currentColor;
 `;
 const IconClose = styled(HighlightOffIcon)`
   fill: currentColor;
