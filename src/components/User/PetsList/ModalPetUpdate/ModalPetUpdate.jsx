@@ -59,7 +59,6 @@ let schema = yup.object().shape({
     .string()
     .trim()
     .matches(RegExp, 'Breed may contain only letters, apostrophe, dash and spaces.')
-    // .required()
     .min(2)
     .max(16),
   photo: yup.mixed().test('fileType', 'Unsupported file type', value => {
@@ -94,7 +93,7 @@ const ModalPetUpdate = ({ setShowModalPet, pet }) => {
     setShowModalPet(false);
   };
 
-  // ----------------------------------------------------
+  // =================================================================
 
   const handleFormSubmit = async newData => {
     setFormData({ ...formData, ...newData });

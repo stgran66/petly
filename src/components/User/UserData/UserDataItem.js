@@ -19,7 +19,6 @@ const {
 } = styles;
 
 const { updateUserData } = userOperations;
-// const { selectLoadingUser, selectErrorUser } = userSelectors;
 
 const UserDataItem = ({ name, label, type, defaultValue, active, setActive }) => {
   const dispatch = useDispatch();
@@ -60,7 +59,6 @@ const UserDataItem = ({ name, label, type, defaultValue, active, setActive }) =>
 
   const activeHandleClick = name => {
     setActive(name);
-    // handleFocus();
   };
 
   const handleSubmit = name => {

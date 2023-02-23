@@ -6,8 +6,7 @@ import userOperations from 'redux/user/operations';
 import styles from './ModalAddsPet.styled';
 
 const { addUserPet } = userOperations;
-const { ModalAddPetWrapp, ModalTitle, ModalCloseButton, ModalCloseIcon } =
-  styles;
+const { ModalAddPetWrapp, ModalTitle, ModalCloseButton, ModalCloseIcon } = styles;
 
 const { ModelPetStepOne, ModelPetStepTwo } = modelStepsPet;
 
@@ -61,7 +60,6 @@ const ModalAddsPet = ({ setShowModal }) => {
       next={handleNextStep}
       data={formData}
       setFormData={setFormData}
-      // title={FormTitles[page]}
     />,
     <ModelPetStepTwo
       prev={handlePrevStep}
@@ -69,7 +67,6 @@ const ModalAddsPet = ({ setShowModal }) => {
       next={handleNextStep}
       data={formData}
       setFormData={setFormData}
-      // title={FormTitles[page]}
     />,
   ];
   return (

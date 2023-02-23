@@ -117,7 +117,6 @@ const UserData = () => {
               name="birthday"
               setActive={setActive}
               active={active}
-              // title="Date may contain only format 00.00.0000"
               id="birthday"
             />
 
@@ -128,7 +127,6 @@ const UserData = () => {
               name="phone"
               setActive={setActive}
               active={active}
-              // pattern="/^\+380\d{3}\d{2}\d{2}\d{2}$/"
               title="Phone may be formated +3800000000"
               id="phone"
             />

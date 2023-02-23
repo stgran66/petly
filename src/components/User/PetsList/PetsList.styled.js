@@ -51,7 +51,6 @@ const PetInfoFoto = styled('img')`
 `;
 
 const PetInfoWrapp = styled('div')`
-  /* flex-shrink: 0; */
   width: 100%;
   position: relative;
 `;
