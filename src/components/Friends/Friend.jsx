@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import styles from './styled';
 import TimeModal from './TimeModal';
+import styles from './styled';
 
 const { StyledFriend } = styles;
 
@@ -18,7 +18,7 @@ const Friend = ({ friend }) => {
       <h3>
         <a href={url} target="_blank" rel="noreferrer">
           {title}
-        </a>{' '}
+        </a>
       </h3>
 
       <div>
@@ -39,7 +39,6 @@ const Friend = ({ friend }) => {
             </dd>
           </div>
           <div>
-            {' '}
             <dt>Adress:</dt>
             <dd>
               {!addressUrl ? (

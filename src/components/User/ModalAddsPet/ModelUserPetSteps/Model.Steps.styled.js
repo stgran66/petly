@@ -69,8 +69,6 @@ const PetFoto = styled('img')`
   }
 `;
 
-// const PetFotoInputLabel = styled('label')``;
-
 const PetFotoIcon = styled(Add28Regular)`
   width: 52px;
   height: 52px;
@@ -328,7 +326,6 @@ const styles = {
   InputValue,
   FormText,
   PetFoto,
-  // PetFotoInputLabel,
   PetFotoIcon,
   FotoWrap,
   CommentWrapp,

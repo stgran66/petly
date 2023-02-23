@@ -1,4 +1,5 @@
 import { Navigate } from 'react-router-dom';
+
 import hooks from 'hooks';
 
 const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {

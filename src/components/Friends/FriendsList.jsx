@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import styles from './styled';
 import friendsSelectors from 'redux/friends/selectors';
 import fetchFriends from 'redux/friends/operations';
 import NotFound from 'components/notices/NotFound';
 import Loader from 'components/Loader';
 import Friend from './Friend';
+import styles from './styled';
 
 const { StyledList } = styles;
 const { selectFriends, selectError, selectLoadingStatus } = friendsSelectors;
 
-const FriendsList = ({ children }) => {
+const FriendsList = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoadingStatus);
   const friends = useSelector(selectFriends);

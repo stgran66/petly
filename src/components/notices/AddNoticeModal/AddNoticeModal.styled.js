@@ -11,10 +11,12 @@ const ModalBackdrop = styled(Modal)`
   backdrop-filter: blur(10px);
   overflow-y: scroll;
   z-index: 20000;
-  & .css-i9fmh8-muibackdrop-root-muimodal-backdrop: {
+
+  & .css-i9fmh8-muibackdrop-root-muimodal-backdrop : {
     opacity: 0;
   }
 `;
+
 const ModalBox = styled(Box)`
   padding: 40px 20px;
   position: absolute;
@@ -239,13 +241,6 @@ const ModalBtn = styled('button')`
     background-color: ${({ theme }) => theme.colors.accent};
     color: ${({ theme }) => theme.colors.white};
   }
-
-  // &:disabled,
-  // button[disabled='disabled'] {
-  //   border: 1px solid #999999 !important;
-  //   background-color: #cccccc !important;
-  //   color: #666666 !important;
-  // }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: ${({ theme }) => theme.fontSizes.text.xl};
